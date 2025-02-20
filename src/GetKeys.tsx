@@ -47,7 +47,7 @@ const GetKeys = () => {
                   "INSERT INTO `products_table`(`id`, `name`, `inStock`, `description`, `category`, `brand`) " +
                     "VALUES ('"+itemProduct.id+"','"+itemProduct.name+"','"+((itemProduct.inStock)?1:0).toString()+"','"+itemProduct.description+"','"+itemProduct.category+"','"+itemProduct.brand+"'); "
 
-                //attributeOptions-1w
+
                 return <div key={productId}>
                     <div>====================== ({productIdNumber}) - - - {productId} ==== {productName}</div>
                     <div>===== {itemProduct.category} {itemProduct.brand}</div>
