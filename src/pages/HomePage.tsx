@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import ProductsGallery from "./ProductsGallery";
-import GetKeys from "../GetKeys";
+import DataJsonAnalyser from "../DataJsonAnalyser";
 
 export const HomePage = () => {
 
@@ -8,7 +8,7 @@ export const HomePage = () => {
         <>
             <div>HomePage</div>
             {/*<ProductsGallery/>*/}
-            <GetKeys/>
+            <DataJsonAnalyser/>
         </>
     );
 };

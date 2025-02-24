@@ -3,7 +3,7 @@ import {initialData} from "./database/initialData";
 import {dividerClasses} from "@mui/material";
 
 
-const GetKeys = () => {
+const DataJsonAnalyser = () => {
 
     const data:any=initialData
     console.log('products1',data['products'])
@@ -30,10 +30,18 @@ const GetKeys = () => {
     let sqlProductsAttributes='';
     let sqlProducts='';
 
+    const products = workArray[1]
+
+    for (let i = 0; i < products.length ; i++) {
+        const el = products[i]
+        console.log("",101 + i ,el.name)
+    }
+
     return(
         <div>
             <div>GetKeys</div>
-            {workArray[1].map((itemProduct: any, productI: number) => {
+            <div style={{color:'red'}}>number of products {products.length}</div>
+            {products.map((itemProduct: any, productI: number) => {
 
                 const {attributes,gallery,prices,...productInSelf} = itemProduct
 
@@ -49,10 +57,11 @@ const GetKeys = () => {
 
 
                 return <div key={productId}>
-                    <div>====================== ({productIdNumber}) - - - {productId} ==== {productName}</div>
+                    <div style={{color:'red'}} >====================== ({productIdNumber}) - - - {productId} ==== {productName}</div>
+
                     <div>===== {itemProduct.category} {itemProduct.brand}</div>
                     <div>======== {itemProduct.id} </div>
-                    <div>================================  </div>
+                    <div>================================</div>
                     <div>======== {JSON.stringify(productInSelf)} </div>
                     <div>======== {JSON.stringify(prices)} </div>
                     <div>======== {JSON.stringify(gallery[0])} </div>
@@ -79,14 +88,14 @@ const GetKeys = () => {
                                     "INSERT INTO `attribute_options_table`(" +
                                     "`attributeSetId`, `attributeOptionId`, `displayValue`, `value`) " +
                                     "VALUES ('" + setId + "','" + attribute.id + "', '" + attribute.displayValue + "' , '" + attribute.value + "' )" +
-                                    " ON DUPLICATE KEY UPDATE attributeSetId = '"+setId+"' , attributeOptionId = '" + attribute.id + "'  ;"
+                                    " ON DUPLICATE KEY UPDATE attributeSetId = '" + setId + "' , attributeOptionId = '" + attribute.id + "'  ;"
 
-                                console.log(sqlInsertOption)
+                                // console.log(sqlInsertOption)
 
                                 sql_attribute_options_table = sql_attribute_options_table + sqlInsertOption
 
-                                let sqlProductsAttribute = "INSERT INTO `products_attributes`(`productId`, `attributeSetId`, `attributeOptionId`) VALUES ('"+itemProduct.id+"','"+setId+"','"+attribute.id+"') " +
-                                    " ON DUPLICATE KEY UPDATE productId = '" + itemProduct.id + "' , attributeSetId = '"+setId+ "' , attributeOptionId = '"+attribute.id+"' ;"
+                                let sqlProductsAttribute = "INSERT INTO `products_attributes`(`productId`, `attributeSetId`, `attributeOptionId`) VALUES ('" + itemProduct.id + "','" + setId + "','" + attribute.id + "') " +
+                                    " ON DUPLICATE KEY UPDATE productId = '" + itemProduct.id + "' , attributeSetId = '" + setId + "' , attributeOptionId = '" + attribute.id + "' ;"
 
                                 sqlProductsAttributes = sqlProductsAttributes + ` ` + sqlProductsAttribute
 
@@ -116,4 +125,4 @@ const GetKeys = () => {
     )
 }
 
-export default GetKeys;
+export default DataJsonAnalyser;
