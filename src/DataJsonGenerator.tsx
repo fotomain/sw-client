@@ -2,10 +2,16 @@
 import {initialData} from "./database/initialData";
 import {dividerClasses} from "@mui/material";
 
+// "▄▄▄▄"
+const option_type='text'
 
-const DataJsonAnalyser = () => {
+
+const DataJsonGenerator = () => {
 
     const data:any=initialData
+    let sql:any={
+        strOptions:'',
+    };
     // console.log('products1',data['products'])
 
     const workArray:any[] = []
@@ -43,7 +49,7 @@ const DataJsonAnalyser = () => {
         }
         ,...products
     ]
-    console.log("=== products   ",products)
+        console.log("=== products   ",products)
 
     console.log("INSERT INTO product_entity VALUES( sku, tproductId, has_options, id, comment ) ( ")
     for (let i = 0; i < products.length ; i++) {
@@ -58,12 +64,14 @@ const DataJsonAnalyser = () => {
     }
     console.log(");")
 
+    let entity_options_vector_id = 501
+
     let options_plan:any = {}
-    for (let i = 0; i < products.length ; i++) {
-        const product_id = (101 + i).toString()
-        const el = products[i]
+    for (let productI = 0; productI < products.length ; productI++) {
+        const product_id = (101 + productI).toString()
+        const elProduct = products[productI]
         console.log(
-            el.attributes
+            elProduct.attributes
         )
 
 
@@ -100,16 +108,17 @@ const DataJsonAnalyser = () => {
 
         options_plan[product_id] = {};
 
+
         console.log('found1 █████████ product_id', product_id)
 
-        if(el.attributes) {
-            for (let j = 0; j < el.attributes.length; j++) {
-                const attribute:any = el.attributes[j]
+        if(elProduct.attributes) {
+            for (let j = 0; j < elProduct.attributes.length; j++) {
+                const attribute:any = elProduct.attributes[j]
                 options_plan[product_id][attribute.id] = 1
 
                 // ==== INSERT entity_options_plan
                 const option_id = catalog_options[attribute.id]
-                console.log("INSERT INTO entity_options_plan VALUES( product_id, option_entity_id  ) ( ")
+                console.log("INSERT INTO entity_options_vector_values VALUES( product_id, option_entity_id  ) ( ")
                 console.log(
                     product_id ," , ",
                     catalog_options[option_id]
@@ -118,7 +127,9 @@ const DataJsonAnalyser = () => {
 
                 console.log("==== items1 ", attribute.items)
 
-                console.log("INSERT INTO entity_options_vector_id VALUES( entity_id,product_id, option_entity_id  ) ( ")
+                entity_options_vector_id = entity_options_vector_id + productI; // product inbdex
+                let strOptions = "INSERT INTO entity_options_vector_values ( entity_options_vector_id, entity_id, option_id , option_type ) VALUES ( "
+                let strValues = ""
                 for (let k = 0; k < attribute?.items?.length ; k++) {
                     const option_value=attribute.items[k]
                     // console.log("==== items ", attribute.items[k])
@@ -132,34 +143,44 @@ const DataJsonAnalyser = () => {
                         const workArrayX=Array.from(Object.keys(y))
                         for (const keyX of workArrayX) {
                             if(item.value===y[keyX].value) {
-                                console.log('found1 X', y[keyX])
-                                console.log('found1 keyY keyX ', keyY, keyX, y[keyX].value)
-                                console.log('found1 -- ', catalog_options_values_text[keyY][keyX])
-                                optionValueData = y[keyX]
+
+                                strValues = strValues +
+                                    entity_options_vector_id +","+
+                                    product_id +","+
+                                    keyX +","+
+                                    "'"+option_type+"'"
+
+
+
+                                // console.log('found1 X', y[keyX])
+                                // console.log('found1 keyY keyX ', keyY, keyX, y[keyX].value)
+                                // console.log('found1 -- ', catalog_options_values_text[keyY][keyX])
+
                             }
                         }
                     }
+                } // k items
 
-                    // const option_value_data:any = catalog_options_values_text[option_id]
-                    //
-                    // // console.log( "out1", product_id, option_value_data )
-                    // if(undefined!==option_value_data)
-                    //     console.log( "out2", product_id, option_id, option_value_data.value, option_value_data.displayValue,  )
-                    // else{
-                    //     console.warn( '=== out1 no data for option_id ', option_id)
-                    // }
+                console.log("strValues === ", strValues)
 
-
+                if(0!==strValues.length) {
+                    console.log("strValues === ", strValues)
+                    strOptions = strOptions + strValues + ");      "
+                    sql.strOptions = sql.strOptions + strOptions;
                 }
-                console.log(");")
-
             }
         }}
 
-    console.log("=== options_plan",
-        options_plan
-    )
+    sql.strOptions =
+        "delete " +
+        "from entity_options_vector_values " +
+        "where 1; "
+        + sql.strOptions
+        ;
 
+
+    console.log("=== ███████████████████████████ sql1")
+    console.log(sql.strOptions)
 
     return(
         <div>
@@ -179,4 +200,4 @@ const DataJsonAnalyser = () => {
     )
 }
 
-export default DataJsonAnalyser;
+export default DataJsonGenerator;

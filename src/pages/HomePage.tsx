@@ -1,6 +1,7 @@
 import React, {useState} from "react";
 import ProductsGallery from "./ProductsGallery";
 import DataJsonAnalyser from "../DataJsonAnalyser";
+import DataJsonGenerator from "../DataJsonGenerator";
 
 export const HomePage = () => {
 
@@ -8,7 +9,8 @@ export const HomePage = () => {
         <>
             <div>HomePage</div>
             {/*<ProductsGallery/>*/}
-            <DataJsonAnalyser/>
+            {/*<DataJsonAnalyser/>*/}
+            <DataJsonGenerator/>
         </>
     );
 };
