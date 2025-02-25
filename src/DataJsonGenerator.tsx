@@ -10,7 +10,11 @@ const DataJsonGenerator = () => {
 
     const dataProducts:any=initialData
 
+    let option_id_array:any[]=[]
+    let option_id_last_index=80000
     // console.log('products1',data['products'])
+
+    let entity_options_set_id =500
 
     const workArray:any[] = []
     const productPropeties:any= {}
@@ -21,12 +25,20 @@ const DataJsonGenerator = () => {
     }
 
     let productsArray:any=workArray[1]
+    let nProduct=1
     for (const i in productsArray) {
+
+        productsArray[i].product_id=100 + nProduct
+        nProduct++
+
         // const atr:any = data[a]
         const obj = productsArray[i];
         for (const k in obj) {
             productPropeties[k]=1
         }
+
+        //sql10 product_entity
+
     }
 
     console.log('productsArray',productsArray)
@@ -91,24 +103,96 @@ const DataJsonGenerator = () => {
 
         if(allItems.length>0){
 
-            const loopItems = (parentStr:string, itemsArray:any,level:number,levelsTotal:number)=> {
+            const loopItems = (onTarget:any,parents:any,parentStr:string, itemsArray:any,level:number,levelsTotal:number)=> {
                 if(level<(levelsTotal)) {
                     for (let i = 0; i < itemsArray[level].length ; i++) {
                         // let ss=""; for (let ll = 0; ll < level; ll++) {ss=ss+"==="};
                         // console.log(ss,' level ',level, itemsArray[level][i])
-                            loopItems(parentStr +" --- "+itemNames[level]+" --- "+ itemsArray[level][i].value,itemsArray, level + 1, levelsTotal)
+                            parents[level]={optionName:itemNames[level], value:itemsArray[level][i].value}
+                            loopItems(onTarget,parents,parentStr +" --- "+itemNames[level]+" --- "+ itemsArray[level][i].value
+                                ,itemsArray, level + 1, levelsTotal
+                            )
                     }
                 }else{
                     let ss=""; for (let ll = 0; ll < level; ll++) {ss=ss+"==="};
-                    console.log(ss,' level ',level, parentStr)
+                    console.log(ss,' level ',level, parentStr, parents)
+                    onTarget({product:productsArray[p], options:parents})
                 }
             }
 
-            loopItems('',allItems,0,attributes.length)
+            const sql_entity_options_set_values = (p:any) => {
+                //sql20 entity_options_set_values
+                console.log("███████ sql1",p)
+            }
+            const option_id = (p:any) => {
+                if(option_id_array[p.value]){
+
+                }
+                else{
+                    option_id_last_index = option_id_last_index + 1;
+                    option_id_array[p.value] = {
+                        option_id:option_id_last_index,
+                        option_name: p.optionName ,
+                        option_value:p.value
+                    };
+                }
+
+                return option_id_array[p.value].option_id;
+            }
+
+            let parents:any[]=[]
+            const onTarget = (params:any) => {
+                console.log("███████ onTarget",entity_options_set_id, params.product.prices, params)
+                entity_options_set_id = entity_options_set_id + 1
+
+                // sql15 entity_options_set_price
+                // for params.product.prices
+
+                for (let i = 0; i < params.options.length ; i++) {
+                    sql_entity_options_set_values({
+                        entity_options_set_id,
+                        product_id:params.product.product_id,
+                        option_id:option_id(params.options[i]),
+                    })
+                }
+            }
+
+            loopItems(onTarget, parents,'',allItems,0,attributes.length)
         }
 
     }
 
+    console.log('sql1',option_id_array)
+
+    let obj:any[] = option_id_array
+    const keys:string[] = Object.keys(obj)
+    const result:any[]=[]
+    for (let i = 0; i < keys.length; i++) {
+        const kk:any=keys[i]
+        result[i] = obj[kk];
+    }
+
+    let optionValuesArray = result
+    console.log('sql1 optionValuesArray ',optionValuesArray)
+    let option_names:any ={}
+    let inc1=0
+    for (let i = 0; i < optionValuesArray.length; i++) {
+        if(!option_names[optionValuesArray[i].option_name]) {
+            option_names[optionValuesArray[i].option_name] = 801 + inc1
+            inc1++
+        }
+    }
+
+    console.log('sql1',option_names)
+
+    for (let i = 0; i < optionValuesArray.length; i++) {
+        optionValuesArray[i].option_id=option_names[optionValuesArray[i].option_name]
+    }
+
+    // sql50 catalog_options
+    console.log('sql1 catalog_options',option_names)
+    // sql60 catalog_options_values_text
+    console.log('sql1 catalog_options_values_text',optionValuesArray)
 
 
     return(
