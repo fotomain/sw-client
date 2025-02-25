@@ -2,170 +2,121 @@
 import {initialData} from "./database/initialData";
 import {dividerClasses} from "@mui/material";
 
+// "▄▄▄▄"
+const option_type='text'
 
-const DataJsonAnalyser = () => {
 
-    const data:any=initialData
+const DataJsonGenerator = () => {
+
+    const dataProducts:any=initialData
+
     // console.log('products1',data['products'])
 
     const workArray:any[] = []
-    const attributesCatalog:any= {}
-    for (const k in data) {
-        const el:any = data[k]
+    const productPropeties:any= {}
+    for (const k in dataProducts) {
+        const el:any = dataProducts[k]
         console.log('el1',el)
         workArray.push(el)
     }
 
-    for (const i in workArray[1]) {
+    let productsArray:any=workArray[1]
+    for (const i in productsArray) {
         // const atr:any = data[a]
-        const obj = workArray[1][i];
+        const obj = productsArray[i];
         for (const k in obj) {
-            attributesCatalog[k]=1
+            productPropeties[k]=1
         }
     }
 
-    // console.log('workArray',workArray)
-    // console.log('attributesCatalog',attributesCatalog)
+    console.log('productsArray',productsArray)
+    console.log('productPropeties',productPropeties)
 
 
-    let products = workArray[1]
-
-    products = [
+    const productsNew = [
         {
             id:'iPhone',
             name:'iPhone',
-            attributes:[{id:"Color"},{id:"Capacity"},{id:"Operational system"}]
+            attributes: {items: [{id: "Color"}, {id: "Capacity"}, {id: "Operational system"}]},
+            prices:[{amount:777,currency: {label:"USD"}}]
         },
         {
             id:'Samsung',
             name:'Samsung',
-            attributes:[{id:"Color"},{id:"Capacity"},{id:"Operational system"}]
+            attributes: {items: [{id: "Color"}, {id: "Capacity"}, {id: "Operational system"}]},
+            prices:[{amount:888,currency: {label:"USD"}}]
         }
-        ,...products
     ]
-    console.log("=== products   ",products)
 
-    console.log("INSERT INTO product_entity VALUES( sku, tproductId, has_options, id, comment ) ( ")
-    for (let i = 0; i < products.length ; i++) {
-        const el = products[i]
-        console.log(
-            101 + i ," , ",
-            101 + i ,",",
-            1 ,",",
-            el.id ,",",
-            el.name
-        )
+    productsArray=[...productsNew,...productsArray]
+
+    console.log('productsArray',productsArray)
+
+
+    for (let p = 0; p < productsArray.length; p++) {
+        // === INSERT1 product_entity
     }
-    console.log(");")
 
-    let options_plan:any = {}
-    for (let i = 0; i < products.length ; i++) {
-        const product_id = (101 + i).toString()
-        const el = products[i]
-        console.log(
-            el.attributes
-        )
+    for (let p = 0; p < productsArray.length; p++) {
+        const attributes = productsArray[p].attributes
+        if(attributes){
+            for (let a = 0; a < attributes.length; a++) {
+                // === INSERT2 entity_options_plan
+            }
+        }
+    }
 
 
-        const catalog_options:any={
-            'Color': 801,
-            'Capacity':802,
-            'OS iPhpne':803,
-            'OS Samsung':804,
-            'Size':805,
-            'With USB 3 ports':808,
-            'Touch ID in keyboard':809,
+
+    let allItems:any[] =[]
+    let itemNames:any[] =[]
+
+    for (let p = 0; p < productsArray.length; p++) {
+
+        allItems=[] // 1 product
+        itemNames=[] // 1 product
+
+        const attributes = productsArray[p].attributes
+        if(attributes){
+            for (let a1 = 0; a1 < attributes.length; a1++) {
+                allItems[a1]=[]
+                for (let i = 0; i < attributes[a1].items.length; i++) {
+                    allItems[a1][i] = attributes[a1].items[i]
+                    itemNames[a1]=attributes[a1].id
+                }
+            }
         }
 
-        let catalog_options_values_text:any = {}
-        catalog_options_values_text[801] = {}
-        catalog_options_values_text[801][80101] = {value:'#44FF03',id:'Green', displayValue:'Green'};
-        catalog_options_values_text[801] = {}
-        catalog_options_values_text[801][80102] = {value:'#44FF03',id:'Cyan', displayValue:'Cyan'};
-        catalog_options_values_text[801] = {}
-        catalog_options_values_text[801][80103] = {value:'#030BFF',id:'Blue', displayValue:'Blue'};
-        catalog_options_values_text[801] = {}
-        catalog_options_values_text[801][80104] = {value:'#030BFF',id:'Black', displayValue:'Black'};
-        catalog_options_values_text[801] = {}
-        catalog_options_values_text[801][80105] = {value:'#FFFFFF',id:'White', displayValue:'White'};
+        console.log('=== allItems ',allItems)
 
-        catalog_options_values_text[802] = {}
-        catalog_options_values_text[802][80201] = {value:'512GB',id:'512GB', displayValue:'512GB'};
-        catalog_options_values_text[802] = {}
-        catalog_options_values_text[802][80203] = {value:'1T',id:'1T', displayValue:'1T'};
+        if(allItems.length>0){
 
-
-        // console.log("=== catalog_options_values_text",catalog_options_values_text[801][80101])
-
-
-        options_plan[product_id] = {};
-
-        console.log('found1 █████████ product_id', product_id)
-
-        if(el.attributes) {
-            for (let j = 0; j < el.attributes.length; j++) {
-                const attribute:any = el.attributes[j]
-                options_plan[product_id][attribute.id] = 1
-
-                // ==== INSERT entity_options_plan
-                const option_id = catalog_options[attribute.id]
-                console.log("INSERT INTO entity_options_plan VALUES( product_id, option_entity_id  ) ( ")
-                console.log(
-                    product_id ," , ",
-                    catalog_options[option_id]
-                )
-                console.log(");")
-
-                console.log("==== items1 ", attribute.items)
-
-                console.log("INSERT INTO entity_options_vector_id VALUES( entity_id,product_id, option_entity_id  ) ( ")
-                for (let k = 0; k < attribute?.items?.length ; k++) {
-                    const option_value=attribute.items[k]
-                    // console.log("==== items ", attribute.items[k])
-                    const item = attribute.items[k]
-
-                    let optionValueData = {}
-                    const workArrayY=Array.from(Object.keys(catalog_options_values_text))
-                    for (const keyY of workArrayY) {
-                        const y = catalog_options_values_text[keyY]
-                        // console.log('found1 Y',y)
-                        const workArrayX=Array.from(Object.keys(y))
-                        for (const keyX of workArrayX) {
-                            if(item.value===y[keyX].value) {
-                                console.log('found1 X', y[keyX])
-                                console.log('found1 keyY keyX ', keyY, keyX, y[keyX].value)
-                                console.log('found1 -- ', catalog_options_values_text[keyY][keyX])
-                                optionValueData = y[keyX]
-                            }
-                        }
+            const loopItems = (parentStr:string, itemsArray:any,level:number,levelsTotal:number)=> {
+                if(level<(levelsTotal)) {
+                    for (let i = 0; i < itemsArray[level].length ; i++) {
+                        // let ss=""; for (let ll = 0; ll < level; ll++) {ss=ss+"==="};
+                        // console.log(ss,' level ',level, itemsArray[level][i])
+                            loopItems(parentStr +" --- "+itemNames[level]+" --- "+ itemsArray[level][i].value,itemsArray, level + 1, levelsTotal)
                     }
-
-                    // const option_value_data:any = catalog_options_values_text[option_id]
-                    //
-                    // // console.log( "out1", product_id, option_value_data )
-                    // if(undefined!==option_value_data)
-                    //     console.log( "out2", product_id, option_id, option_value_data.value, option_value_data.displayValue,  )
-                    // else{
-                    //     console.warn( '=== out1 no data for option_id ', option_id)
-                    // }
-
-
+                }else{
+                    let ss=""; for (let ll = 0; ll < level; ll++) {ss=ss+"==="};
+                    console.log(ss,' level ',level, parentStr)
                 }
-                console.log(");")
-
             }
-        }}
 
-    console.log("=== options_plan",
-        options_plan
-    )
+            loopItems('',allItems,0,attributes.length)
+        }
+
+    }
+
 
 
     return(
         <div>
             <div>GetKeys</div>
-            <div style={{color:'red'}}>number of products {products.length}</div>
-            {products.map((itemProduct: any, productI: number) => {
+
+
+            {workArray.map((itemProduct: any, productI: number) => {
 
                 const {attributes,gallery,prices,...productInSelf} = itemProduct
 
@@ -179,4 +130,4 @@ const DataJsonAnalyser = () => {
     )
 }
 
-export default DataJsonAnalyser;
+export default DataJsonGenerator;
