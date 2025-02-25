@@ -1,6 +1,7 @@
 
 import {initialData} from "./database/initialData";
 import {dividerClasses} from "@mui/material";
+import {productsNew} from "./generator/productsNew";
 
 // "▄▄▄▄"
 const option_type='text'
@@ -12,7 +13,7 @@ const DataJsonGenerator = () => {
 
     let option_id_array:any[]=[]
     let option_id_last_index=80000
-    // console.log('products1',data['products'])
+    let sql_entity_options_set_values:any[]=[]
 
     let entity_options_set_id =500
 
@@ -25,42 +26,21 @@ const DataJsonGenerator = () => {
     }
 
     let productsArray:any=workArray[1]
+    productsArray=[...productsNew,...productsArray]
     let nProduct=1
     for (const i in productsArray) {
 
         productsArray[i].product_id=100 + nProduct
+        productsArray[i].sku=productsArray[i].product_id
         nProduct++
-
-        // const atr:any = data[a]
         const obj = productsArray[i];
         for (const k in obj) {
             productPropeties[k]=1
         }
-
-        //sql10 product_entity
-
     }
 
     console.log('productsArray',productsArray)
     console.log('productPropeties',productPropeties)
-
-
-    const productsNew = [
-        {
-            id:'iPhone',
-            name:'iPhone',
-            attributes: {items: [{id: "Color"}, {id: "Capacity"}, {id: "Operational system"}]},
-            prices:[{amount:777,currency: {label:"USD"}}]
-        },
-        {
-            id:'Samsung',
-            name:'Samsung',
-            attributes: {items: [{id: "Color"}, {id: "Capacity"}, {id: "Operational system"}]},
-            prices:[{amount:888,currency: {label:"USD"}}]
-        }
-    ]
-
-    productsArray=[...productsNew,...productsArray]
 
     console.log('productsArray',productsArray)
 
@@ -77,8 +57,6 @@ const DataJsonGenerator = () => {
             }
         }
     }
-
-
 
     let allItems:any[] =[]
     let itemNames:any[] =[]
@@ -120,10 +98,6 @@ const DataJsonGenerator = () => {
                 }
             }
 
-            const sql_entity_options_set_values = (p:any) => {
-                //sql20 entity_options_set_values
-                console.log("███████ sql1",p)
-            }
             const option_id = (p:any) => {
                 if(option_id_array[p.value]){
 
@@ -149,7 +123,7 @@ const DataJsonGenerator = () => {
                 // for params.product.prices
 
                 for (let i = 0; i < params.options.length ; i++) {
-                    sql_entity_options_set_values({
+                    sql_entity_options_set_values.push({
                         entity_options_set_id,
                         product_id:params.product.product_id,
                         option_id:option_id(params.options[i]),
@@ -189,25 +163,30 @@ const DataJsonGenerator = () => {
         optionValuesArray[i].option_id=option_names[optionValuesArray[i].option_name]
     }
 
-    // sql50 catalog_options
+
+    // sql catalog_products
+    console.log('sql1 productsArray',productsArray)
+    // sql catalog_options
     console.log('sql1 catalog_options',option_names)
     // sql60 catalog_options_values_text
     console.log('sql1 catalog_options_values_text',optionValuesArray)
+    // sql sql_entity_options_set_values
+    console.log('sql1 sql_entity_options_set_values',sql_entity_options_set_values)
 
 
     return(
         <div>
-            <div>GetKeys</div>
+            <div>███████ products</div>
 
-
-            {workArray.map((itemProduct: any, productI: number) => {
-
-                const {attributes,gallery,prices,...productInSelf} = itemProduct
-
+            <div>DELETE FROM product_entity WHERE 1; </div>
+            {productsArray.map((iProduct: any, productI: number) => {
                 return <div key={productI}>
-                    <div style={{color:'red'}} >====================== ({itemProduct.name})</div>
+                    {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
+                    <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, comment ) VALUES (</div>
+                    <div>{iProduct.product_id} , {iProduct.product_id} , {(iProduct.attributes.length == 0) ? 0 : 1}, 1 , '{iProduct.name}'
+                    </div>
+                    <div>);</div>
                 </div>
-
             })}
 
         </div>
