@@ -2,6 +2,7 @@
 import {initialData} from "./database/initialData";
 import {dividerClasses} from "@mui/material";
 import {productsNew} from "./generator/productsNew";
+import {objectToArray} from "./generator/objectToArray";
 
 // "▄▄▄▄"
 const option_type='text'
@@ -14,6 +15,7 @@ const DataJsonGenerator = () => {
     let option_id_array:any[]=[]
     let option_id_last_index=80000
     let sql_entity_options_set_values:any[]=[]
+    let sql_entity_options_set_header:any={}
 
     let entity_options_set_id =500
 
@@ -87,14 +89,14 @@ const DataJsonGenerator = () => {
                         // let ss=""; for (let ll = 0; ll < level; ll++) {ss=ss+"==="};
                         // console.log(ss,' level ',level, itemsArray[level][i])
                             parents[level]={optionName:itemNames[level], value:itemsArray[level][i].value}
-                            loopItems(onTarget,parents,parentStr +" --- "+itemNames[level]+" --- "+ itemsArray[level][i].value
+                            loopItems(onTarget,parents,parentStr +" --- "+itemNames[level]+" --- "+ itemsArray[level][i].displayValue
                                 ,itemsArray, level + 1, levelsTotal
                             )
                     }
                 }else{
                     let ss=""; for (let ll = 0; ll < level; ll++) {ss=ss+"==="};
                     console.log(ss,' level ',level, parentStr, parents)
-                    onTarget({product:productsArray[p], options:parents})
+                    onTarget({product:productsArray[p], options:parents, parentStr})
                 }
             }
 
@@ -119,9 +121,6 @@ const DataJsonGenerator = () => {
                 console.log("███████ onTarget",entity_options_set_id, params.product.prices, params)
                 entity_options_set_id = entity_options_set_id + 1
 
-                // sql15 entity_options_set_price
-                // for params.product.prices
-
                 for (let i = 0; i < params.options.length ; i++) {
                     sql_entity_options_set_values.push({
                         entity_options_set_id,
@@ -129,6 +128,14 @@ const DataJsonGenerator = () => {
                         option_id:option_id(params.options[i]),
                     })
                 }
+
+                sql_entity_options_set_header[entity_options_set_id]={
+                    entity_options_set_id,
+                    product_id:params.product.product_id,
+                    prices:params.product.prices,
+                    slug:params.parentStr.toLowerCase().replaceAll(" --- ","-").replace(/ /g, '-').replace(/[^\w-]+/g, '')
+                }
+
             }
 
             loopItems(onTarget, parents,'',allItems,0,attributes.length)
@@ -172,7 +179,13 @@ const DataJsonGenerator = () => {
     console.log('sql1 catalog_options_values_text',optionValuesArray)
     // sql sql_entity_options_set_values
     console.log('sql1 sql_entity_options_set_values',sql_entity_options_set_values)
-
+    // sql sql_entity_options_set_header
+    // console.log('sql1 sql_entity_options_set_header',sql_entity_options_set_header)
+    sql_entity_options_set_header = objectToArray(sql_entity_options_set_header)
+    console.log("sql_entity_options_set_header",sql_entity_options_set_header)
+    // result1.map((element:any) => {
+    //     console.log("element",element)
+    // })
 
     return(
         <div>
