@@ -16,6 +16,7 @@ const DataJsonGenerator = () => {
     let option_id_last_index=80000
     let sql_entity_options_set_values:any[]=[]
     let sql_entity_options_set_header:any={}
+    let option_value_attributes:any[]=[]
 
     let entity_options_set_id =500
 
@@ -60,6 +61,7 @@ const DataJsonGenerator = () => {
     let allItems:any[] =[]
     let itemNames:any[] =[]
     let optionHeader:any={}
+    let itemsDetails:any=[]
 
     console.log('productsArray1 ',productsArray)
 
@@ -67,6 +69,7 @@ const DataJsonGenerator = () => {
 
         allItems=[] // 1 product
         itemNames=[] // 1 product
+
 
         const attributes = productsArray[p].attributes
         if(attributes){
@@ -78,6 +81,7 @@ const DataJsonGenerator = () => {
                 for (let i = 0; i < attributes[a1].items.length; i++) {
                     allItems[a1][i] = attributes[a1].items[i]
                     itemNames[a1]=attributes[a1].id
+                    itemsDetails.push({option_name:attributes[a1].id,details:attributes[a1].items[i]})
                 }
             }
 
@@ -181,10 +185,34 @@ const DataJsonGenerator = () => {
     catalog_options = objectToArray({array:catalog_options})
     console.log('sql1 --- catalog_options',catalog_options)
     console.log('sql1 --- optionHeader',optionHeader)
-
-
     // sql60 catalog_options_values_text
     console.log('sql1 catalog_options_values_text',catalog_options_values_text)
+
+    console.log("itemsDetails1",itemsDetails)
+    for (let i = 0; i < catalog_options_values_text.length; i++) {
+        const el1 = catalog_options_values_text[i]
+        for (let j = 0; j < itemsDetails.length; j++) {
+            const el2 = itemsDetails[j]
+            if(el1.option_name===el2.option_name){
+                // console.log('el1.option_name ',el1.option_name, catalog_options)
+                // const oIndex = catalog_options.findIndex((el:any)=>{
+                //     return el.key===el1.option_name
+                // })
+                // console.log("oIndex1",oIndex)
+                    if(el1.option_value===el2.details.value){
+                        console.log("found111",el2.details)
+                        option_value_attributes.push({option_id:el1.option_id,attribute_name:'displayValue', attribute_value:el2.details.displayValue})
+                        option_value_attributes.push({option_id:el1.option_id,attribute_name:'value', attribute_value:el2.details.value})
+                        option_value_attributes.push({option_id:el1.option_id,attribute_name:'id', attribute_value:el2.details.id})
+                    }
+
+            }
+        }
+    }
+
+    // sql option_value_attributes
+    console.log('sql1 option_value_attributes',option_value_attributes)
+
     // sql sql_entity_options_set_values
     console.log('sql1 sql_entity_options_set_values',sql_entity_options_set_values)
     // sql sql_entity_options_set_header
@@ -198,6 +226,52 @@ const DataJsonGenerator = () => {
         <div>
             <div>███████ catalog_options_values_text</div>
 
+            <div>
+                <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
+                    let res = ''
+                    for (let i = 0; i < 10; i++) {
+                        const el = document.getElementById("sql" + i);
+                        if (el) {
+                            res = res + el.innerText
+                        }
+                    }
+                    console.log('res1', res)
+                    navigator.clipboard.writeText(res);
+
+                }}
+                >
+                    COPY All
+                </button>
+            </div>
+
+
+            <div>███████ option_value_attributes</div>
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql4");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY option_value_attributes
+            </button>
+
+            <div id={'sql4'}>
+                <div>DELETE FROM option_value_attributes WHERE 1;</div>
+                {option_value_attributes.map((el: any, elI: number) => {
+                    return <div key={elI}>
+                        <div>INSERT INTO option_value_attributes ( option_id, attribute_name, attribute_value )
+                            VALUES (
+                        </div>
+                        <div>{el.option_id}, '{el.attribute_name}', '{el.attribute_value}'</div>
+                        <div>);</div>
+                    </div>
+                })}
+                <div>SELECT * FROM option_value_attributes ORDER BY option_entity_id, option_id ;</div>
+            </div>
+
+            <div>███████ catalog_options_values_text</div>
             <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
                 const el = document.getElementById("sql3");
                 if (el) {
@@ -216,10 +290,10 @@ const DataJsonGenerator = () => {
                     return <div key={elI}>
 
 
-                        <div>INSERT INTO catalog_options_values_text ( option_entity_id, option_id, option_value_id )
+                        <div>INSERT INTO catalog_options_values_text ( option_entity_id, option_id, comment )
                             VALUES (
                         </div>
-                        <div>{el.option_entity_id}, {el.option_id}, '{el.option_value}' </div>
+                        <div>{el.option_entity_id}, {el.option_id}, '{el.option_value}'</div>
                         <div>);</div>
                     </div>
                 })}
@@ -247,7 +321,8 @@ const DataJsonGenerator = () => {
                     return <div key={elI}>
 
 
-                        <div>INSERT INTO catalog_options ( option_entity_id, option_entity_name, option_entity_type )
+                        <div>INSERT INTO catalog_options ( option_entity_id, option_entity_name, option_entity_type
+                            )
                             VALUES (
                         </div>
                         <div>{el.value}, '{el.key}', '{optionHeader[el.key].type}'</div>

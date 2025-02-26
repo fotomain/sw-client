@@ -11,11 +11,11 @@ export const productsNew = [
                 id: 'Color',
                 type: 'swatch',
                 items: [
-                    {id: "Color", value: '#44FF03', displayValue: 'Green'},
-                    {id: "Color", value: '#03FFF7', displayValue: 'Cyan'},
-                    {id: "Color", value: '#030BFF', displayValue: 'Blue'},
-                    {id: "Color", value: '#000000', displayValue: 'Black'},
-                    {id: "Color", value: '#ff0000', displayValue: 'Red'},
+                    {id: "Green", value: '#44FF03', displayValue: 'Green'},
+                    {id: "Cyan", value: '#03FFF7', displayValue: 'Cyan'},
+                    {id: "Blue", value: '#030BFF', displayValue: 'Blue'},
+                    {id: "Black", value: '#000000', displayValue: 'Black'},
+                    {id: "Red", value: '#ff0000', displayValue: 'Red'},
                 ]
             },
             {
@@ -48,11 +48,11 @@ export const productsNew = [
                 id: 'Color',
                 type: 'swatch',
                 items: [
-                    {id: "Color", value: '#44FF03', displayValue: 'Green'},
-                    {id: "Color", value: '#03FFF7', displayValue: 'Cyan'},
-                    {id: "Color", value: '#030BFF', displayValue: 'Blue'},
-                    {id: "Color", value: '#000000', displayValue: 'Black'},
-                    {id: "Color", value: '#ff0000', displayValue: 'Red'},
+                    {id: "Green", value: '#44FF03', displayValue: 'Green'},
+                    {id: "Cyan", value: '#03FFF7', displayValue: 'Cyan'},
+                    {id: "Blue", value: '#030BFF', displayValue: 'Blue'},
+                    {id: "Black", value: '#000000', displayValue: 'Black'},
+                    {id: "Red", value: '#ff0000', displayValue: 'Red'},
                 ]
             },
                 {
