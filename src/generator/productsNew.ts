@@ -9,6 +9,7 @@ export const productsNew = [
         attributes:
             [{
                 id: 'Color',
+                type: 'text',
                 items: [
                     {id: "Color", value: '#44FF03', displayValue: 'Green'},
                     {id: "Color", value: '#03FFF7', displayValue: 'Cyan'},
@@ -17,20 +18,22 @@ export const productsNew = [
                     {id: "Color", value: '#ff0000', displayValue: 'Red'},
                 ]
             },
-                {
-                    id: "Capacity",
-                    items: [
-                        {id: "Capacity", value: '256GB', displayValue: '256GB'},
-                        {id: "Capacity", value: '1TB', displayValue: '1TB'},
-                    ]
-                },
-                {
-                    id: 'Operational system',
-                    items: [
-                        {id: "Operational system", value: 'iOS12', displayValue: 'iOS 12'},
-                        {id: "Operational system", value: 'iOS16', displayValue: 'iOS 16'}
-                    ]
-                }
+            {
+                id: "Capacity",
+                type: 'text',
+                items: [
+                    {id: "Capacity", value: '256GB', displayValue: '256GB'},
+                    {id: "Capacity", value: '1TB', displayValue: '1TB'},
+                ]
+            },
+            {
+                id: 'Operational system',
+                type: 'text',
+                items: [
+                    {id: "Operational system", value: 'iOS12', displayValue: 'iOS 12'},
+                    {id: "Operational system", value: 'iOS16', displayValue: 'iOS 16'}
+                ]
+            }
             ]
         },
     {
@@ -43,6 +46,7 @@ export const productsNew = [
         attributes:
             [{
                 id: 'Color',
+                type: 'text',
                 items: [
                     {id: "Color", value: '#44FF03', displayValue: 'Green'},
                     {id: "Color", value: '#03FFF7', displayValue: 'Cyan'},
@@ -53,6 +57,7 @@ export const productsNew = [
             },
                 {
                     id: "Capacity",
+                    type: 'text',
                     items: [
                         {id: "Capacity", value: '256GB', displayValue: '256GB'},
                         {id: "Capacity", value: '1TB', displayValue: '1TB'},
@@ -60,6 +65,7 @@ export const productsNew = [
                 },
                 {
                     id: 'Operational system',
+                    type: 'text',
                     items: [
                         {id: "Operational system", value: 'Android12', displayValue: 'Android 12'},
                         {id: "Operational system", value: 'Android13', displayValue: 'Android 13'}
