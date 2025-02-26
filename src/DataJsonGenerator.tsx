@@ -12,7 +12,7 @@ const DataJsonGenerator = () => {
 
     const dataProducts:any=initialData
 
-    let option_id_array:any[]=[]
+    let catalog_options_values_text:any[]=[]
     let option_id_last_index=80000
     let sql_entity_options_set_values:any[]=[]
     let sql_entity_options_set_header:any={}
@@ -28,7 +28,7 @@ const DataJsonGenerator = () => {
     }
 
     let productsArray:any=workArray[1]
-    productsArray=[...productsNew,...productsArray]
+    productsArray=[...productsArray,...productsNew]
     let nProduct=1
     for (const i in productsArray) {
 
@@ -72,6 +72,7 @@ const DataJsonGenerator = () => {
         if(attributes){
             for (let a1 = 0; a1 < attributes.length; a1++) {
                 console.log('attributes[a1]1',attributes[a1])
+                //00 optionHeader[attributes[a1].id+"-@-"+attributes[a1].type]= {type:attributes[a1].type, id:attributes[a1].id}
                 optionHeader[attributes[a1].id]= {type:attributes[a1].type, id:attributes[a1].id}
                 allItems[a1]=[]
                 for (let i = 0; i < attributes[a1].items.length; i++) {
@@ -102,20 +103,20 @@ const DataJsonGenerator = () => {
                     }
 
                     const option_id = (p:any) => {
-                        if(option_id_array[p.value]){
+                        if(catalog_options_values_text[p.value]){
 
                         }
                         else{
                             console.log('=== option data',p)
                             option_id_last_index = option_id_last_index + 1;
-                            option_id_array[p.value] = {
+                            catalog_options_values_text[p.value] = {
                                 option_id:option_id_last_index,
                                 option_name: p.optionName ,
                                 // option_type: p.type,
                                 option_value:p.value
                             };
                         }
-                        return option_id_array[p.value].option_id;
+                        return catalog_options_values_text[p.value].option_id;
                     }
 
                     let parents:any[]=[]
@@ -146,31 +147,32 @@ const DataJsonGenerator = () => {
 
     }
 
-    console.log('sql1 option_id_array ',option_id_array)
+    console.log('sql1 catalog_options_values_text ',catalog_options_values_text)
 
-    let obj:any[] = option_id_array
-    const keys:string[] = Object.keys(obj)
-    const result:any[]=[]
-    for (let i = 0; i < keys.length; i++) {
-        const kk:any=keys[i]
-        result[i] = obj[kk];
-    }
+    catalog_options_values_text=objectToArray({array:catalog_options_values_text})
 
-    let optionValuesArray = result
-    console.log('sql1 optionValuesArray ',optionValuesArray)
+
+    // let optionValuesArray = catalog_options_values_text
+    // console.log('sql1 optionValuesArray ',optionValuesArray)
     let catalog_options:any ={}
     let inc1=0
-    for (let i = 0; i < optionValuesArray.length; i++) {
-        if(!catalog_options[optionValuesArray[i].option_name]) {
-            catalog_options[optionValuesArray[i].option_name] = 801 + inc1
+    for (let i = 0; i < catalog_options_values_text.length; i++) {
+        if(!catalog_options[catalog_options_values_text[i].value.option_name]) {
+            const newIndex = 801 + inc1
+            catalog_options[catalog_options_values_text[i].value.option_name] = newIndex
+            catalog_options_values_text[i].value.option_entity_id = newIndex
             inc1++
+        }
+        else{
+            catalog_options_values_text[i].value.option_entity_id = catalog_options[catalog_options_values_text[i].value.option_name]
         }
     }
 
-    for (let i = 0; i < optionValuesArray.length; i++) {
-        optionValuesArray[i].option_id=catalog_options[optionValuesArray[i].option_name]
+    for (let i = 0; i < catalog_options_values_text.length; i++) {
+        catalog_options_values_text[i] = {...catalog_options_values_text[i].value}
     }
 
+    catalog_options_values_text = catalog_options_values_text.sort((a,b) => a.option_entity_id - b.option_entity_id)
 
     // sql catalog_products
     console.log('sql1 productsArray',productsArray)
@@ -179,20 +181,53 @@ const DataJsonGenerator = () => {
     catalog_options = objectToArray({array:catalog_options})
     console.log('sql1 --- catalog_options',catalog_options)
     console.log('sql1 --- optionHeader',optionHeader)
+
+
     // sql60 catalog_options_values_text
-    console.log('sql1 catalog_options_values_text',optionValuesArray)
+    console.log('sql1 catalog_options_values_text',catalog_options_values_text)
     // sql sql_entity_options_set_values
     console.log('sql1 sql_entity_options_set_values',sql_entity_options_set_values)
     // sql sql_entity_options_set_header
     // console.log('sql1 sql_entity_options_set_header',sql_entity_options_set_header)
     sql_entity_options_set_header = objectToArray({array:sql_entity_options_set_header, keyInteger:true})
     console.log("sql_entity_options_set_header",sql_entity_options_set_header)
-    // result1.map((element:any) => {
-    //     console.log("element",element)
-    // })
+
+    // TODO gallery
 
     return(
         <div>
+            <div>███████ catalog_options_values_text</div>
+
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql3");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY catalog_options_values_text
+            </button>
+
+            <div id={'sql3'}>
+
+                <div>DELETE FROM catalog_options_values_text WHERE 1;</div>
+                {catalog_options_values_text.map((el: any, elI: number) => {
+                    return <div key={elI}>
+
+
+                        <div>INSERT INTO catalog_options_values_text ( option_entity_id, option_id, option_value_id )
+                            VALUES (
+                        </div>
+                        <div>{el.option_entity_id}, {el.option_id}, '{el.option_value}' </div>
+                        <div>);</div>
+                    </div>
+                })}
+                <div>SELECT * FROM catalog_options_values_text ORDER BY option_entity_id, option_id ;</div>
+
+
+            </div>
+
             <div>███████ catalog_options</div>
 
             <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
@@ -215,18 +250,11 @@ const DataJsonGenerator = () => {
                         <div>INSERT INTO catalog_options ( option_entity_id, option_entity_name, option_entity_type )
                             VALUES (
                         </div>
-                        <div>{JSON.stringify(el.value)}</div>
-                        {/*<div>{el.value}, {el.key}, {'text'}</div>*/}
-
-                        {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
-
-                        {/*<div>{el.option_entity_id} , {el.product_id} , {(el.attributes.length == 0) ? 0 : 1},*/}
-                        {/*    1 , '{el.name}'*/}
-                        {/*</div>*/}
-                        {/*<div>);</div>*/}
+                        <div>{el.value}, '{el.key}', '{optionHeader[el.key].type}'</div>
+                        <div>);</div>
                     </div>
                 })}
-                <div>SELECT * FROM product_entity ;</div>
+                <div>SELECT * FROM catalog_options ;</div>
 
             </div>
 

@@ -9,7 +9,7 @@ export const productsNew = [
         attributes:
             [{
                 id: 'Color',
-                type: 'text',
+                type: 'swatch',
                 items: [
                     {id: "Color", value: '#44FF03', displayValue: 'Green'},
                     {id: "Color", value: '#03FFF7', displayValue: 'Cyan'},
@@ -46,7 +46,7 @@ export const productsNew = [
         attributes:
             [{
                 id: 'Color',
-                type: 'text',
+                type: 'swatch',
                 items: [
                     {id: "Color", value: '#44FF03', displayValue: 'Green'},
                     {id: "Color", value: '#03FFF7', displayValue: 'Cyan'},
