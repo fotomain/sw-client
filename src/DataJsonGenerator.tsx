@@ -7,7 +7,6 @@ import {objectToArray} from "./generator/objectToArray";
 // "▄▄▄▄"
 const option_type='text'
 
-
 const DataJsonGenerator = () => {
 
     const dataProducts:any=initialData
