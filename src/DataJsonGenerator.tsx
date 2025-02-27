@@ -11,15 +11,11 @@ const DataJsonGenerator = () => {
 
     const dataProducts:any=initialData
 
-    let catalog_options_values_text:any[]=[]
-    let option_value_attributes:any[]=[]
-    let catalog_options:any[]=[]
-
     const workArray:any[] = []
     const productPropeties:any= {}
     for (const k in dataProducts) {
         const el:any = dataProducts[k]
-        console.log('el1',el)
+        // console.log('el1',el)
         workArray.push(el)
     }
 
@@ -39,39 +35,35 @@ const DataJsonGenerator = () => {
 
     console.log('productPropeties',productPropeties)
 
-    for (let p = 0; p < productsArray.length; p++) {
-        // === INSERT1 product_entity
-    }
-
-    let optionHeader:any={}
-
     console.log('productsArray1 ',productsArray)
 
     let attribute_id=801
-    let attributeData:any = {}
+    let attributeDataObject:any = {}
     for (let p = 0; p < productsArray.length; p++) {
 
         const attribute = productsArray[p].attributes
         if(attribute){
             for (let a1 = 0; a1 < attribute.length; a1++) {
                 // console.log('attributes[a1]1',attribute[a1])
-                const newData = {attribute_id: attribute_id,...attribute[a1]}
-                attributeData[attribute[a1].id]= newData
-                attribute_id++
-                productsArray[p].attributes[a1]= newData
+                if(!attributeDataObject[attribute[a1].id]) {
+                    const newData = {attribute_id: attribute_id,...attribute[a1]}
+                    attributeDataObject[attribute[a1].id] = newData
+                    attribute_id++
+                }
+                productsArray[p].attributes[a1]= attributeDataObject[attribute[a1].id]
             }
         } //if(attributes){
     }
 
     let option_id = 80000
-    attributeData = objectToArray({array:attributeData})
-    for (let i = 0; i < attributeData.length; i++) {
-        attributeData[i]= {...attributeData[i].value}
-        console.log('sql1 items attributeData',attributeData[i].items)
-        for (let j = 0; j < attributeData[i].items.length ; j++) {
-            // console.log('sql1 items attributeData',attributeData[i].items[j])
+    attributeDataObject = objectToArray({array:attributeDataObject})
+    for (let i = 0; i < attributeDataObject.length; i++) {
+        attributeDataObject[i]= {...attributeDataObject[i].value}
+        // console.log('sql1 items attributeDataObject',attributeDataObject[i].items)
+        for (let j = 0; j < attributeDataObject[i].items.length ; j++) {
+            // console.log('sql1 items attributeDataObject',attributeDataObject[i].items[j])
             option_id++
-            attributeData[i].items[j] = {option_id,...attributeData[i].items[j]}
+            attributeDataObject[i].items[j] = {option_id,...attributeDataObject[i].items[j]}
         }
     }
 
@@ -79,25 +71,29 @@ const DataJsonGenerator = () => {
         let result:any={}
         for (let i = 0; i < p.array.length; i++) {
             let elI:any = p.array[i]
-            console.log("elI1",elI)
+            // console.log("elI1",elI)
             result[elI[p.keyName]] = elI
         }
         return result
     }
 
-    console.log('sql1 attributeData',attributeData)
-    attributeData = arrayToObject({keyName:'name',array:attributeData})
+    // console.log('sql1 attributeDataObject',attributeDataObject)
+    attributeDataObject = arrayToObject({keyName:'name',array:attributeDataObject})
+    let attributeDataArray = objectToArray({array:attributeDataObject})
+    for (let i = 0; i < attributeDataArray.length; i++) {
+        attributeDataArray[i]={...attributeDataArray[i].value}
+    }
 
-    // sql catalog_products
     console.log('sql1 productsArray',productsArray)
-    console.log('sql1 attributeData',attributeData)
+    console.log('sql1 attributeDataObject',attributeDataObject)
+    console.log('sql1 attributeDataArray',attributeDataArray)
 
 
     // TODO gallery
 
     return(
         <div>
-            <div>███████ ALL </div>
+            <div>███████ ALL</div>
 
             <div>
                 <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
@@ -115,6 +111,85 @@ const DataJsonGenerator = () => {
                 >
                     COPY All
                 </button>
+            </div>
+
+
+            <div>███████ attribute_entity</div>
+
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql4");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY attribute_entity
+            </button>
+
+            <div id={'sql4'}>
+                <div>DELETE FROM attribute_entity WHERE 1;</div>
+
+                {attributeDataArray.map((iAttribute: any, aIndex) => {
+                    return <div key={aIndex}>
+
+                        <div>INSERT INTO attribute_entity ( attribute_id, attribute_name
+                            )
+                            VALUES (
+                        </div>
+                        <div>
+                            {iAttribute.attribute_id}, '{iAttribute.name}'
+                        </div>
+                        <div>);</div>
+
+                    </div>
+                })}
+
+                <div>SELECT * FROM attribute_entity ORDER BY attribute_id ;</div>
+
+            </div>
+
+            <div>███████ attribute_options</div>
+
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql3");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY attribute_options
+            </button>
+
+            <div id={'sql3'}>
+
+                <div>DELETE FROM attribute_options WHERE 1;</div>
+
+                {attributeDataArray.map((iAttribute: any) => {
+                    return iAttribute.items.map((iItem: any, itemN: number) => {
+                        return <div key={itemN}>
+                            {/*<div key={itemN}>*/}
+                            {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {iItem.option_id}*/}
+                            {/*</div>*/}
+
+                            <div>INSERT INTO attribute_options ( attribute_id, option_id, value, displayValue, id
+                                )
+                                VALUES (
+                            </div>
+                            <div>
+                                {iAttribute.attribute_id}, {iItem.option_id}, '{iItem.value}', '{iItem.displayValue}',
+                                '{iItem.id}'
+                            </div>
+                            <div>);</div>
+
+                        </div>
+
+                    })
+                })}
+
+                <div>SELECT * FROM attribute_options ORDER BY attribute_id, option_id ;</div>
+
             </div>
 
 
@@ -140,8 +215,8 @@ const DataJsonGenerator = () => {
                             return <div key={attributeN}>
                                 {/*{iProduct.product_id}, {iAttribute.attribute_id},*/}
                                 {/*otuput from prepared data*/}
-                                {attributeData[iAttribute.id].items.map((iItem: any, itemN: number) => {
-                                    return <div>
+                                {attributeDataObject[iAttribute.id].items.map((iItem: any, itemN: number) => {
+                                    return <div key={itemN}>
                                         {/*<div key={itemN}>*/}
                                         {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {iItem.option_id}*/}
                                         {/*</div>*/}
@@ -162,6 +237,8 @@ const DataJsonGenerator = () => {
                         })}
                     </div>
                 })}
+
+                <div>SELECT * FROM catalog_product_entity_text ;</div>
 
             </div>
 
