@@ -9,6 +9,7 @@ export const productsNew = [
         attributes:
             [{
                 id: 'Color',
+                name: 'Color',
                 type: 'swatch',
                 items: [
                     {id: "Green", value: '#44FF03', displayValue: 'Green'},
@@ -20,6 +21,7 @@ export const productsNew = [
             },
             {
                 id: "Capacity",
+                name: "Capacity",
                 type: 'text',
                 items: [
                     {id: "Capacity", value: '256GB', displayValue: '256GB'},
@@ -28,6 +30,7 @@ export const productsNew = [
             },
             {
                 id: 'Operational system',
+                name: 'Operational system',
                 type: 'text',
                 items: [
                     {id: "Operational system", value: 'iOS12', displayValue: 'iOS 12'},
@@ -46,6 +49,7 @@ export const productsNew = [
         attributes:
             [{
                 id: 'Color',
+                name: 'Color',
                 type: 'swatch',
                 items: [
                     {id: "Green", value: '#44FF03', displayValue: 'Green'},
@@ -57,6 +61,7 @@ export const productsNew = [
             },
                 {
                     id: "Capacity",
+                    name: "Capacity",
                     type: 'text',
                     items: [
                         {id: "Capacity", value: '256GB', displayValue: '256GB'},
@@ -65,6 +70,7 @@ export const productsNew = [
                 },
                 {
                     id: 'Operational system',
+                    name: 'Operational system',
                     type: 'text',
                     items: [
                         {id: "Operational system", value: 'Android12', displayValue: 'Android 12'},
