@@ -35,4 +35,3 @@ export const fetchGraphQL= (params:any) =>{
         console.log(e)
     })
 }
-
