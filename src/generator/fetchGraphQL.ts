@@ -21,6 +21,7 @@ export const fetchGraphQL= (params:any) =>{
         },
         body: JSON.stringify({query: params.gqlRequest})
     }).then((responseData) => {
+        console.log("=== responseData1",responseData)
         responseData.json().then((d) => {
             console.log("=== responseData ",params.entityName,d)
             params.setDataCallback(d)
