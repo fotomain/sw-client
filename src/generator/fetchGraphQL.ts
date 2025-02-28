@@ -14,7 +14,7 @@ export const fetchGraphQL= (params:any) =>{
     console.log("mode1 pathLocal1",mode, pathGlobal)
     return fetch(fetchPath, {
         method: 'post',
-        mode:'cors',
+        mode:'no-cors',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',

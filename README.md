@@ -1,6 +1,7 @@
 
 # sw-client
 
+#### render.com -> deploy with Docker moce
 npm start
 
 taskkill /im node.exe /f
