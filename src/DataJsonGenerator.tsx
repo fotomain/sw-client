@@ -3,6 +3,7 @@ import {initialData} from "./database/initialData";
 
 import {productsNew} from "./generator/productsNew";
 import {objectToArray} from "./generator/objectToArray";
+import {fetchGraphQL} from "./generator/fetchGraphQL";
 
 // "▄▄▄▄"
 const option_type='text'
@@ -96,21 +97,67 @@ const DataJsonGenerator = () => {
             <div>███████ ALL</div>
 
             <div>
-                <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
-                    let res = ''
-                    for (let i = 0; i < 10; i++) {
-                        const el = document.getElementById("sql" + i);
-                        if (el) {
-                            res = res + el.innerText
-                        }
-                    }
-                    console.log('res1', res)
-                    navigator.clipboard.writeText(res);
+                <div style={{flexDirection:"row",gap:"24px",display:"flex"}}>
 
-                }}
-                >
-                    COPY All
-                </button>
+                    <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
+                        let res = ''
+                        for (let i = 0; i < 10; i++) {
+                            const el = document.getElementById("sql" + i);
+                            if (el) {
+                                res = res + el.innerText
+                            }
+                        }
+                        console.log('res1', res)
+                        navigator.clipboard.writeText(res);
+
+                    }}
+                    >
+                        COPY All
+                    </button>
+
+                    <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
+
+
+                        const READ_PRODUCTS_QUERY = `                            
+                            {
+                                query: allProducts (
+                                    orderBy:"price ASC, name DESC",
+                                    filters: { product_id: "1", inStock: false , option_id_set:[111,222,333]}
+                                ) 
+                                 { 
+                                    id name
+                                    attributes {
+                                        id 
+                                        name
+                                            attributeOptions { 
+                                                id
+                                                name
+                                                displayValue
+                                            } 
+                                    }
+                                }
+                            }
+                      `;
+
+                        fetchGraphQL({
+                            entityName:'READ_PRODUCTS_QUERY',
+                            setDataCallback:(d:any)=>{
+                                console.log('=== READ_PRODUCTS_QUERY response ',d?.data?.cart?.items)//
+                                // setData((prevState) => { return{ ...prevState,
+                                //     cartItems: d?.data?.cart?.items
+                                // }})
+                            },
+                            gqlRequest:READ_PRODUCTS_QUERY
+
+                        })
+                        // console.log('res1', res)
+                        // navigator.clipboard.writeText(res);
+                    }}
+                    >
+                        GRAPHQL TEST LOCAL
+                    </button>
+                </div>
+
             </div>
 
 
