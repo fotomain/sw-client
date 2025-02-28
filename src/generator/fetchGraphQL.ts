@@ -1,9 +1,6 @@
 
 export const fetchGraphQL= (params:any) =>{
 
-    // var command='';
-    // console.log('=== command ',command)
-
     let fetchPath=''
     const pathLocal = 'http://localhost:8088/graphql.php'
     const pathGlobal = 'https://sw-server-przw.onrender.com/graphql.php'
