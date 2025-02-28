@@ -6,7 +6,6 @@ import {objectToArray} from "./generator/objectToArray";
 import {fetchGraphQL} from "./generator/fetchGraphQL";
 
 // "▄▄▄▄"
-const option_type='text'
 
 const DataJsonGenerator = () => {
 
@@ -344,7 +343,7 @@ const DataJsonGenerator = () => {
                             {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
                             <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, name ) VALUES (
                             </div>
-                            <div>{iProduct.product_id} , {iProduct.product_id} , {(iProduct.attributes.length == 0) ? 0 : 1},
+                            <div>{iProduct.product_id} , {iProduct.product_id} , {(iProduct.attributes.length === 0) ? 0 : 1},
                                 1 , '{iProduct.name}'
                             </div>
                             <div>);</div>

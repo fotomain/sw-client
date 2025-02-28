@@ -12,7 +12,7 @@ export const fetchGraphQL= (params:any) =>{
         default: fetchPath=pathGlobal;
     }
     console.log("mode1 pathLocal1",mode, pathGlobal)
-    return fetch(pathLocal, {
+    return fetch(fetchPath, {
         method: 'post',
         mode:'cors',
         headers: {
