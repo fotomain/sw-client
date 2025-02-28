@@ -4,10 +4,10 @@ export const fetchGraphQL= (params:any) =>{
     // const mode='local'
     const mode:any="global"
 
-
     let fetchPath=''
     const pathLocal = 'http://localhost:8088/graphql.php'
-    const pathGlobal = 'https://sw-server-przw.onrender.com/graphql.php'
+    // const pathGlobal = 'https://sw-server-przw.onrender.com/graphql.php'
+    const pathGlobal = 'https://site555.antinedoebit.com/app1/html/graphql.php'
 
     switch (mode){
         case "local": fetchPath=pathLocal; break;
