@@ -14,7 +14,7 @@ export const fetchGraphQL= (params:any) =>{
     console.log("mode1 pathLocal1",mode, pathGlobal)
     return fetch(fetchPath, {
         method: 'post',
-        mode:'no-cors',
+        mode:'cors',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -22,7 +22,7 @@ export const fetchGraphQL= (params:any) =>{
         body: JSON.stringify({query: params.gqlRequest})
     }).then((responseData) => {
         console.log("=== responseData1",responseData)
-        responseData.json().then((d) => {
+        responseData.json().then((d:any) => {
             console.log("=== responseData ",params.entityName,d)
             params.setDataCallback(d)
         })
