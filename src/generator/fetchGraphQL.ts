@@ -11,7 +11,7 @@ export const fetchGraphQL= (params:any) =>{
         case "local": fetchPath=pathLocal; break;
         default: fetchPath=pathGlobal;
     }
-    console.log("mode1 pathLocal1",mode, pathGlobal)
+    console.log("mode1 pathLocal1 === ",mode, pathGlobal)
     return fetch(fetchPath, {
         method: 'post',
         mode:'cors',
