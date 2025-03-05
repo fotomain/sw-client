@@ -1,9 +1,10 @@
 
-import {initialData} from "./database/initialData";
+import {initialData} from "../initialData";
 
-import {productsNew} from "./generator/productsNew";
-import {objectToArray} from "./generator/objectToArray";
-import {fetchGraphQL} from "./generator/fetchGraphQL";
+import {productsNew} from "./productsNew";
+import {objectToArray} from "./objectToArray";
+import {fetchGraphQL} from "./fetchGraphQL";
+import {READ_PRODUCTS_QUERY} from "../../redux/READ_PRODUCTS_QUERY";
 
 // "▄▄▄▄"
 
@@ -117,26 +118,7 @@ const DataJsonGenerator = () => {
                     <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
 
 
-                        const READ_PRODUCTS_QUERY = `                            
-                            {
-                                query: allProducts (
-                                    orderBy:"price ASC, name DESC",
-                                    filters: { product_id: "1", inStock: false , option_id_set:[111,222,333]}
-                                ) 
-                                 { 
-                                    id name
-                                    attributes {
-                                        id 
-                                        name
-                                            attributeOptions { 
-                                                id
-                                                name
-                                                displayValue
-                                            } 
-                                    }
-                                }
-                            }
-                      `;
+                        const q= READ_PRODUCTS_QUERY()
 
                         fetchGraphQL({
                             entityName:'READ_PRODUCTS_QUERY',
@@ -146,7 +128,7 @@ const DataJsonGenerator = () => {
                                 //     cartItems: d?.data?.cart?.items
                                 // }})
                             },
-                            gqlRequest:READ_PRODUCTS_QUERY
+                            gqlRequest:q
 
                         })
                         // console.log('res1', res)

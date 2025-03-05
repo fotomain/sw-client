@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import ProductsGallery from "./ProductsGallery";
 import DataJsonAnalyser from "../DataJsonAnalyser";
-import DataJsonGenerator from "../DataJsonGenerator";
+import DataJsonGenerator from "../database/generator/DataJsonGenerator";
 
 export const HomePage = () => {
 

@@ -1,9 +1,9 @@
 
 export const fetchGraphQL= (params:any) =>{
 
-    // const mode:any='localDocker'
+    const mode:any='localDocker'
     // const mode:any="globalDocker"
-    const mode:any="globalPHP"
+    // const mode:any="globalPHP"
 
     let fetchPath=''
 
@@ -24,14 +24,15 @@ export const fetchGraphQL= (params:any) =>{
             'Accept': 'application/json',
         },
         body: JSON.stringify({query: params.gqlRequest})
-    }).then((responseData) => {
-        // console.log("=== responseData1",responseData)
-        responseData.json().then((d:any) => {
-            console.log("▄▄▄▄▄▄▄▄=== responseData ",params.entityName,d)
-            params.setDataCallback(d)
-        })
-    }).catch((e) => {
-        console.log('=== setError countries ',e)
-        console.log(e)
     })
+    //     .then((responseData) => {
+    //     // console.log("=== responseData1",responseData)
+    //     responseData.json().then((d:any) => {
+    //         console.log("▄▄▄▄▄▄▄▄=== responseData ",params.entityName,d)
+    //         params.setDataCallback(d)
+    //     })
+    // }).catch((e) => {
+    //     console.log('=== setError countries ',e)
+    //     console.log(e)
+    // })
 }
