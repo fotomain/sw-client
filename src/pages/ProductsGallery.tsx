@@ -26,7 +26,8 @@ export const ProductsGallery = () => {
     }, []);
 
     const initState={
-        name: ''
+        name: '',
+        stateMoment: 0,
         // name: 'Am'
     }
     const [state, setState] = useState(initState);
@@ -36,14 +37,15 @@ export const ProductsGallery = () => {
     };
 
     useEffect(() => {
-        console.log('=== state.name',state.name)
-        //dispatch(getMovies(name));
-        dispatch(productActions.read({filter:{name:state.name}}))
-    }, [state.name]);
+        if(0!==state.stateMoment) {
+            console.log('=== state.name', state.name)
+            //dispatch(getMovies(name));
+            dispatch(productActions.read({filter: {name: state.name}}))
+        }}, [state.name]);
 
     return (
         <div style={{display:'flex',flexDirection:'column',alignContent:'center', alignItems:'center'}}>
-            <h3 className={classes.title}>Products Search</h3>
+            <h3 className={classes.title}>Products</h3>
             <h4>{(deleteStarted)?'Serverside delete started...':null}</h4>
             <h4>{(deleteError)?'deleteError '+deleteError:null}</h4>
 
@@ -56,7 +58,8 @@ export const ProductsGallery = () => {
                     onChange={(e:any) => setState((prevState)=> {
                         return ({
                             ...prevState,
-                            name: e.target.value
+                            name: e.target.value,
+                            stateMoment:Date.now()
                         })
                     })}
                 />

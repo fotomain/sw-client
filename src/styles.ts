@@ -11,10 +11,15 @@ export default makeStyles(() => ({
 	},
 	form: {
 		width: '90vw',
-		maxWidth: '1170px',
+		maxWidth: '1200px',
 		margin: '0 auto',
 		// marginTop: '1rem',
 		marginBottom: '3rem',
+		display: 'flex',
+		flexDirection: 'column',
+		alignItems: 'center',
+		justifyContent: 'start',
+		// backgroundColor: 'red',
 	},
 	error: {
 		color: '#F93154',
