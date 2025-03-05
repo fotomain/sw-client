@@ -71,7 +71,7 @@ export const ProductsGallery = () => {
             </form>
 
 
-            {((isReading))?null:(createStarted)?'Create...':
+            {((isReading))?null:
                  <div style={{display:'flex',flexDirection:'row',gap:'8px'}} >
                     <Button
                         variant={"contained"}
@@ -103,9 +103,9 @@ export const ProductsGallery = () => {
 
             <h4>{(isReading)?'Products Loading...':null}</h4>
 
-            {((!isReading) && (0!==productsState.productsArray.length)) && productsState.productsArray.map((el:any,ii:number)=>{
-                return <React.Fragment key={ii}>
-                    <ProductCard product={el} productIndex={ii}/>
+            {((!isReading) && (0!==productsState.productsArray.length)) && productsState.productsArray.map((el:any,i:number)=>{
+                return <React.Fragment key={i}>
+                    <ProductCard product={el} productIndex={i}/>
                 </React.Fragment>
             })}
 
