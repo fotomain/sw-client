@@ -1,10 +1,10 @@
 
-export const ADD_TO_CART_MUTATION =()=> { return  `                            
+export const ADD_TO_CART_MUTATION =(params={qty:1})=> { return  `                            
                            
     mutation  {
         addToCart(cartParams:{
                 cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
-                qty:1,
+                qty:`+params.qty+`,
                 product_id:103,
                 product_has_options:1,
                 product_options:[

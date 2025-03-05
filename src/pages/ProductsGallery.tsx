@@ -123,28 +123,60 @@ export const ProductsGallery = () => {
                         <div style={{width:'100px'}}>{el.id}</div>
                         <div style={{width:'20px' }}> </div>
                         <div style={{width:'250px'}}>{el.name}</div>
-                        <Button
-                            variant={"contained"}
-                            onClick={() => {
+                        <div style={{
+                            paddingBottom: '4px',
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignContent: 'center',
+                            alignItems: 'center',
+                            gap:'8px',
+                        }}>
+                            <Button
+                                variant={"contained"}
+                                onClick={() => {
 
 
-                                const q= ADD_TO_CART_MUTATION()
+                                    const q= ADD_TO_CART_MUTATION()
+                                    // console.log("q1",q)
 
-                                fetchGraphQL({
-                                    entityName:'ADD_TO_CART_MUTATION',
-                                    setDataCallback:(d:any)=>{
-                                        console.log('=== ADD_TO_CART_MUTATION response ',d)
-                                        // setData((prevState) => { return{ ...prevState,
-                                        //     cartItems: d?.data?.cart?.items
-                                        // }})
-                                    },
-                                    gqlRequest:q
-                                })
+                                    fetchGraphQL({
+                                        entityName:'ADD_TO_CART_MUTATION',
+                                        setDataCallback:(d:any)=>{
+                                            console.log('=== ADD_TO_CART_MUTATION response ',d)
+                                            // setData((prevState) => { return{ ...prevState,
+                                            //     cartItems: d?.data?.cart?.items
+                                            // }})
+                                        },
+                                        gqlRequest:q
+                                    })
 
-                            }}
-                        >
-                            Add
-                        </Button>
+                                }}
+                            >
+                                +
+                            </Button>
+                            <Button
+                                variant={"contained"}
+                                onClick={() => {
+
+                                    const q= ADD_TO_CART_MUTATION({qty:-1})
+                                    // console.log("q1",q)
+
+                                    fetchGraphQL({
+                                        entityName:'ADD_TO_CART_MUTATION',
+                                        setDataCallback:(d:any)=>{
+                                            console.log('=== ADD_TO_CART_MUTATION response ',d)
+                                            // setData((prevState) => { return{ ...prevState,
+                                            //     cartItems: d?.data?.cart?.items
+                                            // }})
+                                        },
+                                        gqlRequest:q
+                                    })
+
+                                }}
+                            >
+                                -
+                            </Button>
+                        </div>
                     </div>
                 </React.Fragment>
             })}
