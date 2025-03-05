@@ -6,6 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {productActions, productsSlice} from "../redux/productsSlice";
 import {Button, TextField} from "@mui/material";
 import ClassWooEntity from "../api/WooEntityRoot";
+import {READ_PRODUCTS_QUERY} from "../redux/READ_PRODUCTS_QUERY";
+import {fetchGraphQL} from "../database/generator/fetchGraphQL";
+import {ADD_TO_CART_MUTATION} from "../redux/ADD_TO_CART_MUTATION";
 
 const debug_local=true
 export const ProductsGallery = () => {
@@ -123,12 +126,24 @@ export const ProductsGallery = () => {
                         <Button
                             variant={"contained"}
                             onClick={() => {
-                                dispatch(productActions.delete({
-                                    id: el.id,
-                                }))
+
+
+                                const q= ADD_TO_CART_MUTATION()
+
+                                fetchGraphQL({
+                                    entityName:'ADD_TO_CART_MUTATION',
+                                    setDataCallback:(d:any)=>{
+                                        console.log('=== ADD_TO_CART_MUTATION response ',d)
+                                        // setData((prevState) => { return{ ...prevState,
+                                        //     cartItems: d?.data?.cart?.items
+                                        // }})
+                                    },
+                                    gqlRequest:q
+                                })
+
                             }}
                         >
-                            DELETE
+                            Add
                         </Button>
                     </div>
                 </React.Fragment>

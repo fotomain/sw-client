@@ -15,28 +15,23 @@ function* workFetch(params){
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_PRODUCTS_QUERY',
-        setDataCallback:(d)=>{
-            console.log('=== READ_PRODUCTS_QUERY response ',d?.data?.cart?.items)//
-            // setData((prevState) => { return{ ...prevState,
-            //     cartItems: d?.data?.cart?.items
-            // }})
-        },
         gqlRequest:q
-
     }))
 
     console.log("=== apiResponse1",apiResponse1)
+    let apiResponse = apiResponse1
 
-    const apiResponse = yield call(()=>
-        fetch(
-            "https://api.thecatapi.com/v1/breeds"
-        ));
+    // const apiResponse = yield call(()=>
+    //     fetch(
+    //         "https://api.thecatapi.com/v1/breeds"
+    //     ));
 
-    const data1 = yield apiResponse1.json()
-    console.log('data1',data1.data.query)
+    const data_json = yield apiResponse1.json()
+    const data = data_json.data.query
+    console.log('data',data)
 
-    const data = yield apiResponse.json()
-        console.log('data0',data)
+    // const data = yield apiResponse.json()
+    //     console.log('data0',data)
 
     let result =[]
     const filterName = params.payload?.filter?.name
@@ -46,10 +41,8 @@ function* workFetch(params){
         })
     }
     else{
-        result = data.slice(0,10)
+        result = data //.slice(0,10)
     }
-    console.log("=== workFetch1",result)
-    //=== TIMEOUT for (let i = 0; i < 1000_000_000; i++) {}
     yield put(productActions.readSuccess(result))
 }
 

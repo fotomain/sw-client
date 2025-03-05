@@ -4,7 +4,6 @@ import {initialData} from "../initialData";
 import {productsNew} from "./productsNew";
 import {objectToArray} from "./objectToArray";
 import {fetchGraphQL} from "./fetchGraphQL";
-import {READ_PRODUCTS_QUERY} from "../../redux/READ_PRODUCTS_QUERY";
 
 // "▄▄▄▄"
 
@@ -117,8 +116,26 @@ const DataJsonGenerator = () => {
 
                     <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
 
-
-                        const q= READ_PRODUCTS_QUERY()
+                        const READ_PRODUCTS_QUERY = `                            
+                            {
+                                query: readProducts (
+                                    orderBy:"price ASC, name DESC",
+                                    filters: { product_id: "1", inStock: false , option_id_set:[111,222,333]}
+                                ) 
+                                 { 
+                                    id name
+                                    attributes {
+                                        id 
+                                        name
+                                            attributeOptions { 
+                                                id
+                                                name
+                                                displayValue
+                                            } 
+                                    }
+                                }
+                            }
+                      `;
 
                         fetchGraphQL({
                             entityName:'READ_PRODUCTS_QUERY',
@@ -128,7 +145,7 @@ const DataJsonGenerator = () => {
                                 //     cartItems: d?.data?.cart?.items
                                 // }})
                             },
-                            gqlRequest:q
+                            gqlRequest:READ_PRODUCTS_QUERY
 
                         })
                         // console.log('res1', res)

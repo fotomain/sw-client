@@ -1,5 +1,5 @@
 
-export const fetchGraphQL= (params:any) =>{
+export const fetchGraphQL= async (params:any) =>{
 
     const mode:any='localDocker'
     // const mode:any="globalDocker"
@@ -16,23 +16,43 @@ export const fetchGraphQL= (params:any) =>{
 
     console.log("=== ▄▄▄▄ fetchPath1 ",mode,fetchPath)
 
-    return fetch(fetchPath, {
-        method: 'post',
-        mode:'cors',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        body: JSON.stringify({query: params.gqlRequest})
-    })
-    //     .then((responseData) => {
-    //     // console.log("=== responseData1",responseData)
-    //     responseData.json().then((d:any) => {
-    //         console.log("▄▄▄▄▄▄▄▄=== responseData ",params.entityName,d)
-    //         params.setDataCallback(d)
-    //     })
-    // }).catch((e) => {
-    //     console.log('=== setError countries ',e)
-    //     console.log(e)
-    // })
+    if(!params.setDataCallback) {
+        return fetch(fetchPath, {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({query: params.gqlRequest})
+        })
+    }
+    else{
+        fetch(fetchPath, {
+            method: 'post',
+            mode: 'cors',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+            },
+            body: JSON.stringify({query: params.gqlRequest})
+        }).then((responseData) => {
+                // console.log("=== responseData1",responseData)
+                responseData.json().then((d:any) => {
+                    console.log("▄▄▄▄▄▄▄▄=== responseData ",params.entityName,d)
+                    params.setDataCallback(d)
+                })
+
+            }).catch((e) => {
+            console.log('=== setError countries ',e)
+            console.log(e)
+        })
+    }
 }
+// ==== MODE setDataCallback
+// setDataCallback:(d)=>{
+//     console.log('=== READ_PRODUCTS_QUERY response ',d?.data)//
+//     // setData((prevState) => { return{ ...prevState,
+//     //     cartItems: d?.data?.cart?.items
+//     // }})
+// },
