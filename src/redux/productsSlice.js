@@ -1,6 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const THIS_SLICE_ENTITY = 'productsArray'
+const THIS_SLICE_OPTIONS = 'productsOptionsArray'
 const THIS_SLICE_NAME = 'productsSlice'
 
 const abstractSlice=createSlice({
@@ -16,7 +17,8 @@ const abstractSlice=createSlice({
         deleteStarted:false,
         deleteError:'',
 
-        [THIS_SLICE_ENTITY]:[]
+        [THIS_SLICE_ENTITY]:[],
+        [THIS_SLICE_OPTIONS]:[]
     },
     reducers:{
         createStart: (state,action) => {

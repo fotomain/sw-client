@@ -1,9 +1,9 @@
 
 export const fetchGraphQL= async (params:any) =>{
 
-    // const mode:any='localDocker'
+    const mode:any='localDocker'
     // const mode:any="globalDocker"
-    const mode:any="globalPHP"
+    // const mode:any="globalPHP"
 
     let fetchPath=''
 
@@ -11,7 +11,10 @@ export const fetchGraphQL= async (params:any) =>{
         case "localDocker": fetchPath='http://localhost:8088/graphql.php'; break;
         case "globalDocker": fetchPath='https://sw-server-przw.onrender.com/graphql.php'; break;
         case "globalPHP": fetchPath='https://site-sw.antinedoebit.com/app1/html/graphql.php'; break;
-        default: fetchPath="http://localhost:8088/graphql.php";
+        default: {
+            const warning = "▄▄▄▄▄▄▄▄ ERROR 1001 bad fetchPath";
+            throw new Error(warning);
+        }
     }
 
     console.log("=== ▄▄▄▄ fetchPath1 ",mode,fetchPath)
