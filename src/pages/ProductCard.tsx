@@ -156,7 +156,9 @@ const ProductCard = (props:any) => {
                                           }})
 
 
-                                      }}>{optionItem.displayValue}</div>
+                                  }}>
+                                      {optionItem.displayValue}
+                                  </div>
                               </div>
                           })}
 
