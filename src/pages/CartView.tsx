@@ -1,6 +1,6 @@
 import {MdOutlineShoppingCart, MdRemove} from "react-icons/md";
 import IconBasic from "./core/IconBasic";
-import React from "react";
+import React, {useState} from "react";
 import {ui} from "./HomePage";
 import ButtonBasic from "./core/ButtonBasic";
 import ButtonPrimary from "./core/ButtonPrimary";
@@ -10,6 +10,11 @@ import {READ_CART_QUERY} from "../redux/graphql/READ_CART_QUERY";
 import {fetchGraphQL} from "../database/generator/fetchGraphQL";
 
 const CartView = () => {
+
+    const [cartState, setCartState] = useState({
+        cartItems:[]
+    })
+
   return(<>
 
       <div style={{
@@ -31,13 +36,15 @@ const CartView = () => {
                     entityName: 'READ_CART_QUERY',
                     setDataCallback: (d: any) => {
                         console.log('=== READ_CART_QUERY response ', d?.data?.query)
+                        setCartState((prevState:any)=>{return {...prevState,
+                            cartItems:[...d?.data?.query.cart_lines]
+                        }})
                         // setData((prevState) => { return{ ...prevState,
                         //     cartItems: d?.data?.cart?.items
                         // }})
                     },
                     gqlRequest: q
                 })
-
 
             }}
 
@@ -51,6 +58,13 @@ const CartView = () => {
           >
               Close
           </ButtonSecondary>
+
+          {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
+          {(cartState.cartItems && cartState.cartItems.length > 0) && cartState.cartItems.map( (cartLine:any, i)=>{
+              return <div key={i}>
+                  <div>{cartLine.product_object.name} {cartLine.qty} </div>
+              </div>
+          })}
 
       </div>
 

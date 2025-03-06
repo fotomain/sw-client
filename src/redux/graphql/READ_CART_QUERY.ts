@@ -19,9 +19,15 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                     attribute_id
                     option_id
                 }
+                
+                product_object {
+                    product_id
+                    name
+                    price
+                }
             }
     }
 }
 
 
-  `};
+`};

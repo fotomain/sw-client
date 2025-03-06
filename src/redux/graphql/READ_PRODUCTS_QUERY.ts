@@ -6,7 +6,8 @@ export const READ_PRODUCTS_QUERY =()=> { return  `
                                     filters: { product_id: "1", inStock: false , option_id_set:[111,222,333]}
                                 ) 
                                  { 
-                                    id name
+                                    product_id 
+                                    name
                                     attributes {
                                         id 
                                         name
