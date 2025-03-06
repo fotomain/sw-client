@@ -11,6 +11,12 @@ npm cache clean --force
 # Setup 
 npm install @mui/material @emotion/react @emotion/styled
 npm install @monaco-editor/react
+# CSS
+npm install --save @emotion/react
+npm install --save @emotion/core
+npm install --save-dev @emotion/babel-plugin
+    tsconfig.json
+        "jsxImportSource": "@emotion/react",
 
 npm i
 

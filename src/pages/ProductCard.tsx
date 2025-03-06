@@ -1,8 +1,8 @@
-import {Button} from "@mui/material";
-import {ADD_TO_CART_MUTATION} from "../redux/ADD_TO_CART_MUTATION";
-import {fetchGraphQL} from "../database/generator/fetchGraphQL";
+
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
+import ProductCardAddToCart from "./ProductCardAddToCart";
+import {ui} from "./HomePage";
 
 const ProductCard = (props:any) => {
 
@@ -15,6 +15,7 @@ const ProductCard = (props:any) => {
         optionsSelected:{},
         optionsAll:{},
         optionsArray:[],
+        qty:0,
     })
 
     console.log("productSelectedOptions1",productSelectedOptions)
@@ -51,11 +52,11 @@ const ProductCard = (props:any) => {
   return(<>
       {/*<div>Card</div>*/}
       <div style={{
-          paddingBottom: '4px',
           display: 'flex',
           flexDirection: 'column',
           alignContent: 'start',
-          alignItems: 'center'
+          alignItems: 'center',
+          backgroundColor: ui.oolorCardBackground[productIndex%9],
       }}>
 
           <img style={{width: '100px', height: '100px'}} src={product.image}/>
@@ -70,61 +71,12 @@ const ProductCard = (props:any) => {
               <div style={{width: '100px'}}>{product.id}</div>
               <div style={{width: '20px'}}></div>
               <div style={{width: '250px'}}>{product.name}</div>
-              <div style={{
-                  paddingBottom: '4px',
-                  display: 'flex',
-                  flexDirection: 'row',
-                  alignContent: 'center',
-                  alignItems: 'center',
-                  gap: '8px',
-              }}>
-                  <Button
-                      variant={"contained"}
-                      onClick={() => {
 
+              <ProductCardAddToCart
+                  cardState={cardState} setCardState={setCardState}
+                  productIndex={productIndex}
+              />
 
-                          const q = ADD_TO_CART_MUTATION()
-                          // console.log("q1",q)
-
-                          fetchGraphQL({
-                              entityName: 'ADD_TO_CART_MUTATION',
-                              setDataCallback: (d: any) => {
-                                  console.log('=== ADD_TO_CART_MUTATION response ', d)
-                                  // setData((prevState) => { return{ ...prevState,
-                                  //     cartItems: d?.data?.cart?.items
-                                  // }})
-                              },
-                              gqlRequest: q
-                          })
-
-                      }}
-
-                  >
-                      +
-                  </Button>
-                  <Button
-                      variant={"contained"}
-                      onClick={() => {
-
-                          const q = ADD_TO_CART_MUTATION({qty: -1})
-                          // console.log("q1",q)
-
-                          fetchGraphQL({
-                              entityName: 'ADD_TO_CART_MUTATION',
-                              setDataCallback: (d: any) => {
-                                  console.log('=== ADD_TO_CART_MUTATION response ', d)
-                                  // setData((prevState) => { return{ ...prevState,
-                                  //     cartItems: d?.data?.cart?.items
-                                  // }})
-                              },
-                              gqlRequest: q
-                          })
-
-                      }}
-                  >
-                      -
-                  </Button>
-              </div>
           </div>
           <div>{JSON.stringify(cardState.optionsSelected)}</div>
           {/*<div>{JSON.stringify(cardState.optionsArray)}</div>*/}
@@ -144,7 +96,7 @@ const ProductCard = (props:any) => {
 
                           {optionsSet.option_items.map((optionItem: any, j: number) => {
                               return <div style={{paddingLeft:'4px',paddingRight:'4px',}} key={j}>
-                                  <div style={{cursor:'pointer'}}
+                                  <div style={{ borderRadius:'50%', border:'solid green 1px', padding:'5px', cursor:'pointer'}}
                                       onClick={()=>{
                                       console.log("=== option ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
 
