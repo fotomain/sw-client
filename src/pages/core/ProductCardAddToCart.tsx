@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {ADD_TO_CART_MUTATION} from "../../redux/ADD_TO_CART_MUTATION";
+import {ADD_TO_CART_MUTATION} from "../../redux/graphql/ADD_TO_CART_MUTATION";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import React from "react";
 import {ui} from "../HomePage";

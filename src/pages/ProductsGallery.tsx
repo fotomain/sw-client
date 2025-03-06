@@ -6,9 +6,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {productActions, productsSlice} from "../redux/productsSlice";
 import {Button, TextField} from "@mui/material";
 import ClassWooEntity from "../api/WooEntityRoot";
-import {READ_PRODUCTS_QUERY} from "../redux/READ_PRODUCTS_QUERY";
+import {READ_PRODUCTS_QUERY} from "../redux/graphql/READ_PRODUCTS_QUERY";
 import {fetchGraphQL} from "../database/generator/fetchGraphQL";
-import {ADD_TO_CART_MUTATION} from "../redux/ADD_TO_CART_MUTATION";
+import {ADD_TO_CART_MUTATION} from "../redux/graphql/ADD_TO_CART_MUTATION";
 import ProductCard from "./ProductCard";
 
 const debug_local=true
