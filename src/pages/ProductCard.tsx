@@ -1,8 +1,10 @@
 
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import ProductCardAddToCart from "./ProductCardAddToCart";
+import ProductCardAddToCart from "./core/ProductCardAddToCart";
 import {ui} from "./HomePage";
+
+import { MdAdd } from "react-icons/md";
 
 const ProductCard = (props:any) => {
 

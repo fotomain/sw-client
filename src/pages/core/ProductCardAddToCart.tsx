@@ -1,11 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import {ADD_TO_CART_MUTATION} from "../redux/ADD_TO_CART_MUTATION";
-import {fetchGraphQL} from "../database/generator/fetchGraphQL";
+import {ADD_TO_CART_MUTATION} from "../../redux/ADD_TO_CART_MUTATION";
+import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import React from "react";
-import {ui} from "./HomePage";
+import {ui} from "../HomePage";
 
 import { css, jsx } from '@emotion/react';
 import ButtonCircle from "./ButtonCircle";
+import {MdAdd, MdRemove} from "react-icons/md";
+
+import { IconType } from "react-icons";
+
+import PropTypes from "prop-types";
+import {FaDev} from "react-icons/fa";
+import IconBasic from "./IconBasic";
+
 
 const ProductCardAddToCart = (props:any) => {
 
@@ -52,9 +60,10 @@ const ProductCardAddToCart = (props:any) => {
                        })
 
                    }}
+          >
 
-              >
-                  +
+              <IconBasic size={24} icon={MdAdd}/>
+
           </ButtonCircle>
 
           <div css={css`
@@ -97,7 +106,7 @@ const ProductCardAddToCart = (props:any) => {
 
                    }}
               >
-                  -
+                    <IconBasic size={24} icon={MdRemove}/>
               </ButtonCircle>
       </div>
   )

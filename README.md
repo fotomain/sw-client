@@ -11,12 +11,15 @@ npm cache clean --force
 # Setup 
 npm install @mui/material @emotion/react @emotion/styled
 npm install @monaco-editor/react
+npm install react-icons --save
+    https://react-icons.github.io/react-icons/
 # CSS
 npm install --save @emotion/react
-npm install --save @emotion/core
 npm install --save-dev @emotion/babel-plugin
     tsconfig.json
         "jsxImportSource": "@emotion/react",
+    1st line of *.tsx file
+        /** @jsxImportSource @emotion/react */
 
 npm i
 
