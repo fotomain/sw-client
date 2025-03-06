@@ -17,8 +17,6 @@ import IconBasic from "./IconBasic";
 
 const CartLineQtyPlusMinus = (props:any) => {
 
-    const {cartState, setCartState} = props;
-
   return(
       <div style={{
           display: 'flex',
@@ -38,15 +36,13 @@ const CartLineQtyPlusMinus = (props:any) => {
 
                    onClick={() => {
 
-                       setCartState((prevState: any) => {
-                           return {
-                               ...prevState,
-                               qty: prevState.qty + 1
-                           }
-                       })
 
-                       const q = ADD_TO_CART_MUTATION()
-                       // console.log("q1",q)
+                       const q = ADD_TO_CART_MUTATION({
+                           cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
+                           qty: 1,
+                           product:props.product_object,
+                           optionsSelected:props.product_options,
+                       })
 
                        fetchGraphQL({
                            entityName: 'ADD_TO_CART_MUTATION',
@@ -67,7 +63,7 @@ const CartLineQtyPlusMinus = (props:any) => {
           </ButtonCircle>
 
           <div css={css`
-              font-size: 20px;
+              font-size: 16px;
               color: var(--colorMain) ;
               padding-left: 20px;
               padding-right: 20px;
@@ -82,17 +78,12 @@ const CartLineQtyPlusMinus = (props:any) => {
 
                    onClick={() => {
 
-                       setCartState((prevState: any) => {
-                           return {
-                               ...prevState,
-                               qty: (-1 === (prevState.qty - 1)) ? 0 : prevState.qty - 1
-                           }
+                       const q = ADD_TO_CART_MUTATION({
+                           cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
+                           qty: -1,
+                           product:props.product_object,
+                           optionsSelected:props.product_options,
                        })
-
-
-                       const q = ADD_TO_CART_MUTATION({qty: -1})
-                       // console.log("q1",q)
-
 
                        fetchGraphQL({
                            entityName: 'ADD_TO_CART_MUTATION',

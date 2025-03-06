@@ -24,6 +24,7 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                     product_id
                     name
                     price
+                    sku
                 }
             }
     }

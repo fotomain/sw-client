@@ -2,19 +2,15 @@
 
 import {
     MdClose,
-    MdOutlineAddShoppingCart,
-    MdOutlineDelete,
-    MdOutlineDeleteOutline,
     MdOutlineShoppingCart,
-    MdRemove
 } from "react-icons/md";
 import IconMaterial from "../core/IconBasic";
 import React, {useState} from "react";
 import {ui} from "../HomePage";
-import ButtonBasic from "../core/ButtonBasic";
+
 import ButtonPrimary from "../core/ButtonPrimary";
 import ButtonSecondary from "../core/ButtonSecondary";
-import {ADD_TO_CART_MUTATION} from "../../redux/graphql/ADD_TO_CART_MUTATION";
+
 import {READ_CART_QUERY} from "../../redux/graphql/READ_CART_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import CartLineQtyPlusMinus from "../core/CartLineQtyPlusMinus";
@@ -28,6 +24,14 @@ const CartView = () => {
         cartItems:[],
         qty:0,
     })
+
+    const optionsToKeyValue = (p:any) => {
+        const res:any = {}
+        for (let i = 0; i < p.length; i++) {
+            res[p[i].attribute_id] = p[i].option_id
+        }
+        return res
+    }
 
     return(<>
 
@@ -77,15 +81,28 @@ const CartView = () => {
 
           {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
           {(cartState.cartItems && cartState.cartItems.length > 0) && cartState.cartItems.map( (cartLine:any, i)=>{
-              return <div css={css` min-width: 200px `} key={i}>
+              return <div css={css` min-width: 250px `} key={i}>
                   <div>{cartLine.product_object.name} {cartLine.cart_line_id}</div>
 
-                  <div css={css` flex-direction:row; justify-content:space-between; display:flex; `}>
+                  {/*border:1px solid red;*/}
+                  <div css={css`  
+                      flex-direction:row; align-content:start; justify-content:space-between; display:flex; `}>
 
-                      <ButtonCircle style={{width: "22px", height: "22px"}}
+                      {/*delete button*/}
+
+                      <div style={{
+                          display: 'flex',
+                          flexDirection: 'row',
+                          alignContent: 'center',
+                          alignItems: 'center',
+                          // minWidth: '200px',
+                          maxWidth: '200px',
+                          // border: '1px solid green',
+                      }}>
+                      <ButtonCircle style={{width: "22px", height: "22px", backgroundColor:'transparent', color:ui.colorMain}}
                                     onClick={() => {
 
-                                        const q=DELETE_CART_LINE_QUERY({
+                                        const q = DELETE_CART_LINE_QUERY({
                                             cart_guid:'cc6bb519-f811-11ef-a13a-55e370885b2f',
                                             cart_line_id:cartLine.cart_line_id,
                                         })
@@ -108,11 +125,15 @@ const CartView = () => {
                           <IconMaterial size={18} icon={MdClose}/>
 
                       </ButtonCircle>
+                      </div>
+
+
+                      <p>sku {cartLine.product_object.sku}</p>
 
                       <CartLineQtyPlusMinus
                           qty={cartLine.qty}
                           product_object={cartLine.product_object}
-                          product_options={cartLine.product_options}
+                          product_options={optionsToKeyValue(cartLine.product_options)}
                           cartState={cartState} setCartState={setCartState}
                       />
                   </div>

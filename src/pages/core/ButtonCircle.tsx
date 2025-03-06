@@ -22,7 +22,9 @@ const ButtonCircle = (props:any) => {
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
-
+              
+                cursor: pointer;
+              
                 color:${color};
                 background-color: #4ABF77;
 
@@ -31,7 +33,6 @@ const ButtonCircle = (props:any) => {
                 /*box-shadow: 0px 0px 0px 10px red, 0px 0px 0px 20px green, 0px 0px 0px 30px yellow, 0px 0px 0px 40px pink;*/
                 width: 40px;
                 height:40px;
-
             `}
           {...other}
       >
