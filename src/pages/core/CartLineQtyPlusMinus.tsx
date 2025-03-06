@@ -15,9 +15,9 @@ import {FaDev} from "react-icons/fa";
 import IconBasic from "./IconBasic";
 
 
-const ProductCardAddToCart = (props:any) => {
+const CartLineQtyPlusMinus = (props:any) => {
 
-    const {cardState, setCardState} = props;
+    const {cartState, setCartState} = props;
 
   return(
       <div style={{
@@ -32,13 +32,13 @@ const ProductCardAddToCart = (props:any) => {
 
 
           {/*button plus*/}
-          <ButtonCircle
+          <ButtonCircle style={{width: "22px", height: "22px"}}
 
               productIndex={props.productIndex}
 
                    onClick={() => {
 
-                       setCardState((prevState: any) => {
+                       setCartState((prevState: any) => {
                            return {
                                ...prevState,
                                qty: prevState.qty + 1
@@ -72,17 +72,17 @@ const ProductCardAddToCart = (props:any) => {
               padding-left: 20px;
               padding-right: 20px;
           `}>
-               {cardState.qty}
+               {props.qty}
           </div>
 
           {/*button minus*/}
-          <ButtonCircle
+          <ButtonCircle style={{width: "22px", height: "22px"}}
 
               productIndex={props.productIndex}
 
                    onClick={() => {
 
-                       setCardState((prevState: any) => {
+                       setCartState((prevState: any) => {
                            return {
                                ...prevState,
                                qty: (-1 === (prevState.qty - 1)) ? 0 : prevState.qty - 1
@@ -92,6 +92,7 @@ const ProductCardAddToCart = (props:any) => {
 
                        const q = ADD_TO_CART_MUTATION({qty: -1})
                        // console.log("q1",q)
+
 
                        fetchGraphQL({
                            entityName: 'ADD_TO_CART_MUTATION',
@@ -112,4 +113,4 @@ const ProductCardAddToCart = (props:any) => {
   )
 }
 
-export default ProductCardAddToCart;
+export default CartLineQtyPlusMinus;

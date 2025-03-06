@@ -1,10 +1,11 @@
 
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import ProductCardAddToCart from "./core/ProductCardAddToCart";
-import {ui} from "./HomePage";
+import CartLineQtyPlusMinus from "../core/CartLineQtyPlusMinus";
+import {ui} from "../HomePage";
 
 import { MdAdd } from "react-icons/md";
+import AddToCart from "../core/AddToCart";
 
 const ProductCard = (props:any) => {
 
@@ -74,10 +75,12 @@ const ProductCard = (props:any) => {
               <div style={{width: '20px'}}></div>
               <div style={{width: '250px'}}>{product.name}</div>
 
-              <ProductCardAddToCart
-                  cardState={cardState} setCardState={setCardState}
+              <AddToCart
+                  product={product}
+                  optionsSelected={cardState.optionsSelected}
                   productIndex={productIndex}
               />
+
 
           </div>
           <div>{JSON.stringify(cardState.optionsSelected)}</div>

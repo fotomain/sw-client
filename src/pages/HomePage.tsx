@@ -1,8 +1,8 @@
 import React, {useState} from "react";
-import ProductsGallery from "./ProductsGallery";
+import ProductsGallery from "./view/ProductsGallery";
 import DataJsonAnalyser from "../DataJsonAnalyser";
 import DataJsonGenerator from "../database/generator/DataJsonGenerator";
-import CartView from "./CartView";
+import CartView from "./view/CartView";
 
 export let ui:any={};
 ui.colorMain="var(--colorMain)";

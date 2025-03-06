@@ -37,7 +37,6 @@ const ButtonBasic = (props:any) => {
                 height:40px;
 
             `}
-          {...props}
       >
           {props.children}
       </button>
