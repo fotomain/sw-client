@@ -24,9 +24,12 @@ export const HomePage = () => {
     return (
         <>
             <CartView/>
-            {/*<div>HomePage1</div>*/}
             <ProductsGallery/>
+
+            {/*<div>HomePage1</div>*/}
+
             {/*<DataJsonAnalyser/>*/}
+
             {/*<DataJsonGenerator/>*/}
         </>
     );

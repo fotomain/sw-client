@@ -24,8 +24,8 @@ export const productsNew = [
                 name: "Capacity",
                 type: 'text',
                 items: [
-                    {id: "Capacity", value: '256GB', displayValue: '256GB'},
-                    {id: "Capacity", value: '1TB', displayValue: '1TB'},
+                    {id: "256GB", value: '256GB', displayValue: '256GB'},
+                    {id: "1T", value: '1T', displayValue: '1T'},
                 ]
             },
             {
@@ -33,8 +33,8 @@ export const productsNew = [
                 name: 'Operational system',
                 type: 'text',
                 items: [
-                    {id: "Operational system", value: 'iOS12', displayValue: 'iOS 12'},
-                    {id: "Operational system", value: 'iOS16', displayValue: 'iOS 16'}
+                    {id: "iOS12", value: 'iOS12', displayValue: 'iOS 12'},
+                    {id: "iOS16", value: 'iOS16', displayValue: 'iOS 16'}
                 ]
             }
             ]
@@ -64,8 +64,8 @@ export const productsNew = [
                     name: "Capacity",
                     type: 'text',
                     items: [
-                        {id: "Capacity", value: '256GB', displayValue: '256GB'},
-                        {id: "Capacity", value: '1TB', displayValue: '1TB'},
+                        {id: "256GB", value: '256GB', displayValue: '256GB'},
+                        {id: "1T", value: '1T', displayValue: '1T'},
                     ]
                 },
                 {
@@ -73,8 +73,8 @@ export const productsNew = [
                     name: 'Operational system',
                     type: 'text',
                     items: [
-                        {id: "Operational system", value: 'Android12', displayValue: 'Android 12'},
-                        {id: "Operational system", value: 'Android13', displayValue: 'Android 13'}
+                        {id: "Android12", value: 'Android12', displayValue: 'Android 12'},
+                        {id: "Android13", value: 'Android13', displayValue: 'Android 13'}
                     ]
                 }
             ]

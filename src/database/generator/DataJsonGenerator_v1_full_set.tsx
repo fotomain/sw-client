@@ -9,88 +9,132 @@ import {fetchGraphQL} from "./fetchGraphQL";
 
 const DataJsonGenerator = () => {
 
-    const dataStart:any=initialData
-    const arrayData:any= []
-    for (const k in dataStart) {
-        const el:any = dataStart[k]
-        arrayData.push(el)
+    const dataProducts:any=initialData
+
+    const workArray:any[] = []
+    const productPropeties:any= {}
+    for (const k in dataProducts) {
+        const el:any = dataProducts[k]
+        // console.log('el1',el)
+        workArray.push(el)
     }
 
+    const productsArray:any=[...workArray[1],...productsNew]
 
+    // productsArray=[...productsArray,...productsNew]
 
-    const arrayStart:any=[...arrayData[1],...productsNew]
+    console.log("productsArray0",productsArray)
+    // return <></>
 
-    console.log("arrayStart1",arrayStart)
+    let nProduct=1
+    for (const i in productsArray) {
 
-
-
-    let option_id_=80000
-    const arrayResult:any =[...arrayStart]
-    const attribute_entity:any={}
-    for (let i = 0; i < arrayResult.length; i++) {
-        arrayResult[i].product_id=100+1+i
-        for (let j = 0; j < arrayResult[i].attributes.length; j++) {
-            const attJ= arrayResult[i].attributes[j]
-            const options = arrayResult[i].attributes[j].items
-            for (let k = 0; k < options.length; k++) {
-                const o = options[k]
-                console.log("=== ",arrayResult[i].product_id, attJ.id, o.id)
-                if(!attribute_entity[attJ.id]) {
-                    attribute_entity[attJ.id] = {items: []}
-                }
-                else{
-                }
-
-                const optionExist = attribute_entity[attJ.id].items.find((it:any)=>{
-                    return it.id===o.id
-                })
-                if(!optionExist){
-                    option_id_++
-                    attribute_entity[attJ.id].items = [...attribute_entity[attJ.id].items, {option_id:option_id_, ...o}]
-                }
-            }
+        productsArray[i].product_id=100 + nProduct
+        productsArray[i].sku=productsArray[i].product_id
+        nProduct++
+        const obj = productsArray[i];
+        for (const k in obj) {
+            productPropeties[k]=1
         }
     }
 
-    let attribute_id_=800
-    for (const k in attribute_entity) {
-        const en:any = attribute_entity[k]
-        attribute_id_++
-        en.attribute_id=attribute_id_
-        en.name=k
-        en.id=k
+    console.log('productPropeties',productPropeties)
+
+    console.log('productsArray1 ',productsArray)
+
+    //return <></>
+
+    let attribute_id=801
+    let attributeDataObject:any = {}
+    for (let p = 0; p < productsArray.length; p++) {
+
+        const attribute = productsArray[p].attributes
+        if(attribute){
+            //STAGE1 classify === new id
+            for (let a1 = 0; a1 < attribute.length; a1++) {
+                console.log('attributes[a1]1',attribute[a1])
+                if(!attributeDataObject[attribute[a1].id]) {
+                    const newData = {attribute_id: attribute_id,...attribute[a1]}
+                    attributeDataObject[attribute[a1].id] = newData
+                    attribute_id++
+                }
+                else {
+                    // + new items
+                    const newItems = productsArray[p].attributes[a1].items
+                    for (let i = 0; i < newItems.length; i++) {
+                        const indexExist = attributeDataObject[attribute[a1].id].items.findIndex((el:any)=>{
+                            return el.id === newItems[i].id
+                        })
+                        if(-1===indexExist){
+                            console.log("indexExist1",indexExist,newItems[i].id)
+                            attributeDataObject[attribute[a1].id].items.push({...newItems[i]})
+                        }
+
+                    }
+                }
+                // productsArray[p].attributes[a1]= attributeDataObject[attribute[a1].id]
+            }
+
+            //STAGE2 write to producr
+            // for (let i = 0; i < productsArray[p].attributes.length; i++) {
+            //
+            //     let currentLine = productsArray[p].attributes[i]
+            //     console.log("currentLine1",currentLine)
+            //     for (let j = 0; j < currentLine.items.length; j++) {
+            //         let optionJ=currentLine.items[j]
+            //         const catalogOption = attributeDataObject[currentLine.id].items.find((el:any)=>{
+            //             return optionJ.id === el.id
+            //         })
+            //         if(catalogOption){
+            //             currentLine.items[j].option_id=catalogOption.id
+            //             // console.log("catalogOption1",catalogOption)
+            //         }
+            //         else{
+            //             throw Error("ERROR 1008 catalogOption1 not found")
+            //         }
+            //     }
+            // }
+
+
+        } //if(attributes){
     }
 
+    console.log('productsArray2 ',productsArray)
+    console.log('attributeDataObject1 ',attributeDataObject)
 
 
-    for (let i = 0; i < arrayResult.length; i++) {
-        for (let j = 0; j < arrayResult[i].attributes.length; j++) {
-            const attJ= arrayResult[i].attributes[j]
-                attJ.attribute_id=attribute_entity[attJ.id].attribute_id
-            const options = attJ.items
-            for (let k = 0; k < options.length; k++) {
-                const o = options[k]
-                const where = attribute_entity[attJ.id].items
-                const what = o.id
-                // console.log("where what",where, what)
-                const oCatalogData:any = where.find((el:any) =>  el.id === what)
-                // o.option_id = oCatalogData.option_id
-                console.log("oCatalogData1",oCatalogData)
-                // console.log("oCatalogData1",o,attribute_entity[attJ.id], oCatalogData)
-                o.option_id=oCatalogData.option_id
-            }
+    let option_id = 80000
+    attributeDataObject = objectToArray({array:attributeDataObject})
+    for (let i = 0; i < attributeDataObject.length; i++) {
+        attributeDataObject[i]= {...attributeDataObject[i].value}
+        // console.log('sql1 items attributeDataObject',attributeDataObject[i].items)
+        for (let j = 0; j < attributeDataObject[i].items.length ; j++) {
+            // console.log('sql1 items attributeDataObject',attributeDataObject[i].items[j])
+            option_id++
+            attributeDataObject[i].items[j] = {option_id,...attributeDataObject[i].items[j]}
         }
     }
 
+    const arrayToObject = (p:any) => {
+        let result:any={}
+        for (let i = 0; i < p.array.length; i++) {
+            let elI:any = p.array[i]
+            // console.log("elI1",elI)
+            result[elI[p.keyName]] = elI
+        }
+        return result
+    }
 
-    let attributeDataArray = objectToArray({array:attribute_entity})
+    // console.log('sql1 attributeDataObject',attributeDataObject)
+    attributeDataObject = arrayToObject({keyName:'name',array:attributeDataObject})
+    let attributeDataArray = objectToArray({array:attributeDataObject})
     for (let i = 0; i < attributeDataArray.length; i++) {
         attributeDataArray[i]={...attributeDataArray[i].value}
     }
 
-    console.log("attribute_entity1",attribute_entity)
-    console.log("arrayResult1",arrayResult)
-    console.log("attributeDataArray1",attributeDataArray)
+    console.log('sql1 productsArray5 final ',productsArray)
+    console.log('sql1 attributeDataObject final',attributeDataObject)
+    console.log('sql1 attributeDataArray',attributeDataArray)
 
 
     // TODO gallery
@@ -179,7 +223,7 @@ const DataJsonGenerator = () => {
             <div id={'sql5'}>
                 <div>DELETE FROM price_list WHERE 1;</div>
 
-                {arrayResult.map((iProduct: any, productN: number) => {
+                {productsArray.map((iProduct: any, productN: number) => {
                     return <div key={productN}>
                         {iProduct.prices && iProduct.prices.map((iPrice: any, priceN: number) => {
                             return <div key={priceN}>
@@ -222,7 +266,7 @@ const DataJsonGenerator = () => {
                                 VALUES (
                             </div>
                             <div>
-                                {iAttribute.attribute_id}, '{iAttribute.id}'
+                                {iAttribute.attribute_id}, '{iAttribute.name}'
                             </div>
                             <div>);</div>
 
@@ -293,20 +337,30 @@ const DataJsonGenerator = () => {
 
                     <div>DELETE FROM catalog_product_entity_text WHERE 1;</div>
 
-                    {arrayResult.map((iProduct: any, productN: number) => {
+                    {productsArray.map((iProduct: any, productN: number) => {
 
-                        console.log("=============== find1  optionValue1",iProduct.product_id, iProduct.attributes)
+                        console.log("=============== find1  optionValue1",iProduct.name, iProduct.product_id)
 
                         return <div key={productN}>
                             {iProduct.attributes && iProduct.attributes.map((iAttribute: any, attributeN: number) => {
                                 return <div key={attributeN}>
                                     {/*{iProduct.product_id}, {iAttribute.attribute_id},*/}
                                     {/*otuput from prepared data*/}
-                                    {iAttribute.items.map((optionItem: any, itemN: number) => {
+                                    {iAttribute.items.map((iItem: any, itemN: number) => {
+
+
+                                        const attribute_id = attributeDataObject[iAttribute.id].attribute_id
+                                        const optionsArray = attributeDataObject[iAttribute.id].items
+                                        console.log("========================= find1",attribute_id, iItem.id, optionsArray)
+                                        // TODO find iItem.id in optionsArray !!!
+                                        const optionValue = optionsArray.find((el:any)=>{
+                                            return el.id === iItem.id
+                                        })
+                                        console.log("========== find1  optionValue1",optionValue.option_id)
 
                                         return <div key={itemN}>
                                             {/*<div key={itemN}>*/}
-                                            {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {optionItem.option_id}*/}
+                                            {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {iItem.option_id}*/}
                                             {/*</div>*/}
 
                                             <div>INSERT INTO catalog_product_entity_text ( entity_id, attribute_id,
@@ -315,7 +369,7 @@ const DataJsonGenerator = () => {
                                                 VALUES (
                                             </div>
                                             <div>
-                                                {iProduct.product_id}, {iAttribute.attribute_id}, {optionItem.option_id}
+                                                {iProduct.product_id}, {attribute_id}, {optionValue.option_id}
                                             </div>
                                             <div>);</div>
                                         </div>
@@ -345,7 +399,7 @@ const DataJsonGenerator = () => {
                 </button>
                 <div id={'sql1'}>
                     <div>DELETE FROM product_entity WHERE 1;</div>
-                    {arrayResult.map((iProduct: any, productI: number) => {
+                    {productsArray.map((iProduct: any, productI: number) => {
                         return <div key={productI}>
                             {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
                             <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, name ) VALUES (
