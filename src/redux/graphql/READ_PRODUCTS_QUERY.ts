@@ -8,9 +8,10 @@ export const READ_PRODUCTS_QUERY =()=> { return  `
                                  { 
                                     product_id 
                                     name
+                                    price
                                     attributes {
                                         id 
-                                        name
+                                        name                                        
                                             attributeOptions { 
                                                 id
                                                 name

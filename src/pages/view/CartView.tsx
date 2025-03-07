@@ -4,7 +4,7 @@ import {
     MdClose,
     MdOutlineShoppingCart,
 } from "react-icons/md";
-import IconMaterial from "../core/IconBasic";
+import IconMaterial from "../core/IconMaterial";
 import React, {useState} from "react";
 import {ui} from "../HomePage";
 
@@ -99,7 +99,8 @@ const CartView = () => {
                           maxWidth: '200px',
                           // border: '1px solid green',
                       }}>
-                      <ButtonCircle style={{width: "22px", height: "22px", backgroundColor:'transparent', color:ui.colorMain}}
+                      <ButtonCircle style={{width: "22px", height: "22px",
+                          backgroundColor:'transparent', color:ui.colorMain}}
                                     onClick={() => {
 
                                         const q = DELETE_CART_LINE_QUERY({

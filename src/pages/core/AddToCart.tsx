@@ -1,6 +1,6 @@
 import {ADD_TO_CART_MUTATION} from "../../redux/graphql/ADD_TO_CART_MUTATION";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import IconBasic from "./IconBasic";
+import IconMaterial from "./IconMaterial";
 import {MdOutlineAddShoppingCart, MdRemove} from "react-icons/md";
 import ButtonCircle from "./ButtonCircle";
 import React from "react";
@@ -40,7 +40,7 @@ const addToCart = (props:any) => {
 
           }}
       >
-          <IconBasic size={24} icon={MdOutlineAddShoppingCart}/>
+          <IconMaterial size={24} icon={MdOutlineAddShoppingCart}/>
       </ButtonCircle>
   </>
 }

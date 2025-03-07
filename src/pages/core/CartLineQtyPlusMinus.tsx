@@ -8,11 +8,7 @@ import { css, jsx } from '@emotion/react';
 import ButtonCircle from "./ButtonCircle";
 import {MdAdd, MdRemove} from "react-icons/md";
 
-import { IconType } from "react-icons";
-
-import PropTypes from "prop-types";
-import {FaDev} from "react-icons/fa";
-import IconBasic from "./IconBasic";
+import IconMaterial from "./IconMaterial";
 
 
 const CartLineQtyPlusMinus = (props:any) => {
@@ -28,9 +24,8 @@ const CartLineQtyPlusMinus = (props:any) => {
           // border: '1px solid green',
       }}>
 
-
           {/*button plus*/}
-          <ButtonCircle style={{width: "22px", height: "22px"}}
+          <ButtonCircle style={{width: "22px", height: "22px", backgroundColor:'transparent', color:ui.colorMain}}
 
               productIndex={props.productIndex}
 
@@ -58,7 +53,7 @@ const CartLineQtyPlusMinus = (props:any) => {
                    }}
           >
 
-              <IconBasic size={24} icon={MdAdd}/>
+              <IconMaterial size={24} icon={MdAdd}/>
 
           </ButtonCircle>
 
@@ -72,7 +67,7 @@ const CartLineQtyPlusMinus = (props:any) => {
           </div>
 
           {/*button minus*/}
-          <ButtonCircle style={{width: "22px", height: "22px"}}
+          <ButtonCircle style={{width: "22px", height: "22px", backgroundColor:'transparent', color:ui.colorMain}}
 
               productIndex={props.productIndex}
 
@@ -98,7 +93,7 @@ const CartLineQtyPlusMinus = (props:any) => {
 
                    }}
               >
-                    <IconBasic size={24} icon={MdRemove}/>
+                    <IconMaterial size={24} icon={MdRemove}/>
               </ButtonCircle>
       </div>
   )

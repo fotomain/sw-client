@@ -7,14 +7,14 @@ interface IconStar {
     size?: number;
     color?: any;
 }
-const IconBasic: React.FC<IconStar> = (props:IconStar) => {
+const IconMaterial: React.FC<IconStar> = (props:IconStar) => {
     const {icon,...other} = props;
     const Icon = icon
     // @ts-ignore
     return <Icon {...other} />;
 };
-// IconBasic.propTypes = {
+// IconMaterial.propTypes = {
 //     icon: PropTypes.func.isRequired,
 // };
 
-export default IconBasic
+export default IconMaterial
