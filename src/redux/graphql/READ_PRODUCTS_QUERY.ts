@@ -9,6 +9,10 @@ export const READ_PRODUCTS_QUERY =()=> { return  `
                                     product_id 
                                     name
                                     price
+                                    gallery {
+                                       url_order
+                                        url_path
+                                    }
                                     attributes {
                                         id 
                                         name                                        

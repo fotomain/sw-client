@@ -34,7 +34,7 @@ const DataJsonGenerator = () => {
             const options = arrayResult[i].attributes[j].items
             for (let k = 0; k < options.length; k++) {
                 const o = options[k]
-                console.log("=== ",arrayResult[i].product_id, attJ.id, o.id)
+                // console.log("=== ",arrayResult[i].product_id, attJ.id, o.id)
                 if(!attribute_entity[attJ.id]) {
                     attribute_entity[attJ.id] = {items: []}
                 }
@@ -74,9 +74,9 @@ const DataJsonGenerator = () => {
                 const what = o.id
                 // console.log("where what",where, what)
                 const oCatalogData:any = where.find((el:any) =>  el.id === what)
-                // o.option_id = oCatalogData.option_id
-                console.log("oCatalogData1",oCatalogData)
-                // console.log("oCatalogData1",o,attribute_entity[attJ.id], oCatalogData)
+
+                // console.log("oCatalogData1",oCatalogData)
+
                 o.option_id=oCatalogData.option_id
             }
         }
@@ -100,7 +100,7 @@ const DataJsonGenerator = () => {
             <div>███████ ALL</div>
 
             <div>
-                <div style={{flexDirection:"row",gap:"24px",display:"flex"}}>
+                <div style={{flexDirection: "row", gap: "24px", display: "flex"}}>
 
                     <button style={{padding: '10px', backgroundColor: 'lightcyan'}} onClick={() => {
                         let res = ''
@@ -110,7 +110,7 @@ const DataJsonGenerator = () => {
                                 res = res + el.innerText
                             }
                         }
-                        console.log('res1', res)
+                        // console.log('res1', res)
                         navigator.clipboard.writeText(res);
 
                     }}
@@ -142,14 +142,14 @@ const DataJsonGenerator = () => {
                       `;
 
                         fetchGraphQL({
-                            entityName:'READ_PRODUCTS_QUERY',
-                            setDataCallback:(d:any)=>{
-                                console.log('=== READ_PRODUCTS_QUERY response ',d?.data?.cart?.items)//
+                            entityName: 'READ_PRODUCTS_QUERY',
+                            setDataCallback: (d: any) => {
+                                console.log('=== READ_PRODUCTS_QUERY response ', d?.data?.cart?.items)//
                                 // setData((prevState) => { return{ ...prevState,
                                 //     cartItems: d?.data?.cart?.items
                                 // }})
                             },
-                            gqlRequest:READ_PRODUCTS_QUERY
+                            gqlRequest: READ_PRODUCTS_QUERY
 
                         })
                         // console.log('res1', res)
@@ -161,6 +161,42 @@ const DataJsonGenerator = () => {
                 </div>
 
             </div>
+
+
+            <div>███████ product_gallery</div>
+
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql6");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY product_gallery
+            </button>
+
+
+            <div id={'sql6'}>
+                <div>DELETE FROM product_gallery WHERE 1;</div>
+
+                {arrayResult.map((iProduct: any, productN: number) => {
+                    return <div key={productN}>
+                        {iProduct.gallery && iProduct.gallery.map((iUrlItem: any, itemN: number) => {
+                            return <div key={itemN}>
+                                <div>INSERT INTO product_gallery ( entity_id, url_order, url_path )
+                                    VALUES (
+                                </div>
+                                <div>
+                                    {iProduct.product_id}, {itemN}, '{iUrlItem}'
+                                </div>
+                                <div>);</div>
+                            </div>
+                        })}
+                    </div>
+                })}
+            </div>
+
 
 
             <div>███████ price_list</div>
@@ -183,14 +219,14 @@ const DataJsonGenerator = () => {
                     return <div key={productN}>
                         {iProduct.prices && iProduct.prices.map((iPrice: any, priceN: number) => {
                             return <div key={priceN}>
-                                        <div>INSERT INTO price_list ( entity_id, price, currency_id )
-                                            VALUES (
-                                        </div>
-                                        <div>
-                                            {iProduct.product_id}, {iPrice.amount}, '{iPrice.currency.label}'
-                                        </div>
-                                        <div>);</div>
-                                    </div>
+                                <div>INSERT INTO price_list ( entity_id, price, currency_id )
+                                    VALUES (
+                                </div>
+                                <div>
+                                    {iProduct.product_id}, {iPrice.amount}, '{iPrice.currency.label}'
+                                </div>
+                                <div>);</div>
+                            </div>
                         })}
                     </div>
                 })}
@@ -198,169 +234,169 @@ const DataJsonGenerator = () => {
             </div>
 
 
-                <div>███████ attribute_entity</div>
+            <div>███████ attribute_entity</div>
 
-                <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
-                    const el = document.getElementById("sql4");
-                    if (el) {
-                        console.log(el.innerText)
-                        navigator.clipboard.writeText(el.innerText);
-                    }
-                }}
-                >
-                    COPY attribute_entity
-                </button>
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql4");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY attribute_entity
+            </button>
 
-                <div id={'sql4'}>
-                    <div>DELETE FROM attribute_entity WHERE 1;</div>
+            <div id={'sql4'}>
+                <div>DELETE FROM attribute_entity WHERE 1;</div>
 
-                    {attributeDataArray.map((iAttribute: any, aIndex) => {
-                        return <div key={aIndex}>
+                {attributeDataArray.map((iAttribute: any, aIndex) => {
+                    return <div key={aIndex}>
 
-                            <div>INSERT INTO attribute_entity ( attribute_id, attribute_name
+                        <div>INSERT INTO attribute_entity ( attribute_id, attribute_name
+                            )
+                            VALUES (
+                        </div>
+                        <div>
+                            {iAttribute.attribute_id}, '{iAttribute.id}'
+                        </div>
+                        <div>);</div>
+
+                    </div>
+                })}
+
+                <div>SELECT * FROM attribute_entity ORDER BY attribute_id ;</div>
+
+            </div>
+
+            <div>███████ attribute_options</div>
+
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql3");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY attribute_options
+            </button>
+
+            <div id={'sql3'}>
+
+                <div>DELETE FROM attribute_options WHERE 1;</div>
+
+                {attributeDataArray.map((iAttribute: any) => {
+                    return iAttribute.items.map((iItem: any, itemN: number) => {
+                        return <div key={itemN}>
+                            {/*<div key={itemN}>*/}
+                            {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {iItem.option_id}*/}
+                            {/*</div>*/}
+
+                            <div>INSERT INTO attribute_options ( attribute_id, option_id, value, displayValue, id
                                 )
                                 VALUES (
                             </div>
                             <div>
-                                {iAttribute.attribute_id}, '{iAttribute.id}'
+                                {iAttribute.attribute_id}, {iItem.option_id}, '{iItem.value}', '{iItem.displayValue}',
+                                '{iItem.id}'
                             </div>
                             <div>);</div>
 
                         </div>
-                    })}
 
-                    <div>SELECT * FROM attribute_entity ORDER BY attribute_id ;</div>
+                    })
+                })}
 
-                </div>
-
-                <div>███████ attribute_options</div>
-
-                <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
-                    const el = document.getElementById("sql3");
-                    if (el) {
-                        console.log(el.innerText)
-                        navigator.clipboard.writeText(el.innerText);
-                    }
-                }}
-                >
-                    COPY attribute_options
-                </button>
-
-                <div id={'sql3'}>
-
-                    <div>DELETE FROM attribute_options WHERE 1;</div>
-
-                    {attributeDataArray.map((iAttribute: any) => {
-                        return iAttribute.items.map((iItem: any, itemN: number) => {
-                            return <div key={itemN}>
-                                {/*<div key={itemN}>*/}
-                                {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {iItem.option_id}*/}
-                                {/*</div>*/}
-
-                                <div>INSERT INTO attribute_options ( attribute_id, option_id, value, displayValue, id
-                                    )
-                                    VALUES (
-                                </div>
-                                <div>
-                                    {iAttribute.attribute_id}, {iItem.option_id}, '{iItem.value}', '{iItem.displayValue}',
-                                    '{iItem.id}'
-                                </div>
-                                <div>);</div>
-
-                            </div>
-
-                        })
-                    })}
-
-                    <div>SELECT * FROM attribute_options ORDER BY attribute_id, option_id ;</div>
-
-                </div>
-
-
-                <div>███████ catalog_product_entity_text</div>
-
-                <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
-                    const el = document.getElementById("sql2");
-                    if (el) {
-                        console.log(el.innerText)
-                        navigator.clipboard.writeText(el.innerText);
-                    }
-                }}
-                >
-                    COPY catalog_product_entity_text
-                </button>
-                <div id={'sql2'}>
-
-                    <div>DELETE FROM catalog_product_entity_text WHERE 1;</div>
-
-                    {arrayResult.map((iProduct: any, productN: number) => {
-
-                        console.log("=============== find1  optionValue1",iProduct.product_id, iProduct.attributes)
-
-                        return <div key={productN}>
-                            {iProduct.attributes && iProduct.attributes.map((iAttribute: any, attributeN: number) => {
-                                return <div key={attributeN}>
-                                    {/*{iProduct.product_id}, {iAttribute.attribute_id},*/}
-                                    {/*otuput from prepared data*/}
-                                    {iAttribute.items.map((optionItem: any, itemN: number) => {
-
-                                        return <div key={itemN}>
-                                            {/*<div key={itemN}>*/}
-                                            {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {optionItem.option_id}*/}
-                                            {/*</div>*/}
-
-                                            <div>INSERT INTO catalog_product_entity_text ( entity_id, attribute_id,
-                                                value
-                                                )
-                                                VALUES (
-                                            </div>
-                                            <div>
-                                                {iProduct.product_id}, {iAttribute.attribute_id}, {optionItem.option_id}
-                                            </div>
-                                            <div>);</div>
-                                        </div>
-
-                                    })}
-
-                                </div>
-                            })}
-                        </div>
-                    })}
-
-                    <div>SELECT * FROM catalog_product_entity_text ;</div>
-
-                </div>
-
-
-                <div>███████ products</div>
-                <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
-                    const el = document.getElementById("sql1");
-                    if (el) {
-                        console.log(el.innerText)
-                        navigator.clipboard.writeText(el.innerText);
-                    }
-                }}
-                >
-                    COPY Products
-                </button>
-                <div id={'sql1'}>
-                    <div>DELETE FROM product_entity WHERE 1;</div>
-                    {arrayResult.map((iProduct: any, productI: number) => {
-                        return <div key={productI}>
-                            {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
-                            <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, name ) VALUES (
-                            </div>
-                            <div>{iProduct.product_id} , {iProduct.product_id} , {(iProduct.attributes.length === 0) ? 0 : 1},
-                                1 , '{iProduct.name}'
-                            </div>
-                            <div>);</div>
-                        </div>
-                    })}
-                    <div>SELECT * FROM product_entity ;</div>
-                </div>
+                <div>SELECT * FROM attribute_options ORDER BY attribute_id, option_id ;</div>
 
             </div>
-            )
-            }
 
-            export default DataJsonGenerator;
+
+            <div>███████ catalog_product_entity_text</div>
+
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql2");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY catalog_product_entity_text
+            </button>
+            <div id={'sql2'}>
+
+                <div>DELETE FROM catalog_product_entity_text WHERE 1;</div>
+
+                {arrayResult.map((iProduct: any, productN: number) => {
+
+                 // console.log("=============== find1  optionValue1", iProduct.product_id, iProduct.attributes)
+
+                    return <div key={productN}>
+                        {iProduct.attributes && iProduct.attributes.map((iAttribute: any, attributeN: number) => {
+                            return <div key={attributeN}>
+                                {/*{iProduct.product_id}, {iAttribute.attribute_id},*/}
+                                {/*otuput from prepared data*/}
+                                {iAttribute.items.map((optionItem: any, itemN: number) => {
+
+                                    return <div key={itemN}>
+                                        {/*<div key={itemN}>*/}
+                                        {/*    {iProduct.name}, {iProduct.product_id}, {iAttribute.attribute_id}, {optionItem.option_id}*/}
+                                        {/*</div>*/}
+
+                                        <div>INSERT INTO catalog_product_entity_text ( entity_id, attribute_id,
+                                            value
+                                            )
+                                            VALUES (
+                                        </div>
+                                        <div>
+                                            {iProduct.product_id}, {iAttribute.attribute_id}, {optionItem.option_id}
+                                        </div>
+                                        <div>);</div>
+                                    </div>
+
+                                })}
+
+                            </div>
+                        })}
+                    </div>
+                })}
+
+                <div>SELECT * FROM catalog_product_entity_text ;</div>
+
+            </div>
+
+
+            <div>███████ products</div>
+            <button style={{padding: '20px', backgroundColor: 'lightgreen'}} onClick={() => {
+                const el = document.getElementById("sql1");
+                if (el) {
+                    console.log(el.innerText)
+                    navigator.clipboard.writeText(el.innerText);
+                }
+            }}
+            >
+                COPY Products
+            </button>
+            <div id={'sql1'}>
+                <div>DELETE FROM product_entity WHERE 1;</div>
+                {arrayResult.map((iProduct: any, productI: number) => {
+                    return <div key={productI}>
+                        {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
+                        <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, name ) VALUES (
+                        </div>
+                        <div>{iProduct.product_id} , {iProduct.product_id} , {(iProduct.attributes.length === 0) ? 0 : 1},
+                            1 , '{iProduct.name}'
+                        </div>
+                        <div>);</div>
+                    </div>
+                })}
+                <div>SELECT * FROM product_entity ;</div>
+            </div>
+
+        </div>
+    )
+}
+
+export default DataJsonGenerator;

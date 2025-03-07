@@ -23,6 +23,8 @@ export const HomePage = () => {
 
     return (
         <>
+            {/*<DataJsonGenerator/>*/}
+
             <CartView/>
             <ProductsGallery/>
 
@@ -30,7 +32,6 @@ export const HomePage = () => {
 
             {/*<DataJsonAnalyser/>*/}
 
-            {/*<DataJsonGenerator/>*/}
         </>
     );
 };

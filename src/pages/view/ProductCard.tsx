@@ -63,7 +63,7 @@ const ProductCard = (props:any) => {
           backgroundColor: ui.oolorCardBackground[productIndex%9],
       }}>
 
-          <img style={{width: '100px', height: '100px'}} src={product.image}/>
+          <img style={{width: '100px', height: '100px'}} src={product?.gallery[0]?.url_path}/>
 
           <div style={{
               paddingBottom: '4px',

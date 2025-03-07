@@ -1,12 +1,16 @@
 export const productsNew = [
     {
-        id: 'iPhone',
-        name: 'iPhone',
+        id: 'iPhone11',
+        name: 'iPhone 11',
         brand: 'Apple',
         inStock: true,
         category: 'tech',
         prices:[{amount:888,currency: {label:"USD"}}],
-        attributes:
+        gallery:[
+            'https://lmt-web.mstatic.lv/eshop/11528/conversions/Apple-iPhone-11_purple_front-860.webp',
+            'https://lmt-web.mstatic.lv/eshop/11530/conversions/Apple-iPhone-11_purple_back-860.webp',
+            'https://www.apple.com/v/iphone-11/g/images/specs/hero__dqxrmndp9n2a_large.jpg',
+        ],        attributes:
             [{
                 id: 'Color',
                 name: 'Color',
@@ -40,12 +44,17 @@ export const productsNew = [
             ]
         },
     {
-        id:'Samsung',
-        name:'Samsung',
+        id:'SamsungA50',
+        name:'Samsung A50',
         brand:'Samsung',
         inStock: true,
         category: 'tech',
         prices:[{amount:555,currency: {label:"USD"}}],
+        gallery:[
+            'https://lmt-web.mstatic.lv/eshop/28913/conversions/2-samsung-galaxy-s25-s931-icy-blue-860.webp',
+            'https://image-us.samsung.com/SamsungUS/home/mobile/galaxy-a50/freeform/storage-d-0905.png',
+            'https://images.samsung.com/is/image/samsung/lv-galaxy-a50-sm-a505fzkse40--Black-308536043?$330_330_JPG$',
+        ],
         attributes:
             [{
                 id: 'Color',
