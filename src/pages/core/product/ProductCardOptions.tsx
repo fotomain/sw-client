@@ -2,7 +2,7 @@
 
 import React from "react";
 import {css} from "@emotion/react";
-import {ui} from "../HomePage";
+import {ui} from "../../HomePage";
 
 const ProductCardOptions = (props:any) => {
 

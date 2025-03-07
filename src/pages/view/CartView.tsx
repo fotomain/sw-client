@@ -4,17 +4,17 @@ import {
     MdClose,
     MdOutlineShoppingCart,
 } from "react-icons/md";
-import IconMaterial from "../core/IconMaterial";
+import IconMaterial from "../core/universal/IconMaterial";
 import React, {useState} from "react";
 import {ui} from "../HomePage";
 
-import ButtonPrimary from "../core/ButtonPrimary";
-import ButtonSecondary from "../core/ButtonSecondary";
+import ButtonPrimary from "../core/universal/ButtonPrimary";
+import ButtonSecondary from "../core/universal/ButtonSecondary";
 
 import {READ_CART_QUERY} from "../../redux/graphql/READ_CART_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import CartLineQtyPlusMinus from "../core/CartLineQtyPlusMinus";
-import ButtonCircle from "../core/ButtonCircle";
+import CartLineQtyPlusMinus from "../core/cart/CartLineQtyPlusMinus";
+import ButtonCircle from "../core/universal/ButtonCircle";
 import {css} from "@emotion/react";
 import {DELETE_CART_LINE_QUERY} from "../../redux/graphql/DELETE_CART_LINE_QUERY";
 

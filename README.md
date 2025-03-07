@@ -11,6 +11,7 @@ npm cache clean --force
 # Setup 
 npm install @mui/material @emotion/react @emotion/styled
 npm install @monaco-editor/react
+npm install lucide-react
 npm install react-icons --save
     https://react-icons.github.io/react-icons/
 # CSS

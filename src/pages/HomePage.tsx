@@ -3,6 +3,8 @@ import ProductsGallery from "./view/ProductsGallery";
 import DataJsonAnalyser from "../DataJsonAnalyser";
 import DataJsonGenerator from "../database/generator/DataJsonGenerator";
 import CartView from "./view/CartView";
+import {GallerySlider} from "./core/gallery_slider/GallerySlider";
+import {css} from "@emotion/react";
 
 export let ui:any={};
 ui.colorMain="var(--colorMain)";
@@ -18,6 +20,7 @@ ui.oolorCardBackground=[
     'var(--PinkyRing)',
     'var(--EggYellows)',
 ];
+
 
 export const HomePage = () => {
 

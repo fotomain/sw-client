@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
-import {ADD_TO_CART_MUTATION} from "../../redux/graphql/ADD_TO_CART_MUTATION";
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
+import {ADD_TO_CART_MUTATION} from "../../../redux/graphql/ADD_TO_CART_MUTATION";
+import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
 import React from "react";
-import {ui} from "../HomePage";
+import {ui} from "../../HomePage";
 
 import { css, jsx } from '@emotion/react';
-import ButtonCircle from "./ButtonCircle";
+import ButtonCircle from "../universal/ButtonCircle";
 import {MdAdd, MdRemove} from "react-icons/md";
 
-import IconMaterial from "./IconMaterial";
+import IconMaterial from "../universal/IconMaterial";
 
 
 const CartLineQtyPlusMinus = (props:any) => {

@@ -1,12 +1,14 @@
 
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import CartLineQtyPlusMinus from "../core/CartLineQtyPlusMinus";
+import CartLineQtyPlusMinus from "../core/cart/CartLineQtyPlusMinus";
 import {ui} from "../HomePage";
 
 import { MdAdd } from "react-icons/md";
-import AddToCart from "../core/AddToCart";
-import ProductCardOptions from "../core/ProductCardOptions";
+import AddToCart from "../core/cart/AddToCart";
+import ProductCardOptions from "../core/product/ProductCardOptions";
+import {css} from "@emotion/react";
+import {GallerySlider} from "../core/gallery_slider/GallerySlider";
 
 const ProductCard = (props:any) => {
 
@@ -53,17 +55,35 @@ const ProductCard = (props:any) => {
 
     // productsOptionsArray
 
-  return(<>
+    let IMAGES:any=[]
+
+    // let IMAGES = [
+    //     { url: 'https://lmt-web.mstatic.lv/eshop/28913/conversions/2-samsung-galaxy-s25-s931-icy-blue-860.webp', alt: "Car One" },
+    //     { url: 'https://image-us.samsung.com/SamsungUS/home/mobile/galaxy-a50/freeform/storage-d-0905.png', alt: "Car Two" },
+    //     { url: 'https://images.samsung.com/is/image/samsung/lv-galaxy-a50-sm-a505fzkse40--Black-308536043?$330_330_JPG$', alt: "Car Three" },
+    // ]
+
+    for (let i = 0; i < product?.gallery.length; i++) {
+        IMAGES.push({url:product.gallery[i].url_path, alt:product.gallery[i].url_path});
+    }
+
+
+    return(<>
       {/*<div>Card</div>*/}
       <div style={{
           display: 'flex',
           flexDirection: 'column',
           alignContent: 'start',
           alignItems: 'center',
-          backgroundColor: ui.oolorCardBackground[productIndex%9],
+          backgroundColor: ui.oolorCardBackground[productIndex % 9],
       }}>
 
-          <img style={{width: '100px', height: '100px'}} src={product?.gallery[0]?.url_path}/>
+          <div css={css` width: 150px;
+              height: 150px`}>
+              <GallerySlider sliderWidth={"80px"} images={IMAGES}/>
+          </div>
+
+          {/*<img style={{width: '100px', height: '100px'}} src={product?.gallery[0]?.url_path}/>*/}
 
           <div style={{
               paddingBottom: '4px',

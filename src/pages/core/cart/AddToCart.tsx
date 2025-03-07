@@ -1,8 +1,8 @@
-import {ADD_TO_CART_MUTATION} from "../../redux/graphql/ADD_TO_CART_MUTATION";
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import IconMaterial from "./IconMaterial";
+import {ADD_TO_CART_MUTATION} from "../../../redux/graphql/ADD_TO_CART_MUTATION";
+import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
+import IconMaterial from "../universal/IconMaterial";
 import {MdOutlineAddShoppingCart, MdRemove} from "react-icons/md";
-import ButtonCircle from "./ButtonCircle";
+import ButtonCircle from "../universal/ButtonCircle";
 import React from "react";
 
 
