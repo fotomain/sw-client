@@ -9,7 +9,7 @@ import { Provider } from 'react-redux';
 import reduxStore from "./redux/reduxStore";
 
 import React from "react";
-import {HomePage} from "./pages/HomePage";
+import {HomePage} from "./view/HomePage";
 const container = document.getElementById('root');
 
 

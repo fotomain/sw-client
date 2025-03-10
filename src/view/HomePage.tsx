@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
 import React, {useState} from "react";
-import ProductsGallery from "./view/ProductsGallery";
+import ProductsGallery from "./lib/ProductsGallery";
 
 import { CiShoppingCart } from "react-icons/ci";
 
-import CartView from "./view/CartView";
+import CartView from "./lib/CartView";
 
 import {css} from "@emotion/react";
 import {MdOutlineShoppingCart, MdShoppingCart, MdShoppingCartCheckout} from "react-icons/md";
@@ -54,7 +54,16 @@ export const HomePage = () => {
                     top:0;left: 0;
                     background-color: ${(navState.makeCartViewOpen) ? 'black' : 'transparent'};
                     opacity:0.5;
-                `}>
+                `}
+                     onClick={() => {
+                         // setNavState((prevState: any) => {
+                         //     return {
+                         //         ...prevState,
+                         //         makeCartViewOpen: !prevState.makeCartViewOpen
+                         //     }
+                         // })
+                     }}
+                >
                 </div>
 
             </div>
