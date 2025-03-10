@@ -48,15 +48,17 @@ export const HomePage = () => {
                 <CartView/>
                 <ProductsGallery/>
 
-                <div css={css` 
-                    z-index: 20;
-                    position: absolute; width:100vw; height: 100vh;
-                    top:0;left: 0;
-                    background-color: ${(navState.makeCartViewOpen) ? 'black' : 'transparent'};
-                    opacity:0.5;
-                `}
-                >
-                </div>
+                {navState.makeCartViewOpen &&
+                    <div css={css` 
+                        z-index: 20;
+                        position: absolute; width:100vw; height: 100vh;
+                        top:0;left: 0;
+                        background-color: ${(navState.makeCartViewOpen) ? 'black' : 'transparent'};
+                        opacity:0.5;
+                    `}
+                    >
+                    </div>
+                }
 
             </div>
 
