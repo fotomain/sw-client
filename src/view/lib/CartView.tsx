@@ -70,12 +70,7 @@ const CartView = () => {
               Refresh
           </ButtonPrimary>
 
-          <ButtonSecondary
-              onClick={()=>{
-                  console.log("refresh1")}}
-          >
-              Close
-          </ButtonSecondary>
+
 
 
 
@@ -141,6 +136,29 @@ const CartView = () => {
 
               </div>
           })}
+
+
+
+              <div
+                  css={css` width:100%; justify-content:space-between; align-items:center; display:flex; flex-direction: row `}
+              >
+                  <ButtonSecondary
+                      onClick={()=>{
+                          console.log("Close1")}}
+                  >
+                      Close
+                  </ButtonSecondary>
+
+                  <ButtonPrimary
+                      onClick={()=>{
+                          console.log("Order1")
+                      }}
+
+                  >
+                      Order
+                  </ButtonPrimary>
+
+          </div>
 
       </div>
 

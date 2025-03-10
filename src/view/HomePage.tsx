@@ -55,14 +55,6 @@ export const HomePage = () => {
                     background-color: ${(navState.makeCartViewOpen) ? 'black' : 'transparent'};
                     opacity:0.5;
                 `}
-                     onClick={() => {
-                         // setNavState((prevState: any) => {
-                         //     return {
-                         //         ...prevState,
-                         //         makeCartViewOpen: !prevState.makeCartViewOpen
-                         //     }
-                         // })
-                     }}
                 >
                 </div>
 

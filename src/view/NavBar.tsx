@@ -13,24 +13,27 @@ const NavBar = (props:any) => {
 
     const {navState, setNavState} = props;
 
-    const wrapperRef = useRef(null);
+    const dialogRef = useRef(null);
 
 
-    function useClickOut(ref:any) {
+    function useClickOut(ref:any,keyState:boolean,callback:any,excludeId?:string) {
         useEffect(() => {
 
             function handleClickOutside(event:any) {
-                if (ref.current && !ref.current.contains(event.target)) {
-                    console.log('navState.makeCartViewOpen1',navState.makeCartViewOpen)
-                    if(navState.makeCartViewOpen)
+
+                console.log('event.target1',event.target)
+                console.log('event.target1',event.target.id)
+
+                if (
+                    ref.current
+                    && !ref.current.contains(event.target)
+                    && (excludeId!==event.target.id)
+                ) {
+                    if(keyState)
                     {
                         // alert("outside of me!");
-                        setNavState((prevState: any) => {
-                            return {
-                                ...prevState,
-                                makeCartViewOpen: false
-                            }
-                        })
+                        if(callback)
+                            callback();
                     }
                 }
             }
@@ -40,10 +43,21 @@ const NavBar = (props:any) => {
 
                 document.removeEventListener("mousedown", handleClickOutside);
             };
-        }, [ref,navState.makeCartViewOpen]);
+        }, [ref,keyState]);
     }
 
-    useClickOut(wrapperRef);
+    useClickOut(dialogRef,navState.makeCartViewOpen,
+        ()=>{
+            setNavState((prevState: any) => {
+                return {
+                    ...prevState,
+                    makeCartViewOpen: false
+                }
+            })
+
+        },
+        "iconCart1"
+    );
 
     return <div
         css={css`
@@ -77,7 +91,9 @@ const NavBar = (props:any) => {
                 top: -12px;
                 position: absolute;
             `}>
-                <IconCart onClick={() => {
+                <IconCart
+                    id={'iconCart1'}
+                    onClick={() => {
                     console.log("setCartViewOpen=true")
                     setNavState((prevState: any) => {
                         return {
@@ -107,7 +123,7 @@ const NavBar = (props:any) => {
                 </div>
 
                 <dialog open={navState.makeCartViewOpen}
-                        ref={wrapperRef}
+                        ref={dialogRef}
                         css={css` 
                             position: absolute; 
                             z-index: 20;
