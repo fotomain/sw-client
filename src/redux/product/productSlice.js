@@ -2,7 +2,7 @@ import {createSlice} from "@reduxjs/toolkit";
 
 const THIS_SLICE_ENTITY = 'productsArray'
 const THIS_SLICE_OPTIONS = 'productsOptionsArray'
-const THIS_SLICE_NAME = 'productsSlice'
+const THIS_SLICE_NAME = 'productSlice'
 
 const abstractSlice=createSlice({
     name: THIS_SLICE_NAME,
@@ -104,7 +104,7 @@ export const productActions = {
 
 };
 
-export const productsSlice=abstractSlice
+export const productSlice=abstractSlice
 
 export const productsReducer=abstractSlice.reducer
 

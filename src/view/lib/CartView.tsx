@@ -5,18 +5,21 @@ import {
     MdOutlineShoppingCart,
 } from "react-icons/md";
 import IconMaterial from "../core/universal/IconMaterial";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {ui} from "../HomePage";
 
 import ButtonPrimary from "../core/universal/ButtonPrimary";
 import ButtonSecondary from "../core/universal/ButtonSecondary";
 
-import {READ_CART_QUERY} from "../../redux/graphql/READ_CART_QUERY";
+import {READ_CART_QUERY} from "../../redux/cart/READ_CART_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import CartLineQtyPlusMinus from "../core/cart/CartLineQtyPlusMinus";
 import ButtonCircle from "../core/universal/ButtonCircle";
 import {css} from "@emotion/react";
 import {DELETE_CART_LINE_QUERY} from "../../redux/graphql/DELETE_CART_LINE_QUERY";
+import {productSlice} from "../../redux/product/productSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {cartSlice} from "../../redux/cart/cartSlice";
 
 const CartView = () => {
 
@@ -32,6 +35,23 @@ const CartView = () => {
         }
         return res
     }
+
+    const cartStateGlobal = useSelector((state:any) => state.cartState );
+
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log("dispatch1")
+        dispatch(cartSlice.actions.read({cart_guid:'XXX'}))
+    }, []);
+
+
+    useEffect(() => {
+        console.log("cartStateGlobal1",cartStateGlobal)
+
+    }, [cartStateGlobal]);
+
+
 
     return(<>
 

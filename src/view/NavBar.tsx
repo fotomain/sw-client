@@ -93,7 +93,17 @@ const NavBar = (props:any) => {
                     flex-direction: row;
                     justify-content: center;
                     align-items: center;
-                `}>
+                `}
+                    onClick={()=>{
+                        setNavState((prevState: any) => {
+                            return {
+                                ...prevState,
+                                makeCartViewOpen: !prevState.makeCartViewOpen
+                            }
+                        })
+
+                    }}
+                >
                     1
                 </div>
 

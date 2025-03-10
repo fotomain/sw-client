@@ -1,6 +1,6 @@
 
 import {delay, fork, call, put, takeEvery} from "redux-saga/effects";
-import {productActions} from "./productsSlice";
+import {productActions} from "./productSlice";
 
 
 function* workFetch(params){
