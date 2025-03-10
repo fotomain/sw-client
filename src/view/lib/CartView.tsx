@@ -47,8 +47,16 @@ const CartView = () => {
 
 
     useEffect(() => {
-        console.log("cartStateGlobal1",cartStateGlobal)
 
+        console.log("cartStateGlobal1",cartStateGlobal)
+        if(cartStateGlobal?.cartArray?.cart_lines) {
+            setCartState((prevState: any) => {
+                return {
+                    ...prevState,
+                    cartItems: [...cartStateGlobal.cartArray.cart_lines]
+                }
+            })
+        }
     }, [cartStateGlobal]);
 
 

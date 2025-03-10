@@ -3,12 +3,14 @@ import {productSagaRead} from "./product/productSagaRead";
 import {productSagaCreate} from "./product/productSagaCreate";
 import {productSagaDelete} from "./product/productSagaDelete";
 import {cartSagaRead} from "./cart/cartSagaRead";
+import {cartSagaCreate} from "./cart/cartSagaCreate";
 
 export default function* rootSaga() {
 	yield all([
 		...productSagaCreate,
 		...productSagaRead,
 		...productSagaDelete,
+		...cartSagaCreate,
 		...cartSagaRead
 	]);
 }

@@ -17,22 +17,22 @@ const abstractSlice=createSlice({
         deleteStarted:false,
         deleteError:'',
 
-        [THIS_SLICE_ENTITY]:[],
+        [THIS_SLICE_ENTITY]:{},
         [THIS_SLICE_OPTIONS]:[]
     },
     reducers:{
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== product_ isCreating1",action);
+            console.log("=== cart_ isCreating1",action);
         },
         create: (state,action) => {
-            console.log("=== product_ createExecute true ",action);
+            console.log("=== cart_ createExecute true ",action);
         },
         createSuccess: (state,action) => {
-            state[THIS_SLICE_ENTITY] = [...state[THIS_SLICE_ENTITY],{id:action.payload.id, name:action.payload.name+ ' #' + action.payload.id }]
+            console.log("createSuccess action1",action.payload)
+            state[THIS_SLICE_ENTITY] = action.payload;
             state.createStarted=false;
-            console.log("=== catCreateSuccess1 action ",action);
         },
         createFailure: (state,action) => {
             state.isReading=false;
@@ -45,6 +45,7 @@ const abstractSlice=createSlice({
             state.readError="";
         },
         readSuccess: (state,action) => {
+            console.log("readSuccess action1",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
             state.isReading=false;
         },
@@ -73,14 +74,11 @@ const abstractSlice=createSlice({
     }
 })
 
-// export const productsRead=(p)=> {
-//     return abstractSlice.actions.read(p)
-// }
 export const cartActions = {
 
     createStart             : abstractSlice.actions.createStart ,
     create                  : abstractSlice.actions.create,
-    cartCreateSuccess    : abstractSlice.actions.createSuccess,
+    cartCreateSuccess       : abstractSlice.actions.createSuccess,
 
     read        : abstractSlice.actions.read,
     readSuccess : abstractSlice.actions.readSuccess,

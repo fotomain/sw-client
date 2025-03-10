@@ -8,7 +8,7 @@ import {Button, TextField} from "@mui/material";
 import ClassWooEntity from "../../api/WooEntityRoot";
 import {READ_PRODUCTS_QUERY} from "../../redux/product/READ_PRODUCTS_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import {ADD_TO_CART_MUTATION} from "../../redux/graphql/ADD_TO_CART_MUTATION";
+import {ADD_TO_CART_MUTATION} from "../../redux/cart/ADD_TO_CART_MUTATION";
 import ProductCard from "./ProductCard";
 
 const debug_local=true
