@@ -2,6 +2,7 @@
 
 import { createRoot } from 'react-dom/client';
 
+import './index.css'
 import './styles.css'
 
 import { Provider } from 'react-redux';

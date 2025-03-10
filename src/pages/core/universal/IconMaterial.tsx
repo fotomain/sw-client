@@ -2,12 +2,12 @@
 import {IconType} from "react-icons";
 import React from "react";
 
-interface IconStar {
+export interface IconProps {
     icon: IconType;
     size?: number;
     color?: any;
 }
-const IconMaterial: React.FC<IconStar> = (props:IconStar) => {
+const IconMaterial: React.FC<IconProps> = (props:IconProps) => {
     const {icon,...other} = props;
     const Icon = icon
     // @ts-ignore

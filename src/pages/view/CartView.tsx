@@ -42,7 +42,7 @@ const CartView = () => {
           alignItems: 'center',
           backgroundColor: ui.oolorBackgroundMain,
       }}>
-          <IconMaterial color={ui.colorMain} size={24} icon={MdOutlineShoppingCart}/>
+
           <ButtonPrimary
             onClick={()=>{
                   console.log("refresh1")
