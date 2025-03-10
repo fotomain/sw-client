@@ -6,45 +6,16 @@ import React, {useEffect, useRef, useState} from "react";
 
 import CartView from "./lib/CartView";
 import {ui} from "./HomePage";
-import {CiGlobe, CiShoppingCart} from "react-icons/ci";
+import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";
+import useClickOut from "./core/functions";
+
 
 const NavBar = (props:any) => {
 
     const {navState, setNavState} = props;
 
     const dialogRef = useRef(null);
-
-
-    function useClickOut(ref:any,keyState:boolean,callback:any,excludeId?:string) {
-        useEffect(() => {
-
-            function handleClickOutside(event:any) {
-
-                console.log('event.target1',event.target)
-                console.log('event.target1',event.target.id)
-
-                if (
-                    ref.current
-                    && !ref.current.contains(event.target)
-                    && (excludeId!==event.target.id)
-                ) {
-                    if(keyState)
-                    {
-                        // alert("outside of me!");
-                        if(callback)
-                            callback();
-                    }
-                }
-            }
-
-            document.addEventListener("mousedown", handleClickOutside);
-            return () => {
-
-                document.removeEventListener("mousedown", handleClickOutside);
-            };
-        }, [ref,keyState]);
-    }
 
     useClickOut(dialogRef,navState.makeCartViewOpen,
         ()=>{
@@ -63,7 +34,7 @@ const NavBar = (props:any) => {
         css={css`
             background-color: white;
             width: 100vw;
-            height: 5vh;
+            height: 6vh;
             padding-left: 12px;
             padding-right: 12px;
             display: flex;
@@ -75,13 +46,17 @@ const NavBar = (props:any) => {
 
         `}
     >
-        <div css={css` background-color: transparent `}><p>
-            <IconMaterial color={ui.colorMain} size={36} icon={CiGlobe}  />
-        </p></div>
+        <div css={css` background-color: transparent
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+        `}>
+            <IconMaterial  color={ui.colorMain} size={32} icon={CiGlobe}  />
+        </div>
 
         <div css={css` position: relative;
             border: none;
-            background-color: red;
+            //background-color: red;
             cursor: pointer;
         `}
         >

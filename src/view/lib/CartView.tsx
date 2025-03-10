@@ -71,9 +71,6 @@ const CartView = () => {
           </ButtonPrimary>
 
 
-
-
-
           {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
           {(cartState.cartItems && cartState.cartItems.length > 0) && cartState.cartItems.map( (cartLine:any, i)=>{
               return <div css={css` min-width: 250px `} key={i}>
