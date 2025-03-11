@@ -14,7 +14,7 @@ export const READ_PRODUCTS_QUERY =()=> { return  `
                                     description
                                     gallery {
                                        url_order
-                                        url_path
+                                       url_path
                                     }
                                     attributes {
                                         id 

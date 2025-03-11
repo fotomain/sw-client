@@ -25,6 +25,8 @@ const SelectOptionColor=(props:any)=>{
                     onClick={()=>{
                         // console.log("=== option ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
 
+                        if(props.readOnly) return
+
                         props.setCardState((prevState:any)=>{
                             let op = prevState.optionsSelected;
                             op[optionsSet?.option_header.id]=optionItem.id;

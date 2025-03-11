@@ -165,7 +165,7 @@ const ProductDetailsPage = (props:any) => {
                 display: flex;
                 justify-content: space-between;
                 align-items: start;
-
+                min-width: 300px;
                 //background-color: lightpink;
 
             `}

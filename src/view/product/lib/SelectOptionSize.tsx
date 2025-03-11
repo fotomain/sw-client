@@ -10,6 +10,9 @@ const SelectOptionSize=(props:any)=>{
 
             return <div id="div1" style={{paddingLeft:'4px',paddingRight:'4px',}} key={(optionsSet?.option_header.name+"-"+optionItem.id).replaceAll(" ","-")}
                         onClick={()=>{
+
+                            if(props.readOnly) return
+
                             console.log("=== option1 ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
 
                             props.setCardState((prevState:any)=>{

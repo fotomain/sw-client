@@ -42,6 +42,8 @@ const ProductCardOptions = (props:any) => {
 
                       <OptionsView
 
+                          readOnly={props.readOnly}
+
                               optionsSet={optionsSet}
                               cardState={cardState}
                               setCardState={setCardState}

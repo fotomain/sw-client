@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ButtonCircle from "../core/universal/ButtonCircle";
 import {ui} from "../HomePage";
 import {cartSlice} from "../../redux/cart/cartSlice";
@@ -9,6 +9,7 @@ import IconMaterial from "../core/universal/IconMaterial";
 import {MdClose} from "react-icons/md";
 import CartLineQtyPlusMinus from "./CartLineQtyPlusMinus";
 import {useDispatch} from "react-redux";
+import ProductCardOptions from "../product/ProductCardOptions";
 
 const optionsToKeyValue = (p:any) => {
     const res:any = {}
@@ -21,11 +22,48 @@ const optionsToKeyValue = (p:any) => {
 
 const CartLine = (props:any) => {
 
+    const {product} = props;
+
     const dispatch = useDispatch();
 
     const {cartLine,cartState,setCartState} = props
 
-  return <div css={css` 
+    const [cardState, setCardState] = useState({
+        optionsSelected:{},
+        optionsAll:{},
+        optionsArray:[],
+        qty:0,
+        slideNumber:0,
+        percernOfOptionsSelected:0,
+    })
+
+
+    useEffect(() => {
+        console.log("product8",product)
+        if(product.attributes){
+
+            let optionsAll:any = {}
+            let optionsSelected:any = {}
+            let optionsArray:any[] = []
+            for (let i = 0; i < product.attributes.length; i++) {
+                optionsAll[product.attributes[i].id] = product.attributes[i]
+                const {attributeOptions, ...h} = product.attributes[i]
+                optionsArray.push({
+                    option_header:h,
+                    option_items:product.attributes[i].attributeOptions,
+                })
+            }
+
+            setCardState((prevState:any)=>{return {...prevState,
+                optionsSelected:optionsSelected,
+                optionsAll:optionsAll,
+                optionsArray:optionsArray,
+            }})
+        }
+    }, []); //productSelectedOptions
+
+
+    return <div css={css` 
       min-width: 350px;
       display: flex; flex-direction: column;
       justify-content: start;
@@ -42,15 +80,23 @@ const CartLine = (props:any) => {
           `}
       >
           <div>{cartLine.product_object?.name}</div>
-          <img
-              css={css`
-                  width: auto;
-                  height: 60px;
-              `}
-              src={cartLine?.product_object?.gallery[0].url_path} alt=""
-          />
+          {cartLine?.product_object?.gallery &&
+              <img
+                  css={css`
+                      width: auto;
+                      height: 60px;
+                  `}
+                  src={cartLine?.product_object?.gallery[0].url_path} alt=""
+              />
+          }
       </div>
 
+
+      <ProductCardOptions
+          readOnly
+          cardState={cardState}
+          setCardState={setCardState}
+      />
 
       {/*delete button*/}
       <div style={{

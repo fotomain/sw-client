@@ -29,6 +29,15 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                        url_order
                        url_path
                     }
+                     attributes {
+                                        id 
+                                        name                                        
+                                            attributeOptions { 
+                                                id
+                                                name
+                                                displayValue
+                                            } 
+                                    }
                 }
             }
     }

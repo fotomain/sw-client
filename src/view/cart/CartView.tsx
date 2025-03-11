@@ -98,6 +98,7 @@ const CartView = () => {
                   key={cartLine.cart_line_id}
               >
                   <CartLine
+                      product={cartLine.product_object}
                       cartLine={cartLine}
                       cartState={cartState}
                       setCartState={setCartState}
