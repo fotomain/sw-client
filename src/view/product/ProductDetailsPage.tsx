@@ -125,7 +125,8 @@ const ProductDetailsPage = (props:any) => {
                                   width: auto;
                                   height: 60px;
                               `}
-                              src={item.urls} alt=""/>
+                              src={item.urls} alt=""
+                          />
                       </button>
                   })}
               </div>

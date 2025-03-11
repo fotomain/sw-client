@@ -25,6 +25,10 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                     name
                     price
                     sku
+                    gallery {
+                       url_order
+                       url_path
+                    }
                 }
             }
     }
