@@ -38,7 +38,7 @@ const ProductCardPage = (props:any) => {
           css={css`
               width: 55vw;
               //params1
-              height: 40vw;
+              height: 40vh;
               gap:12px; flex-direction: row; display: flex;
               justify-content: start;
               background-color: lightcyan;
@@ -102,19 +102,70 @@ const ProductCardPage = (props:any) => {
               </div>
       </div>
 
-      <div
-          css={css`
-              width: 30vw;
-              height: 20vw;
-              background-color: lightpink;
-          `}
-      >
-          <div style={{width: '250px'}}>{product.name}</div>
-          <div style={{width: '25px'}}>{product.price}</div>
-      </div>
+        <div
+            css={css`
+                width: 30vw;
+                height: 40vh;
 
-  </div>
-  </>
+                gap: 4px;
+                flex-direction: column;
+                display: flex;
+                justify-content: space-between;
+                align-items: start;
+
+                background-color: lightpink;
+
+            `}
+        >
+            <div style={{fontSize: '28px', width: '100%'}}>{product.name}</div>
+
+            <div css={css` width: 100%; `}>
+
+                <div css={css` padding-bottom: 14px;  `}>
+                    <div style={{fontSize: '16px', width: '100%'}}>PRICE</div>
+                    <div style={{fontSize: '18px', width: '100%'}}>${product.price}</div>
+                </div>
+
+
+                <div
+                    css={css`
+                        align-self: flex-end;
+                        width: 100%;
+                        color: white;
+                        gap: 4px;
+                        flex-direction: row;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        //params1
+                        height: 60px;
+                        background-color: ${ui.colorMain};
+                        border: none;
+                    `}
+                >
+                    ADD TO CART
+                </div>
+                <div
+                    css={css`
+                        align-self: flex-end;
+                        width: auto;
+                        height: auto;
+                        max-height: 100px;
+                        border: 1px solid #ccc;
+                        padding-top: 4px;
+                        overflow-y: auto;
+                        scroll-behavior: smooth;
+
+                    `}
+                    dangerouslySetInnerHTML={{__html: product.description.trim()}}
+                />
+            </div>
+
+        </div>
+
+    </div>
+    </>
 }
 
 export default ProductCardPage;
