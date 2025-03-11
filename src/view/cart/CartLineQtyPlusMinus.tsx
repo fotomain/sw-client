@@ -1,15 +1,15 @@
 /** @jsxImportSource @emotion/react */
-import {ADD_TO_CART_MUTATION} from "../../../redux/cart/graphql/ADD_TO_CART_MUTATION";
-import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
+import {ADD_TO_CART_MUTATION} from "../../redux/cart/graphql/ADD_TO_CART_MUTATION";
+import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import React from "react";
-import {ui} from "../../HomePage";
+import {ui} from "../HomePage";
 
 import { css, jsx } from '@emotion/react';
-import ButtonCircle from "../universal/ButtonCircle";
+import ButtonCircle from "../core/universal/ButtonCircle";
 import {MdAdd, MdRemove} from "react-icons/md";
 
-import IconMaterial from "../universal/IconMaterial";
-import {cartSlice} from "../../../redux/cart/cartSlice";
+import IconMaterial from "../core/universal/IconMaterial";
+import {cartSlice} from "../../redux/cart/cartSlice";
 import {useDispatch} from "react-redux";
 
 

@@ -4,7 +4,7 @@ import {css} from "@emotion/react";
 import IconCart from "./core/universal/IconCart";
 import React, {useEffect, useRef, useState} from "react";
 
-import CartView from "./lib/CartView";
+import CartView from "./cart/CartView";
 import {ui} from "./HomePage";
 import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";

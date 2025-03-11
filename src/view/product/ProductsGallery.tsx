@@ -1,3 +1,5 @@
+/** @jsxImportSource @emotion/react */
+
 import React, {useEffect, useState} from "react";
 
 import useStyles from '../../styles';
@@ -10,6 +12,8 @@ import {READ_PRODUCTS_QUERY} from "../../redux/product/READ_PRODUCTS_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {ADD_TO_CART_MUTATION} from "../../redux/cart/graphql/ADD_TO_CART_MUTATION";
 import ProductCard from "./ProductCard";
+import ProductCardPage from "./ProductCardPage";
+import {css} from "@emotion/react";
 
 const debug_local=true
 export const ProductsGallery = () => {
@@ -48,22 +52,22 @@ export const ProductsGallery = () => {
         }}, [state.name]);
 
     return (
-        <div style={{display:'flex',flexDirection:'column',alignContent:'center', alignItems:'center'}}>
+        <div style={{display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center'}}>
             <h3 className={classes.title}>Products</h3>
-            <h4>{(deleteStarted)?'Serverside delete started...':null}</h4>
-            <h4>{(deleteError)?'deleteError '+deleteError:null}</h4>
+            <h4>{(deleteStarted) ? 'Serverside delete started...' : null}</h4>
+            <h4>{(deleteError) ? 'deleteError ' + deleteError : null}</h4>
 
             <form className={classes.form} onSubmit={handleSubmit}>
-                <TextField
+                <input
                     type="text"
-                    fullWidth
+                    // fullWidth
                     value={state.name}
-                    sx={{ m: 1, width: '55ch' }}
-                    onChange={(e:any) => setState((prevState)=> {
+                    // sx={{ m: 1, width: '55ch' }}
+                    onChange={(e: any) => setState((prevState) => {
                         return ({
                             ...prevState,
                             name: e.target.value,
-                            stateMoment:Date.now()
+                            stateMoment: Date.now()
                         })
                     })}
                 />
@@ -71,19 +75,19 @@ export const ProductsGallery = () => {
             </form>
 
 
-            {((isReading))?null:
-                 <div style={{display:'flex',flexDirection:'row',gap:'8px'}} >
+            {((isReading)) ? null :
+                <div style={{display: 'flex', flexDirection: 'row', gap: '8px'}}>
                     <Button
                         variant={"contained"}
                         onClick={async () => {
 
                             const runParams = {
-                                all:true,
+                                all: true,
                                 // 'search':'Pork',
-                                'id':6791,
+                                'id': 6791,
                                 // 'entity_guid':'prod735x4',
-                                'per_page':100,
-                                'page':1,
+                                'per_page': 100,
+                                'page': 1,
                             }
 
                             console.log("res1")
@@ -92,7 +96,7 @@ export const ProductsGallery = () => {
                                 runParams
                             )
 
-                            console.log("██████ readDataAll",readDataAll.data)
+                            console.log("██████ readDataAll", readDataAll.data)
 
                         }}
                     >
@@ -101,13 +105,25 @@ export const ProductsGallery = () => {
                 </div>
             }
 
-            <h4>{(isReading)?'Products Loading...':null}</h4>
+            <h4>{(isReading) ? 'Products Loading...' : null}</h4>
 
-            {((!isReading) && (0!==productsState.productsArray.length)) && productsState.productsArray.map((el:any,i:number)=>{
-                return <React.Fragment key={i}>
-                    <ProductCard product={el} productIndex={i}/>
-                </React.Fragment>
-            })}
+            <div
+                css={css`
+                    width: 100vw;
+                    gap:12px; flex-direction: row; display: flex;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                    //background-color: red;
+                `}
+            >
+
+                {((!isReading) && (0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
+                    return <React.Fragment key={i}>
+                        <ProductCardPage product={el} productIndex={i}/>
+                    </React.Fragment>
+                })}
+
+            </div>
 
         </div>
     );

@@ -13,7 +13,7 @@ import ButtonSecondary from "../core/universal/ButtonSecondary";
 
 import {READ_CART_QUERY} from "../../redux/cart/graphql/READ_CART_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import CartLineQtyPlusMinus from "../core/cart/CartLineQtyPlusMinus";
+import CartLineQtyPlusMinus from "./CartLineQtyPlusMinus";
 import ButtonCircle from "../core/universal/ButtonCircle";
 import {css} from "@emotion/react";
 import {DELETE_CART_LINE_QUERY} from "../../redux/cart/graphql/DELETE_CART_LINE_QUERY";

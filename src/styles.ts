@@ -6,7 +6,7 @@ export default makeStyles(() => ({
 	title: {
 		latterSpacing: '0.1rem',
 		lineHeight: '1.25',
-		marginBottom: '0.15rem',
+		// marginBottom: '0.15rem',
 		fontSize: '2rem',
 	},
 	form: {

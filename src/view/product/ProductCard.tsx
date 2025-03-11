@@ -1,14 +1,14 @@
 
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import CartLineQtyPlusMinus from "../core/cart/CartLineQtyPlusMinus";
+import CartLineQtyPlusMinus from "../cart/CartLineQtyPlusMinus";
 import {ui} from "../HomePage";
 
 import { MdAdd } from "react-icons/md";
-import AddToCart from "../core/cart/AddToCart";
-import ProductCardOptions from "../core/product/ProductCardOptions";
+import AddToCart from "../cart/AddToCart";
+import ProductCardOptions from "./ProductCardOptions";
 import {css} from "@emotion/react";
-import {GallerySlider} from "../core/gallery_slider/GallerySlider";
+
 
 const ProductCard = (props:any) => {
 
@@ -80,7 +80,6 @@ const ProductCard = (props:any) => {
 
           <div css={css` width: 150px;
               height: 150px`}>
-              <GallerySlider sliderWidth={"80px"} images={IMAGES}/>
           </div>
 
           {/*<img style={{width: '100px', height: '100px'}} src={product?.gallery[0]?.url_path}/>*/}

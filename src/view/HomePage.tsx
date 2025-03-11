@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 
 import React, {useState} from "react";
-import ProductsGallery from "./lib/ProductsGallery";
+import ProductsGallery from "./product/ProductsGallery";
 
 import { CiShoppingCart } from "react-icons/ci";
 
-import CartView from "./lib/CartView";
+import CartView from "./cart/CartView";
 
 import {css} from "@emotion/react";
 import {MdOutlineShoppingCart, MdShoppingCart, MdShoppingCartCheckout} from "react-icons/md";
@@ -52,7 +52,7 @@ export const HomePage = () => {
             <div css={css` z-index: 10;
                 position: relative`}>
 
-                <CartView/>
+                {/*<CartView/>*/}
                 <ProductsGallery/>
 
                 {navState.makeCartViewOpen &&
