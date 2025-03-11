@@ -19,6 +19,14 @@ mutation {
                 product_id
                 qty
                 product_has_options
+                
+                product_object {
+                    product_id
+                    name
+                    price
+                    sku
+                }
+
                 product_options {
                     attribute_id
                     option_id

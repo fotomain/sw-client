@@ -59,11 +59,11 @@ const abstractSlice=createSlice({
             state.deleteError="";
         },
         delete: (state,action) => {
-            const newData=[]
-            state[THIS_SLICE_ENTITY]=newData
+            // const newData=[]
             state.deleteStarted=false;
         },
         deleteSuccess: (state,action) => {
+            state[THIS_SLICE_ENTITY]=action.payload;
             state.deleteStarted=false;
         },
         deleteFailure: (state,action) => {

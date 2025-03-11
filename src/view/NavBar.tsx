@@ -9,6 +9,7 @@ import {ui} from "./HomePage";
 import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";
 import useClickOut from "./core/functions";
+import {useSelector} from "react-redux";
 
 
 const NavBar = (props:any) => {
@@ -29,6 +30,12 @@ const NavBar = (props:any) => {
         },
         "iconCart1"
     );
+
+    const cartStateGlobal = useSelector((state:any) => state.cartState );
+
+    // useEffect(() => {
+    //     console.log('cartStateGlobal?.cartArray?.cart_lines1',cartStateGlobal?.cartArray?.cart_lines)
+    // }, [cartStateGlobal?.cartArray?.cart_lines]);
 
     return <div
         css={css`
@@ -62,14 +69,14 @@ const NavBar = (props:any) => {
         >
 
             <div css={css`
-                right: 1rem;
+                right: 4rem;
                 top: -12px;
                 position: absolute;
             `}>
                 <IconCart
                     id={'iconCart1'}
                     onClick={() => {
-                    console.log("setCartViewOpen=true")
+                    console.log("setCartViewOpen1")
                     setNavState((prevState: any) => {
                         return {
                             ...prevState,
@@ -80,18 +87,27 @@ const NavBar = (props:any) => {
                 }}/>
 
                 <div
+                    id={'iconBubble1'}
                     css={css`
                     position: absolute;
                     background-color: fuchsia;
-                    width: 1rem;
+                    width: auto;
+                    //width: 1rem;
+                    //top: -.5rem;
+                    //right: -0.6rem;
+                        font-size: .8rem;
+                        top: -.9rem;
+                        right: -2rem;
+                        padding-top: 2px;
+                        padding-bottom: 2px;
+                        padding-left: 5px;
+                        padding-right: 5px;
                     height: 1rem;
                     border-radius: 50px;
-                    top: -.5rem;
-                    right: -0.6rem;
                     color: white;
                     display: flex;
                     flex-direction: row;
-                    justify-content: center;
+                    justify-content: start;
                     align-items: center;
                 `}
                     onClick={()=>{
@@ -104,7 +120,8 @@ const NavBar = (props:any) => {
 
                     }}
                 >
-                    1
+                    <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
+                    <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length)?' item':'items'}</div>
                 </div>
 
                 <dialog open={navState.makeCartViewOpen}

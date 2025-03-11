@@ -5,6 +5,7 @@ import {cartActions} from "./cartSlice";
 import {READ_CART_QUERY} from "./graphql/READ_CART_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {ADD_TO_CART_MUTATION} from "./graphql/ADD_TO_CART_MUTATION";
+import {DELETE_CART_LINE_QUERY} from "./graphql/DELETE_CART_LINE_QUERY";
 
 
 function* workFetch(params){
@@ -12,31 +13,31 @@ function* workFetch(params){
 
     yield put(cartActions.createStart(params))
 
-    console.log('=== product_ Create params1',params)
+    console.log('=== DELETE_CART_LINE_QUERY start',params)
 
-    console.log('=== delay1 start',params)
+    const q= DELETE_CART_LINE_QUERY(params.payload)
 
-    const q= ADD_TO_CART_MUTATION(params.payload)
+    console.log('=== DELETE_CART_LINE_QUERY q ',q)
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
-        entityName:'ADD_TO_CART_MUTATION',
+        entityName:'DELETE_CART_LINE_QUERY',
         gqlRequest:q
     }))
 
-    console.log("=== ADD_TO_CART_MUTATION apiResponse1",apiResponse1)
+    console.log("=== DELETE_CART_LINE_QUERY apiResponse1",apiResponse1)
     const data_json = yield apiResponse1.json()
-    const data = data_json.data.addToCart
+    const data = data_json.data.deleteCartLine
 
-    console.log('=== ADD_TO_CART_MUTATION finish resJson',data)
+    console.log('=== DELETE_CART_LINE_QUERY finish resJson',data)
 
-    yield put(cartActions.cartCreateSuccess(data))
+    yield put(cartActions.cartDeleteSuccess(data))
 }
 
 function* watchSaga(){
     console.log("watchSaga catCreate")
-    yield takeEvery(cartActions.create, workFetch)
+    yield takeEvery(cartActions.delete, workFetch)
 }
 
-export const cartSagaCreate = [
+export const cartSagaDelete = [
     fork(watchSaga)
 ]

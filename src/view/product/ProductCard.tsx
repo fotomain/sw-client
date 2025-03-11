@@ -24,6 +24,7 @@ const ProductCard = (props:any) => {
         qty:0,
     })
 
+
     // console.log("productSelectedOptions1",productSelectedOptions)
 
     useEffect(() => {

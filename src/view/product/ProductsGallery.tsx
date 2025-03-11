@@ -12,7 +12,7 @@ import {READ_PRODUCTS_QUERY} from "../../redux/product/READ_PRODUCTS_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {ADD_TO_CART_MUTATION} from "../../redux/cart/graphql/ADD_TO_CART_MUTATION";
 import ProductCard from "./ProductCard";
-import ProductCardPage from "./ProductCardPage";
+import ProductDetailsPage from "./ProductDetailsPage";
 import {css} from "@emotion/react";
 
 const debug_local=true
@@ -121,7 +121,7 @@ export const ProductsGallery = () => {
                 {((!isReading) && (0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
                     return <React.Fragment key={i}>
 
-                        <ProductCardPage product={el} productIndex={i}/>
+                        <ProductDetailsPage product={el} productIndex={i}/>
 
                     </React.Fragment>
                 })}

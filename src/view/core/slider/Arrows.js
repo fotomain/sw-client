@@ -1,22 +1,45 @@
+/** @jsxImportSource @emotion/react */
+
 import React from "react";
+import {MdArrowBackIosNew} from "react-icons/md";
+import { MdArrowForwardIos } from "react-icons/md";
+import IconMaterial from "../universal/IconMaterial";
+import {ui} from "../../HomePage";
+import {css} from "@emotion/react";
 
 function Arrows({ prevSlide, nextSlide }) {
   return (
     <>
-      <span
-          className="prev"
-          style={{userSelect:"none",color:'white',backgroundColor:'gray'}}
-          onClick={prevSlide}
-      >
-        &#10094;
-      </span>
-        {/*&#10094;*/}
-      <span
-          className="next"
-          style={{userSelect:"none",color:'white',backgroundColor:'gray'}}
-          onClick={nextSlide}>
-          &#10095;
-      </span>
+           <IconMaterial
+               onClick={prevSlide}
+               css={css`  
+                  color: transparent;
+                  cursor: pointer;
+                  z-index: 100;
+                  position: absolute;
+                  top: 50%;
+                  padding: .5rem;
+                  background-color: gray;
+                  user-select: none;
+              `}
+               color={'white'} size={24} icon={MdArrowBackIosNew}
+           />
+
+        <IconMaterial
+            onClick={prevSlide}
+            css={css`  
+                  right: 0;
+                  color: transparent;
+                  cursor: pointer;
+                  z-index: 100;
+                  position: absolute;
+                  top: 50%;
+                  padding: .5rem;
+                  background-color: gray;
+                  user-select: none;
+              `}
+            color={'white'} size={24} icon={MdArrowForwardIos}
+        />
         {/*&#10095;*/}
     </>
   );

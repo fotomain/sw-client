@@ -36,9 +36,12 @@ const CartView = () => {
         return res
     }
 
+    const dispatch = useDispatch();
+
     const cartStateGlobal = useSelector((state:any) => state.cartState );
 
-    const dispatch = useDispatch();
+    console.log('cartStateGlobal2',cartStateGlobal)
+
 
     useEffect(() => {
         console.log("dispatch1")
@@ -46,18 +49,18 @@ const CartView = () => {
     }, []);
 
 
-    useEffect(() => {
-
-        console.log("cartStateGlobal1",cartStateGlobal)
-        if(cartStateGlobal?.cartArray?.cart_lines) {
-            setCartState((prevState: any) => {
-                return {
-                    ...prevState,
-                    cartItems: [...cartStateGlobal.cartArray.cart_lines]
-                }
-            })
-        }
-    }, [cartStateGlobal]);
+    // useEffect(() => {
+    //
+    //     // console.log("cartStateGlobal1",cartStateGlobal)
+    //     if(cartStateGlobal?.cartArray?.cart_lines) {
+    //         setCartState((prevState: any) => {
+    //             return {
+    //                 ...prevState,
+    //                 cartItems: [...cartStateGlobal.cartArray.cart_lines]
+    //             }
+    //         })
+    //     }
+    // }, [cartStateGlobal?.cartArray?.cart_lines]);
 
 
     return(<>
@@ -99,13 +102,17 @@ const CartView = () => {
 
 
           {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
-          {(cartState.cartItems && cartState.cartItems.length > 0) && cartState.cartItems.map( (cartLine:any, i)=>{
-              return <div css={css` min-width: 250px `} key={i}>
-                  <div>{cartLine.product_object.name} {cartLine.cart_line_id}</div>
+          {(cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map( (cartLine:any, lineI:number)=>{
+
+              return <div css={css` min-width: 250px `} key={cartLine.cart_line_id}>
+                  <div>{cartStateGlobal?.cartArray?.cart_lines[lineI].product_object?.name} {cartLine.cart_line_id}</div>
 
                   {/*border:1px solid red;*/}
-                  <div css={css`  
-                      flex-direction:row; align-content:start; justify-content:space-between; display:flex; `}>
+                  <div css={css`
+                      flex-direction: row;
+                      align-content: start;
+                      justify-content: space-between;
+                      display: flex; `}>
 
                       {/*delete button*/}
 
@@ -118,25 +125,17 @@ const CartView = () => {
                           maxWidth: '200px',
                           // border: '1px solid green',
                       }}>
-                      <ButtonCircle style={{width: "22px", height: "22px",
-                          backgroundColor:'transparent', color:ui.colorMain}}
-                                    onClick={() => {
+                          <ButtonCircle style={{
+                              width: "22px", height: "22px",
+                              backgroundColor: 'transparent', color: ui.colorMain
+                          }}
+                                        onClick={() => {
 
-                                        const q = DELETE_CART_LINE_QUERY({
+                                            dispatch(cartSlice.actions.delete({
                                             cart_guid:'cc6bb519-f811-11ef-a13a-55e370885b2f',
                                             cart_line_id:cartLine.cart_line_id,
-                                        })
+                                        }))
 
-                                        fetchGraphQL({
-                                            entityName: 'DELETE_CART_LINE_QUERY',
-                                            setDataCallback: (d: any) => {
-                                                console.log('=== DELETE_CART_LINE_QUERY response ', d)
-                                                // setData((prevState) => { return{ ...prevState,
-                                                //     cartItems: d?.data?.cart?.items
-                                                // }})
-                                            },
-                                            gqlRequest: q
-                                        })
 
                                     }}
                       >
@@ -148,7 +147,7 @@ const CartView = () => {
                       </div>
 
 
-                      <p>sku {cartLine.product_object.sku}</p>
+                      <p>sku {cartLine?.product_object?.sku}</p>
 
                       <CartLineQtyPlusMinus
                           qty={cartLine.qty}
@@ -191,3 +190,36 @@ const CartView = () => {
 }
 
 export default CartView;
+
+// return <div>
+//     {JSON.stringify(cartStateGlobal?.cartArray?.cart_lines[lineI].product_object?.name)}
+//     <div style={{
+//         display: 'flex',
+//         flexDirection: 'row',
+//         alignContent: 'center',
+//         alignItems: 'center',
+//         // minWidth: '200px',
+//         maxWidth: '200px',
+//         // border: '1px solid green',
+//     }}>
+//         <ButtonCircle style={{
+//             width: "22px", height: "22px",
+//             backgroundColor: 'transparent', color: ui.colorMain
+//         }}
+//                       onClick={() => {
+//
+//                           dispatch(cartSlice.actions.delete({
+//                               cart_guid: 'cc6bb519-f811-11ef-a13a-55e370885b2f',
+//                               cart_line_id: cartLine.cart_line_id,
+//                           }))
+//
+//
+//                       }}
+//         >
+//
+//
+//             <IconMaterial size={18} icon={MdClose}/>
+//
+//         </ButtonCircle>
+//     </div>
+// </div>
