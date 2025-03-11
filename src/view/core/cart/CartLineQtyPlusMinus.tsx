@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {ADD_TO_CART_MUTATION} from "../../../redux/cart/ADD_TO_CART_MUTATION";
+import {ADD_TO_CART_MUTATION} from "../../../redux/cart/graphql/ADD_TO_CART_MUTATION";
 import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
 import React from "react";
 import {ui} from "../../HomePage";
@@ -9,9 +9,13 @@ import ButtonCircle from "../universal/ButtonCircle";
 import {MdAdd, MdRemove} from "react-icons/md";
 
 import IconMaterial from "../universal/IconMaterial";
+import {cartSlice} from "../../../redux/cart/cartSlice";
+import {useDispatch} from "react-redux";
 
 
 const CartLineQtyPlusMinus = (props:any) => {
+
+    const dispatch = useDispatch();
 
   return(
       <div style={{
@@ -32,23 +36,30 @@ const CartLineQtyPlusMinus = (props:any) => {
                    onClick={() => {
 
 
-                       const q = ADD_TO_CART_MUTATION({
+                       dispatch(cartSlice.actions.create({
                            cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
                            qty: 1,
                            product:props.product_object,
                            optionsSelected:props.product_options,
-                       })
+                       }))
 
-                       fetchGraphQL({
-                           entityName: 'ADD_TO_CART_MUTATION',
-                           setDataCallback: (d: any) => {
-                               console.log('=== ADD_TO_CART_MUTATION response ', d)
-                               // setData((prevState) => { return{ ...prevState,
-                               //     cartItems: d?.data?.cart?.items
-                               // }})
-                           },
-                           gqlRequest: q
-                       })
+                       // const q = ADD_TO_CART_MUTATION({
+                       //     cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
+                       //     qty: 1,
+                       //     product:props.product_object,
+                       //     optionsSelected:props.product_options,
+                       // })
+                       //
+                       // fetchGraphQL({
+                       //     entityName: 'ADD_TO_CART_MUTATION',
+                       //     setDataCallback: (d: any) => {
+                       //         console.log('=== ADD_TO_CART_MUTATION response ', d)
+                       //         // setData((prevState) => { return{ ...prevState,
+                       //         //     cartItems: d?.data?.cart?.items
+                       //         // }})
+                       //     },
+                       //     gqlRequest: q
+                       // })
 
                    }}
           >
@@ -58,10 +69,12 @@ const CartLineQtyPlusMinus = (props:any) => {
           </ButtonCircle>
 
           <div css={css`
+              width: 40px;
               font-size: 16px;
               color: var(--colorMain) ;
               padding-left: 20px;
               padding-right: 20px;
+              display: flex; flex-direction: row; justify-content: center;
           `}>
                {props.qty}
           </div>
@@ -73,23 +86,30 @@ const CartLineQtyPlusMinus = (props:any) => {
 
                    onClick={() => {
 
-                       const q = ADD_TO_CART_MUTATION({
+                       dispatch(cartSlice.actions.create({
                            cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
                            qty: -1,
                            product:props.product_object,
                            optionsSelected:props.product_options,
-                       })
+                       }))
 
-                       fetchGraphQL({
-                           entityName: 'ADD_TO_CART_MUTATION',
-                           setDataCallback: (d: any) => {
-                               console.log('=== ADD_TO_CART_MUTATION response ', d)
-                               // setData((prevState) => { return{ ...prevState,
-                               //     cartItems: d?.data?.cart?.items
-                               // }})
-                           },
-                           gqlRequest: q
-                       })
+                       // const q = ADD_TO_CART_MUTATION({
+                       //     cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
+                       //     qty: -1,
+                       //     product:props.product_object,
+                       //     optionsSelected:props.product_options,
+                       // })
+                       //
+                       // fetchGraphQL({
+                       //     entityName: 'ADD_TO_CART_MUTATION',
+                       //     setDataCallback: (d: any) => {
+                       //         console.log('=== ADD_TO_CART_MUTATION response ', d)
+                       //         // setData((prevState) => { return{ ...prevState,
+                       //         //     cartItems: d?.data?.cart?.items
+                       //         // }})
+                       //     },
+                       //     gqlRequest: q
+                       // })
 
                    }}
               >

@@ -5,7 +5,7 @@ import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {productActions, productsRead, productSlice} from "../product/productSlice";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {READ_PRODUCTS_QUERY} from "../product/READ_PRODUCTS_QUERY";
-import {READ_CART_QUERY} from "./READ_CART_QUERY";
+import {READ_CART_QUERY} from "./graphql/READ_CART_QUERY";
 import {cartActions} from "./cartSlice";
 
 const THIS_SAGA_ENTITY='cart'

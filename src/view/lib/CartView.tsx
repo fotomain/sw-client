@@ -11,12 +11,12 @@ import {ui} from "../HomePage";
 import ButtonPrimary from "../core/universal/ButtonPrimary";
 import ButtonSecondary from "../core/universal/ButtonSecondary";
 
-import {READ_CART_QUERY} from "../../redux/cart/READ_CART_QUERY";
+import {READ_CART_QUERY} from "../../redux/cart/graphql/READ_CART_QUERY";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import CartLineQtyPlusMinus from "../core/cart/CartLineQtyPlusMinus";
 import ButtonCircle from "../core/universal/ButtonCircle";
 import {css} from "@emotion/react";
-import {DELETE_CART_LINE_QUERY} from "../../redux/graphql/DELETE_CART_LINE_QUERY";
+import {DELETE_CART_LINE_QUERY} from "../../redux/cart/graphql/DELETE_CART_LINE_QUERY";
 import {productSlice} from "../../redux/product/productSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
@@ -58,7 +58,6 @@ const CartView = () => {
             })
         }
     }, [cartStateGlobal]);
-
 
 
     return(<>

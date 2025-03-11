@@ -24,11 +24,11 @@ const ProductCard = (props:any) => {
         qty:0,
     })
 
-    console.log("productSelectedOptions1",productSelectedOptions)
+    // console.log("productSelectedOptions1",productSelectedOptions)
 
     useEffect(() => {
         if(undefined===productSelectedOptions){
-            console.log("product",product)
+            // console.log("product",product)
             let optionsAll:any = {}
             let optionsSelected:any = {}
             let optionsArray:any[] = []
@@ -40,11 +40,11 @@ const ProductCard = (props:any) => {
                     option_items:product.attributes[i].attributeOptions,
                 })
                 const option0 = product.attributes[i].attributeOptions
-                console.log("====== attributeOptions1",option0)
+                // console.log("====== attributeOptions1",option0)
                 optionsSelected[product.attributes[i].id]=option0[0].id;
             }
-            console.log("optionsSelected1",optionsSelected)
-            console.log("optionsArray",optionsArray)
+            // console.log("optionsSelected1",optionsSelected)
+            // console.log("optionsArray",optionsArray)
             setCardState((prevState:any)=>{return {...prevState,
                     optionsSelected:optionsSelected,
                     optionsAll:optionsAll,

@@ -1,4 +1,4 @@
-import {objectToArray} from "../../database/generator/objectToArray";
+import {objectToArray} from "../../../database/generator/objectToArray";
 
 export const ADD_TO_CART_MUTATION =(params?:any)=> {
 

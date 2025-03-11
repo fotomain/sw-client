@@ -211,7 +211,7 @@ const DataJsonGenerator = () => {
             <div style={{color:'red'}}>number of products {products.length}</div>
 
             {setPriceKeys.map((itemPrice: any, priceI: number) => {
-                return <div>{itemPrice}</div>
+                return <div key={priceI}>{itemPrice}</div>
             })}
 
             {products.map((itemProduct: any, productI: number) => {

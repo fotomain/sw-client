@@ -46,9 +46,7 @@ const ProductCardOptions = (props:any) => {
 
             {optionsSet?.option_items && optionsSet.option_items.map((optionItem: any, j: number) => {
 
-                const KEY1 = optionsSet?.option_header.name+"-"+optionItem.id
-                console.log("KEY1",KEY1)
-                return <div id="div1" style={{paddingLeft:'4px',paddingRight:'4px',}} key={KEY1}
+                return <div id="div1" style={{paddingLeft:'4px',paddingRight:'4px',}} key={(optionsSet?.option_header.name+"-"+optionItem.id).replaceAll(" ","-")}
                             onClick={()=>{
                                 console.log("=== option1 ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
 

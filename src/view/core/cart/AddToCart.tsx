@@ -1,4 +1,4 @@
-import {ADD_TO_CART_MUTATION} from "../../../redux/cart/ADD_TO_CART_MUTATION";
+import {ADD_TO_CART_MUTATION} from "../../../redux/cart/graphql/ADD_TO_CART_MUTATION";
 import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
 import IconMaterial from "../universal/IconMaterial";
 import {MdOutlineAddShoppingCart, MdRemove} from "react-icons/md";

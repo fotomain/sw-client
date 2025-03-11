@@ -12,6 +12,8 @@ import {MdOutlineShoppingCart, MdShoppingCart, MdShoppingCartCheckout} from "rea
 import IconMaterial from "./core/universal/IconMaterial";
 import IconCart from "./core/universal/IconCart";
 import NavBar from "./NavBar";
+import DataJsonGenerator from "../database/generator/DataJsonGenerator";
+
 
 export let ui:any={};
 ui.colorMain="var(--colorMain)";
@@ -36,10 +38,15 @@ export const HomePage = () => {
         makeCartViewOpen: false,
     })
 
+    // const generatorMode = true
+    const generatorMode = false
+
     return (
         <div css={css` justify-content:space-between; align-items:center; flex-direction: column; `}>
-            {/*<DataJsonGenerator/>*/}
 
+            {generatorMode && <DataJsonGenerator/>}
+
+            {!generatorMode && <>
             <NavBar navState={navState} setNavState={setNavState}   />
 
             <div css={css` z-index: 10;
@@ -61,6 +68,7 @@ export const HomePage = () => {
                 }
 
             </div>
+            </>}
 
 
             {/*<div>HomePage1</div>*/}

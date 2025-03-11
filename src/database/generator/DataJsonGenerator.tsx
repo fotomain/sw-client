@@ -384,10 +384,17 @@ const DataJsonGenerator = () => {
                 {arrayResult.map((iProduct: any, productI: number) => {
                     return <div key={productI}>
                         {/*<div style={{color: 'red'}}>====================== {iProduct.product_id} {iProduct.name}</div>*/}
-                        <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, name ) VALUES (
+                        <div>INSERT INTO product_entity ( product_id, sku, has_options, inStock, name, description, category, brand ) VALUES (
                         </div>
-                        <div>{iProduct.product_id} , {iProduct.product_id} , {(iProduct.attributes.length === 0) ? 0 : 1},
-                            1 , '{iProduct.name}'
+                        <div>{
+                            iProduct.product_id} ,
+                            {iProduct.product_id} ,
+                            {(iProduct.attributes.length === 0) ? 0 : 1},
+                            1 ,
+                            '{iProduct.name}',
+                            '{iProduct.description}',
+                            '{iProduct.category}',
+                            '{iProduct.brand}'
                         </div>
                         <div>);</div>
                     </div>
