@@ -191,6 +191,7 @@ const CartView = () => {
 
 export default CartView;
 
+
 // return <div>
 //     {JSON.stringify(cartStateGlobal?.cartArray?.cart_lines[lineI].product_object?.name)}
 //     <div style={{
