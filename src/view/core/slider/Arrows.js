@@ -2,7 +2,7 @@ import React from "react";
 
 function Arrows({ prevSlide, nextSlide }) {
   return (
-    <div>
+    <>
       <span
           className="prev"
           style={{userSelect:"none",color:'white',backgroundColor:'gray'}}
@@ -18,7 +18,7 @@ function Arrows({ prevSlide, nextSlide }) {
           &#10095;
       </span>
         {/*&#10095;*/}
-    </div>
+    </>
   );
 }
 

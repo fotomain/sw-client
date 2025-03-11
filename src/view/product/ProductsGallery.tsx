@@ -110,7 +110,8 @@ export const ProductsGallery = () => {
             <div
                 css={css`
                     width: 100vw;
-                    gap:12px; flex-direction: row; display: flex;
+                    gap:12px; 
+                    flex-direction: row; display: flex;
                     justify-content: center;
                     flex-wrap: wrap;
                     //background-color: red;
@@ -119,7 +120,9 @@ export const ProductsGallery = () => {
 
                 {((!isReading) && (0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
                     return <React.Fragment key={i}>
+
                         <ProductCardPage product={el} productIndex={i}/>
+
                     </React.Fragment>
                 })}
 

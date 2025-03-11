@@ -39,6 +39,7 @@ function SliderBasic(props) {
           {/*activeIndex {activeIndex}*/}
           <SliderSlides activeIndex={activeIndex} slidesContent={props.slidesContent}/>
 
+          {/*<div style={{position:'absolute',top:'50%',}}>*/}
           <Arrows
             prevSlide={() =>
               setActiveIndex(activeIndex < 1 ? len : activeIndex - 1)
@@ -47,6 +48,7 @@ function SliderBasic(props) {
               setActiveIndex(activeIndex === len ? 0 : activeIndex + 1)
             }
           />
+          {/*</div>*/}
 
           {props.dots &&
               <Dots

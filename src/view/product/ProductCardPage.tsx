@@ -38,7 +38,7 @@ const ProductCardPage = (props:any) => {
           css={css`
               width: 55vw;
               //params1
-              height: 40vh;
+              height: 100%;
               gap:12px; flex-direction: row; display: flex;
               justify-content: start;
               background-color: lightcyan;
@@ -105,7 +105,7 @@ const ProductCardPage = (props:any) => {
         <div
             css={css`
                 width: 30vw;
-                height: 40vh;
+                height: 100%;
 
                 gap: 4px;
                 flex-direction: column;
@@ -154,6 +154,7 @@ const ProductCardPage = (props:any) => {
                         max-height: 100px;
                         border: 1px solid #ccc;
                         padding-top: 4px;
+                        padding-bottom: 4px;
                         overflow-y: auto;
                         scroll-behavior: smooth;
 
