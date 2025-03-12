@@ -13,6 +13,7 @@ import IconMaterial from "./core/universal/IconMaterial";
 import IconCart from "./core/universal/IconCart";
 import NavBar from "./NavBar";
 import DataJsonGenerator from "../database/generator/DataJsonGenerator";
+import {useSelector} from "react-redux";
 
 
 export let ui:any={};
@@ -41,12 +42,18 @@ export const HomePage = () => {
     // const generatorMode = true
     const generatorMode = false
 
+    const uiState = useSelector((state:any) => state.uiState );
+
     return (
         <div css={css` justify-content:space-between; align-items:center; flex-direction: column; `}>
 
             {generatorMode && <DataJsonGenerator/>}
 
             {!generatorMode && <>
+
+                {/*global tests*/}
+                {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
+
             <NavBar navState={navState} setNavState={setNavState}   />
 
             <div css={css` z-index: 10;
@@ -55,17 +62,22 @@ export const HomePage = () => {
                 {/*<CartView/>*/}
                 <ProductsGallery/>
 
-                {navState.makeCartViewOpen &&
-                    <div css={css` 
+                {uiState.makeOpenCartView &&
+                    <div
+                        id={"shadow1"}
+                        css={css` 
                         z-index: 20;
-                        position: absolute; width:100vw; height: 100vh;
+                        position: absolute; width:100vw; 
+                        height: 100%;
+                        min-height: 100vh;
                         top:0;left: 0;
-                        background-color: ${(navState.makeCartViewOpen) ? 'black' : 'transparent'};
+                        background-color: ${(uiState.makeOpenCartView) ? 'black' : 'transparent'};
                         opacity:0.5;
                     `}
                     >
                     </div>
                 }
+
 
             </div>
             </>}

@@ -1,10 +1,14 @@
 import {css} from "@emotion/react";
 import IconCart from "../core/universal/IconCart";
-import React from "react";
+import React, {useEffect, useRef} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {uiSlice} from "../../redux/ui/uiSlice";
 
 const ButtonOpen = (props:any) => {
 
     const {navState, setNavState} = props
+
+
 
     return <div css={css` position: relative;
 
@@ -17,7 +21,9 @@ const ButtonOpen = (props:any) => {
         <div css={css` top: -16px;
             position: absolute;
             background-color: #61dafb`}>
-            <IconCart onClick={() => {
+            <IconCart
+
+                onClick={() => {
                 console.log("setCartViewOpen=true")
                 setNavState((prevState: any) => {
                     return {

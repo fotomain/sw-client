@@ -12,6 +12,7 @@ import {css} from "@emotion/react";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import CartLine from "./CartLine";
+import {uiSlice} from "../../redux/ui/uiSlice";
 
 const CartView = () => {
 
@@ -115,7 +116,9 @@ const CartView = () => {
 
 
                   <div
-                      css={css` width: 100%;
+                      css={css` 
+                          width: 100%;
+                          margin-top: 12px;
                           justify-content: space-between;
                           align-items: center;
                           display: flex;
@@ -124,6 +127,10 @@ const CartView = () => {
                       <ButtonSecondary
                           onClick={() => {
                               console.log("Close1")
+                              dispatch(uiSlice.actions.setValue({
+                                  key:"makeOpenCartView",
+                                  value: false,
+                              }))
                           }}
                       >
                           Close
@@ -132,8 +139,11 @@ const CartView = () => {
                       <ButtonPrimary
                           onClick={() => {
                               console.log("Order1")
+                              dispatch(uiSlice.actions.setValue({
+                                  key:"makeOpenCartView",
+                                  value: false,
+                              }))
                           }}
-
                       >
                           Order
                       </ButtonPrimary>

@@ -9,7 +9,8 @@ import {ui} from "./HomePage";
 import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";
 import useClickOut from "./core/functions";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {uiSlice} from "../redux/ui/uiSlice";
 
 
 const NavBar = (props:any) => {
@@ -18,15 +19,14 @@ const NavBar = (props:any) => {
 
     const dialogRef = useRef(null);
 
-    useClickOut(dialogRef,navState.makeCartViewOpen,
-        ()=>{
-            setNavState((prevState: any) => {
-                return {
-                    ...prevState,
-                    makeCartViewOpen: false
-                }
-            })
+    const uiState = useSelector((state:any) => state.uiState );
 
+    useClickOut(dialogRef,uiState.makeOpenCartView,
+        ()=>{
+            dispatch(uiSlice.actions.setValue({
+                key:"makeOpenCartView",
+                value: false,
+            }))
         },
         "iconCart1"
     );
@@ -37,8 +37,17 @@ const NavBar = (props:any) => {
     //     console.log('cartStateGlobal?.cartArray?.cart_lines1',cartStateGlobal?.cartArray?.cart_lines)
     // }, [cartStateGlobal?.cartArray?.cart_lines]);
 
+    //============== makeCartViewOpen
+    //============== makeCartViewOpen
+    //============== makeCartViewOpen
+    const dispatch = useDispatch();
+
+    console.log("uiState1",uiState)
+
     return <div
         css={css`
+            position: fixed;
+            z-index: 125;
             background-color: white;
             width: 100vw;
             height: 6vh;
@@ -74,15 +83,22 @@ const NavBar = (props:any) => {
                 position: absolute;
             `}>
                 <IconCart
+
                     id={'iconCart1'}
                     onClick={() => {
                     console.log("setCartViewOpen1")
-                    setNavState((prevState: any) => {
-                        return {
-                            ...prevState,
-                            makeCartViewOpen: !prevState.makeCartViewOpen
-                        }
-                    })
+
+                        dispatch(uiSlice.actions.setValue({
+                            key:"makeOpenCartView",
+                            value: !uiState.makeOpenCartView,
+                        }))
+
+                        // setNavState((prevState: any) => {
+                    //     return {
+                    //         ...prevState,
+                    //         makeCartViewOpen: !prevState.makeCartViewOpen
+                    //     }
+                    // })
                     // setCartViewOpen=true
                 }}/>
 
@@ -111,12 +127,18 @@ const NavBar = (props:any) => {
                     align-items: center;
                 `}
                     onClick={()=>{
-                        setNavState((prevState: any) => {
-                            return {
-                                ...prevState,
-                                makeCartViewOpen: !prevState.makeCartViewOpen
-                            }
-                        })
+
+                        dispatch(uiSlice.actions.setValue({
+                            key:"makeOpenCartView",
+                            value: !uiState.makeOpenCartView,
+                        }))
+
+                        // setNavState((prevState: any) => {
+                        //     return {
+                        //         ...prevState,
+                        //         makeCartViewOpen: !prevState.makeCartViewOpen
+                        //     }
+                        // })
 
                     }}
                 >
@@ -124,7 +146,7 @@ const NavBar = (props:any) => {
                     <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length)?' item':'items'}</div>
                 </div>
 
-                <dialog open={navState.makeCartViewOpen}
+                <dialog open={uiState.makeOpenCartView}
                         ref={dialogRef}
                         css={css` 
                             position: absolute; 

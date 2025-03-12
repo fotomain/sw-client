@@ -9,6 +9,8 @@ import ProductCardOptions from "./ProductCardOptions";
 import {useDispatch, useSelector} from "react-redux";
 import {alpha} from "@mui/material";
 import {cartSlice} from "../../redux/cart/cartSlice";
+import {uiSlice} from "../../redux/ui/uiSlice";
+import {JSON_stringify} from "../../api/GlobalFunctions";
 
 const ProductDetailsPage = (props:any) => {
 
@@ -24,6 +26,7 @@ const ProductDetailsPage = (props:any) => {
     })
 
     const dispatch = useDispatch();
+    const uiState = useSelector((state:any) => state.uiState );
 
     const slidesContent=[]
 
@@ -219,10 +222,15 @@ const ProductDetailsPage = (props:any) => {
                             optionsSelected:cardState.optionsSelected,
                         }))
 
+                        dispatch(uiSlice.actions.setValue({
+                            key:"makeOpenCartView",
+                            value: true,
+                        }))
+
 
                     }}
                 >
-                    ADD TO CART
+                    ADD TO CART {JSON_stringify(uiState.makeOpenCartView)}
                 </div>
                 <div
                     css={css`

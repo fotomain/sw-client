@@ -4,14 +4,16 @@ import createSagaMiddleware from 'redux-saga';
 import rootSaga from './rootSaga';
 import {productsReducer} from "./product/productSlice";
 import {cartReducer} from "./cart/cartSlice";
+import {uiReducer} from "./ui/uiSlice";
 
 
 const sagaMiddleware = createSagaMiddleware();
 
 const reduxStore = configureStore({
 	reducer: {
-		productsState: productsReducer,
-		cartState: cartReducer,
+		productsState: 	productsReducer,
+		cartState: 		cartReducer,
+		uiState: 		uiReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(sagaMiddleware),

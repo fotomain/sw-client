@@ -25,6 +25,22 @@ mutation {
                     name
                     price
                     sku
+                    
+                    gallery {
+                       url_order
+                       url_path
+                    }
+                    
+                    attributes {
+                        id 
+                        name                                        
+                        attributeOptions { 
+                            id
+                            name
+                            displayValue
+                        } 
+                }
+
                 }
 
                 product_options {
