@@ -32,7 +32,7 @@ const CartLineQtyPlusMinus = (props:any) => {
       }}>
 
           {/*button plus*/}
-          <ButtonFigure square style={{
+          <ButtonFigure square={true} style={{
               width: "18px", height: "18px",
               backgroundColor:'white',
               color:ui.colorMain
@@ -70,7 +70,7 @@ const CartLineQtyPlusMinus = (props:any) => {
           </div>
 
           {/*button minus*/}
-          <ButtonFigure square style={{
+          <ButtonFigure square={true} style={{
               width: "18px", height: "18px",
               backgroundColor:'white', color:ui.colorMain
           }}

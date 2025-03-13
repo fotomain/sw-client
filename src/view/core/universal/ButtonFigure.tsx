@@ -7,7 +7,7 @@ import React from "react";
 
 const ButtonFigure = (props:any) => {
 
-    const {productIndex,...other} = props;
+    const {productIndex,square,...other} = props;
     let color="white"
     let shadow="white"
     if(productIndex){
