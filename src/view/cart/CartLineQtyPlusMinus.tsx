@@ -18,10 +18,12 @@ const CartLineQtyPlusMinus = (props:any) => {
     const dispatch = useDispatch();
 
   return(
-      <div style={{
+      <div
+          id={'dd1'}
+          style={{
           display: 'flex',
           flexDirection: 'column',
-          alignContent: 'center',
+          justifyContent: 'space-between',
           alignItems: 'center',
           // minWidth: '200px',
           maxWidth: '40px',

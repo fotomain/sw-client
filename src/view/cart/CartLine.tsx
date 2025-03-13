@@ -84,14 +84,26 @@ const CartLine = (props:any) => {
             flex-direction: row;
             max-width: 300px;
             width: 100%;
+            height: auto;
             padding-bottom: 12px;
         `}
     >
+        <div
+            css={css`
+            width: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            gap: 12px;
+            background-color: #f2b1d8;
+        `}
+        >
         <div css={css`
-            width: 45%;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            //justify-content: start;
+            //align-items: space-between;
             gap: 12px;
             background-color: #f2b1d8;
         `}
@@ -108,23 +120,44 @@ const CartLine = (props:any) => {
 
 
         </div>
-
-
-        <div css={css`
-            width: 10%;
-            display: flex;
-            flex-direction: column;
-            justify-content: start;
-            gap: 12px;
-            background-color: #fef6dd;
-        `}
-        >
+            <div
+                css={css`
+                    width: auto;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: start;
+                    gap: 12px;
+                    background-color: lightgray;
+                `}
+            >
             <CartLineQtyPlusMinus
                 qty={cartLine.qty}
                 product_object={cartLine.product_object}
                 product_options={optionsToKeyValue(cartLine.product_options)}
                 cartState={cartState} setCartState={setCartState}
             />
+            </div>
+        </div>
+
+        <div
+            id={'dd0'}
+            css={css`
+            width: 10%;
+            height: auto;
+            flex: 1;    
+            display: flex;
+            //flex-direction: column;
+            //justify-content: space-between;
+            //gap: 12px;
+            background-color: blue;
+        `}
+        >
+            {/*<CartLineQtyPlusMinus*/}
+            {/*    qty={cartLine.qty}*/}
+            {/*    product_object={cartLine.product_object}*/}
+            {/*    product_options={optionsToKeyValue(cartLine.product_options)}*/}
+            {/*    cartState={cartState} setCartState={setCartState}*/}
+            {/*/>*/}
 
         </div>
 
@@ -133,9 +166,10 @@ const CartLine = (props:any) => {
             width: 45%;
             display: flex;
             flex-direction: column;
-            justify-content: start;
+            justify-content: center;
+            align-items: center;
             gap: 12px;
-            background-color: #8bf0ba;
+            //background-color: #8bf0ba;
         `}
         >
             {cartLine?.product_object?.gallery &&
@@ -147,6 +181,27 @@ const CartLine = (props:any) => {
                     src={cartLine?.product_object?.gallery[0].url_path} alt=""
                 />
             }
+
+            <ButtonFigure style={{
+                width: "22px", height: "22px",
+                backgroundColor: 'transparent',
+                color: ui.colorMain
+            }}
+                          onClick={() => {
+
+                              dispatch(cartSlice.actions.delete({
+                                  cart_guid: 'cc6bb519-f811-11ef-a13a-55e370885b2f',
+                                  cart_line_id: cartLine.cart_line_id,
+                              }))
+
+
+                          }}
+            >
+
+                <IconMaterial size={18} icon={MdClose}/>
+
+            </ButtonFigure>
+
         </div>
     </div>
 }

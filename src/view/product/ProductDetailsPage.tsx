@@ -188,7 +188,6 @@ const ProductDetailsPage = (props:any) => {
                     <div style={{fontWeight:'bold',fontSize: '18px', width: '100%'}}>${product.price}</div>
                 </div>
 
-
                 <div
                     css={css`
                         pointer-events:auto;
@@ -230,7 +229,7 @@ const ProductDetailsPage = (props:any) => {
 
                     }}
                 >
-                    ADD TO CART {JSON_stringify(uiState.makeOpenCartView)}
+                    ADD TO CART
                 </div>
                 <div
                     css={css`

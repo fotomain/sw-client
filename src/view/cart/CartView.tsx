@@ -102,19 +102,7 @@ const CartView = () => {
                     flex-direction: row `
                 }
             >
-                <ButtonSecondary
-                    onClick={() => {
-                        console.log("Close1")
-                        dispatch(uiSlice.actions.setValue({
-                            key: "makeOpenCartView",
-                            value: false,
-                        }))
-                    }}
-                >
-                    Close
-                </ButtonSecondary>
-
-                <div
+               <div
                     onClick={() => {
                         console.log("refresh1")
                         const q = READ_CART_QUERY({
@@ -143,7 +131,7 @@ const CartView = () => {
 
 
                 <ButtonPrimary
-                    style={{padding: '12px', width: 'auto'}}
+                    style={{ borderRadius:0, padding: '12px', width: '100%'}}
                     onClick={() => {
                         console.log("Order1")
                         dispatch(uiSlice.actions.setValue({
@@ -153,7 +141,7 @@ const CartView = () => {
                     }}
 
                 >
-                    Place Order
+                    PLACE ORDER
                 </ButtonPrimary>
 
             </div>
