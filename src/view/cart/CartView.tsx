@@ -40,6 +40,8 @@ const CartView = () => {
     return(<>
 
         <div style={{
+            overflowY:'auto',
+            maxHeight:'90vh',
             display: 'flex',
             flexDirection: 'column',
             alignContent: 'start',
@@ -53,8 +55,6 @@ const CartView = () => {
 
                 return <div css={css`
                     width: 100%;
-                    padding-right: 5px;
-                    padding-left: 5px;
                     //height: auto;
                     display: flex;
                     flex-direction: column;

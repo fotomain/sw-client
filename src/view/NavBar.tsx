@@ -137,6 +137,7 @@ const NavBar = (props:any) => {
                         css={css` 
                             position: absolute; 
                             z-index: 20;
+                            
                             //TODO params1
                             width: 250px;
                             min-width: 250px;

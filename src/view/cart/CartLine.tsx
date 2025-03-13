@@ -11,7 +11,7 @@ import {MdClose} from "react-icons/md";
 import CartLineQtyPlusMinus from "./CartLineQtyPlusMinus";
 import {useDispatch} from "react-redux";
 import ProductCardOptions from "../product/ProductCardOptions";
-import {objectToArray} from "../../database/generator/objectToArray";
+
 
 
 const optionsToKeyValue = (p:any) => {
@@ -134,7 +134,7 @@ const CartLine = (props:any) => {
                     display: flex;
                     flex-direction: column;
                     justify-content: start;
-                    gap: 12px;
+                    margin-top: 4px;
                     //debug background-color: lightgray;
                 `}
             >
@@ -194,8 +194,8 @@ const CartLine = (props:any) => {
 
             <ButtonFigure style={{
                 position: 'absolute',
-                bottom:-10,
-                right:0,
+                top:0,
+                right:5,
                 width: "12px", height: "12px",
                 backgroundColor: 'transparent',
                 color: ui.colorMain
