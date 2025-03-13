@@ -14,6 +14,9 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                 cart_line_id
                 product_id
                 qty
+                price
+                total_line
+                
                 product_has_options
                 product_options {
                     attribute_id

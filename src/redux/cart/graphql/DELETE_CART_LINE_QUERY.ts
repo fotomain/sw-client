@@ -18,6 +18,9 @@ mutation {
                 cart_line_id
                 product_id
                 qty
+                price
+                total_line
+                
                 product_has_options
                 
                 product_object {

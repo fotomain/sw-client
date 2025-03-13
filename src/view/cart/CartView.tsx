@@ -51,109 +51,132 @@ const CartView = () => {
 
     return(<>
 
-      <div style={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignContent: 'start',
-          alignItems: 'center',
-          backgroundColor: ui.oolorBackgroundMain,
-      }}>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            alignContent: 'start',
+            alignItems: 'center',
+            backgroundColor: ui.oolorBackgroundMain,
+        }}>
 
-          <ButtonPrimary
-            onClick={()=>{
-                  console.log("refresh1")
+            <ButtonPrimary
+                onClick={() => {
+                    console.log("refresh1")
                     const q = READ_CART_QUERY({
-                        cart_guid:'222'
+                        cart_guid: '222'
                     })
 
-                fetchGraphQL({
-                    entityName: 'READ_CART_QUERY',
-                    setDataCallback: (d: any) => {
-                        console.log('=== READ_CART_QUERY response ', d?.data?.query)
-                        setCartState((prevState:any)=>{return {...prevState,
-                            cartItems:[...d?.data?.query.cart_lines]
-                        }})
-                        // setData((prevState) => { return{ ...prevState,
-                        //     cartItems: d?.data?.cart?.items
-                        // }})
-                    },
-                    gqlRequest: q
-                })
+                    fetchGraphQL({
+                        entityName: 'READ_CART_QUERY',
+                        setDataCallback: (d: any) => {
+                            console.log('=== READ_CART_QUERY response ', d?.data?.query)
+                            setCartState((prevState: any) => {
+                                return {
+                                    ...prevState,
+                                    cartItems: [...d?.data?.query.cart_lines]
+                                }
+                            })
+                            // setData((prevState) => { return{ ...prevState,
+                            //     cartItems: d?.data?.cart?.items
+                            // }})
+                        },
+                        gqlRequest: q
+                    })
 
-            }}
+                }}
 
-          >
-              Refresh
-          </ButtonPrimary>
+            >
+                Refresh
+            </ButtonPrimary>
 
 
-          {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
-          {(cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map( (cartLine:any, lineI:number)=> {
+            {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
+            {(cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
 
-              return <div css={css` 
-                  width: 100%; padding-right: 10px; padding-left: 10px;
-                  height: auto;
-                  gap:10px;
-                  display: flex; flex-direction: column;
+                return <div css={css`
+                    width: 100%;
+                    padding-right: 10px;
+                    padding-left: 10px;
+                    height: auto;
+                    gap: 10px;
+                    display: flex;
+                    flex-direction: column;
                 `}
-                  key={cartLine.cart_line_id}
-              >
-                  <CartLine
-                      product={cartLine.product_object}
-                      cartLine={cartLine}
-                      cartState={cartState}
-                      setCartState={setCartState}
-                  />
-              </div>
+                            key={cartLine.cart_line_id}
+                >
+                    <CartLine
+                        product={cartLine.product_object}
+                        cartLine={cartLine}
+                        cartState={cartState}
+                        setCartState={setCartState}
+                    />
+                </div>
 
-                  // return <div css={css` min-width: 250px `} key={cartLine.cart_line_id}>
-                  //
-                  // <div>{cartLine.product_object?.name} {cartLine.cart_line_id}</div>
-                  //
-                  //
-                  // </div>
-                  })}
+                // return <div css={css` min-width: 250px `} key={cartLine.cart_line_id}>
+                //
+                // <div>{cartLine.product_object?.name} {cartLine.cart_line_id}</div>
+                //
+                //
+                // </div>
+            })}
 
+            <div
+                css={css`
+                    width: 100%;
+                    padding-top: 12px;
+                    justify-content: space-between;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row
+                `}
+            >
+                <div>Total:</div>
+                <div>${cartStateGlobal?.cartArray?.cart_total}</div>
+            </div>
 
-                  <div
-                      css={css` 
-                          width: 100%;
-                          margin-top: 12px;
-                          justify-content: space-between;
-                          align-items: center;
-                          display: flex;
-                          flex-direction: row `}
-                  >
-                      <ButtonSecondary
-                          onClick={() => {
-                              console.log("Close1")
-                              dispatch(uiSlice.actions.setValue({
-                                  key:"makeOpenCartView",
-                                  value: false,
-                              }))
-                          }}
-                      >
-                          Close
-                      </ButtonSecondary>
-
-                      <ButtonPrimary
-                          onClick={() => {
-                              console.log("Order1")
-                              dispatch(uiSlice.actions.setValue({
-                                  key:"makeOpenCartView",
-                                  value: false,
-                              }))
-                          }}
-                      >
-                          Order
-                      </ButtonPrimary>
-
-                  </div>
-
-              </div>
+            <div
+                css={css`
+                    width: 100%;
+                    margin-top: 12px;
+                    justify-content: space-between;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row `
+                }
+            >
+                <ButtonSecondary
+                    onClick={() => {
+                        console.log("Close1")
+                        dispatch(uiSlice.actions.setValue({
+                            key: "makeOpenCartView",
+                            value: false,
+                        }))
+                    }}
+                >
+                    Close
+                </ButtonSecondary>
 
 
-          </>)
+                <ButtonPrimary
+                    style={{padding: '12px', width: 'auto'}}
+                    onClick={() => {
+                        console.log("Order1")
+                        dispatch(uiSlice.actions.setValue({
+                            key: "makeOpenCartView",
+                            value: false,
+                        }))
+                    }}
+
+                >
+                    Place Order
+                </ButtonPrimary>
+
+            </div>
+
+        </div>
+
+
+    </>)
           }
 
               export default CartView;

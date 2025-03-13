@@ -39,17 +39,11 @@ export const HomePage = () => {
         makeCartViewOpen: false,
     })
 
-    // const generatorMode = true
-    const generatorMode = false
 
     const uiState = useSelector((state:any) => state.uiState );
 
     return (
         <div css={css` justify-content:space-between; align-items:center; flex-direction: column; `}>
-
-            {generatorMode && <DataJsonGenerator/>}
-
-            {!generatorMode && <>
 
                 {/*global tests*/}
                 {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
@@ -80,7 +74,6 @@ export const HomePage = () => {
 
 
             </div>
-            </>}
 
 
             {/*<div>HomePage1</div>*/}
