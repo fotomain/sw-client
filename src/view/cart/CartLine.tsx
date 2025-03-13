@@ -31,6 +31,7 @@ const CartLine = (props:any) => {
 
     const dispatch = useDispatch();
 
+    const [imageHover, setImageHover] = useState(false)
 
     const {cartLine, cartState, setCartState} = props
 
@@ -176,10 +177,16 @@ const CartLine = (props:any) => {
             flex-direction: column;
             justify-content: start;
             align-items: center;
-            gap: 12px;
+            //gap: 12px;
             //background-color: #8bf0ba;
             position: relative;
         `}
+             onMouseEnter={()=>{
+                 setImageHover(true)
+             }}
+             onMouseLeave={()=>{
+                 setImageHover(false)
+             }}
         >
             {cartLine?.product_object?.gallery &&
                 <img
@@ -192,13 +199,15 @@ const CartLine = (props:any) => {
                 />
             }
 
-            <ButtonFigure style={{
+
+            {imageHover && <ButtonFigure style={{
                 position: 'absolute',
-                top:0,
-                right:5,
-                width: "12px", height: "12px",
-                backgroundColor: 'transparent',
-                color: ui.colorMain
+                top:"50%",
+                right:"50%",
+                transform:"translate(50%, 0)",
+                width: "22px", height: "22px",
+                backgroundColor: ui.colorMain,
+                color: 'white'
             }}
                           onClick={() => {
 
@@ -214,6 +223,7 @@ const CartLine = (props:any) => {
                 <IconMaterial size={18} icon={MdClose}/>
 
             </ButtonFigure>
+            }
 
         </div>
     </div>

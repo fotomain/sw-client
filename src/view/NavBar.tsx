@@ -47,7 +47,7 @@ const NavBar = (props:any) => {
     return <div
         css={css`
             position: fixed;
-            z-index: 125;
+            z-index: 200;
             background-color: white;
             width: 100vw;
             height: 6vh;
