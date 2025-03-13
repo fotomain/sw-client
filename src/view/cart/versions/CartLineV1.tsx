@@ -34,7 +34,7 @@ const CartLine = (props:any) => {
         optionsArray:[],
         qty:0,
         slideNumber:0,
-        percernOfOptionsSelected:0,
+        percentOfOptionsSelected:0,
     })
 
 

@@ -4,7 +4,7 @@ import {css} from "@emotion/react";
 import {ui} from "../../HomePage";
 
 const SelectOptionColor=(props:any)=>{
-    // console.log("props11",props)
+    console.log("111 props11",props)
     const {optionsSet}=props;
     return <>
 
@@ -19,8 +19,10 @@ const SelectOptionColor=(props:any)=>{
             >
                 {/*<div>{JSON.stringify(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])}</div>*/}
                 <div
-                    // style={{ borderRadius:'5', border:'solid green 1px', padding:'5px', }}
-                    css={css`  width: 20px; height: 20px; background-color:${optionItem.name};
+                    css={css`  
+                        width: ${props.cartMode?'15px':'20px'}; 
+                        height: ${props.cartMode?'15px':'20px'};
+                        background-color:${optionItem.name};
                     `}
                     onClick={()=>{
                         // console.log("=== option ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
@@ -28,6 +30,9 @@ const SelectOptionColor=(props:any)=>{
                         if(props.readOnly) return
 
                         props.setCardState((prevState:any)=>{
+
+                            // console.log("333 prevState.optionsSelected1",prevState.optionsSelected)
+
                             let op = prevState.optionsSelected;
                             op[optionsSet?.option_header.id]=optionItem.id;
                             return {...prevState,
@@ -36,7 +41,6 @@ const SelectOptionColor=(props:any)=>{
 
 
                     }}>
-                    {/*{optionItem.displayValue}*/}
                 </div>
             </div>
 

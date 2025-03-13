@@ -22,6 +22,7 @@ const ButtonBasic = (props:any) => {
       <button
           {...other}
           css={css`
+                cursor: pointer;
                 display:flex;
                 flex-direction: row;
                 justify-content: center;

@@ -11,6 +11,7 @@ import {MdClose} from "react-icons/md";
 import CartLineQtyPlusMinus from "./CartLineQtyPlusMinus";
 import {useDispatch} from "react-redux";
 import ProductCardOptions from "../product/ProductCardOptions";
+import {objectToArray} from "../../database/generator/objectToArray";
 
 
 const optionsToKeyValue = (p:any) => {
@@ -20,8 +21,6 @@ const optionsToKeyValue = (p:any) => {
     }
     return res
 }
-
-
 
 
 const CartLine = (props:any) => {
@@ -35,6 +34,14 @@ const CartLine = (props:any) => {
 
     const {cartLine, cartState, setCartState} = props
 
+    // console.log("222 cartLine.product_options1",cartLine.product_options)
+
+    const objSelected:any = {}
+    for (let i = 0; i < cartLine.product_options.length; i++) {
+        const el=cartLine.product_options[i]
+        objSelected[el.attribute_id] = el.option_id.toString()
+    }
+    // console.log("555 objSelected",objSelected)
 
     const [cardState, setCardState] = useState({
         optionsSelected: {},
@@ -42,7 +49,7 @@ const CartLine = (props:any) => {
         optionsArray: [],
         qty: 0,
         slideNumber: 0,
-        percernOfOptionsSelected: 0,
+        percentOfOptionsSelected: 0,
     })
 
     useEffect(() => {
@@ -51,7 +58,7 @@ const CartLine = (props:any) => {
 
 
             let optionsAll: any = {}
-            let optionsSelected: any = {}
+            // let optionsSelected: any = {}
             let optionsArray: any[] = []
             for (let i = 0; i < product.attributes.length; i++) {
                 optionsAll[product.attributes[i].id] = product.attributes[i]
@@ -66,7 +73,7 @@ const CartLine = (props:any) => {
             setCardState((prevState: any) => {
                 return {
                     ...prevState,
-                    optionsSelected: optionsSelected,
+                    optionsSelected: objSelected,
                     optionsAll: optionsAll,
                     optionsArray: optionsArray,
                 }
@@ -84,36 +91,37 @@ const CartLine = (props:any) => {
             flex-direction: row;
             max-width: 300px;
             width: 100%;
-            height: auto;
-            padding-bottom: 12px;
+                height: auto;
+            padding-bottom: 24px;
         `}
     >
         <div
             css={css`
             width: 100%;
+                height: auto;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
             gap: 12px;
-            background-color: #f2b1d8;
+                //debug background-color: #f2b1d8;
         `}
         >
         <div css={css`
             width: 100%;
+                height: auto;
             display: flex;
             flex-direction: column;
-            //justify-content: start;
-            //align-items: space-between;
-            gap: 12px;
-            background-color: #f2b1d8;
+            justify-content: start;
+            gap: 4px;
+                //debug background-color: #f2b1d8;
         `}
-
         >
-            <div>{cartLine.product_object?.name}</div>
-            <div>${cartLine.total_line}</div>
+            <div css={css`font-size: 14px;  `}>{cartLine.product_object?.name}</div>
+            <div css={css`font-size: 12px;  `}>${cartLine.total_line}</div>
 
             <ProductCardOptions
                 readOnly
+                cartMode
                 cardState={cardState}
                 setCardState={setCardState}
             />
@@ -127,7 +135,7 @@ const CartLine = (props:any) => {
                     flex-direction: column;
                     justify-content: start;
                     gap: 12px;
-                    background-color: lightgray;
+                    //debug background-color: lightgray;
                 `}
             >
             <CartLineQtyPlusMinus
@@ -166,24 +174,29 @@ const CartLine = (props:any) => {
             width: 45%;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: start;
             align-items: center;
             gap: 12px;
             //background-color: #8bf0ba;
+            position: relative;
         `}
         >
             {cartLine?.product_object?.gallery &&
                 <img
                     css={css`
-                      width: auto;
-                      height: 80px;
+                        width: auto;
+                        max-width: 98%;
+                        height: 80px;
                   `}
                     src={cartLine?.product_object?.gallery[0].url_path} alt=""
                 />
             }
 
             <ButtonFigure style={{
-                width: "22px", height: "22px",
+                position: 'absolute',
+                bottom:-10,
+                right:0,
+                width: "12px", height: "12px",
                 backgroundColor: 'transparent',
                 color: ui.colorMain
             }}

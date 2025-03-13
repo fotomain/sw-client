@@ -25,7 +25,15 @@ const SelectOptionSize=(props:any)=>{
 
                         }}
             >
-                <div style={{ borderRadius:'5px', border:`solid ${ui.colorMain} 1px`, padding:'5px', cursor:'pointer'}}
+                <div style={{
+                    borderRadius:'5px',
+                    border:`solid ${ui.colorMain} 1px`,
+                    padding:(props.cartMode)?'2px':'5px',
+                    cursor:'pointer',
+                    backgroundColor:(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?'green':'transparent',
+                    color:(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?'white':'green',
+                    fontSize:(props.cartMode)?'12px':'18px',
+                }}
 
                 >
                     {optionItem.displayValue}

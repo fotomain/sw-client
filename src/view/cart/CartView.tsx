@@ -44,7 +44,7 @@ const CartView = () => {
             flexDirection: 'column',
             alignContent: 'start',
             alignItems: 'center',
-            backgroundColor: ui.oolorBackgroundMain,
+            // backgroundColor: ui.oolorBackgroundMain,
         }}>
 
 
@@ -55,19 +55,23 @@ const CartView = () => {
                     width: 100%;
                     padding-right: 5px;
                     padding-left: 5px;
-                    height: auto;
+                    //height: auto;
                     display: flex;
                     flex-direction: column;
-                    background-color: red;
+                    //justify-content: space-between;
+                    //debug background-color: red;
+                    //debug border: 1px blue solid;
                 `}
                             key={cartLine.cart_line_id}
                 >
+
                     <CartLine
                         product={cartLine.product_object}
                         cartLine={cartLine}
                         cartState={cartState}
                         setCartState={setCartState}
                     />
+
                 </div>
 
                 // return <div css={css` min-width: 250px `} key={cartLine.cart_line_id}>
@@ -102,32 +106,32 @@ const CartView = () => {
                     flex-direction: row `
                 }
             >
-               <div
-                    onClick={() => {
-                        console.log("refresh1")
-                        const q = READ_CART_QUERY({
-                            cart_guid: '222'
-                        })
+               {/*<div*/}
+               {/*     onClick={() => {*/}
+               {/*         console.log("refresh1")*/}
+               {/*         const q = READ_CART_QUERY({*/}
+               {/*             cart_guid: '222'*/}
+               {/*         })*/}
 
-                        fetchGraphQL({
-                            entityName: 'READ_CART_QUERY',
-                            setDataCallback: (d: any) => {
-                                console.log('=== READ_CART_QUERY response ', d?.data?.query)
-                                setCartState((prevState: any) => {
-                                    return {
-                                        ...prevState,
-                                        cartItems: [...d?.data?.query.cart_lines]
-                                    }
-                                })
-                            },
-                            gqlRequest: q
-                        })
+               {/*         fetchGraphQL({*/}
+               {/*             entityName: 'READ_CART_QUERY',*/}
+               {/*             setDataCallback: (d: any) => {*/}
+               {/*                 console.log('=== READ_CART_QUERY response ', d?.data?.query)*/}
+               {/*                 setCartState((prevState: any) => {*/}
+               {/*                     return {*/}
+               {/*                         ...prevState,*/}
+               {/*                         cartItems: [...d?.data?.query.cart_lines]*/}
+               {/*                     }*/}
+               {/*                 })*/}
+               {/*             },*/}
+               {/*             gqlRequest: q*/}
+               {/*         })*/}
 
-                    }}
+               {/*     }}*/}
 
-                >
-                    <IconMaterial color={ui.colorMain} size={24} icon={MdRefresh}/>
-                </div>
+               {/* >*/}
+               {/*     <IconMaterial color={ui.colorMain} size={24} icon={MdRefresh}/>*/}
+               {/* </div>*/}
 
 
                 <ButtonPrimary

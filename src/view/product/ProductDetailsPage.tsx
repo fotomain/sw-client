@@ -22,7 +22,7 @@ const ProductDetailsPage = (props:any) => {
         optionsArray:[],
         qty:0,
         slideNumber:0,
-        percernOfOptionsSelected:0,
+        percentOfOptionsSelected:0,
     })
 
     const dispatch = useDispatch();
@@ -69,10 +69,10 @@ const ProductDetailsPage = (props:any) => {
 
     useEffect(() => {
 
-        const percernOfOptionsSelected:number = Object.keys(cardState.optionsSelected).length / product.attributes.length * 100
-        // console.log("percernOfOptionsSelected1",percernOfOptionsSelected)
+        const percentOfOptionsSelected:number = Object.keys(cardState.optionsSelected).length / product.attributes.length * 100
+        // console.log("percentOfOptionsSelected1",percentOfOptionsSelected)
         setCardState((prevState:any)=>{return {...prevState,
-            percernOfOptionsSelected:percernOfOptionsSelected,
+            percentOfOptionsSelected:percentOfOptionsSelected,
         }})
 
     }, [Object.keys(cardState.optionsSelected).length]);
@@ -80,7 +80,7 @@ const ProductDetailsPage = (props:any) => {
     return <>
         {/*slideNumber {cardState.slideNumber} */}
         {/*    optionsSelected {JSON.stringify(cardState?.optionsSelected)}*/}
-        {/*    % of Selected {cardState.percernOfOptionsSelected}*/}
+        {/*    % of Selected {cardState.percentOfOptionsSelected}*/}
     <div css={css`
       max-width: 1200px;
       width: 100%;
@@ -190,8 +190,9 @@ const ProductDetailsPage = (props:any) => {
 
                 <div
                     css={css`
+                        cursor: pointer;
                         pointer-events:auto;
-                        opacity: ${(100>cardState.percernOfOptionsSelected)?0.5:1};
+                        opacity: ${(100>cardState.percentOfOptionsSelected)?0.5:1};
                         align-self: flex-end;
                         width: 100%;
                         color: white;
@@ -207,9 +208,8 @@ const ProductDetailsPage = (props:any) => {
                         border: none;
                     `}
                     onClick={()=>{
-                        console.log("ADD TO CART1")
 
-                        if(100<cardState.percernOfOptionsSelected) {
+                        if(100<cardState.percentOfOptionsSelected) {
                             window.alert("not all options selected!")
                             return
                         }

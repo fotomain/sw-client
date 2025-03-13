@@ -29,10 +29,20 @@ const ProductCardOptions = (props:any) => {
       {/*optionsArray*/}
       {0!==cardState.optionsArray.length && cardState.optionsArray.map((optionsSet:any,i:number)=>{
           return(
-              <div key={i}>
-                  <div css={css` margin-bottom:12px; `}>{optionsSet?.option_header.name}</div>
+              <div key={i}
+                   css={css` 
+                      //debug background-color: #ffdc6a;   
+                  `}
+              >
+                  <div css={css` 
+                      margin-bottom: ${props.cartMode?'2px':'12px'};  
+                      font-size: ${props.cartMode?'12px':'18px'};  
+                  `}>
+                      {optionsSet?.option_header.name}
+                  </div>
+
                   <div style={{
-                      paddingBottom: '4px',
+                      paddingBottom: props.cartMode?'0px':'4px',
                       display: 'flex',
                       flexDirection: 'row',
                       alignContent: 'center',
@@ -43,6 +53,7 @@ const ProductCardOptions = (props:any) => {
                       <OptionsView
 
                           readOnly={props.readOnly}
+                          cartMode={props.cartMode}
 
                               optionsSet={optionsSet}
                               cardState={cardState}
