@@ -93,13 +93,6 @@ const NavBar = (props:any) => {
                             value: !uiState.makeOpenCartView,
                         }))
 
-                        // setNavState((prevState: any) => {
-                    //     return {
-                    //         ...prevState,
-                    //         makeCartViewOpen: !prevState.makeCartViewOpen
-                    //     }
-                    // })
-                    // setCartViewOpen=true
                 }}/>
 
                 <div
@@ -133,13 +126,6 @@ const NavBar = (props:any) => {
                             value: !uiState.makeOpenCartView,
                         }))
 
-                        // setNavState((prevState: any) => {
-                        //     return {
-                        //         ...prevState,
-                        //         makeCartViewOpen: !prevState.makeCartViewOpen
-                        //     }
-                        // })
-
                     }}
                 >
                     <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
@@ -151,9 +137,9 @@ const NavBar = (props:any) => {
                         css={css` 
                             position: absolute; 
                             z-index: 20;
-                            //TODO 
-                            width: 25vw;
-                            min-width: 300px;
+                            //TODO params1
+                            width: 250px;
+                            min-width: 250px;
                             background-color: white;
                             // - width of IconCart - shift of the tip
                             margin-right: calc(100% - 24px - 0.6rem); 
@@ -175,9 +161,6 @@ const NavBar = (props:any) => {
 
                     <CartView/>
 
-                    {/*<div>line 1</div>*/}
-                    {/*<div>line 1</div>*/}
-                    {/*<div>line 1</div>*/}
                 </dialog>
 
 

@@ -3,7 +3,7 @@
 
 import IconMaterial from "../core/universal/IconMaterial";
 import {MdOutlineAddShoppingCart, MdRemove} from "react-icons/md";
-import ButtonCircle from "../core/universal/ButtonCircle";
+import ButtonFigure from "../core/universal/ButtonFigure";
 import React from "react";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import {useDispatch} from "react-redux";
@@ -16,7 +16,7 @@ const AddToCart = (props:any) => {
     const dispatch = useDispatch();
 
   return <>
-      <ButtonCircle
+      <ButtonFigure
 
           productIndex={props.productIndex}
 
@@ -53,7 +53,7 @@ const AddToCart = (props:any) => {
           }}
       >
           <IconMaterial size={24} icon={MdOutlineAddShoppingCart}/>
-      </ButtonCircle>
+      </ButtonFigure>
   </>
 }
 

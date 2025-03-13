@@ -5,7 +5,7 @@ import {ui} from "../../HomePage";
 import {MdAdd} from "react-icons/md";
 import React from "react";
 
-const ButtonCircle = (props:any) => {
+const ButtonFigure = (props:any) => {
 
     const {productIndex,...other} = props;
     let color="white"
@@ -28,11 +28,11 @@ const ButtonCircle = (props:any) => {
                 color:${color};
                 background-color: #4ABF77;
 
-                border-radius: 50%;
+                border-radius: ${(props.square)?'1px':'50%'};
                 box-shadow: 0px 0px 0px 2px ${shadow},0px 0px 0px 4px #4ABF77;
                 /*box-shadow: 0px 0px 0px 10px red, 0px 0px 0px 20px green, 0px 0px 0px 30px yellow, 0px 0px 0px 40px pink;*/
-                width: 40px;
-                height:40px;
+                width: 20px;
+                height:20px;
             `}
           {...other}
       >
@@ -40,4 +40,4 @@ const ButtonCircle = (props:any) => {
       </div>
   </>)
 }
-export default ButtonCircle;
+export default ButtonFigure;

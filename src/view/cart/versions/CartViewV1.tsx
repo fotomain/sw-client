@@ -1,20 +1,18 @@
 /** @jsxImportSource @emotion/react */
 
 import React, {useEffect, useState} from "react";
-import {ui} from "../HomePage";
+import {ui} from "../../HomePage";
 
-import ButtonPrimary from "../core/universal/ButtonPrimary";
-import ButtonSecondary from "../core/universal/ButtonSecondary";
+import ButtonPrimary from "../../core/universal/ButtonPrimary";
+import ButtonSecondary from "../../core/universal/ButtonSecondary";
 
-import {READ_CART_QUERY} from "../../redux/cart/graphql/READ_CART_QUERY";
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
+import {READ_CART_QUERY} from "../../../redux/cart/graphql/READ_CART_QUERY";
+import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
 import {css} from "@emotion/react";
 import {useDispatch, useSelector} from "react-redux";
-import {cartSlice} from "../../redux/cart/cartSlice";
-import CartLine from "./CartLine";
-import {uiSlice} from "../../redux/ui/uiSlice";
-import {MdRefresh} from "react-icons/md";
-import IconMaterial from "../core/universal/IconMaterial";
+import {cartSlice} from "../../../redux/cart/cartSlice";
+import CartLine from "../CartLine";
+import {uiSlice} from "../../../redux/ui/uiSlice";
 
 const CartView = () => {
 
@@ -47,18 +45,48 @@ const CartView = () => {
             backgroundColor: ui.oolorBackgroundMain,
         }}>
 
+            <ButtonPrimary
+                onClick={() => {
+                    console.log("refresh1")
+                    const q = READ_CART_QUERY({
+                        cart_guid: '222'
+                    })
+
+                    fetchGraphQL({
+                        entityName: 'READ_CART_QUERY',
+                        setDataCallback: (d: any) => {
+                            console.log('=== READ_CART_QUERY response ', d?.data?.query)
+                            setCartState((prevState: any) => {
+                                return {
+                                    ...prevState,
+                                    cartItems: [...d?.data?.query.cart_lines]
+                                }
+                            })
+                            // setData((prevState) => { return{ ...prevState,
+                            //     cartItems: d?.data?.cart?.items
+                            // }})
+                        },
+                        gqlRequest: q
+                    })
+
+                }}
+
+            >
+                Refresh
+            </ButtonPrimary>
+
 
             {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
             {(cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
 
                 return <div css={css`
                     width: 100%;
-                    padding-right: 5px;
-                    padding-left: 5px;
+                    padding-right: 10px;
+                    padding-left: 10px;
                     height: auto;
+                    gap: 10px;
                     display: flex;
                     flex-direction: column;
-                    background-color: red;
                 `}
                             key={cartLine.cart_line_id}
                 >
@@ -114,33 +142,6 @@ const CartView = () => {
                     Close
                 </ButtonSecondary>
 
-                <div
-                    onClick={() => {
-                        console.log("refresh1")
-                        const q = READ_CART_QUERY({
-                            cart_guid: '222'
-                        })
-
-                        fetchGraphQL({
-                            entityName: 'READ_CART_QUERY',
-                            setDataCallback: (d: any) => {
-                                console.log('=== READ_CART_QUERY response ', d?.data?.query)
-                                setCartState((prevState: any) => {
-                                    return {
-                                        ...prevState,
-                                        cartItems: [...d?.data?.query.cart_lines]
-                                    }
-                                })
-                            },
-                            gqlRequest: q
-                        })
-
-                    }}
-
-                >
-                    <IconMaterial color={ui.colorMain} size={24} icon={MdRefresh}/>
-                </div>
-
 
                 <ButtonPrimary
                     style={{padding: '12px', width: 'auto'}}
@@ -162,9 +163,9 @@ const CartView = () => {
 
 
     </>)
-}
+          }
 
-export default CartView;
+              export default CartView;
 
 
 // return <div>
