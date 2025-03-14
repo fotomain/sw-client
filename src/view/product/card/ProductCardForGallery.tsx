@@ -2,14 +2,7 @@
 
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import CartLineQtyPlusMinus from "../../cart/CartLineQtyPlusMinus";
-import {ui} from "../../HomePage";
-
-import { MdAdd } from "react-icons/md";
-import AddToCart from "../../cart/AddToCart";
-import ProductCardOptions from "../ProductCardOptions";
 import {css} from "@emotion/react";
-import IconCart from "../../core/universal/IconCart";
 import ProductCardForGalleryImage from "./ProductCardForGalleryImage";
 import ProductCardForGalleryTexts from "./ProductCardForGalleryTexts";
 
@@ -22,11 +15,11 @@ const ProductCardForGallery = (props:any) => {
     let productSelectedOptions = productsState.productsOptionsArray[productIndex];
 
     const [cardState, setCardState] = useState({
-        imageHover:false,
     })
 
-    return(
+    const [cardHover, setCardHover] = useState(false)
 
+    return(
         <div css={css`
             width: 30vw;
             height: auto;
@@ -34,11 +27,19 @@ const ProductCardForGallery = (props:any) => {
             justify-content: space-between;
             align-items: center;
             //border: 1px dodgerblue solid;
-            
         `}
+             onMouseEnter={()=>{
+                 console.log("onMouseEnter1");
+                 setCardHover(true)
+             }}
+
+             onMouseLeave={()=>{
+                 setCardHover(false)
+             }}
+
         >
 
-            <ProductCardForGalleryImage  {...props} />
+            <ProductCardForGalleryImage  {...props} cardHover={cardHover} />
 
             <ProductCardForGalleryTexts  {...props} />
 

@@ -15,13 +15,6 @@ const ProductCardForGalleryImage = (props:any) => {
 
     const dispatch = useDispatch();
 
-    const productsState = useSelector((state:any) => state.productsState );
-    let productSelectedOptions = productsState.productsOptionsArray[productIndex];
-
-    const [cardState, setCardState] = useState({
-        imageHover:false,
-    })
-
     return(
 
         <div css={css`
@@ -48,19 +41,6 @@ const ProductCardForGalleryImage = (props:any) => {
                 src={product?.gallery[0]?.url_path}
             />
 
-            <div
-                id={'out111'}
-                css={css` position: absolute;
-                    z-index: 50;
-                    margin-left: 50%;
-                    margin-top: 50%;
-                    transform: translate(-75%);
-                    background-color: white;
-                    opacity: 0.5;
-                `}
-            >
-                <div>OUT OF STOCK</div>
-            </div>
 
             {(product.inStock)?null:
             <div
@@ -77,7 +57,7 @@ const ProductCardForGalleryImage = (props:any) => {
             </div>
             }
 
-            {(!product.inStock) ? null :
+            {(!(product.inStock && props.cardHover)) ? null :
                 <div
                     id={'quick-add111'}
                     css={css` position: absolute;
