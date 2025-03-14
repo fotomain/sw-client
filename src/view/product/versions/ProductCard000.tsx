@@ -81,8 +81,6 @@ const ProductCard = (props:any) => {
 
           </div>
 
-          {/*<img style={{width: '100px', height: '100px'}} src={product?.gallery[0]?.url_path}/>*/}
-
           <div style={{
               paddingBottom: '4px',
               display: 'flex',

@@ -14,6 +14,7 @@ import {ADD_TO_CART_MUTATION} from "../../redux/cart/graphql/ADD_TO_CART_MUTATIO
 import ProductCard from "./ProductCard";
 import ProductDetailsPage from "./ProductDetailsPage";
 import {css} from "@emotion/react";
+import ProductCardForGallery from "./ProductCardForGallery";
 
 const debug_local=true
 export const ProductsGallery = () => {
@@ -121,7 +122,9 @@ export const ProductsGallery = () => {
                 {((!isReading) && (0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
                     return <React.Fragment key={i}>
 
-                        <ProductDetailsPage product={el} productIndex={i}/>
+                        {/*<ProductDetailsPage product={el} productIndex={i}/>*/}
+                        <ProductCardForGallery product={el} productIndex={i}/>
+
 
                     </React.Fragment>
                 })}

@@ -53,7 +53,6 @@ export const HomePage = () => {
             <div css={css` z-index: 10;
                 position: relative`}>
 
-                {/*<CartView/>*/}
                 <ProductsGallery/>
 
                 {uiState.makeOpenCartView &&

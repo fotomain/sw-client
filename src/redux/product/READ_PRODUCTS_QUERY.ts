@@ -10,6 +10,7 @@ export const READ_PRODUCTS_QUERY =()=> { return  `
                                     name
                                     price
                                     brand
+                                    inStock
                                     category                                                                                                             
                                     description
                                     gallery {
