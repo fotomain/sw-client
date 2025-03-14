@@ -93,7 +93,7 @@ const CartView = () => {
                 `}
             >
                 <div>Total:</div>
-                <div>${cartStateGlobal?.cartArray?.cart_total}</div>
+                <div>${(!cartStateGlobal?.cartArray?.cart_total)?0:cartStateGlobal?.cartArray?.cart_total}</div>
             </div>
 
             <div

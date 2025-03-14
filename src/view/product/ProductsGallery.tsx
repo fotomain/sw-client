@@ -14,7 +14,7 @@ import {ADD_TO_CART_MUTATION} from "../../redux/cart/graphql/ADD_TO_CART_MUTATIO
 import ProductCard from "./ProductCard";
 import ProductDetailsPage from "./ProductDetailsPage";
 import {css} from "@emotion/react";
-import ProductCardForGallery from "./ProductCardForGallery";
+import ProductCardForGallery from "./card/ProductCardForGallery";
 
 const debug_local=true
 export const ProductsGallery = () => {

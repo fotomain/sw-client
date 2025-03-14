@@ -2,14 +2,14 @@
 
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
-import CartLineQtyPlusMinus from "../cart/CartLineQtyPlusMinus";
-import {ui} from "../HomePage";
+import CartLineQtyPlusMinus from "../../cart/CartLineQtyPlusMinus";
+import {ui} from "../../HomePage";
 
 import { MdAdd } from "react-icons/md";
-import AddToCart from "../cart/AddToCart";
-import ProductCardOptions from "./ProductCardOptions";
+import AddToCart from "../../cart/AddToCart";
+import ProductCardOptions from "../ProductCardOptions";
 import {css} from "@emotion/react";
-import IconCart from "../core/universal/IconCart";
+import IconCart from "../../core/universal/IconCart";
 
 
 const ProductCardForGallery = (props:any) => {

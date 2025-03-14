@@ -95,7 +95,8 @@ const NavBar = (props:any) => {
 
                 }}/>
 
-                <div
+                {(0===cartStateGlobal?.cartArray?.cart_lines?.length)?null:
+                    <div
                     id={'iconBubble1'}
                     css={css`
                     position: absolute;
@@ -131,6 +132,7 @@ const NavBar = (props:any) => {
                     <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
                     <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length)?' item':'items'}</div>
                 </div>
+                }
 
                 <dialog open={uiState.makeOpenCartView}
                         ref={dialogRef}
