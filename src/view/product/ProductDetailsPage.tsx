@@ -4,17 +4,24 @@ import {css} from "@emotion/react";
 import React, {useEffect, useState} from "react";
 
 import SliderBasic from "../core/slider/SliderBasic";
-import {ui} from "../HomePage";
+import {ui} from "../LayoutPage";
 import ProductCardOptions from "./ProductCardOptions";
 import {useDispatch, useSelector} from "react-redux";
 import {alpha} from "@mui/material";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import {uiSlice} from "../../redux/ui/uiSlice";
 import {JSON_stringify} from "../../api/GlobalFunctions";
+import {useLocation, useParams} from "react-router-dom";
 
 const ProductDetailsPage = (props:any) => {
 
-    const {product,productIndex} = props;
+    // let params = useParams()
+    // console.log("params333",params)
+
+    const  routerParams= useLocation();
+    // console.log("routerParams333",routerParams)
+
+    const {product,productIndex} = (routerParams)?routerParams.state:props;
 
     const [cardState, setCardState] = useState({
         optionsSelected:{},
@@ -82,6 +89,8 @@ const ProductDetailsPage = (props:any) => {
         {/*    optionsSelected {JSON.stringify(cardState?.optionsSelected)}*/}
         {/*    % of Selected {cardState.percentOfOptionsSelected}*/}
     <div css={css`
+        // NavBar
+        padding-top: 145px;
       max-width: 1200px;
       width: 100%;
       gap: 80px;

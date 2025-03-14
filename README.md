@@ -9,6 +9,7 @@ taskkill /im node.exe /f
 npm cache clean --force
 
 # Setup 
+npm install -S react-router-dom@5.3.3
 npm install @mui/material @emotion/react @emotion/styled
 npm install @monaco-editor/react
 npm install lucide-react

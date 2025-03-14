@@ -2,7 +2,7 @@
 import {ADD_TO_CART_MUTATION} from "../../../redux/cart/graphql/ADD_TO_CART_MUTATION";
 import {fetchGraphQL} from "../../../database/generator/fetchGraphQL";
 import React from "react";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 import { css, jsx } from '@emotion/react';
 import ButtonFigure from "../../core/universal/ButtonFigure";

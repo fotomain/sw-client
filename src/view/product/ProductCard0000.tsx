@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import CartLineQtyPlusMinus from "../cart/CartLineQtyPlusMinus";
-import {ui} from "../HomePage";
+import {ui} from "../LayoutPage";
 
 import { MdAdd } from "react-icons/md";
 import AddToCart from "../cart/AddToCart";
@@ -10,7 +10,7 @@ import ProductCardOptions from "./ProductCardOptions";
 import {css} from "@emotion/react";
 
 
-const ProductCard = (props:any) => {
+const ProductCard0000 = (props:any) => {
 
     const {product,productIndex} = props;
 
@@ -116,4 +116,4 @@ const ProductCard = (props:any) => {
   </>)
 }
 
-export default ProductCard;
+export default ProductCard0000;

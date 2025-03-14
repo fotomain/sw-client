@@ -4,7 +4,7 @@ import React from "react";
 import {MdArrowBackIosNew} from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
 import IconMaterial from "../universal/IconMaterial";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 import {css} from "@emotion/react";
 
 function Arrows({ prevSlide, nextSlide }) {

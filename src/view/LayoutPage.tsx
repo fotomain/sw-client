@@ -14,6 +14,8 @@ import IconCart from "./core/universal/IconCart";
 import NavBar from "./NavBar";
 import DataJsonGenerator from "../database/generator/DataJsonGenerator";
 import {useSelector} from "react-redux";
+import {Route, Routes} from "react-router-dom";
+import ProductDetailsPage from "./product/ProductDetailsPage";
 
 
 export let ui:any={};
@@ -33,7 +35,7 @@ ui.oolorCardBackground=[
 
 
 
-export const HomePage = () => {
+export const LayoutPage = (params:any) => {
 
     const [navState, setNavState] = useState({
         makeCartViewOpen: false,
@@ -53,7 +55,20 @@ export const HomePage = () => {
             <div css={css` z-index: 10;
                 position: relative`}>
 
-                <ProductsGallery/>
+                <Routes>
+
+                    <Route path='/' element={<ProductsGallery/>} />
+
+                    <Route path='/home' element={<ProductsGallery/>} />
+
+                    <Route
+                        path="/product"
+                        element = {<ProductDetailsPage />}
+                    />
+
+                </Routes>
+
+                {/*<ProductsGallery/>*/}
 
                 {uiState.makeOpenCartView &&
                     <div

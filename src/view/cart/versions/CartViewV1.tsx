@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import React, {useEffect, useState} from "react";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 import ButtonPrimary from "../../core/universal/ButtonPrimary";
 import ButtonSecondary from "../../core/universal/ButtonSecondary";

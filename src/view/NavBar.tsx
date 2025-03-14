@@ -5,7 +5,7 @@ import IconCart from "./core/universal/IconCart";
 import React, {useEffect, useRef, useState} from "react";
 
 import CartView from "./cart/CartView";
-import {ui} from "./HomePage";
+import {ui} from "./LayoutPage";
 import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";
 import useClickOut from "./core/functions";

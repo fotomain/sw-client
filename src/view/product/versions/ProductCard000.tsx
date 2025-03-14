@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 import AddToCart from "../../cart/AddToCart";
 import ProductCardOptions from "../ProductCardOptions";

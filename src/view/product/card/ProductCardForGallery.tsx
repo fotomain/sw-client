@@ -1,15 +1,19 @@
 /** @jsxImportSource @emotion/react */
 
+import {NavigateOptions, Router, useNavigate} from "react-router";
+
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {css} from "@emotion/react";
 import ProductCardForGalleryImage from "./ProductCardForGalleryImage";
 import ProductCardForGalleryTexts from "./ProductCardForGalleryTexts";
+import { createSearchParams } from "react-router-dom";
 
 
 const ProductCardForGallery = (props:any) => {
 
     const {product,productIndex} = props;
+
 
     const productsState = useSelector((state:any) => state.productsState );
     let productSelectedOptions = productsState.productsOptionsArray[productIndex];
@@ -18,6 +22,8 @@ const ProductCardForGallery = (props:any) => {
     })
 
     const [cardHover, setCardHover] = useState(false)
+
+    const navigate = useNavigate()
 
     return(
         <div css={css`
@@ -35,6 +41,12 @@ const ProductCardForGallery = (props:any) => {
 
              onMouseLeave={()=>{
                  setCardHover(false)
+             }}
+
+             onClick={()=> {
+                 navigate(`/product`,
+                     { state: {product: product, productIndex:productIndex} } as NavigateOptions
+                 )
              }}
 
         >

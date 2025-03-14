@@ -2,7 +2,7 @@
 
 import React from "react";
 import {css} from "@emotion/react";
-import {ui} from "../HomePage";
+import {ui} from "../LayoutPage";
 import SelectOptionColor from "./lib/SelectOptionColor";
 import SelectOptionSize from "./lib/SelectOptionSize";
 

@@ -8,9 +8,15 @@ import './styles.css'
 import { Provider } from 'react-redux';
 import reduxStore from "./redux/reduxStore";
 
-import React from "react";
-import {HomePage} from "./view/HomePage";
+import React, {Suspense} from "react";
+import {LayoutPage} from "./view/LayoutPage";
 import DataJsonGenerator from "./database/generator/DataJsonGenerator";
+import {BrowserRouter, Routes} from "react-router-dom";
+
+
+import { Route } from "react-router-dom";
+import ProductDetailsPage from "./view/product/ProductDetailsPage";
+
 const container = document.getElementById('root');
 
 // const generatorMode = true
@@ -19,10 +25,18 @@ const generatorMode = false
 if(container) {
     const root = createRoot(container); // createRoot(container!) if you use TypeScript
     root.render(
-        <Provider store={reduxStore}>
-            {generatorMode && <DataJsonGenerator/>}
-            <HomePage/>
-        </Provider>
+        <BrowserRouter
+            future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true,
+            }}
+        >
+            <Provider store={reduxStore}>
+
+                <LayoutPage />
+
+            </Provider>
+        </BrowserRouter>
     );
 }
 

@@ -3,7 +3,7 @@
 import React, {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import CartLineQtyPlusMinus from "../../cart/CartLineQtyPlusMinus";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 import { MdAdd } from "react-icons/md";
 import AddToCart from "../../cart/AddToCart";

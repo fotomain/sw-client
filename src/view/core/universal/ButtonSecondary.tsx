@@ -1,6 +1,6 @@
 import React from "react";
 import ButtonBasic from "./ButtonBasic";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 const ButtonSecondary = (props:any) => {
     return(<>

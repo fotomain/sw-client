@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 const SelectOptionSize=(props:any)=>{
     console.log("option0 props1",props)

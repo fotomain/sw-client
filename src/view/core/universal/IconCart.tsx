@@ -2,7 +2,7 @@
 
 import React from "react";
 import {CiShoppingCart} from "react-icons/ci";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 import IconMaterial from "./IconMaterial";
 
 

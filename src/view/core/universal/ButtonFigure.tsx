@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 import {MdAdd} from "react-icons/md";
 import React from "react";
 

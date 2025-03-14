@@ -4,7 +4,7 @@
 import {css} from "@emotion/react";
 import React, {useEffect, useState} from "react";
 import ButtonFigure from "../core/universal/ButtonFigure";
-import {ui} from "../HomePage";
+import {ui} from "../LayoutPage";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import IconMaterial from "../core/universal/IconMaterial";
 import {MdClose} from "react-icons/md";

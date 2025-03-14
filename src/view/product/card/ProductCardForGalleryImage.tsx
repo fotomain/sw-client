@@ -5,7 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 import {css} from "@emotion/react";
 import IconCart from "../../core/universal/IconCart";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 import {cartSlice} from "../../../redux/cart/cartSlice";
 import {uiSlice} from "../../../redux/ui/uiSlice";
 

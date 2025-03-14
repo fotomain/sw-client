@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import {ui} from "../../HomePage";
+import {ui} from "../../LayoutPage";
 
 const SelectOptionColor=(props:any)=>{
     console.log("111 props11",props)
