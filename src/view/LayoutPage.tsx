@@ -37,9 +37,6 @@ ui.oolorCardBackground=[
 
 export const LayoutPage = (params:any) => {
 
-    const [navState, setNavState] = useState({
-        makeCartViewOpen: false,
-    })
 
 
     const uiState = useSelector((state:any) => state.uiState );
@@ -50,7 +47,7 @@ export const LayoutPage = (params:any) => {
                 {/*global tests*/}
                 {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
 
-            <NavBar navState={navState} setNavState={setNavState}   />
+            <NavBar />
 
             <div css={css` z-index: 10;
                 position: relative`}>

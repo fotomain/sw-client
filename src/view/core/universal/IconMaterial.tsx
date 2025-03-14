@@ -6,6 +6,7 @@ export interface IconProps {
     icon: IconType;
     size?: number;
     color?: any;
+    onClick?: () => void;
 }
 const IconMaterial: React.FC<IconProps> = (props:IconProps) => {
     const {icon,...other} = props;

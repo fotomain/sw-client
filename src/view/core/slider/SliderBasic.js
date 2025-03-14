@@ -34,7 +34,9 @@ function SliderBasic(props) {
 
   return (
       <div className="slider-container"
-           style={{width: "600px", backgroundColor: 'red', ...props.style}}
+           style={{position:'relative',width: "600px", backgroundColor: 'red',
+               ...props.style
+            }}
       >
           {/*activeIndex {activeIndex}*/}
           <SliderSlides activeIndex={activeIndex} slidesContent={props.slidesContent}/>
@@ -57,6 +59,7 @@ function SliderBasic(props) {
                   onclick={(activeIndex) => setActiveIndex(activeIndex)}
               />
           }
+
       </div>
   );
 }

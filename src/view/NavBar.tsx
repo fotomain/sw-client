@@ -11,11 +11,10 @@ import IconMaterial from "./core/universal/IconMaterial";
 import useClickOut from "./core/functions";
 import {useDispatch, useSelector} from "react-redux";
 import {uiSlice} from "../redux/ui/uiSlice";
+import {useNavigate} from "react-router";
 
 
 const NavBar = (props:any) => {
-
-    const {navState, setNavState} = props;
 
     const dialogRef = useRef(null);
 
@@ -44,6 +43,8 @@ const NavBar = (props:any) => {
 
     console.log("uiState1",uiState)
 
+    const navigate = useNavigate()
+
     return <div
         css={css`
             position: fixed;
@@ -67,7 +68,11 @@ const NavBar = (props:any) => {
             justify-content: center;
             align-items: center;
         `}>
-            <IconMaterial  color={ui.colorMain} size={32} icon={CiGlobe}  />
+            <IconMaterial  color={ui.colorMain} size={32} icon={CiGlobe}
+                onClick={()=>{
+                    navigate(`/home`)
+                }}
+            />
         </div>
 
         <div css={css` position: relative;

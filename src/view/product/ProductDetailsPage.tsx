@@ -12,6 +12,27 @@ import {cartSlice} from "../../redux/cart/cartSlice";
 import {uiSlice} from "../../redux/ui/uiSlice";
 import {JSON_stringify} from "../../api/GlobalFunctions";
 import {useLocation, useParams} from "react-router-dom";
+import OutOfStock from "./card/OutOfStock";
+import {WrapOutOfStock} from "./card/ProductCardForGalleryImage";
+
+const WrapCTA= (cardState:any,product:any)=> {return css`
+                        cursor: pointer;
+                        pointer-events:auto;
+                        opacity: ${((!product.inStock) || (100>cardState.percentOfOptionsSelected))?0.5:1};
+                        align-self: flex-end;
+                        width: 100%;
+                        color: white;
+                        gap: 4px;
+                        flex-direction: row;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        user-select: none;
+                        //params1
+                        height: 60px;
+                        background-color: ${ui.colorMain};
+                        border: none;
+`}
 
 const ProductDetailsPage = (props:any) => {
 
@@ -98,7 +119,7 @@ const ProductDetailsPage = (props:any) => {
       display: flex;
   `}>
       <div
-          id={'images'}
+          id={'images-left1'}
           css={css`
               width: 55vw;
               //params1
@@ -148,7 +169,8 @@ const ProductDetailsPage = (props:any) => {
                       //height: 50vh;
                       //params2 
                       //display: flex; flex-direction: column; 
-                      background-color: lightgreen;
+                      //background-color: lightcyan;
+                      position: relative;
                   `}
               >
                   <SliderBasic
@@ -163,6 +185,18 @@ const ProductDetailsPage = (props:any) => {
                       }}
                       slideNumber={cardState.slideNumber}
                   />
+
+                  {(product.inStock) ? null :
+                  <div
+                      id={'out222'}
+                      css={css`${WrapOutOfStock}; 
+                          margin-left: 50%;
+                          transform: translateX(-50%);
+                      `}
+                  >
+                      <OutOfStock/>
+                  </div>
+                  }
 
               </div>
       </div>
@@ -198,25 +232,13 @@ const ProductDetailsPage = (props:any) => {
                 </div>
 
                 <div
-                    css={css`
-                        cursor: pointer;
-                        pointer-events:auto;
-                        opacity: ${(100>cardState.percentOfOptionsSelected)?0.5:1};
-                        align-self: flex-end;
-                        width: 100%;
-                        color: white;
-                        gap: 4px;
-                        flex-direction: row;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        user-select: none;
-                        //params1
-                        height: 60px;
-                        background-color: ${ui.colorMain};
-                        border: none;
-                    `}
+                    css={WrapCTA(cardState,product)}
                     onClick={()=>{
+
+                        if(!product.inStock) {
+                            window.alert("Product Out of Stock...")
+                            return
+                        }
 
                         if(100<cardState.percentOfOptionsSelected) {
                             window.alert("not all options selected!")

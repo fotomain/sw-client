@@ -8,6 +8,18 @@ import IconCart from "../../core/universal/IconCart";
 import {ui} from "../../LayoutPage";
 import {cartSlice} from "../../../redux/cart/cartSlice";
 import {uiSlice} from "../../../redux/ui/uiSlice";
+import OutOfStock from "./OutOfStock";
+
+export const WrapOutOfStock = css`
+    position: absolute;
+    z-index: 55;
+    top: 50%;
+    transform: translate(0, -50%);
+    background-color: black;
+    color: white;
+    opacity: 0.4;
+    padding: 12px;
+`
 
 const ProductCardForGalleryImage = (props:any) => {
 
@@ -43,18 +55,25 @@ const ProductCardForGalleryImage = (props:any) => {
 
 
             {(product.inStock)?null:
-            <div
-                id={'shadow111'}
-                css={css` position: absolute;
-                    z-index: 45;
-                    width: 100%;
-                    height: 100%;
-                    background-color: black;
-                    opacity: 0.2;
-                `}
-            >
-                <div>OUT OF STOCK</div>
-            </div>
+                <div
+                    css={css` position: absolute;
+                        z-index: 50;
+                        width: 100%;
+                        height: 100%;
+                        background-color: black;
+                        opacity: 0.2;
+                    `}
+                >
+                </div>
+            }
+
+            {(product.inStock) ? null :
+                <div
+                    id={'out111'}
+                    css={WrapOutOfStock}
+                >
+                    <OutOfStock/>
+                </div>
             }
 
             {(!(product.inStock && props.cardHover)) ? null :
