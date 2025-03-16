@@ -17,6 +17,8 @@ const abstractSlice=createSlice({
         deleteStarted:false,
         deleteError:'',
 
+        categories:[],
+
         [THIS_SLICE_ENTITY]:[],
         [THIS_SLICE_OPTIONS]:[]
     },
@@ -39,6 +41,11 @@ const abstractSlice=createSlice({
             state.createError=action.payload.createError;
         },
 
+
+        setCategories: (state,action) => {
+            console.log("action2",action.payload)
+            state.categories=action.payload;
+        },
 
         read: (state,action) => {
             state.isReading=true;
@@ -100,6 +107,8 @@ export const productActions = {
     delete        : abstractSlice.actions.delete,
     deleteFailure : abstractSlice.actions.deleteFailure,
     productDeleteSuccess    : abstractSlice.actions.deleteSuccess,
+
+    setCategories    : abstractSlice.actions.setCategories,
 
 
 };

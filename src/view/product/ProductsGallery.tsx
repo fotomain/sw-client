@@ -27,7 +27,7 @@ export const ProductsGallery = () => {
 
     useEffect(() => {
         console.log("dispatch1")
-        dispatch(productSlice.actions.read({scope:'all'}))
+        dispatch(productSlice.actions.read({scope:'firstCategory'}))
     }, []);
 
     const initState={
@@ -105,7 +105,8 @@ export const ProductsGallery = () => {
                 </div>
             }
 
-            <h4>{(isReading) ? 'Products Loading...' : null}</h4>
+            <h4>{(isReading && 0===productsState.productsArray.length) ? 'Products Loading...' : null}</h4>
+            <h4>{(isReading && 0!==productsState.productsArray.length) ? 'Searching...' : null}</h4>
 
             <div
                 css={css`
@@ -118,7 +119,8 @@ export const ProductsGallery = () => {
                 `}
             >
 
-                {((!isReading) && (0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
+                <div>{JSON.stringify(productsState.categories)}</div>
+                {((0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
                     return <React.Fragment key={i}>
 
                         {/*<ProductDetailsPage product={el} productIndex={i}/>*/}

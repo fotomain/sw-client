@@ -5,13 +5,20 @@ import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {productActions, productsRead, productSlice} from "./productSlice";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {READ_PRODUCTS_QUERY} from "./READ_PRODUCTS_QUERY";
+import {READ_FIRST_CATEGORY_QUERY} from "./READ_FIRST_CATEGORY_QUERY";
 
 const THIS_SAGA_ENTITY='products'
 function* workFetch(params){
     console.log('params1',params.payload)
     // const apiResponse = yield call(()=>fetch("https://api.thecatapi.com/v1/breeds"));
 
-    const q= READ_PRODUCTS_QUERY()
+    let q= READ_PRODUCTS_QUERY()
+
+    console.log('scope1', params.payload)
+    if(params.payload?.scope && "firstCategory"===params.payload?.scope){
+        q= READ_FIRST_CATEGORY_QUERY()
+    }
+
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_PRODUCTS_QUERY',
@@ -28,22 +35,32 @@ function* workFetch(params){
 
     const data_json = yield apiResponse1.json()
     const data = data_json.data.query
-    console.log('data',data)
+    console.log('data0',data)
 
     // const data = yield apiResponse.json()
     //     console.log('data0',data)
 
     let result =[]
+    if(params.payload?.scope && "firstCategory"===params.payload?.scope) {
+        result = data[0].products
+    }else{
+        result = data
+    }
+
+    console.log('result0',result)
+
     const filterName = params.payload?.filter?.name
     if(filterName){
-        result = data.filter(el=>{
+        result = result.filter(el=>{
             return -1!==el.name.indexOf(filterName)
         })
     }
-    else{
-        result = data //.slice(0,10)
-    }
+
+    console.log('result1',result)
+
+    yield put(productActions.setCategories(data[0].categories))
     yield put(productActions.readSuccess(result))
+
 }
 
 function* watchSaga(){
