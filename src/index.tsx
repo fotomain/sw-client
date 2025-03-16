@@ -11,11 +11,12 @@ import reduxStore from "./redux/reduxStore";
 import React, {Suspense} from "react";
 import {LayoutPage} from "./view/LayoutPage";
 import DataJsonGenerator from "./database/generator/DataJsonGenerator";
-import {BrowserRouter, Routes} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 
-import { Route } from "react-router-dom";
 import ProductDetailsPage from "./view/product/ProductDetailsPage";
+import ProductsGallery from "./view/product/ProductsGallery";
+
 
 const container = document.getElementById('root');
 
@@ -25,18 +26,32 @@ const generatorMode = false
 if(container) {
     const root = createRoot(container); // createRoot(container!) if you use TypeScript
     root.render(
-        <BrowserRouter
-            future={{
-                v7_startTransition: true,
-                v7_relativeSplatPath: true,
-            }}
-        >
-            <Provider store={reduxStore}>
+        <Provider store={reduxStore}>
+            <Router
+                future={{
+                    v7_startTransition: true,
+                    v7_relativeSplatPath: true,
+                }}
+            >
+                    <Routes>
 
-                <LayoutPage />
+                        <Route path='/' element={<LayoutPage />} >
 
-            </Provider>
-        </BrowserRouter>
+                            <Route index element={<ProductsGallery/>} />
+
+                            <Route path='/home' element={<ProductsGallery/>} />
+
+                            <Route
+                                path="/product"
+                                element = {<ProductDetailsPage />}
+                            />
+
+                        </Route>
+
+                    </Routes>
+
+            </Router>
+        </Provider>
     );
 }
 

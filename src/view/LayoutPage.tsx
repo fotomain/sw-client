@@ -14,7 +14,7 @@ import IconCart from "./core/universal/IconCart";
 import NavBar from "./NavBar";
 import DataJsonGenerator from "../database/generator/DataJsonGenerator";
 import {useSelector} from "react-redux";
-import {Route, Routes} from "react-router-dom";
+import {Outlet, Route, Routes} from "react-router-dom";
 import ProductDetailsPage from "./product/ProductDetailsPage";
 
 
@@ -42,43 +42,38 @@ export const LayoutPage = (params:any) => {
     const uiState = useSelector((state:any) => state.uiState );
 
     return (
-        <div css={css` justify-content:space-between; align-items:center; flex-direction: column; `}>
+        <div css={css` 
+            display:flex; flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+        `}
+        >
 
-                {/*global tests*/}
-                {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
+            {/*global tests*/}
+            {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
 
-            <NavBar />
+            <NavBar/>
 
             <div css={css` z-index: 10;
                 position: relative`}>
-
-                <Routes>
-
-                    <Route path='/' element={<ProductsGallery/>} />
-
-                    <Route path='/home' element={<ProductsGallery/>} />
-
-                    <Route
-                        path="/product"
-                        element = {<ProductDetailsPage />}
-                    />
-
-                </Routes>
 
                 {/*<ProductsGallery/>*/}
 
                 {uiState.makeOpenCartView &&
                     <div
                         id={"shadow1"}
-                        css={css` 
-                        z-index: 20;
-                        position: absolute; width:100vw; 
-                        height: 100%;
-                        min-height: 100vh;
-                        top:0;left: 0;
-                        background-color: ${(uiState.makeOpenCartView) ? 'black' : 'transparent'};
-                        opacity:0.5;
-                    `}
+                        css={css`
+                            z-index: 20;
+                            position: absolute;
+                            width: 100vw;
+                            height: 100%;
+                            min-height: 100vh;
+                            top: 0;
+                            left: 0;
+                            background-color: ${(uiState.makeOpenCartView) ? 'black' : 'transparent'};
+                            opacity: 0.5;
+                        `}
                     >
                     </div>
                 }
@@ -86,6 +81,23 @@ export const LayoutPage = (params:any) => {
 
             </div>
 
+
+            <main>
+                <Outlet/> {/* Content specific to the route will be rendered here */}
+            </main>
+
+            <footer css={css`
+                justify-self: end;
+                flex-direction:row; display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 100%;
+                padding: 25px;
+                background-color: black;
+                color: white;
+            `}>
+                Copyright by foto888999@gmail.com
+            </footer>
 
             {/*<div>HomePage1</div>*/}
 
