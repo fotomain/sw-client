@@ -30,6 +30,8 @@ export const ProductsGallery = () => {
     const  routerParams= useLocation();
     console.log("routerParams555 routerParams.pathname1",routerParams.pathname)
 
+    const categoryState = useSelector((state:any) => state.categoryState );
+
     useEffect(() => {
 
         if("/"!==routerParams.pathname) {
@@ -40,8 +42,15 @@ export const ProductsGallery = () => {
             dispatch(productSlice.actions.read({
                 category_name: tName
             }))
-            }
-        }, [routerParams.pathname]);
+        }
+        else {
+            if(0!==categoryState.categoriesArray.length) {
+                console.log("categoryState.categoriesArray1", categoryState.categoriesArray)
+                dispatch(productSlice.actions.read({
+                    category_name: categoryState.categoriesArray[0].name,
+                }))
+            }        }
+        }, [routerParams.pathname,categoryState.categoriesArray]);
 
     const initState={
         name: '',
@@ -132,7 +141,7 @@ export const ProductsGallery = () => {
                 `}
             >
 
-                <div>{JSON.stringify(productsState.categories)}</div>
+                {/*<div>{JSON.stringify(productsState.categories)}</div>*/}
                 {((0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
                     return <React.Fragment key={i}>
 

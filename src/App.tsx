@@ -1,4 +1,4 @@
-import {Route, Routes} from "react-router-dom";
+import {Navigate, Route, Routes} from "react-router-dom";
 import {LayoutPage} from "./view/LayoutPage";
 import ProductsGallery from "./view/product/ProductsGallery";
 import ProductDetailsPage from "./view/product/ProductDetailsPage";
@@ -31,7 +31,7 @@ const App = () => {
                     element = {<ProductDetailsPage />}
                 />
 
-                {(!categoryState.categoriesArray || 0===categoryState.categoriesArray.length)?null
+                {(!(categoryState.categoriesArray && (0!==categoryState.categoriesArray.length)))?null
                     :categoryState.categoriesArray.map((el:any,ii:number)=> {
                         return <Route path={'/' +el.name} element={<ProductsGallery/>} key={ii}  />
                     })
