@@ -141,7 +141,6 @@ export const ProductsGallery = () => {
                 `}
             >
 
-                {/*<div>{JSON.stringify(productsState.categories)}</div>*/}
                 {((0 !== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
                     return <React.Fragment key={i}>
 
