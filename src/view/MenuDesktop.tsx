@@ -24,7 +24,6 @@ const MenuDesktop = () => {
         dispatch(categorySlice.actions.read({}))
     }, []);
 
-
     return <menu css={css`
             cursor: pointer;
             margin-right: auto; //background-color:red;
