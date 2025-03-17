@@ -8,10 +8,11 @@ import {dividerClasses} from "@mui/material";
 import {css} from "@emotion/react";
 import {ui} from "./LayoutPage";
 import {uiSlice} from "../redux/ui/uiSlice";
+import {NavigateOptions, useNavigate} from "react-router";
 
 const MenuDesktop = () => {
 
-    //
+    const navigate = useNavigate()
 
     const dispatch = useDispatch();
     const uiState = useSelector((state:any) => state.uiState );
@@ -29,38 +30,44 @@ const MenuDesktop = () => {
             margin-right: auto; //background-color:red;
             margin-left: 12px;         
             justify-content:flex-start; flex-direction:row; display: flex; padding: 0; width: auto;` } >
-        {/*<div>{JSON.stringify(uiState.menuActiveNumber)}</div>*/}
-        <ul
-            css={css`
-                margin-left: 0;
-                padding: 0;
-                width:auto;
-                list-style-type: none;
-                justify-content: start;
-                align-items: center;
-                gap: 12px;
-                flex-direction: row;
-                display: flex;
-            `}
-        >
-            {!(categoryState.categoriesArray && categoryState.categoriesArray.length>0)?null
-                :categoryState.categoriesArray.map((el:any,ii:number)=>{
-                return <li css={css`
-                    height: 28px;
-                    border-bottom: 1px solid ${(ii===uiState.menuActiveNumber)?ui.colorMain:'transparent'};
-                    color: ${(ii===uiState.menuActiveNumber)?ui.colorMain:'black'};
+        {/*<div>{JSON.stringify(uiState.menuActiveItem)}</div>*/}
+            <ul
+                css={css`
+                    margin-left: 0;
+                    padding: 0;
+                    width:auto;
+                    list-style-type: none;
+                    justify-content: start;
+                    align-items: center;
+                    gap: 12px;
+                    flex-direction: row;
+                    display: flex;
                 `}
-                           onClick={()=>{
-                               dispatch(uiSlice.actions.setValue({
-                                   key:"menuActiveNumber",
-                                   value: ii,
-                               }))
-                           }}
-                >
-                    {el.display_name.toUpperCase()}
-                </li>
-            })}
-        </ul>
+            >
+                {!(categoryState.categoriesArray && categoryState.categoriesArray.length>0)?null
+                    :categoryState.categoriesArray.map((el:any,ii:number)=>{
+                        return <li css={css`
+                        height: 28px;
+                        border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'transparent'};
+                        color: ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'black'};
+                    `}
+                               onClick={()=>{
+                                   dispatch(uiSlice.actions.setValue({
+                                       key:"menuActiveItem",
+                                       value: {menuNumber:ii, category_name:el.name},
+                                   }))
+
+                                   navigate(`/home`,
+                                       { state: {category_name:el.name} } as NavigateOptions
+                                   )
+
+                               }}
+
+                    >
+                        {el.display_name.toUpperCase()}
+                    </li>
+                })}
+            </ul>
   </menu>
 }
 

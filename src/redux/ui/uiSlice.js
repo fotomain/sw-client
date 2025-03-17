@@ -21,7 +21,7 @@ const abstractSlice=createSlice({
         [THIS_SLICE_OPTIONS]:[],
 
         makeOpenCartView:false,
-        menuActiveNumber:0,
+        menuActiveItem:{menuNumber:0, category_name:''},
 
     },
     reducers:{

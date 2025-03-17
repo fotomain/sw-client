@@ -11,6 +11,7 @@ import ClassWooEntity from "../../api/WooEntityRoot";
 
 import {css} from "@emotion/react";
 import ProductCardForGallery from "./card/ProductCardForGallery";
+import {useLocation} from "react-router-dom";
 
 const debug_local=true
 export const ProductsGallery = () => {
@@ -24,6 +25,9 @@ export const ProductsGallery = () => {
     const dispatch = useDispatch();
 
     const classes = useStyles();
+
+    const  routerParams= useLocation();
+    console.log("routerParams555 home",routerParams)
 
     useEffect(() => {
         console.log("dispatch1")
