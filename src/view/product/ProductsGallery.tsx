@@ -12,6 +12,7 @@ import ClassWooEntity from "../../api/WooEntityRoot";
 import {css} from "@emotion/react";
 import ProductCardForGallery from "./card/ProductCardForGallery";
 import {useLocation} from "react-router-dom";
+import {capitalizeFirstLetter} from "../../redux/product/READ_PRODUCTS_QUERY";
 
 const debug_local=true
 export const ProductsGallery = () => {
@@ -27,12 +28,20 @@ export const ProductsGallery = () => {
     const classes = useStyles();
 
     const  routerParams= useLocation();
-    console.log("routerParams555 home",routerParams)
+    console.log("routerParams555 routerParams.pathname1",routerParams.pathname)
 
     useEffect(() => {
-        console.log("dispatch1")
-        dispatch(productSlice.actions.read({scope:'firstCategory'}))
-    }, []);
+
+        if("/"!==routerParams.pathname) {
+            let tName = routerParams.pathname.replace("/", "")
+            tName = ('all' === tName) ? '' : tName
+            tName = capitalizeFirstLetter(tName)
+
+            dispatch(productSlice.actions.read({
+                category_name: tName
+            }))
+            }
+        }, [routerParams.pathname]);
 
     const initState={
         name: '',

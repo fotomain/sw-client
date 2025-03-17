@@ -1,7 +1,16 @@
 
-export const READ_PRODUCTS_QUERY =()=> { return  `                            
+export const capitalizeFirstLetter = (s:any)=> {
+    return String(s).charAt(0).toUpperCase() + String(s).slice(1);
+}
+
+export const READ_PRODUCTS_QUERY =(params:any)=> {
+
+    let category_name=''
+    if(params.category_name){ category_name=capitalizeFirstLetter(params.category_name) }
+
+    return  `                            
                             {
-                                query: readProducts (
+                                query: readProducts${category_name} (
                                     orderBy:"price ASC, name DESC",
                                     filters: { product_id: "1", inStock: false , option_id_set:[111,222,333]}
                                 ) 

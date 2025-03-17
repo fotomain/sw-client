@@ -12,13 +12,9 @@ function* workFetch(params){
     console.log('params1',params.payload)
     // const apiResponse = yield call(()=>fetch("https://api.thecatapi.com/v1/breeds"));
 
-    let q= READ_PRODUCTS_QUERY()
+    let q= READ_PRODUCTS_QUERY(params.payload);
 
-    console.log('scope1', params.payload)
-    if(params.payload?.scope && "firstCategory"===params.payload?.scope){
-        q= READ_FIRST_CATEGORY_QUERY()
-    }
-
+    console.log("q1",q)
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_PRODUCTS_QUERY',
@@ -28,24 +24,11 @@ function* workFetch(params){
     console.log("=== apiResponse1",apiResponse1)
     let apiResponse = apiResponse1
 
-    // const apiResponse = yield call(()=>
-    //     fetch(
-    //         "https://api.thecatapi.com/v1/breeds"
-    //     ));
-
     const data_json = yield apiResponse1.json()
     const data = data_json.data.query
     console.log('data0',data)
 
-    // const data = yield apiResponse.json()
-    //     console.log('data0',data)
-
-    let result =[]
-    if(params.payload?.scope && "firstCategory"===params.payload?.scope) {
-        result = data[0].products
-    }else{
-        result = data
-    }
+    let result = data
 
     console.log('result0',result)
 

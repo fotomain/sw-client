@@ -16,6 +16,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import ProductDetailsPage from "./view/product/ProductDetailsPage";
 import ProductsGallery from "./view/product/ProductsGallery";
+import App from "./App";
 
 
 const container = document.getElementById('root');
@@ -33,22 +34,8 @@ if(container) {
                     v7_relativeSplatPath: true,
                 }}
             >
-                    <Routes>
 
-                        <Route path='/' element={<LayoutPage />} >
-
-                            <Route index element={<ProductsGallery/>} />
-
-                            <Route path='/home' element={<ProductsGallery/>} />
-
-                            <Route
-                                path="/product"
-                                element = {<ProductDetailsPage />}
-                            />
-
-                        </Route>
-
-                    </Routes>
+                <App/>
 
             </Router>
         </Provider>

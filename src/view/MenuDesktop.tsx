@@ -19,12 +19,6 @@ const MenuDesktop = () => {
 
     const categoryState = useSelector((state:any) => state.categoryState );
 
-    console.log("categoryState1",categoryState)
-
-    useEffect(() => {
-        dispatch(categorySlice.actions.read({}))
-    }, []);
-
     return <menu css={css`
             cursor: pointer;
             margin-right: auto; //background-color:red;
@@ -44,22 +38,21 @@ const MenuDesktop = () => {
                     display: flex;
                 `}
             >
-                {!(categoryState.categoriesArray && categoryState.categoriesArray.length>0)?null
+                {(0===categoryState.categoriesArray.length)?null
                     :categoryState.categoriesArray.map((el:any,ii:number)=>{
-                        return <li css={css`
-                        height: 28px;
-                        border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'transparent'};
-                        color: ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'black'};
-                    `}
+                        return <li key={ii}
+                            css={css`
+                            height: 28px;
+                            border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'transparent'};
+                            color: ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'black'};
+                            `}
                                onClick={()=>{
                                    dispatch(uiSlice.actions.setValue({
                                        key:"menuActiveItem",
                                        value: {menuNumber:ii, category_name:el.name},
                                    }))
 
-                                   navigate(`/home`,
-                                       { state: {category_name:el.name} } as NavigateOptions
-                                   )
+                                   navigate(`/`+el.name )
 
                                }}
 
