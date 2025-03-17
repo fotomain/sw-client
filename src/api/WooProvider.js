@@ -126,7 +126,7 @@ export default class WooCommerceProvider {
     res_url = res_url.replace('products?id=','products/')
     res_url = res_url.replace('attributes?id=','attributes/')
     res_url = res_url.replace('products/tags?id=','products/tags/')
-    res_url = res_url.replace('products/categories?id=','products/categories/')
+    res_url = res_url.replace('products/categories?id=','products/category/')
 
     if('delete'===method ) res_url = res_url+'?force=true'
 

@@ -12,6 +12,7 @@ import useClickOut from "./core/functions";
 import {useDispatch, useSelector} from "react-redux";
 import {uiSlice} from "../redux/ui/uiSlice";
 import {useNavigate} from "react-router";
+import MenuDesktop from "./MenuDesktop";
 
 
 const NavBar = (props:any) => {
@@ -45,7 +46,7 @@ const NavBar = (props:any) => {
 
     const navigate = useNavigate()
 
-    return <div
+    return <nav
         css={css`
             position: fixed;
             z-index: 200;
@@ -63,7 +64,7 @@ const NavBar = (props:any) => {
 
         `}
     >
-        <div css={css` background-color: transparent
+        <div css={css` background-color: transparent;
             flex-direction: row;
             justify-content: center;
             align-items: center;
@@ -74,6 +75,10 @@ const NavBar = (props:any) => {
                 }}
             />
         </div>
+
+
+        <MenuDesktop/>
+
 
         <div css={css` position: relative;
             border: none;
@@ -226,7 +231,7 @@ const NavBar = (props:any) => {
             {/*    </dialog>*/}
             {/*</div>*/}
 
-        </div>
+        </nav>
 
         }
 

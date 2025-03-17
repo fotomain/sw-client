@@ -8,6 +8,7 @@ import {productSagaDelete} from "./product/productSagaDelete";
 import {cartSagaRead} from "./cart/cartSagaRead";
 import {cartSagaCreate} from "./cart/cartSagaCreate";
 import {cartSagaDelete} from "./cart/cartSagaDelete";
+import {categorySagaRead} from "./category/categorySagaRead";
 
 export default function* rootSaga() {
 	yield all([
@@ -16,6 +17,7 @@ export default function* rootSaga() {
 		...productSagaDelete,
 		...cartSagaCreate,
 		...cartSagaRead,
-		...cartSagaDelete
+		...cartSagaDelete,
+		...categorySagaRead
 	]);
 }

@@ -1,8 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
-const THIS_SLICE_ENTITY = 'uiData'
-const THIS_SLICE_OPTIONS = 'uiOptionsArray'
-const THIS_SLICE_NAME = 'uiSlice'
+const THIS_SLICE_ENTITY = 'categoriesArray'
+const THIS_SLICE_NAME = 'categorySlice'
 
 const abstractSlice=createSlice({
     name: THIS_SLICE_NAME,
@@ -17,24 +16,16 @@ const abstractSlice=createSlice({
         deleteStarted:false,
         deleteError:'',
 
-        [THIS_SLICE_ENTITY]:{},
-        [THIS_SLICE_OPTIONS]:[],
-
-        makeOpenCartView:false,
-        menuActiveNumber:0,
-
+        [THIS_SLICE_ENTITY]:[],
     },
     reducers:{
-        setValue: (state, action) => {
-            state[action.payload.key] = action.payload.value;
-        },
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== ui_ isCreating1",action);
+            console.log("=== category_ isCreating1",action);
         },
         create: (state,action) => {
-            console.log("=== ui_ createExecute true ",action);
+            console.log("=== category_ createExecute true ",action);
         },
         createSuccess: (state,action) => {
             console.log("createSuccess action1",action.payload)
@@ -81,7 +72,7 @@ const abstractSlice=createSlice({
     }
 })
 
-export const uiActions = {
+export const categoryActions = {
 
     createStart             : abstractSlice.actions.createStart ,
     create                  : abstractSlice.actions.create,
@@ -91,16 +82,15 @@ export const uiActions = {
     readSuccess : abstractSlice.actions.readSuccess,
     readFailure : abstractSlice.actions.readFailure,
 
-    deleteStart     : abstractSlice.actions.deleteStart,
-    delete          : abstractSlice.actions.delete,
-    deleteFailure   : abstractSlice.actions.deleteFailure,
-    deleteSuccess   : abstractSlice.actions.deleteSuccess,
+    deleteStart   : abstractSlice.actions.deleteStart,
+    delete        : abstractSlice.actions.delete,
+    deleteFailure : abstractSlice.actions.deleteFailure,
+    deleteSuccess : abstractSlice.actions.deleteSuccess,
 
-    setValue        : abstractSlice.actions.setValue,
 
 };
 
-export const uiSlice=abstractSlice
+export const categorySlice=abstractSlice
 
-export const uiReducer=abstractSlice.reducer
+export const categoryReducer=abstractSlice.reducer
 
