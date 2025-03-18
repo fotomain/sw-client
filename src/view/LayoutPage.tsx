@@ -60,11 +60,15 @@ export const LayoutPage = (params:any) => {
 
                 {/*<ProductsGallery/>*/}
 
+                <main>
+                    <Outlet/> {/* Content specific to the route will be rendered here */}
+                </main>
+
                 {uiState.makeOpenCartView &&
                     <div
                         id={"shadow1"}
                         css={css`
-                            z-index: 20;
+                            z-index: 200;
                             position: absolute;
                             width: 100vw;
                             height: 100%;
@@ -82,13 +86,10 @@ export const LayoutPage = (params:any) => {
             </div>
 
 
-            <main>
-                <Outlet/> {/* Content specific to the route will be rendered here */}
-            </main>
-
             <footer css={css`
                 justify-self: end;
-                flex-direction:row; display: flex;
+                flex-direction: row;
+                display: flex;
                 justify-content: center;
                 align-items: center;
                 width: 100%;
