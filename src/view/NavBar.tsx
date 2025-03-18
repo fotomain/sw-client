@@ -13,6 +13,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {uiSlice} from "../redux/ui/uiSlice";
 import {useNavigate} from "react-router";
 import MenuDesktop from "./MenuDesktop";
+import InputSearchNavBar from "./product/InputSearchNavBar";
 
 
 const NavBar = (props:any) => {
@@ -33,30 +34,24 @@ const NavBar = (props:any) => {
 
     const cartStateGlobal = useSelector((state:any) => state.cartState );
 
-    // useEffect(() => {
-    //     console.log('cartStateGlobal?.cartArray?.cart_lines1',cartStateGlobal?.cartArray?.cart_lines)
-    // }, [cartStateGlobal?.cartArray?.cart_lines]);
-
-    //============== makeCartViewOpen
-    //============== makeCartViewOpen
-    //============== makeCartViewOpen
     const dispatch = useDispatch();
 
-    console.log("uiState1",uiState)
-
     const navigate = useNavigate()
+
+    const productsState = useSelector((state:any) => state.productsState );
+    const isReading = useSelector((state:any) => state.productsState.isReading);
 
     return <nav
         css={css`
             position: fixed;
             z-index: 200;
-            background-color: white;
+            //background-color: red;
             width: 100vw;
-            height: 6vh;
-            padding-left: 12px;
-            padding-right: 12px;
+            height: 8vh;
+            //padding-left: 80px;
+            //padding-right: 88px;
             display: flex;
-            flex-direction:row;
+            flex-direction: row;
             justify-content: space-between;
             align-items: center;
 
@@ -64,108 +59,113 @@ const NavBar = (props:any) => {
 
         `}
     >
-        <div css={css` background-color: transparent;
+        <div css={css`
+            margin-left: 24px;
+            background-color: transparent;
             flex-direction: row;
             justify-content: center;
             align-items: center;
         `}>
-            <IconMaterial  color={ui.colorMain} size={32} icon={CiGlobe}
-                onClick={()=>{
-                    navigate(`/home`)
-                }}
+            <IconMaterial color={ui.colorMain} size={32} icon={CiGlobe}
+                          onClick={() => {
+                              navigate(`/home`)
+                          }}
             />
         </div>
 
 
         <MenuDesktop/>
 
+        <InputSearchNavBar/>
 
         <div css={css` position: relative;
-            border: none;
+            //border: none;
             //background-color: red;
             cursor: pointer;
+            margin-right: 24px;
         `}
         >
 
-            <div css={css`
-                right: 4rem;
-                top: -12px;
-                position: absolute;
-            `}>
-                <IconCart
+            <IconCart
 
-                    id={'iconCart1'}
-                    onClick={() => {
+                id={'iconCart1'}
+                onClick={() => {
                     console.log("setCartViewOpen1")
 
-                        dispatch(uiSlice.actions.setValue({
-                            key:"makeOpenCartView",
-                            value: !uiState.makeOpenCartView,
-                        }))
+                    dispatch(uiSlice.actions.setValue({
+                        key: "makeOpenCartView",
+                        value: !uiState.makeOpenCartView,
+                    }))
 
                 }}/>
 
-                {(0===cartStateGlobal?.cartArray?.cart_lines?.length)?null:
+            <div css={css`
+                right: 2rem;
+                top: -1px;
+                position: absolute;
+            `}>
+
+                {(0 === cartStateGlobal?.cartArray?.cart_lines?.length) ? null :
                     <div
-                    id={'iconBubble1'}
-                    css={css`
-                    position: absolute;
-                    background-color: fuchsia;
-                    width: auto;
-                    //width: 1rem;
-                    //top: -.5rem;
-                    //right: -0.6rem;
-                        font-size: .8rem;
-                        top: -.9rem;
-                        right: -2rem;
-                        padding-top: 2px;
-                        padding-bottom: 2px;
-                        padding-left: 5px;
-                        padding-right: 5px;
-                    height: 1rem;
-                    border-radius: 50px;
-                    color: white;
-                    display: flex;
-                    flex-direction: row;
-                    justify-content: start;
-                    align-items: center;
-                `}
-                    onClick={()=>{
+                        id={'iconBubble1'}
+                        css={css`
+                            position: absolute;
+                            background-color: fuchsia;
+                            width: auto;
+                            //width: 1rem;
+                            //top: -.5rem;
+                            //right: -0.6rem;
+                            font-size: .8rem;
+                            top: -.9rem;
+                            right: -2rem;
+                            padding-top: 2px;
+                            padding-bottom: 2px;
+                            padding-left: 5px;
+                            padding-right: 5px;
+                            height: 1rem;
+                            border-radius: 50px;
+                            color: white;
+                            display: flex;
+                            flex-direction: row;
+                            justify-content: start;
+                            align-items: center;
+                        `}
+                        onClick={() => {
 
-                        dispatch(uiSlice.actions.setValue({
-                            key:"makeOpenCartView",
-                            value: !uiState.makeOpenCartView,
-                        }))
+                            dispatch(uiSlice.actions.setValue({
+                                key: "makeOpenCartView",
+                                value: !uiState.makeOpenCartView,
+                            }))
 
-                    }}
-                >
-                    <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
-                    <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length)?' item':'items'}</div>
-                </div>
+                        }}
+                    >
+                        <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
+                        <div>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? ' item' : 'items'}</div>
+                    </div>
                 }
 
                 <dialog open={uiState.makeOpenCartView}
                         ref={dialogRef}
-                        css={css` 
-                            position: absolute; 
+                        css={css`
+                            position: absolute;
                             z-index: 20;
-                            
+
                             //TODO params1
                             width: 250px;
                             min-width: 250px;
                             background-color: white;
                             // - width of IconCart - shift of the tip
-                            margin-right: calc(100% - 24px - 0.6rem); 
-                            
+                            margin-right: calc(100% - 24px - 0.6rem);
+
                             border: none;
                             animation: fadein .5s ease-in forwards;
 
-                            @keyframes fadein{
-                                0%{
-                                    opacity:0;
+                            @keyframes fadein {
+                                0% {
+                                    opacity: 0;
                                 }
-                                100%{
-                                    opacity:1;
+                                100% {
+                                    opacity: 1;
                                     //background-color: green;
                                 }
                             }
@@ -196,43 +196,43 @@ const NavBar = (props:any) => {
         {/*        <IconCart onClick={() => {*/}
         {/*            console.log("setCartViewOpen=true")*/}
         {/*            setNavState((prevState: any) => {*/}
-            {/*                return {*/}
-            {/*                    ...prevState,*/}
-            {/*                    makeCartViewOpen: !prevState.makeCartViewOpen*/}
-            {/*                }*/}
-            {/*            })*/}
-            {/*            // setCartViewOpen=true*/}
-            {/*        }}/>*/}
-            {/*        <div css={css` background-color: fuchsia;*/}
-            {/*            position: absolute;*/}
-            {/*            width: 1rem;*/}
-            {/*            height: 1rem;*/}
-            {/*            border-radius: 50px;*/}
-            {/*            top: -.5rem;*/}
-            {/*            right: -0.6rem;*/}
-            {/*            color: white;*/}
-            {/*            display: flex;*/}
-            {/*            flex-direction: row;*/}
-            {/*            justify-content: center;*/}
-            {/*            align-items: center;*/}
-            {/*        `}>*/}
-            {/*            1*/}
-            {/*        </div>*/}
-            {/*    </button>*/}
-            {/*    <dialog open={navState.makeCartViewOpen} onClose={() => {*/}
-            {/*    }}*/}
-            {/*            css={css` z-index: 20;*/}
-            {/*                width: 25vw;*/}
-            {/*                background-color: white `}*/}
-            {/*    >*/}
-            {/*        <div>line 1</div>*/}
-            {/*        <div>line 1</div>*/}
-            {/*        <div>line 1</div>*/}
-            {/*    </dialog>*/}
-            {/*</div>*/}
+        {/*                return {*/}
+        {/*                    ...prevState,*/}
+        {/*                    makeCartViewOpen: !prevState.makeCartViewOpen*/}
+        {/*                }*/}
+        {/*            })*/}
+        {/*            // setCartViewOpen=true*/}
+        {/*        }}/>*/}
+        {/*        <div css={css` background-color: fuchsia;*/}
+        {/*            position: absolute;*/}
+        {/*            width: 1rem;*/}
+        {/*            height: 1rem;*/}
+        {/*            border-radius: 50px;*/}
+        {/*            top: -.5rem;*/}
+        {/*            right: -0.6rem;*/}
+        {/*            color: white;*/}
+        {/*            display: flex;*/}
+        {/*            flex-direction: row;*/}
+        {/*            justify-content: center;*/}
+        {/*            align-items: center;*/}
+        {/*        `}>*/}
+        {/*            1*/}
+        {/*        </div>*/}
+        {/*    </button>*/}
+        {/*    <dialog open={navState.makeCartViewOpen} onClose={() => {*/}
+        {/*    }}*/}
+        {/*            css={css` z-index: 20;*/}
+        {/*                width: 25vw;*/}
+        {/*                background-color: white `}*/}
+        {/*    >*/}
+        {/*        <div>line 1</div>*/}
+        {/*        <div>line 1</div>*/}
+        {/*        <div>line 1</div>*/}
+        {/*    </dialog>*/}
+        {/*</div>*/}
 
-        </nav>
+    </nav>
 
-        }
+}
 
-        export default NavBar;
+export default NavBar;

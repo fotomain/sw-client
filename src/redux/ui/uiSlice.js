@@ -21,6 +21,7 @@ const abstractSlice=createSlice({
         [THIS_SLICE_OPTIONS]:[],
 
         makeOpenCartView:false,
+        globalSearchText:'',
         menuActiveItem:{menuNumber:0, category_name:''},
 
     },

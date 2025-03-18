@@ -25,7 +25,7 @@ export const ProductsGallery = () => {
     const deleteError = useSelector((state:any) => state.productsState.deleteError);
     const dispatch = useDispatch();
 
-    const classes = useStyles();
+
 
     const  routerParams= useLocation();
     console.log("routerParams555 routerParams.pathname1",routerParams.pathname)
@@ -59,76 +59,24 @@ export const ProductsGallery = () => {
     }
     const [state, setState] = useState(initState);
 
-    const handleSubmit = (e:any) => {
-        e.preventDefault();
-    };
+    const uiState = useSelector((state:any) => state.uiState );
 
     useEffect(() => {
-        if(0!==state.stateMoment) {
-            console.log('=== state.name', state.name)
-            //dispatch(getMovies(name));
-            dispatch(productActions.read({filter: {name: state.name}}))
-        }}, [state.name]);
+            console.log('=== globalSearchText1', uiState.globalSearchText)
+            dispatch(productActions.read({filter: {name: uiState.globalSearchText}}))
+        },
+        [uiState.globalSearchText]
+    );
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center',
             // NavBar
             paddingTop:'45px'
         }}>
-            <h3 className={classes.title}>Products</h3>
-            <h4>{(deleteStarted) ? 'Serverside delete started...' : null}</h4>
-            <h4>{(deleteError) ? 'deleteError ' + deleteError : null}</h4>
 
-            <form className={classes.form} onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    // fullWidth
-                    value={state.name}
-                    // sx={{ m: 1, width: '55ch' }}
-                    onChange={(e: any) => setState((prevState) => {
-                        return ({
-                            ...prevState,
-                            name: e.target.value,
-                            stateMoment: Date.now()
-                        })
-                    })}
-                />
-                {/*{error && <p className={classes.error}>{error}</p>}*/}
-            </form>
-
-
-            {((isReading)) ? null :
-                <div style={{display: 'flex', flexDirection: 'row', gap: '8px'}}>
-                    <Button
-                        variant={"contained"}
-                        onClick={async () => {
-
-                            const runParams = {
-                                all: true,
-                                // 'search':'Pork',
-                                'id': 6791,
-                                // 'entity_guid':'prod735x4',
-                                'per_page': 100,
-                                'page': 1,
-                            }
-
-                            console.log("res1")
-                            const woo_products = new ClassWooEntity('products')
-                            const readDataAll = await woo_products.read(
-                                runParams
-                            )
-
-                            console.log("██████ readDataAll", readDataAll.data)
-
-                        }}
-                    >
-                        READ ALL
-                    </Button>
-                </div>
-            }
 
             <h4>{(isReading && 0===productsState.productsArray.length) ? 'Products Loading...' : null}</h4>
-            <h4>{(isReading && 0!==productsState.productsArray.length) ? 'Searching...' : null}</h4>
+
 
             <div
                 css={css`
