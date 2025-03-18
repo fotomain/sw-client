@@ -90,7 +90,9 @@ const ProductCardForGalleryImage = (props:any) => {
                         css={css` padding: 10px;
                             border-radius: 50px;
                             background-color: ${ui.colorMain}`}
-                        onClick={() => {
+                        onClick={(e:any) => {
+                            e.stopPropagation()
+
                             console.log("setCartViewOpen=true")
 
                             let optionsSelected:any = {}

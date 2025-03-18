@@ -61,7 +61,8 @@ export const LayoutPage = (params:any) => {
 
             <NavBar/>
 
-            <div css={css` z-index: 10;
+            <div css={css` 
+                z-index: 10;
                 position: relative`}>
 
                 {/*<ProductsGallery/>*/}
@@ -71,7 +72,8 @@ export const LayoutPage = (params:any) => {
                 </main>
 
                 {(!isReading) ? null :
-                    <div css={css` top: 45vh;
+                    <div css={css` 
+                        top: 45vh;
                         left: 50vw;
                         transform: translate(-50%);
                         z-index: 300;
@@ -89,8 +91,7 @@ export const LayoutPage = (params:any) => {
                             width: 100vw;
                             height: 100%;
                             min-height: 100vh;
-                            top: 0;
-                            left: 0;
+                            top:0;
                             background-color: ${(uiState.makeOpenCartView) ? 'black' : 'transparent'};
                             opacity: 0.5;
                         `}

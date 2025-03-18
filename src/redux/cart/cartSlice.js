@@ -18,7 +18,10 @@ const abstractSlice=createSlice({
         deleteError:'',
 
         [THIS_SLICE_ENTITY]:{},
-        [THIS_SLICE_OPTIONS]:[]
+        [THIS_SLICE_OPTIONS]:[],
+
+        isEmpty:true,
+
     },
     reducers:{
         createStart: (state,action) => {
@@ -30,15 +33,15 @@ const abstractSlice=createSlice({
             console.log("=== cart_ createExecute true ",action);
         },
         createSuccess: (state,action) => {
-            console.log("createSuccess action1",action.payload)
+            console.log("createSuccess action8",action.payload.cart_lines?.length, action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
+            state.isEmpty=(action.payload.cart_lines?.length===0);
             state.createStarted=false;
         },
         createFailure: (state,action) => {
             state.isReading=false;
             state.createError=action.payload.createError;
         },
-
 
         read: (state,action) => {
             state.isReading=true;
@@ -47,6 +50,7 @@ const abstractSlice=createSlice({
         readSuccess: (state,action) => {
             console.log("readSuccess action1",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
+            state.isEmpty=(action.payload.cart_lines?.length===0);
             state.isReading=false;
         },
         readFailure: (state,action) => {
@@ -63,7 +67,9 @@ const abstractSlice=createSlice({
             state.deleteStarted=false;
         },
         deleteSuccess: (state,action) => {
+            console.log("delete8 action.payload",action.payload)
             state[THIS_SLICE_ENTITY]=action.payload;
+            state.isEmpty=(action.payload.cart_lines?.length===0);
             state.deleteStarted=false;
         },
         deleteFailure: (state,action) => {

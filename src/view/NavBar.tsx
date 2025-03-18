@@ -33,6 +33,7 @@ const NavBar = (props:any) => {
     );
 
     const cartStateGlobal = useSelector((state:any) => state.cartState );
+    // console.log("cartStateGlobal8",cartStateGlobal)
 
     const dispatch = useDispatch();
 
@@ -41,11 +42,13 @@ const NavBar = (props:any) => {
     const productsState = useSelector((state:any) => state.productsState );
     const isReading = useSelector((state:any) => state.productsState.isReading);
 
+    const css1 = css` pointer-events: none; `
+
     return <nav
         css={css`
             position: fixed;
             z-index: 200;
-            //background-color: red;
+            background-color: white;
             width: 100vw;
             height: 8vh;
             //padding-left: 80px;
@@ -78,22 +81,27 @@ const NavBar = (props:any) => {
 
         <InputSearchNavBar/>
 
+        {/*<div>isEmpty{JSON.stringify(cartStateGlobal.isEmpty)}</div>*/}
+
         <div css={css` position: relative;
             //border: none;
             //background-color: red;
             cursor: pointer;
             margin-right: 24px;
         `}
+
         >
 
             <IconCart
-
+                color={(cartStateGlobal.isEmpty) ? 'grey' : ui.colorMain}
                 id={'iconCart1'}
                 onClick={() => {
-                    console.log("setCartViewOpen1")
+
+                    if (cartStateGlobal.isEmpty) return
+                    console.log("setCartViewOpen1", cartStateGlobal.cartArray.length)
 
                     dispatch(uiSlice.actions.setValue({
-                        key:makeOpenCartView,
+                        key: makeOpenCartView,
                         value: !uiState.makeOpenCartView,
                     }))
 
@@ -105,7 +113,7 @@ const NavBar = (props:any) => {
                 position: absolute;
             `}>
 
-                {(0 === cartStateGlobal?.cartArray?.cart_lines?.length) ? null :
+                {(cartStateGlobal.isEmpty) ? null :
                     <div
                         id={'iconBubble1'}
                         css={css`
@@ -133,7 +141,7 @@ const NavBar = (props:any) => {
                         onClick={() => {
 
                             dispatch(uiSlice.actions.setValue({
-                                key:makeOpenCartView,
+                                key: makeOpenCartView,
                                 value: !uiState.makeOpenCartView,
                             }))
 
@@ -180,56 +188,6 @@ const NavBar = (props:any) => {
             </div>
 
         </div>
-
-
-        {/*<div css={css` position: relative;*/}
-        {/*    border: none;*/}
-        {/*    background-color: transparent;*/}
-        {/*    cursor: pointer;  `}>*/}
-
-        {/*<button css={css` position: relative;*/}
-        {/*    border: none;*/}
-        {/*    background-color: transparent;*/}
-        {/*        cursor: pointer;  `}*/}
-        {/*            data-testid='cart-btn'*/}
-        {/*    >*/}
-        {/*        <IconCart onClick={() => {*/}
-        {/*            console.log("setCartViewOpen=true")*/}
-        {/*            setNavState((prevState: any) => {*/}
-        {/*                return {*/}
-        {/*                    ...prevState,*/}
-        {/*                    makeCartViewOpen: !prevState.makeCartViewOpen*/}
-        {/*                }*/}
-        {/*            })*/}
-        {/*            // setCartViewOpen=true*/}
-        {/*        }}/>*/}
-        {/*        <div css={css` background-color: fuchsia;*/}
-        {/*            position: absolute;*/}
-        {/*            width: 1rem;*/}
-        {/*            height: 1rem;*/}
-        {/*            border-radius: 50px;*/}
-        {/*            top: -.5rem;*/}
-        {/*            right: -0.6rem;*/}
-        {/*            color: white;*/}
-        {/*            display: flex;*/}
-        {/*            flex-direction: row;*/}
-        {/*            justify-content: center;*/}
-        {/*            align-items: center;*/}
-        {/*        `}>*/}
-        {/*            1*/}
-        {/*        </div>*/}
-        {/*    </button>*/}
-        {/*    <dialog open={navState.makeCartViewOpen} onClose={() => {*/}
-        {/*    }}*/}
-        {/*            css={css` z-index: 20;*/}
-        {/*                width: 25vw;*/}
-        {/*                background-color: white `}*/}
-        {/*    >*/}
-        {/*        <div>line 1</div>*/}
-        {/*        <div>line 1</div>*/}
-        {/*        <div>line 1</div>*/}
-        {/*    </dialog>*/}
-        {/*</div>*/}
 
     </nav>
 

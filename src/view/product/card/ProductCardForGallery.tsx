@@ -27,6 +27,7 @@ const ProductCardForGallery = (props:any) => {
 
     return(
         <div css={css`
+            z-index: 80;
             width: 30vw;
             height: auto;
             flex-direction: column; display: flex;
@@ -43,7 +44,8 @@ const ProductCardForGallery = (props:any) => {
                  setCardHover(false)
              }}
 
-             onClick={()=> {
+             onClick={(e:any)=> {
+                 // e.preventDefault();
                  navigate(`/product`,
                      { state: {product: product, productIndex:productIndex} } as NavigateOptions
                  )
