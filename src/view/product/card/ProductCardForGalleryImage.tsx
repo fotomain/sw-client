@@ -7,7 +7,7 @@ import {css} from "@emotion/react";
 import IconCart from "../../core/universal/IconCart";
 import {ui} from "../../LayoutPage";
 import {cartSlice} from "../../../redux/cart/cartSlice";
-import {uiSlice} from "../../../redux/ui/uiSlice";
+import {makeOpenCartView, uiSlice} from "../../../redux/ui/uiSlice";
 import OutOfStock from "./OutOfStock";
 
 export const WrapOutOfStock = css`
@@ -112,7 +112,7 @@ const ProductCardForGalleryImage = (props:any) => {
                             }))
 
                             dispatch(uiSlice.actions.setValue({
-                                key:"makeOpenCartView",
+                                key:makeOpenCartView,
                                 value: true,
                             }))
 

@@ -62,7 +62,6 @@ export const ProductsGallery = () => {
     const uiState = useSelector((state:any) => state.uiState );
 
     useEffect(() => {
-            console.log('=== globalSearchText1', uiState.globalSearchText)
             dispatch(productActions.read({filter: {name: uiState.globalSearchText}}))
         },
         [uiState.globalSearchText]

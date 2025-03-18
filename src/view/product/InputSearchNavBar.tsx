@@ -5,7 +5,7 @@ import React, {useDeferredValue, useEffect, useState} from "react";
 import {css} from "@emotion/react";
 import {ui} from "../LayoutPage";
 import IconSearch from "../core/universal/IconSearch";
-import {uiSlice} from "../../redux/ui/uiSlice";
+import {globalSearchText, uiSlice} from "../../redux/ui/uiSlice";
 import {useDispatch} from "react-redux";
 
 const InputSearchNavBar = () => {
@@ -28,7 +28,7 @@ const InputSearchNavBar = () => {
     useEffect(() => {
         // console.log("deferredQuery1",deferredText)
         dispatch(uiSlice.actions.setValue({
-            key: "globalSearchText",
+            key: globalSearchText,
             value: state.searchText,
         }))
     },[deferredText])

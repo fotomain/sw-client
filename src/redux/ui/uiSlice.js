@@ -4,6 +4,9 @@ const THIS_SLICE_ENTITY = 'uiData'
 const THIS_SLICE_OPTIONS = 'uiOptionsArray'
 const THIS_SLICE_NAME = 'uiSlice'
 
+export const globalSearchText="globalSearchText"
+export const makeOpenCartView="makeOpenCartView"
+
 const abstractSlice=createSlice({
     name: THIS_SLICE_NAME,
     initialState:{

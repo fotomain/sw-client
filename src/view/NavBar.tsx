@@ -10,7 +10,7 @@ import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";
 import useClickOut from "./core/functions";
 import {useDispatch, useSelector} from "react-redux";
-import {uiSlice} from "../redux/ui/uiSlice";
+import {makeOpenCartView, uiSlice} from "../redux/ui/uiSlice";
 import {useNavigate} from "react-router";
 import MenuDesktop from "./MenuDesktop";
 import InputSearchNavBar from "./product/InputSearchNavBar";
@@ -25,7 +25,7 @@ const NavBar = (props:any) => {
     useClickOut(dialogRef,uiState.makeOpenCartView,
         ()=>{
             dispatch(uiSlice.actions.setValue({
-                key:"makeOpenCartView",
+                key:makeOpenCartView,
                 value: false,
             }))
         },
@@ -93,7 +93,7 @@ const NavBar = (props:any) => {
                     console.log("setCartViewOpen1")
 
                     dispatch(uiSlice.actions.setValue({
-                        key: "makeOpenCartView",
+                        key:makeOpenCartView,
                         value: !uiState.makeOpenCartView,
                     }))
 
@@ -133,7 +133,7 @@ const NavBar = (props:any) => {
                         onClick={() => {
 
                             dispatch(uiSlice.actions.setValue({
-                                key: "makeOpenCartView",
+                                key:makeOpenCartView,
                                 value: !uiState.makeOpenCartView,
                             }))
 

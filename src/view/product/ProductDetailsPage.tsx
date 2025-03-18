@@ -9,7 +9,7 @@ import ProductCardOptions from "./ProductCardOptions";
 import {useDispatch, useSelector} from "react-redux";
 import {alpha} from "@mui/material";
 import {cartSlice} from "../../redux/cart/cartSlice";
-import {uiSlice} from "../../redux/ui/uiSlice";
+import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {JSON_stringify} from "../../api/GlobalFunctions";
 import {useLocation, useParams} from "react-router-dom";
 import OutOfStock from "./card/OutOfStock";
@@ -253,7 +253,7 @@ const ProductDetailsPage = (props:any) => {
                         }))
 
                         dispatch(uiSlice.actions.setValue({
-                            key:"makeOpenCartView",
+                            key:makeOpenCartView,
                             value: true,
                         }))
 

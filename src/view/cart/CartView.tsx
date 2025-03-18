@@ -12,7 +12,7 @@ import {css} from "@emotion/react";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import CartLine from "./CartLine";
-import {uiSlice} from "../../redux/ui/uiSlice";
+import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {MdRefresh} from "react-icons/md";
 import IconMaterial from "../core/universal/IconMaterial";
 
@@ -139,7 +139,7 @@ const CartView = () => {
                     onClick={() => {
                         console.log("Order1")
                         dispatch(uiSlice.actions.setValue({
-                            key: "makeOpenCartView",
+                            key:makeOpenCartView,
                             value: false,
                         }))
                     }}
