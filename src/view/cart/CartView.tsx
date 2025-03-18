@@ -107,37 +107,15 @@ const CartView = () => {
                     flex-direction: row `
                 }
             >
-               {/*<div*/}
-               {/*     onClick={() => {*/}
-               {/*         console.log("refresh1")*/}
-               {/*         const q = READ_CART_QUERY({*/}
-               {/*             cart_guid: '222'*/}
-               {/*         })*/}
-
-               {/*         fetchGraphQL({*/}
-               {/*             entityName: 'READ_CART_QUERY',*/}
-               {/*             setDataCallback: (d: any) => {*/}
-               {/*                 console.log('=== READ_CART_QUERY response ', d?.data?.query)*/}
-               {/*                 setCartState((prevState: any) => {*/}
-               {/*                     return {*/}
-               {/*                         ...prevState,*/}
-               {/*                         cartItems: [...d?.data?.query.cart_lines]*/}
-               {/*                     }*/}
-               {/*                 })*/}
-               {/*             },*/}
-               {/*             gqlRequest: q*/}
-               {/*         })*/}
-
-               {/*     }}*/}
-
-               {/* >*/}
-               {/*     <IconMaterial color={ui.colorMain} size={24} icon={MdRefresh}/>*/}
-               {/* </div>*/}
-
 
                 <ButtonPrimary
                     style={{ borderRadius:0, padding: '12px', width: '100%'}}
                     onClick={() => {
+
+                        if(cartStateGlobal?.isEmpty) {
+                            window.alert("Cart is empty...")
+                            return
+                        }
 
                         dispatch(uiSlice.actions.setValue({
                             key:makeOpenCartView,
