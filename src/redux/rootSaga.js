@@ -9,6 +9,7 @@ import {cartSagaRead} from "./cart/cartSagaRead";
 import {cartSagaCreate} from "./cart/cartSagaCreate";
 import {cartSagaDelete} from "./cart/cartSagaDelete";
 import {categorySagaRead} from "./category/categorySagaRead";
+import {orderSagaCreate} from "./order/orderSagaCreate";
 
 export default function* rootSaga() {
 	yield all([
@@ -18,6 +19,7 @@ export default function* rootSaga() {
 		...cartSagaCreate,
 		...cartSagaRead,
 		...cartSagaDelete,
-		...categorySagaRead
+		...categorySagaRead,
+		...orderSagaCreate,
 	]);
 }

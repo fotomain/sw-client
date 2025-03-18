@@ -29,7 +29,7 @@ function* workFetch(params){
 
     console.log('=== ADD_TO_CART_MUTATION finish resJson',data)
 
-    yield put(cartActions.cartCreateSuccess(data))
+    yield put(cartActions.createSuccess(data))
 }
 
 function* watchSaga(){

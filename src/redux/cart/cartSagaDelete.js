@@ -30,7 +30,7 @@ function* workFetch(params){
 
     console.log('=== DELETE_CART_LINE_QUERY finish resJson',data)
 
-    yield put(cartActions.cartDeleteSuccess(data))
+    yield put(cartActions.deleteSuccess(data))
 }
 
 function* watchSaga(){

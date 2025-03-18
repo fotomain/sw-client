@@ -15,6 +15,7 @@ import CartLine from "./CartLine";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {MdRefresh} from "react-icons/md";
 import IconMaterial from "../core/universal/IconMaterial";
+import {orderSlice} from "../../redux/order/orderSlice";
 
 const CartView = () => {
 
@@ -137,11 +138,16 @@ const CartView = () => {
                 <ButtonPrimary
                     style={{ borderRadius:0, padding: '12px', width: '100%'}}
                     onClick={() => {
-                        console.log("Order1")
+
                         dispatch(uiSlice.actions.setValue({
                             key:makeOpenCartView,
                             value: false,
                         }))
+
+                        dispatch(orderSlice.actions.create({
+                            cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f"
+                        }))
+
                     }}
 
                 >

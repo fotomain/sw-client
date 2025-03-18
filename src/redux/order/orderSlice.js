@@ -1,8 +1,8 @@
+
 import {createSlice} from "@reduxjs/toolkit";
 
-const THIS_SLICE_ENTITY = 'cartArray'
-const THIS_SLICE_OPTIONS = 'cartOptionsArray'
-const THIS_SLICE_NAME = 'cartSlice'
+const THIS_SLICE_ENTITY = 'orderArray'
+const THIS_SLICE_NAME = 'orderSlice'
 
 const abstractSlice=createSlice({
     name: THIS_SLICE_NAME,
@@ -17,31 +17,27 @@ const abstractSlice=createSlice({
         deleteStarted:false,
         deleteError:'',
 
-        [THIS_SLICE_ENTITY]:{},
-        [THIS_SLICE_OPTIONS]:[],
-
-        isEmpty:true,
-
+        [THIS_SLICE_ENTITY]:[],
     },
     reducers:{
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== cart_ isCreating1",action);
+            console.log("=== order_ isCreating1",action);
         },
         create: (state,action) => {
-            console.log("=== cart_ createExecute true ",action);
+            console.log("=== order_ createExecute true ",action);
         },
         createSuccess: (state,action) => {
-            console.log("createSuccess action8",action.payload.cart_lines?.length, action.payload)
+            console.log("createSuccess action9",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
-            state.isEmpty=(action.payload.cart_lines?.length===0);
             state.createStarted=false;
         },
         createFailure: (state,action) => {
             state.isReading=false;
             state.createError=action.payload.createError;
         },
+
 
         read: (state,action) => {
             state.isReading=true;
@@ -50,7 +46,6 @@ const abstractSlice=createSlice({
         readSuccess: (state,action) => {
             console.log("readSuccess action1",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
-            state.isEmpty=(action.payload.cart_lines?.length===0);
             state.isReading=false;
         },
         readFailure: (state,action) => {
@@ -67,9 +62,7 @@ const abstractSlice=createSlice({
             state.deleteStarted=false;
         },
         deleteSuccess: (state,action) => {
-            console.log("delete8 action.payload",action.payload)
             state[THIS_SLICE_ENTITY]=action.payload;
-            state.isEmpty=(action.payload.cart_lines?.length===0);
             state.deleteStarted=false;
         },
         deleteFailure: (state,action) => {
@@ -80,11 +73,11 @@ const abstractSlice=createSlice({
     }
 })
 
-export const cartActions = {
+export const orderActions = {
 
     createStart             : abstractSlice.actions.createStart ,
     create                  : abstractSlice.actions.create,
-    createSuccess       : abstractSlice.actions.createSuccess,
+    createSuccess           : abstractSlice.actions.createSuccess,
 
     read        : abstractSlice.actions.read,
     readSuccess : abstractSlice.actions.readSuccess,
@@ -93,12 +86,12 @@ export const cartActions = {
     deleteStart   : abstractSlice.actions.deleteStart,
     delete        : abstractSlice.actions.delete,
     deleteFailure : abstractSlice.actions.deleteFailure,
-    deleteSuccess    : abstractSlice.actions.deleteSuccess,
+    deleteSuccess : abstractSlice.actions.deleteSuccess,
 
 
 };
 
-export const cartSlice=abstractSlice
+export const orderSlice=abstractSlice
 
-export const cartReducer=abstractSlice.reducer
+export const orderReducer=abstractSlice.reducer
 

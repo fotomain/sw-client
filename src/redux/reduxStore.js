@@ -6,6 +6,7 @@ import {productsReducer} from "./product/productSlice";
 import {cartReducer} from "./cart/cartSlice";
 import {uiReducer} from "./ui/uiSlice";
 import {categoryReducer} from "./category/categorySlice";
+import {orderReducer} from "./order/orderSlice";
 
 
 const sagaMiddleware = createSagaMiddleware();
@@ -16,6 +17,7 @@ const reduxStore = configureStore({
 		cartState: 		cartReducer,
 		uiState: 		uiReducer,
 		categoryState:	categoryReducer,
+		orderState:		orderReducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(sagaMiddleware),
