@@ -63,14 +63,8 @@ export const LayoutPage = (params:any) => {
 
             <NavBar/>
 
-            <div css={css` 
-                z-index: 10;
-                position: relative`}>
-
-                {/*<ProductsGallery/>*/}
-
-                {(!isReading) ? null :
-                    <div css={css` 
+            {(!isReading) ? null :
+                <div css={css` 
                         //top: 45vh;
                         //left: 50vw;
                         top:0;
@@ -82,10 +76,16 @@ export const LayoutPage = (params:any) => {
                         position: absolute;
                         background-color: transparent;
                         `}
-                    >
-                        <SpinnerFast/>
-                    </div>
-                }
+                >
+                    <SpinnerFast/>
+                </div>
+            }
+
+            <div css={css` 
+                z-index: 10;
+                position: relative`}>
+
+                {/*<ProductsGallery/>*/}
 
                 <main>
                     <Outlet/> {/* Content specific to the route will be rendered here */}
