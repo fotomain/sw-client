@@ -9,6 +9,7 @@ const abstractSlice=createSlice({
     initialState:{
 
         createStarted:false,
+        momentCreated:0,
         createError:'',
 
         isReading:false,
@@ -31,6 +32,7 @@ const abstractSlice=createSlice({
         createSuccess: (state,action) => {
             console.log("createSuccess action9",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
+            state.momentCreated=Date.now();
             state.createStarted=false;
         },
         createFailure: (state,action) => {

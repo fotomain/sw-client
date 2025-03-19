@@ -28,6 +28,7 @@ const CartView = () => {
     const dispatch = useDispatch();
 
     const cartStateGlobal = useSelector((state:any) => state.cartState );
+    const orderState = useSelector((state:any) => state.orderState );
 
     console.log('cartStateGlobal2',cartStateGlobal)
 
@@ -37,6 +38,12 @@ const CartView = () => {
             dispatch(cartSlice.actions.read({}))
         }
     }, [cartStateGlobal.cartGUID]);
+
+    useEffect(() => {
+        if(0!==orderState.momentCreated){
+            window.alert("Order successfully created! "+orderState.momentCreated)
+        }
+    }, [orderState.momentCreated]);
 
 
     return(<>
@@ -126,7 +133,6 @@ const CartView = () => {
                         dispatch(orderSlice.actions.create({}))
 
                     }}
-
                 >
                     PLACE ORDER
                 </ButtonPrimary>

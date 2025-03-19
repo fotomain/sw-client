@@ -19,25 +19,39 @@ const App = () => {
         dispatch(categorySlice.actions.read({}))
     }, []);
 
-    useEffect(() => {
+    console.log("cartState2",cartState.cartGUID)
 
-        // const del1 = localStorage.removeItem("cartID")
+    useEffect(() => {
         const cartLocalGUID = localStorage.getItem("cartID")
-        if(''===cartState.cartGUID) {
-            if (null !== cartLocalGUID) {
-                console.log("=== CREATE_CART_MUTATION cartLocalId exist ", cartLocalGUID)
-                dispatch(cartSlice.actions.setCartGUID(cartLocalGUID))
-            } else {
-                dispatch(cartSlice.actions.createCart({}))
-            }
+        console.log("q01 cartLocalGUID",cartLocalGUID)
+        if(null===cartLocalGUID || ""===cartLocalGUID) {
+            // variant - create new
+            dispatch(cartSlice.actions.createCart({}))
+        } else {
+            // variant - cart exists
+            dispatch(cartSlice.actions.read({cart_guid:cartLocalGUID}))
         }
-        else {
-            // if (null == cartLocalGUID) {
-                // always if login or after new order
-                localStorage.setItem("cartID", cartState.cartGUID)
-            // }
-        }
-    }, [cartState.cartGUID]);
+    }, []);
+
+    // useEffect(() => {
+    //
+    //     // const del1 = localStorage.removeItem("cartID")
+    //     const cartLocalGUID = localStorage.getItem("cartID")
+    //     if(''===cartState.cartGUID) {
+    //         if (null !== cartLocalGUID) {
+    //             console.log("=== CREATE_CART_MUTATION cartLocalId exist ", cartLocalGUID)
+    //             dispatch(cartSlice.actions.setCartGUID(cartLocalGUID))
+    //         } else {
+    //             dispatch(cartSlice.actions.createCart({}))
+    //         }
+    //     }
+    //     else {
+    //         // if (null == cartLocalGUID) {
+    //             // always if login or after new order
+    //             localStorage.setItem("cartID", cartState.cartGUID)
+    //         // }
+    //     }
+    // }, [cartState.cartGUID]);
 
     return<>
 

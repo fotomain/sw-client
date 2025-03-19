@@ -51,9 +51,13 @@ const abstractSlice=createSlice({
             state.readError="";
         },
         readSuccess: (state,action) => {
-            console.log("readSuccess action1",action.payload)
+            console.log("readSuccess action101",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
-            state.isEmpty=(action.payload?.cart_lines?.length===0);
+            if(null===action.payload) {
+                state.isEmpty=true;
+            }else {
+                state.isEmpty=(action.payload?.cart_lines?.length===0);
+            }
             state.isReading=false;
         },
         readFailure: (state,action) => {
@@ -96,6 +100,15 @@ const abstractSlice=createSlice({
             state.createCartStarted=false;
         },
 
+        deleteCart: (state,action) => {
+
+        },
+        deleteCartStart: (state,action) => {
+
+        },
+        deleteCartSuccess: (state,action) => {
+
+        },
 
 
     }
@@ -120,6 +133,10 @@ export const cartActions = {
     createCart          : abstractSlice.actions.createCart,
     createCartStart     : abstractSlice.actions.createCartStart,
     createCartSuccess   : abstractSlice.actions.createCartSuccess,
+
+    deleteCart          : abstractSlice.actions.deleteCart,
+    deleteCartStart     : abstractSlice.actions.deleteCartStart,
+    deleteCartSuccess   : abstractSlice.actions.deleteCartSuccess,
 
 
 };

@@ -148,7 +148,7 @@ const NavBar = (props:any) => {
                         }}
                     >
                         <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
-                        <div>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? ' item' : 'items'}</div>
+                        <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length) ? ' item' : 'items'}</div>
                     </div>
                 }
 
@@ -163,6 +163,8 @@ const NavBar = (props:any) => {
                             min-width: 250px;
                             background-color: white;
                             // - width of IconCart - shift of the tip
+
+                            margin-top: 30px;
                             margin-right: calc(100% - 24px - 0.6rem);
 
                             border: none;

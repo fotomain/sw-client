@@ -30,6 +30,8 @@ function* workFetch(params){
 
     console.log('=== CREATE_CART_MUTATION finish resJson',data)
 
+    localStorage.setItem("cartID", data)
+
     yield put(cartActions.createCartSuccess(data))
 }
 

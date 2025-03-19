@@ -14,14 +14,23 @@ function* workFetch(params){
     const stateCall = (state) => state.cartState
     const currentState = yield select(stateCall)
 
-    const q= READ_CART_QUERY({...params.payload,cart_guid:currentState.cartGUID})
+    let workParams     = {...params.payload,cart_guid:currentState.cartGUID}
+    if(params.payload.cart_guid){
+        workParams              = {...params.payload,cart_guid:params.payload.cart_guid}
+    }
+
+    if(""===workParams.cart_guid) return
+
+    const q= READ_CART_QUERY(workParams)
+
+    console.log("q01",q)
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_CART_QUERY',
         gqlRequest:q
     }))
 
-    console.log("=== apiResponse1",apiResponse1)
+    console.log("=== READ_CART_QUERY apiResponse1",apiResponse1)
     let apiResponse = apiResponse1
 
     // const apiResponse = yield call(()=>
@@ -30,8 +39,17 @@ function* workFetch(params){
     //     ));
 
     const data_json = yield apiResponse1.json()
-    const data = data_json.data.query
-    console.log('data',data)
+
+    console.log('READ_CART_QUERY data',data_json)
+
+    if(data_json.errors){
+
+        yield put(cartActions.createCart({}))
+        return
+
+    }
+
+    const data = data_json.data?.query
 
     // const data = yield apiResponse.json()
     //     console.log('data0',data)
@@ -46,7 +64,17 @@ function* workFetch(params){
     else{
         result = data //.slice(0,10)
     }
+
+    if(
+        params.payload.cart_guid
+        &&
+        data.cart_guid === params.payload.cart_guid
+    ){
+        yield put(cartActions.setCartGUID(data.cart_guid))
+    }
+
     yield put(cartActions.readSuccess(result))
+
 }
 
 function* watchSaga(){

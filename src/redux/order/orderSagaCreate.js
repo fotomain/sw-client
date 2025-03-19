@@ -4,6 +4,7 @@ import {delay, select, fork, call, put, takeEvery} from "redux-saga/effects";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {CREATE_ORDER_MUTATION} from "./CREATE_ORDER_MUTATION";
 import {orderActions} from "./orderSlice";
+import {cartActions} from "../cart/cartSlice";
 
 
 function* workFetch(params){
@@ -31,9 +32,15 @@ function* workFetch(params){
     const data_json = yield apiResponse1.json()
     const data = data_json.data
 
-    console.log('=== CREATE_ORDER_MUTATION finish resJson',data)
-
-    yield put(orderActions.createSuccess(data))
+    const resCreate = JSON.parse(data?.createOrder)
+    console.log('=== CREATE_ORDER_MUTATION finish resCreate',resCreate)
+    console.log('=== CREATE_ORDER_MUTATION finish resCreate',resCreate.operation_status)
+    if(200===resCreate?.operation_status){
+        localStorage.removeItem("cartID")
+        yield put(cartActions.deleteCart({cart_guid:currentState.cartGUID}))
+        yield put(cartActions.createCart({}))
+    }
+    yield put(orderActions.createSuccess(resCreate))
 }
 
 function* watchSaga(){

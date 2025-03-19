@@ -16,6 +16,8 @@ function* workFetch(params){
 
     const q= ADD_TO_CART_MUTATION({...params.payload,cart_guid:currentState.cartGUID})
 
+    console.log("q22",q)
+
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'ADD_TO_CART_MUTATION',
         gqlRequest:q
@@ -23,6 +25,7 @@ function* workFetch(params){
 
     console.log("=== ADD_TO_CART_MUTATION apiResponse1",apiResponse1)
     const data_json = yield apiResponse1.json()
+    // console.log("=== ADD_TO_CART_MUTATION apiResponse1",data_json)
     const data = data_json.data.addToCart
 
     console.log('=== ADD_TO_CART_MUTATION finish resJson',data)

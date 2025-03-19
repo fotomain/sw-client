@@ -56,7 +56,7 @@ export const LayoutPage = (params:any) => {
 
             {/*global tests*/}
             {/*<div css={css` margin-top: 150px`}>*/}
-            {/*    <div>{JSON.stringify(cartState.cartGUID)}</div>*/}
+                {/*<div>{JSON.stringify(cartState.cartGUID)}</div>*/}
                 {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
                 {/*<div css={css` margin-top: 80px`}>products N {productsState.productsArray.length}</div>*/}
                 {/*<div css={css` margin-top: 80px`}>isReading {JSON.stringify(isReading)}</div>*/}
