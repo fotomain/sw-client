@@ -1,10 +1,10 @@
 
-import {delay, fork, call, put, takeEvery} from "redux-saga/effects";
+import {delay, select, fork, call, put, takeEvery} from "redux-saga/effects";
 
 import {cartActions} from "./cartSlice";
-import {READ_CART_QUERY} from "./graphql/READ_CART_QUERY";
+
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import {ADD_TO_CART_MUTATION} from "./graphql/ADD_TO_CART_MUTATION";
+
 import {DELETE_CART_LINE_QUERY} from "./graphql/DELETE_CART_LINE_QUERY";
 
 
@@ -13,9 +13,12 @@ function* workFetch(params){
 
     yield put(cartActions.createStart(params))
 
+    const stateCall = (state) => state.cartState
+    const currentState = yield select(stateCall)
+
     console.log('=== DELETE_CART_LINE_QUERY start',params)
 
-    const q= DELETE_CART_LINE_QUERY(params.payload)
+    const q= DELETE_CART_LINE_QUERY({...params.payload,cart_guid:currentState.cartGUID})
 
     console.log('=== DELETE_CART_LINE_QUERY q ',q)
 

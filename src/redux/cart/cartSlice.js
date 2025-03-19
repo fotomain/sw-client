@@ -21,21 +21,24 @@ const abstractSlice=createSlice({
         [THIS_SLICE_OPTIONS]:[],
 
         isEmpty:true,
+        cartGUID:'',
+
+        createCartStarted:false,
 
     },
     reducers:{
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== cart_ isCreating1",action);
+            // console.log("=== cart_ isCreating1",action);
         },
         create: (state,action) => {
-            console.log("=== cart_ createExecute true ",action);
+            // console.log("=== cart_ createExecute true ",action);
         },
         createSuccess: (state,action) => {
-            console.log("createSuccess action8",action.payload.cart_lines?.length, action.payload)
+            console.log("createSuccess action8",action.payload?.cart_lines?.length, action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
-            state.isEmpty=(action.payload.cart_lines?.length===0);
+            state.isEmpty=(action.payload?.cart_lines?.length===0);
             state.createStarted=false;
         },
         createFailure: (state,action) => {
@@ -50,7 +53,7 @@ const abstractSlice=createSlice({
         readSuccess: (state,action) => {
             console.log("readSuccess action1",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
-            state.isEmpty=(action.payload.cart_lines?.length===0);
+            state.isEmpty=(action.payload?.cart_lines?.length===0);
             state.isReading=false;
         },
         readFailure: (state,action) => {
@@ -69,13 +72,31 @@ const abstractSlice=createSlice({
         deleteSuccess: (state,action) => {
             console.log("delete8 action.payload",action.payload)
             state[THIS_SLICE_ENTITY]=action.payload;
-            state.isEmpty=(action.payload.cart_lines?.length===0);
+            state.isEmpty=(action.payload?.cart_lines?.length===0);
             state.deleteStarted=false;
         },
         deleteFailure: (state,action) => {
             state.deleteStarted=false;
             state.deleteError=action.payload.deleteError;
         },
+
+        setCartGUID: (state,action) => {
+            state.cartGUID=action.payload;
+        },
+
+        createCartStart: (state,action) => {
+            state.createCartStarted=true;
+        },
+
+        createCart: (state,action) => {
+            // go to saga
+        },
+        createCartSuccess: (state,action) => {
+            state.cartGUID=action.payload;
+            state.createCartStarted=false;
+        },
+
+
 
     }
 })
@@ -93,7 +114,12 @@ export const cartActions = {
     deleteStart   : abstractSlice.actions.deleteStart,
     delete        : abstractSlice.actions.delete,
     deleteFailure : abstractSlice.actions.deleteFailure,
-    deleteSuccess    : abstractSlice.actions.deleteSuccess,
+    deleteSuccess : abstractSlice.actions.deleteSuccess,
+
+    setCartGUID         : abstractSlice.actions.setCartGUID,
+    createCart          : abstractSlice.actions.createCart,
+    createCartStart     : abstractSlice.actions.createCartStart,
+    createCartSuccess   : abstractSlice.actions.createCartSuccess,
 
 
 };

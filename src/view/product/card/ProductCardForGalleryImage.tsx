@@ -107,7 +107,6 @@ const ProductCardForGalleryImage = (props:any) => {
                             console.log("attributeOptions1",optionsSelected)
 
                             dispatch(cartSlice.actions.create({
-                                cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f",
                                 qty: 1,
                                 product:product,
                                 optionsSelected:optionsSelected,

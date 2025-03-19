@@ -212,7 +212,6 @@ const CartLine = (props:any) => {
                           onClick={() => {
 
                               dispatch(cartSlice.actions.delete({
-                                  cart_guid: 'cc6bb519-f811-11ef-a13a-55e370885b2f',
                                   cart_line_id: cartLine.cart_line_id,
                               }))
 

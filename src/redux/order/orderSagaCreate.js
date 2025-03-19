@@ -1,5 +1,5 @@
 
-import {delay, fork, call, put, takeEvery} from "redux-saga/effects";
+import {delay, select, fork, call, put, takeEvery} from "redux-saga/effects";
 
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {CREATE_ORDER_MUTATION} from "./CREATE_ORDER_MUTATION";
@@ -15,7 +15,10 @@ function* workFetch(params){
 
     console.log('=== delay1 start',params)
 
-    const q= CREATE_ORDER_MUTATION(params.payload)
+    const stateCall = (state) => state.cartState
+    const currentState = yield select(stateCall)
+
+    const q= CREATE_ORDER_MUTATION({...params.payload,cart_guid:currentState.cartGUID})
 
     console.log('=== q9 start',q)
 

@@ -1,5 +1,5 @@
 
-import {delay, fork, call, put, takeEvery} from "redux-saga/effects";
+import {delay, select, fork, call, put, takeEvery} from "redux-saga/effects";
 
 import {cartActions} from "./cartSlice";
 import {READ_CART_QUERY} from "./graphql/READ_CART_QUERY";
@@ -9,14 +9,12 @@ import {ADD_TO_CART_MUTATION} from "./graphql/ADD_TO_CART_MUTATION";
 
 function* workFetch(params){
     // console.log('params.payload1',params.payload)
-
     yield put(cartActions.createStart(params))
 
-    console.log('=== product_ Create params1',params)
+    const stateCall = (state) => state.cartState
+    const currentState = yield select(stateCall)
 
-    console.log('=== delay1 start',params)
-
-    const q= ADD_TO_CART_MUTATION(params.payload)
+    const q= ADD_TO_CART_MUTATION({...params.payload,cart_guid:currentState.cartGUID})
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'ADD_TO_CART_MUTATION',

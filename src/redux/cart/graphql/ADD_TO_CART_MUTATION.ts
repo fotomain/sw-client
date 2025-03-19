@@ -4,10 +4,10 @@ export const ADD_TO_CART_MUTATION =(params?:any)=> {
 
    console.log("params1 ===",params)
 
-   let cart_guid="cc6bb519-f811-11ef-a13a-55e370885b2f"
+   let cart_guid=""
 
    if(params.cart_guid) cart_guid = params.cart_guid;
-   if(!cart_guid) throw new Error("Error 1598 - cart_guid not found");
+   if(""===cart_guid) throw new Error("Error 1598 - cart_guid not found");
 
    let product=null
    if(params.product) product = params.product;

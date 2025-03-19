@@ -1,10 +1,8 @@
 
-import {fork, call, put, takeEvery} from "redux-saga/effects";
+import {select, fork, call, put, takeEvery} from "redux-saga/effects";
 
-
-import {productActions, productsRead, productSlice} from "../product/productSlice";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import {READ_PRODUCTS_QUERY} from "../product/READ_PRODUCTS_QUERY";
+
 import {READ_CART_QUERY} from "./graphql/READ_CART_QUERY";
 import {cartActions} from "./cartSlice";
 
@@ -13,7 +11,10 @@ function* workFetch(params){
     console.log('params1',params.payload)
     // const apiResponse = yield call(()=>fetch("https://api.thecatapi.com/v1/breeds"));
 
-    const q= READ_CART_QUERY()
+    const stateCall = (state) => state.cartState
+    const currentState = yield select(stateCall)
+
+    const q= READ_CART_QUERY({...params.payload,cart_guid:currentState.cartGUID})
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_CART_QUERY',

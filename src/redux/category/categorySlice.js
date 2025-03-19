@@ -17,8 +17,14 @@ const abstractSlice=createSlice({
         deleteError:'',
 
         [THIS_SLICE_ENTITY]:[],
+
+        activeCategory:'',
+
     },
     reducers:{
+        setValue: (state, action) => {
+            state[action.payload.key] = action.payload.value;
+        },
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
@@ -43,8 +49,11 @@ const abstractSlice=createSlice({
             state.readError="";
         },
         readSuccess: (state,action) => {
-            console.log("readSuccess action1",action.payload)
+            console.log("readSuccess action3",action.payload)
             state[THIS_SLICE_ENTITY] = action.payload;
+            if(""===state.activeCategory){
+                state.activeCategory=action.payload[0];
+            }
             state.isReading=false;
         },
         readFailure: (state,action) => {

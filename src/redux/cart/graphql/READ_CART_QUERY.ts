@@ -5,7 +5,7 @@ export const READ_CART_QUERY =(params:any)=> { return  `
 
 {
     query: readCart(cartParams:{
-        cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f"
+        cart_guid:"`+params.cart_guid+`"
     }){
         
         cart_guid

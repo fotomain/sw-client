@@ -33,9 +33,10 @@ const CartView = () => {
 
 
     useEffect(() => {
-        console.log("dispatch1")
-        dispatch(cartSlice.actions.read({cart_guid:'XXX'}))
-    }, []);
+        if(cartStateGlobal.isEmpty) {
+            dispatch(cartSlice.actions.read({}))
+        }
+    }, [cartStateGlobal.cartGUID]);
 
 
     return(<>
@@ -52,7 +53,7 @@ const CartView = () => {
 
 
             {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
-            {(cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
+            {(!cartStateGlobal.isEmpty && cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
 
                 return <div css={css`
                     width: 100%;
@@ -122,9 +123,7 @@ const CartView = () => {
                             value: false,
                         }))
 
-                        dispatch(orderSlice.actions.create({
-                            cart_guid:"cc6bb519-f811-11ef-a13a-55e370885b2f"
-                        }))
+                        dispatch(orderSlice.actions.create({}))
 
                     }}
 
@@ -135,7 +134,6 @@ const CartView = () => {
             </div>
 
         </div>
-
 
     </>)
 }

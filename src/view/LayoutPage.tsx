@@ -39,6 +39,7 @@ ui.oolorCardBackground=[
 export const LayoutPage = (params:any) => {
 
     const uiState = useSelector((state:any) => state.uiState );
+    const cartState = useSelector((state:any) => state.cartState );
 
     const productsState = useSelector((state:any) => state.productsState );
     const isReading = useSelector((state:any) => state.productsState.isReading);
@@ -55,6 +56,7 @@ export const LayoutPage = (params:any) => {
         >
 
             {/*global tests*/}
+            <div>{JSON.stringify(cartState.cartGUID)}</div>
             {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
             {/*<div css={css` margin-top: 80px`}>products N {productsState.productsArray.length}</div>*/}
             {/*<div css={css` margin-top: 80px`}>isReading {JSON.stringify(isReading)}</div>*/}
@@ -67,20 +69,27 @@ export const LayoutPage = (params:any) => {
 
                 {/*<ProductsGallery/>*/}
 
-                <main>
-                    <Outlet/> {/* Content specific to the route will be rendered here */}
-                </main>
-
                 {(!isReading) ? null :
                     <div css={css` 
-                        top: 45vh;
-                        left: 50vw;
-                        transform: translate(-50%);
+                        //top: 45vh;
+                        //left: 50vw;
+                        top:0;
+                        height: 100vh;
+                        width: 100vw;
+                        justify-content:center; align-items:center; display: flex; flex-direction: row;
+                        //transform: translate(-50%);
                         z-index: 300;
-                        position: absolute; `}>
+                        position: absolute;
+                        background-color: transparent;
+                        `}
+                    >
                         <SpinnerFast/>
                     </div>
                 }
+
+                <main>
+                    <Outlet/> {/* Content specific to the route will be rendered here */}
+                </main>
 
                 {uiState.makeOpenCartView &&
                     <div

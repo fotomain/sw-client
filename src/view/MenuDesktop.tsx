@@ -52,6 +52,13 @@ const MenuDesktop = () => {
                                        value: {menuNumber:ii, category_name:el.name},
                                    }))
 
+                                   dispatch(categorySlice.actions.setValue({
+                                       key:"activeCategory",
+                                       value: el,
+                                   }))
+
+
+
                                    navigate(`/`+el.name )
 
                                }}
