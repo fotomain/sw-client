@@ -42,7 +42,7 @@ const MenuDesktop = () => {
                     :categoryState.categoriesArray.map((el:any,ii:number)=>{
                         return <li key={ii}
                             css={css`
-                            height: 28px;
+                            height: 28px; //params1 ui.heightMenuAndInputSearch
                             border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'transparent'};
                             color: ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'black'};
                             `}

@@ -35,6 +35,7 @@ const InputSearchNavBar = () => {
 
     return <form
         css={css` 
+            height: 28px; //params1 ui.heightMenuAndInputSearch
             flex-grow: 1;
             margin-right: 24px; 
             margin-left: 24px;
@@ -46,7 +47,7 @@ const InputSearchNavBar = () => {
         <IconSearch/>
         <input
             css={css` 
-                width:100%; border: none; font-size: 24px;
+                width:100%; border: none; font-size: 20px;
                 outline: none;
             `}
             type="text"

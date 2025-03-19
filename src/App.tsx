@@ -6,6 +6,8 @@ import React, {useEffect} from "react";
 import {categorySlice} from "./redux/category/categorySlice";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "./redux/cart/cartSlice";
+import {css} from "@emotion/react";
+import SpinnerFast from "./view/SpinnerFast";
 
 const App = () => {
 
