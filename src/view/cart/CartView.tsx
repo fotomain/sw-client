@@ -41,7 +41,8 @@ const CartView = () => {
 
     useEffect(() => {
         if(0!==orderState.momentCreated){
-            window.alert("Order successfully created! "+orderState.momentCreated)
+            console.log("orderState1",orderState?.orderArray?.order_header[0]?.cart_id)
+            window.alert("Order successfully created! SQL order_header.cart_id = "+orderState?.orderArray?.order_header[0]?.cart_id)
         }
     }, [orderState.momentCreated]);
 
