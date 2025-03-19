@@ -44,7 +44,6 @@ export const LayoutPage = (params:any) => {
     const productsState = useSelector((state:any) => state.productsState );
     const isReading = useSelector((state:any) => state.productsState.isReading);
 
-
     return (
         <div css={css`
             display: flex;
