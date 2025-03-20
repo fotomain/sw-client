@@ -176,7 +176,6 @@ const NavBar = (props:any) => {
                                 }
                                 100% {
                                     opacity: 1;
-                                    //background-color: green;
                                 }
                             }
                         `}
