@@ -16,8 +16,7 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                 qty
                 price
                 total_line
-                
-                product_has_options
+                                
                 product_options {
                     attribute_id
                     option_id
@@ -28,6 +27,7 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                     name
                     price
                     sku
+                    has_options
                     gallery {
                        url_order
                        url_path

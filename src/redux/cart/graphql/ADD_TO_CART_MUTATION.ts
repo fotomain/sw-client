@@ -59,14 +59,14 @@ export const ADD_TO_CART_MUTATION =(params?:any)=> {
                 qty
                 price
                 total_line
-                
-                product_has_options
+                               
                 
                 product_object {
                     product_id
                     name
                     price
                     sku
+                    has_options
                     
                     gallery {
                        url_order

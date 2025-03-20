@@ -26,9 +26,9 @@ function* workFetch(params){
     console.log("=== ADD_TO_CART_MUTATION apiResponse1",apiResponse1)
     const data_json = yield apiResponse1.json()
     // console.log("=== ADD_TO_CART_MUTATION apiResponse1",data_json)
+    console.log('=== ADD_TO_CART_MUTATION finish data_json',data_json)
     const data = data_json.data.addToCart
 
-    console.log('=== ADD_TO_CART_MUTATION finish resJson',data)
 
     yield put(cartActions.createSuccess(data))
 }
