@@ -2,9 +2,9 @@
 import {delay, fork, call, put, takeEvery} from "redux-saga/effects";
 
 import {cartActions} from "./cartSlice";
-import {READ_CART_QUERY} from "./graphql/READ_CART_QUERY";
+
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import {ADD_TO_CART_MUTATION} from "./graphql/ADD_TO_CART_MUTATION";
+
 import {CREATE_CART_MUTATION} from "./graphql/CREATE_CART_MUTATION";
 
 

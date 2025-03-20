@@ -112,11 +112,11 @@ const ProductDetailsPage = (props:any) => {
     <div css={css`
         // NavBar
         padding-top: 145px;
-      max-width: 1200px;
-      width: 100%;
-      gap: 80px;
-      flex-direction: row;
-      display: flex;
+        max-width: 1200px;
+        width: 100%;
+        gap: 80px;
+        flex-direction: row;
+        display: flex;
   `}>
       <div
           id={'images-left1'}
@@ -205,15 +205,16 @@ const ProductDetailsPage = (props:any) => {
             css={css`
                 width: 30vw;
                 height: 100%;
-
+                
                 gap: 4px;
                 flex-direction: column;
                 display: flex;
                 justify-content: space-between;
+                //params1
+                //height: 500px;
                 align-items: start;
                 min-width: 300px;
                 //background-color: lightpink;
-
             `}
         >
             <div style={{fontSize: '28px', width: '100%'}}>{product.name}</div>
@@ -272,7 +273,7 @@ const ProductDetailsPage = (props:any) => {
                         padding-bottom: 4px;
                         overflow-y: auto;
                         scroll-behavior: smooth;
-
+                        
                     `}
                     dangerouslySetInnerHTML={{__html: product.description.trim()}}
                 />

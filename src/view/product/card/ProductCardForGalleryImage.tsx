@@ -109,7 +109,9 @@ const ProductCardForGalleryImage = (props:any) => {
                                 optionsSelected[h.id] = attributeOptions[0].id
                             }
 
-                            console.log("attributeOptions1",optionsSelected)
+                            console.log("optionsSelected1",product.product_id)
+                            console.log("optionsSelected1",product.has_options)
+                            console.log("optionsSelected1",optionsSelected)
 
                             dispatch(cartSlice.actions.create({
                                 qty: 1,

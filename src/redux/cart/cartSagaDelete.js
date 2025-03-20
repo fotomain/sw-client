@@ -11,7 +11,7 @@ import {DELETE_CART_LINE_QUERY} from "./graphql/DELETE_CART_LINE_QUERY";
 function* workFetch(params){
     // console.log('params.payload1',params.payload)
 
-    yield put(cartActions.createStart(params))
+    yield put(cartActions.deleteStart(true))
 
     const stateCall = (state) => state.cartState
     const currentState = yield select(stateCall)

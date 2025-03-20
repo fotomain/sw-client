@@ -17,6 +17,7 @@ export const READ_PRODUCTS_QUERY =(params:any)=> {
                                  {                                     
                                     product_id 
                                     name
+                                    has_options
                                     price
                                     brand
                                     inStock

@@ -43,8 +43,8 @@ export const ADD_TO_CART_MUTATION =(params?:any)=> {
         addToCart(cartParams:{
                 cart_guid:"${cart_guid}",
                 qty:`+qty+`,
-                product_id:${product.product_id},,
-                product_has_options:1,
+                product_id:${product.product_id},
+                product_has_options:${product.has_options},
                 product_options:[
                  ${optionsStr}
                 ]

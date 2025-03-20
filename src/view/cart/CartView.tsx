@@ -42,6 +42,9 @@ const CartView = () => {
     }, [orderState.momentCreated]);
 
 
+    const createStarted = useSelector((state:any) => state.productsState.createStarted);
+    console.log("createStarted11",createStarted)
+
     return(<>
 
         <div style={{
@@ -55,7 +58,7 @@ const CartView = () => {
         }}>
 
 
-            {cartStateGlobal.createStarted ? <div css={css` height: auto `}>
+            {createStarted? <div css={css` height: auto `}>
                 <SpinnerFast radius={20} />
             </div> : null}
 
