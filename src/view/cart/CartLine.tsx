@@ -4,15 +4,13 @@
 import {css} from "@emotion/react";
 import React, {useEffect, useState} from "react";
 import ButtonFigure from "../core/universal/ButtonFigure";
-import {ui} from "../LayoutPage";
+
 import {cartSlice} from "../../redux/cart/cartSlice";
 import IconMaterial from "../core/universal/IconMaterial";
 import {MdClose} from "react-icons/md";
 import CartLineQtyPlusMinus from "./CartLineQtyPlusMinus";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import ProductCardOptions from "../product/ProductCardOptions";
-
-
 
 const optionsToKeyValue = (p:any) => {
     const res:any = {}
@@ -81,6 +79,8 @@ const CartLine = (props:any) => {
             })
         }
     }, []); //productSelectedOptions
+
+    const uiState = useSelector((state:any) => state.uiState );
 
     return <div
         key={cartLine.cart_line_id}
@@ -206,7 +206,7 @@ const CartLine = (props:any) => {
                 right:"50%",
                 transform:"translate(50%, 0)",
                 width: "22px", height: "22px",
-                backgroundColor: ui.colorMain,
+                backgroundColor: uiState.colorPrimary,
                 color: 'white'
             }}
                           onClick={() => {

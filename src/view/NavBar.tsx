@@ -2,10 +2,10 @@
 
 import {css} from "@emotion/react";
 import IconCart from "./core/universal/IconCart";
-import React, {useEffect, useRef, useState} from "react";
+import React, {useRef} from "react";
 
 import CartView from "./cart/CartView";
-import {ui} from "./LayoutPage";
+
 import {CiGlobe} from "react-icons/ci";
 import IconMaterial from "./core/universal/IconMaterial";
 import useClickOut from "./core/functions";
@@ -69,7 +69,7 @@ const NavBar = (props:any) => {
             justify-content: center;
             align-items: center;
         `}>
-            <IconMaterial color={ui.colorMain} size={32} icon={CiGlobe}
+            <IconMaterial color={uiState.colorPrimary} size={32} icon={CiGlobe}
                           onClick={() => {
                               navigate(`/home`)
                           }}
@@ -93,7 +93,7 @@ const NavBar = (props:any) => {
         >
 
             <IconCart
-                color={(cartStateGlobal.isEmpty) ? 'grey' : ui.colorMain}
+                color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
                 id={'iconCart1'}
                 onClick={() => {
 

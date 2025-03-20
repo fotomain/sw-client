@@ -1,11 +1,15 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import {ui} from "../../LayoutPage";
+
+import {useSelector} from "react-redux";
 
 const SelectOptionColor=(props:any)=>{
     console.log("111 props11",props)
     const {optionsSet}=props;
+
+    const uiState = useSelector((state:any) => state.uiState );
+
     return <>
 
         {optionsSet?.option_items && optionsSet.option_items.map((optionItem: any, j: number) => {
@@ -13,7 +17,7 @@ const SelectOptionColor=(props:any)=>{
             return <div style={{paddingLeft:'4px',paddingRight:'4px', cursor:'pointer'}} key={j}
                 css={css`
                     gap:8px;
-                    border: 2px solid ${(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?ui.colorMain:'white'}  ;
+                    border: 2px solid ${(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?uiState.colorPrimary:'white'}  ;
                     padding: ${(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?4:0}px ;
                 `}
             >

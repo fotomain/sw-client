@@ -3,10 +3,10 @@
 import React, {useDeferredValue, useEffect, useState} from "react";
 
 import {css} from "@emotion/react";
-import {ui} from "../LayoutPage";
+
 import IconSearch from "../core/universal/IconSearch";
 import {globalSearchText, uiSlice} from "../../redux/ui/uiSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const InputSearchNavBar = () => {
 
@@ -33,13 +33,15 @@ const InputSearchNavBar = () => {
         }))
     },[deferredText])
 
+    const uiState = useSelector((state:any) => state.uiState );
+
     return <form
         css={css` 
             height: 28px; //params1 ui.heightMenuAndInputSearch
             flex-grow: 1;
             margin-right: 24px; 
             margin-left: 24px;
-            border-bottom: 1px solid ${ui.colorMain};
+            border-bottom: 1px solid ${uiState.colorPrimary};
             justify-content:center; align-items:center; flex-direction: row; display: flex;
         `}
          onSubmit={handleSubmit}

@@ -1,20 +1,14 @@
 /** @jsxImportSource @emotion/react */
 
 import React, {useEffect, useState} from "react";
-import {ui} from "../LayoutPage";
+
 
 import ButtonPrimary from "../core/universal/ButtonPrimary";
-import ButtonSecondary from "../core/universal/ButtonSecondary";
-
-import {READ_CART_QUERY} from "../../redux/cart/graphql/READ_CART_QUERY";
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {css} from "@emotion/react";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import CartLine from "./CartLine";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
-import {MdRefresh} from "react-icons/md";
-import IconMaterial from "../core/universal/IconMaterial";
 import {orderSlice} from "../../redux/order/orderSlice";
 
 const CartView = () => {
@@ -56,7 +50,7 @@ const CartView = () => {
             flexDirection: 'column',
             alignContent: 'start',
             alignItems: 'center',
-            // backgroundColor: ui.oolorBackgroundMain,
+
         }}>
 
 
@@ -148,35 +142,3 @@ const CartView = () => {
 export default CartView;
 
 
-// return <div>
-//     {JSON.stringify(cartStateGlobal?.cartArray?.cart_lines[lineI].product_object?.name)}
-//     <div style={{
-//         display: 'flex',
-//         flexDirection: 'row',
-//         alignContent: 'center',
-//         alignItems: 'center',
-//         // minWidth: '200px',
-//         maxWidth: '200px',
-//         // border: '1px solid green',
-//     }}>
-//         <ButtonFigure style={{
-//             width: "22px", height: "22px",
-//             backgroundColor: 'transparent', color: ui.colorMain
-//         }}
-//                       onClick={() => {
-//
-//                           dispatch(cartSlice.actions.delete({
-//                               cart_guid: 'cc6bb519-f811-11ef-a13a-55e370885b2f',
-//                               cart_line_id: cartLine.cart_line_id,
-//                           }))
-//
-//
-//                       }}
-//         >
-//
-//
-//             <IconMaterial size={18} icon={MdClose}/>
-//
-//         </ButtonFigure>
-//     </div>
-// </div>

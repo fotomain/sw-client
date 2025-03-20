@@ -4,6 +4,8 @@
 #### render.com -> deploy with Docker moce
 npm start
 
+pkill node
+
 taskkill /im node.exe /f
 
 npm cache clean --force

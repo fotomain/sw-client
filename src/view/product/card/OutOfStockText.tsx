@@ -1,11 +1,11 @@
 import {css} from "@emotion/react";
 import React from "react";
 
-const OutOfStock = () => {
+const OutOfStockText = () => {
     return <div>
         <div>OUT OF STOCK</div>
     </div>
 
 }
 
-export default OutOfStock
+export default OutOfStockText

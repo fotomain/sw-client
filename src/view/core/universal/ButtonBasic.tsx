@@ -1,18 +1,21 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import {ui} from "../../LayoutPage";
-import {MdAdd} from "react-icons/md";
+
+
 import React from "react";
+import {useSelector} from "react-redux";
 
 const ButtonBasic = (props:any) => {
+
+    const uiState = useSelector((state:any) => state.uiState );
 
     let {color,backgroundColor,borderColor,...other} = props;
     if(!color) {
         color = "white"
     }
     if(!backgroundColor) {
-        backgroundColor = ui.colorMain
+        backgroundColor = uiState.colorPrimary
     }
     if(!borderColor) {
         borderColor = backgroundColor

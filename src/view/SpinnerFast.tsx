@@ -1,5 +1,6 @@
-import { ui } from "./LayoutPage"
+
 import {useEffect, useState} from "react";
+import {useSelector} from "react-redux";
 
 const SpinnerFast = (props:any) => {
 
@@ -20,6 +21,8 @@ const SpinnerFast = (props:any) => {
 
         };
     }, []);
+
+    const uiState = useSelector((state:any) => state.uiState );
 
   return <>
       <svg
@@ -48,7 +51,7 @@ const SpinnerFast = (props:any) => {
               cx={40}
               cy={40}
               fill="transparent"
-              stroke={ui.colorMain}
+              stroke={uiState.colorPrimary}
               strokeWidth={10}
 
               strokeLinecap="round"

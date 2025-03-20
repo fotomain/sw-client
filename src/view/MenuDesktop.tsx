@@ -1,14 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
-import {useEffect} from "react";
-import {productSlice} from "../redux/product/productSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {categorySlice} from "../redux/category/categorySlice";
-import {dividerClasses} from "@mui/material";
+
 import {css} from "@emotion/react";
-import {ui} from "./LayoutPage";
+
 import {uiSlice} from "../redux/ui/uiSlice";
-import {NavigateOptions, useNavigate} from "react-router";
+import {useNavigate} from "react-router";
 
 const MenuDesktop = () => {
 
@@ -43,8 +41,8 @@ const MenuDesktop = () => {
                         return <li key={ii}
                             css={css`
                             height: 28px; //params1 ui.heightMenuAndInputSearch
-                            border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'transparent'};
-                            color: ${(ii===uiState.menuActiveItem.menuNumber)?ui.colorMain:'black'};
+                            border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?uiState.colorPrimary:'transparent'};
+                            color: ${(ii===uiState.menuActiveItem.menuNumber)?uiState.colorPrimary:'black'};
                             `}
                                onClick={()=>{
                                    dispatch(uiSlice.actions.setValue({

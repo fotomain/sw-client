@@ -1,9 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import {ui} from "../../LayoutPage";
+
+import {useSelector} from "react-redux";
 
 const SelectOptionSize=(props:any)=>{
     console.log("option0 props1",props)
     const {optionsSet}=props;
+    const uiState = useSelector((state:any) => state.uiState );
     return <>
 
         {optionsSet?.option_items && optionsSet.option_items.map((optionItem: any, j: number) => {
@@ -27,10 +29,10 @@ const SelectOptionSize=(props:any)=>{
             >
                 <div style={{
                     borderRadius:'5px',
-                    border:`solid ${ui.colorMain} 1px`,
+                    border:`solid ${uiState.colorPrimary} 1px`,
                     padding:(props.cartMode)?'2px':'5px',
                     cursor:'pointer',
-                    backgroundColor:(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?'green':'transparent',
+                    backgroundColor:(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?uiState.colorPrimary:'transparent',
                     color:(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?'white':'green',
                     fontSize:(props.cartMode)?'12px':'18px',
                 }}

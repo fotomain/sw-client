@@ -28,6 +28,7 @@ if(container) {
     const root = createRoot(container); // createRoot(container!) if you use TypeScript
     root.render(
         <Provider store={reduxStore}>
+
             <Router
                 future={{
                     v7_startTransition: true,
@@ -38,6 +39,7 @@ if(container) {
                 <App/>
 
             </Router>
+
         </Provider>
     );
 }

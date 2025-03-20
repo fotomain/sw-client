@@ -7,9 +7,25 @@ const THIS_SLICE_NAME = 'uiSlice'
 export const globalSearchText="globalSearchText"
 export const makeOpenCartView="makeOpenCartView"
 
+// ui.oolorBackgroundMain="var(--oolorBackgroundMain)";
+
 const abstractSlice=createSlice({
     name: THIS_SLICE_NAME,
     initialState:{
+
+        colorPrimary:"#5ece7b", //"blue",
+
+        colorCardBackground:[
+            'var(--YellowHorse)',
+            'var(--TinySweetBlue)',
+            'var(--PinkiePie)',
+            'var(--Green8)',
+            'var(--CreamyLightTan)',
+            'var(--GreenThumb)',
+            'var(--BlueUnderling)',
+            'var(--PinkyRing)',
+            'var(--EggYellows)',
+        ],
 
         createStarted:false,
         createError:'',

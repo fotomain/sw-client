@@ -1,4 +1,4 @@
-import {Navigate, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 import {LayoutPage} from "./view/LayoutPage";
 import ProductsGallery from "./view/product/ProductsGallery";
 import ProductDetailsPage from "./view/product/ProductDetailsPage";
@@ -6,8 +6,6 @@ import React, {useEffect} from "react";
 import {categorySlice} from "./redux/category/categorySlice";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "./redux/cart/cartSlice";
-import {css} from "@emotion/react";
-import SpinnerFast from "./view/SpinnerFast";
 
 const App = () => {
 
@@ -23,7 +21,7 @@ const App = () => {
 
     useEffect(() => {
         const cartLocalGUID = localStorage.getItem("cartID")
-        console.log("q01 cartLocalGUID",cartLocalGUID)
+
         if(null===cartLocalGUID || ""===cartLocalGUID) {
             // variant - create new
             dispatch(cartSlice.actions.createCart({}))
@@ -33,52 +31,37 @@ const App = () => {
         }
     }, []);
 
-    // useEffect(() => {
-    //
-    //     // const del1 = localStorage.removeItem("cartID")
-    //     const cartLocalGUID = localStorage.getItem("cartID")
-    //     if(''===cartState.cartGUID) {
-    //         if (null !== cartLocalGUID) {
-    //             console.log("=== CREATE_CART_MUTATION cartLocalId exist ", cartLocalGUID)
-    //             dispatch(cartSlice.actions.setCartGUID(cartLocalGUID))
-    //         } else {
-    //             dispatch(cartSlice.actions.createCart({}))
-    //         }
-    //     }
-    //     else {
-    //         // if (null == cartLocalGUID) {
-    //             // always if login or after new order
-    //             localStorage.setItem("cartID", cartState.cartGUID)
-    //         // }
-    //     }
-    // }, [cartState.cartGUID]);
+    const uiState = useSelector((state:any) => state.uiState );
 
-    return<>
+    return <>
 
-        <Routes>
+        <div id={'themeRoot'} style={{"--colorMain": uiState.colorPrimary} as React.CSSProperties}>
 
-            <Route path='/' element={<LayoutPage />} >
+            <Routes>
 
-                <Route index element={<ProductsGallery/>} />
+                <Route path='/' element={<LayoutPage/>}>
 
-                <Route path='/home' element={<ProductsGallery/>} />
+                    <Route index element={<ProductsGallery/>}/>
 
-                <Route
-                    path="/product"
-                    element = {<ProductDetailsPage />}
-                />
+                    <Route path='/home' element={<ProductsGallery/>}/>
 
-                {(!(categoryState.categoriesArray && (0!==categoryState.categoriesArray.length)))?null
-                    :categoryState.categoriesArray.map((el:any,ii:number)=> {
-                        return <Route path={'/' +el.name} element={<ProductsGallery/>} key={ii}  />
-                    })
-                }
+                    <Route
+                        path="/product"
+                        element={<ProductDetailsPage/>}
+                    />
 
-            </Route>
+                    {(!(categoryState.categoriesArray && (0 !== categoryState.categoriesArray.length))) ? null
+                        : categoryState.categoriesArray.map((el: any, ii: number) => {
+                            return <Route path={'/' + el.name} element={<ProductsGallery/>} key={ii}/>
+                        })
+                    }
 
-        </Routes>
+                </Route>
 
+            </Routes>
+
+        </div>
     </>
 }
 
-export default App
+        export default App

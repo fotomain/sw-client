@@ -1,14 +1,14 @@
 /** @jsxImportSource @emotion/react */
 
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {css} from "@emotion/react";
 import IconCart from "../../core/universal/IconCart";
-import {ui} from "../../LayoutPage";
+
 import {cartSlice} from "../../../redux/cart/cartSlice";
 import {makeOpenCartView, uiSlice} from "../../../redux/ui/uiSlice";
-import OutOfStock from "./OutOfStock";
+import OutOfStockText from "./OutOfStockText";
 
 export const WrapOutOfStock = css`
     position: absolute;
@@ -26,6 +26,8 @@ const ProductCardForGalleryImage = (props:any) => {
     const {product,productIndex} = props;
 
     const dispatch = useDispatch();
+
+    const uiState = useSelector((state:any) => state.uiState );
 
     return(
 
@@ -72,16 +74,17 @@ const ProductCardForGalleryImage = (props:any) => {
                     id={'out111'}
                     css={WrapOutOfStock}
                 >
-                    <OutOfStock/>
+                    <OutOfStockText/>
                 </div>
             }
 
             {(!(product.inStock && props.cardHover)) ? null :
                 <div
                     id={'quick-add111'}
-                    css={css` position: absolute;
+                    css={css` 
+                        position: absolute;
                         z-index: 50;
-                        margin-left: 80%;
+                        margin-left: 70%;
                         margin-top: 85%;
                     `}
                 >
@@ -89,7 +92,7 @@ const ProductCardForGalleryImage = (props:any) => {
                         color={'white'}
                         css={css` padding: 10px;
                             border-radius: 50px;
-                            background-color: ${ui.colorMain}`}
+                            background-color: ${uiState.colorPrimary}`}
                         onClick={(e:any) => {
                             e.stopPropagation()
 

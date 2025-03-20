@@ -1,21 +1,21 @@
 /** @jsxImportSource @emotion/react */
-import {ADD_TO_CART_MUTATION} from "../../redux/cart/graphql/ADD_TO_CART_MUTATION";
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
-import React from "react";
-import {ui} from "../LayoutPage";
 
-import { css, jsx } from '@emotion/react';
+import React from "react";
+
+import { css } from '@emotion/react';
 import ButtonFigure from "../core/universal/ButtonFigure";
 import {MdAdd, MdRemove} from "react-icons/md";
 
 import IconMaterial from "../core/universal/IconMaterial";
 import {cartSlice} from "../../redux/cart/cartSlice";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 
 const CartLineQtyPlusMinus = (props:any) => {
 
     const dispatch = useDispatch();
+
+    const uiState = useSelector((state:any) => state.uiState );
 
   return(
       <div
@@ -35,7 +35,7 @@ const CartLineQtyPlusMinus = (props:any) => {
           <ButtonFigure square={true} style={{
               width: "18px", height: "18px",
               backgroundColor:'white',
-              color:ui.colorMain
+              color:uiState.colorPrimary
           }}
 
                         productIndex={props.productIndex}
@@ -71,7 +71,7 @@ const CartLineQtyPlusMinus = (props:any) => {
           {/*button minus*/}
           <ButtonFigure square={true} style={{
               width: "18px", height: "18px",
-              backgroundColor:'white', color:ui.colorMain
+              backgroundColor:'white', color:uiState.colorPrimary
           }}
 
                         productIndex={props.productIndex}

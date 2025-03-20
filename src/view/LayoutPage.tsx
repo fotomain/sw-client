@@ -19,22 +19,6 @@ import ProductDetailsPage from "./product/ProductDetailsPage";
 import SpinnerFast from "./SpinnerFast";
 
 
-export let ui:any={};
-ui.colorMain="var(--colorMain)";
-ui.oolorBackgroundMain="var(--oolorBackgroundMain)";
-ui.oolorCardBackground=[
-    'var(--YellowHorse)',
-    'var(--TinySweetBlue)',
-    'var(--PinkiePie)',
-    'var(--Green8)',
-    'var(--CreamyLightTan)',
-    'var(--GreenThumb)',
-    'var(--BlueUnderling)',
-    'var(--PinkyRing)',
-    'var(--EggYellows)',
-];
-
-
 
 export const LayoutPage = (params:any) => {
 

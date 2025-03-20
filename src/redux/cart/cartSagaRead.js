@@ -23,8 +23,6 @@ function* workFetch(params){
 
     const q= READ_CART_QUERY(workParams)
 
-    console.log("q01",q)
-
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_CART_QUERY',
         gqlRequest:q
