@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 
-import React, {useDeferredValue, useEffect, useMemo, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import useStyles from '../../styles';
 
@@ -27,11 +27,46 @@ export const ProductsGallery = () => {
     const dispatch = useDispatch();
 
 
-
     const  routerParams= useLocation();
     console.log("routerParams555 routerParams.pathname1",routerParams.pathname)
 
     const categoryState = useSelector((state:any) => state.categoryState );
+
+    useEffect(() => {
+
+        // if("/"!==routerParams.pathname) {
+        //     let tName = routerParams.pathname.replace("/", "")
+        //     tName = ('all' === tName) ? '' : tName
+        //     tName = capitalizeFirstLetter(tName)
+        //
+        //     dispatch(productSlice.actions.read({
+        //         category_name: tName
+        //     }))
+        // }
+        // else {
+        //     if(0!==categoryState.categoriesArray.length) {
+        //         console.log("categoryState.categoriesArray1", categoryState.categoriesArray)
+        //         dispatch(productSlice.actions.read({
+        //             category_name: categoryState.categoriesArray[0].name,
+        //         }))
+        //     }
+        // }
+        //
+
+        if(categoryState.activeCategory){
+
+        }
+
+
+
+        }, [categoryState.activeCategory]);
+
+    const initState={
+        name: '',
+        stateMoment: 0,
+        // name: 'Am'
+    }
+    const [state, setState] = useState(initState);
 
     const uiState = useSelector((state:any) => state.uiState );
 
@@ -52,35 +87,17 @@ export const ProductsGallery = () => {
         [categoryState.activeCategory,uiState.globalSearchText]
     );
 
-    const WorkList = (props:any) =>{
-        const {workData}=props;
-        const stableArray = useDeferredValue(workData)
-        console.log("stableArray1",stableArray)
+    if(!categoryState.activeCategory) return null;
 
-        const ProductsList = useMemo(() => {
-
-                return stableArray.map((el: any, i: number) => {
-                        return <React.Fragment key={i}>
-
-                            {/*<ProductDetailsPage product={el} productIndex={i}/>*/}
-                            <ProductCardForGallery product={el} productIndex={i}/>
-
-                        </React.Fragment>
-                    }
-                )
-
-            }
-            , [stableArray]);
-
-        return <>{ProductsList}</>
-
-    }
 
     return (
         <div style={{display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center',
             // NavBar
             paddingTop:'45px'
         }}>
+
+
+            {/*<h4>{(isReading && 0===productsState.productsArray.length) ? 'Products Loading...' : null}</h4>*/}
 
             <div
                 css={css`
@@ -93,9 +110,15 @@ export const ProductsGallery = () => {
                 `}
             >
 
-                {(null===categoryState.activeCategory)?null:
-                    <WorkList workData={productsState.productsArray}/>
-                }
+                {((0!== productsState.productsArray.length)) && productsState.productsArray.map((el: any, i: number) => {
+                    return <React.Fragment key={i}>
+
+                        {/*<ProductDetailsPage product={el} productIndex={i}/>*/}
+                        <ProductCardForGallery product={el} productIndex={i}/>
+
+
+                    </React.Fragment>
+                })}
 
             </div>
 

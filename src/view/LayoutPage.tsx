@@ -70,8 +70,6 @@ export const LayoutPage = (params:any) => {
                 z-index: 10;
                 position: relative`}>
 
-                {/*<ProductsGallery/>*/}
-
                 <main>
                     <Outlet/> {/* Content specific to the route will be rendered here */}
                 </main>

@@ -50,6 +50,8 @@ const ProductCardForGalleryImage = (props:any) => {
                     position: absolute;
                     z-index: 11;
                     width: auto;
+                    //TODO params1
+                    max-width: 500px;
                     height: 100%;
                 `}
                 src={product?.gallery[0]?.url_path}

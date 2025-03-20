@@ -14,13 +14,6 @@ const ProductCardForGallery = (props:any) => {
 
     const {product,productIndex} = props;
 
-
-    const productsState = useSelector((state:any) => state.productsState );
-    let productSelectedOptions = productsState.productsOptionsArray[productIndex];
-
-    const [cardState, setCardState] = useState({
-    })
-
     const [cardHover, setCardHover] = useState(false)
 
     const navigate = useNavigate()
