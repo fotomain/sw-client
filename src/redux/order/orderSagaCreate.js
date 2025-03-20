@@ -34,7 +34,7 @@ function* workFetch(params){
 
     const resCreate = JSON.parse(data?.createOrder)
     console.log('=== CREATE_ORDER_MUTATION finish resCreate',resCreate)
-    console.log('=== CREATE_ORDER_MUTATION finish resCreate',resCreate.operation_status)
+    console.log('=== CREATE_ORDER_MUTATION3 finish resCreate',resCreate.operation_status)
     if(200===resCreate?.operation_status){
         localStorage.removeItem("cartID")
         yield put(cartActions.deleteCart({cart_guid:currentState.cartGUID}))

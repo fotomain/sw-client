@@ -1,24 +1,12 @@
 /** @jsxImportSource @emotion/react */
 
-import React, {useState} from "react";
-import ProductsGallery from "./product/ProductsGallery";
-
-import { CiShoppingCart } from "react-icons/ci";
-
-import CartView from "./cart/CartView";
+import React from "react";
 
 import {css} from "@emotion/react";
-import {MdOutlineShoppingCart, MdShoppingCart, MdShoppingCartCheckout} from "react-icons/md";
-import IconMaterial from "./core/universal/IconMaterial";
-import IconCart from "./core/universal/IconCart";
 import NavBar from "./NavBar";
-import DataJsonGenerator from "../database/generator/DataJsonGenerator";
 import {useSelector} from "react-redux";
 import {Outlet, Route, Routes} from "react-router-dom";
-import ProductDetailsPage from "./product/ProductDetailsPage";
 import SpinnerFast from "./SpinnerFast";
-
-
 
 export const LayoutPage = (params:any) => {
 
@@ -39,12 +27,12 @@ export const LayoutPage = (params:any) => {
         >
 
             {/*global tests*/}
-            {/*<div css={css` margin-top: 150px`}>*/}
-                {/*<div>{JSON.stringify(cartState.cartGUID)}</div>*/}
+            <div css={css` margin-top: 150px`}>
+                <div>{JSON.stringify(cartState.cartGUID)}</div>
                 {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
                 {/*<div css={css` margin-top: 80px`}>products N {productsState.productsArray.length}</div>*/}
                 {/*<div css={css` margin-top: 80px`}>isReading {JSON.stringify(isReading)}</div>*/}
-            {/*</div>*/}
+            </div>
 
             <NavBar/>
 

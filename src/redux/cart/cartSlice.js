@@ -1,7 +1,7 @@
 import {createSlice} from "@reduxjs/toolkit";
 
 const THIS_SLICE_ENTITY = 'cartArray'
-const THIS_SLICE_OPTIONS = 'cartOptionsArray'
+
 const THIS_SLICE_NAME = 'cartSlice'
 
 const abstractSlice=createSlice({
@@ -18,7 +18,6 @@ const abstractSlice=createSlice({
         deleteError:'',
 
         [THIS_SLICE_ENTITY]:{},
-        [THIS_SLICE_OPTIONS]:[],
 
         isEmpty:true,
         cartGUID:'',
@@ -97,6 +96,8 @@ const abstractSlice=createSlice({
         },
         createCartSuccess: (state,action) => {
             state.cartGUID=action.payload;
+            state[THIS_SLICE_ENTITY]={};
+            state.isEmpty=true;
             state.createCartStarted=false;
         },
 
@@ -118,7 +119,7 @@ export const cartActions = {
 
     createStart             : abstractSlice.actions.createStart ,
     create                  : abstractSlice.actions.create,
-    createSuccess       : abstractSlice.actions.createSuccess,
+    createSuccess           : abstractSlice.actions.createSuccess,
 
     read        : abstractSlice.actions.read,
     readSuccess : abstractSlice.actions.readSuccess,

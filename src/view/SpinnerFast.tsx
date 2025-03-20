@@ -1,8 +1,15 @@
+/** @jsxImportSource @emotion/react */
 
 import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
+import {css} from "@emotion/react";
 
 const SpinnerFast = (props:any) => {
+
+    const {radius,...other} = props;
+
+    let r=25
+    if(radius) r=radius
 
     const [state, set_state] = useState({
         nSeconds:0
@@ -24,19 +31,19 @@ const SpinnerFast = (props:any) => {
 
     const uiState = useSelector((state:any) => state.uiState );
 
-  return <>
+  return <div css={css` background-color: transparent`}>
       <svg
-          width={80}
-          height={80}
-          view-box="-10 -10 100 100"
+          width={r*2+30}
+          height={r*2+30}
+          view-box={"-10 -10 "+(r*4)+" "+(r*4)+""}
           xmlns="http://www.w3.org/2000/svg"
           style={{
               transform: "rotate(-90deg)",
           }}
-          {...props}
+          {...other}
       >
           <circle
-              r={25}
+              r={r}
               cx={40}
               cy={40}
               fill="transparent"
@@ -47,7 +54,7 @@ const SpinnerFast = (props:any) => {
               strokeDashoffset={0}
           />
           <circle
-              r={25}
+              r={r}
               cx={40}
               cy={40}
               fill="transparent"
@@ -61,7 +68,7 @@ const SpinnerFast = (props:any) => {
 
           />
       </svg>
-  </>
+  </div>
 }
 
 export default SpinnerFast

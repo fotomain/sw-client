@@ -10,6 +10,7 @@ import {cartSlice} from "../../redux/cart/cartSlice";
 import CartLine from "./CartLine";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {orderSlice} from "../../redux/order/orderSlice";
+import SpinnerFast from "../SpinnerFast";
 
 const CartView = () => {
 
@@ -44,8 +45,8 @@ const CartView = () => {
     return(<>
 
         <div style={{
-            overflowY:'auto',
-            maxHeight:'90vh',
+            overflowY: 'auto',
+            maxHeight: '90vh',
             display: 'flex',
             flexDirection: 'column',
             alignContent: 'start',
@@ -54,7 +55,10 @@ const CartView = () => {
         }}>
 
 
-            {/*<div>{JSON.stringify(cartState.cartItems)}</div>*/}
+            {cartStateGlobal.createStarted ? <div css={css` height: auto `}>
+                <SpinnerFast radius={20} />
+            </div> : null}
+
             {(!cartStateGlobal.isEmpty && cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
 
                 return <div css={css`
@@ -78,12 +82,6 @@ const CartView = () => {
 
                 </div>
 
-                // return <div css={css` min-width: 250px `} key={cartLine.cart_line_id}>
-                //
-                // <div>{cartLine.product_object?.name} {cartLine.cart_line_id}</div>
-                //
-                //
-                // </div>
             })}
 
             <div
@@ -97,7 +95,7 @@ const CartView = () => {
                 `}
             >
                 <div>Total:</div>
-                <div>${(!cartStateGlobal?.cartArray?.cart_total)?0:cartStateGlobal?.cartArray?.cart_total}</div>
+                <div>${(!cartStateGlobal?.cartArray?.cart_total) ? 0 : cartStateGlobal?.cartArray?.cart_total}</div>
             </div>
 
             <div
@@ -112,16 +110,16 @@ const CartView = () => {
             >
 
                 <ButtonPrimary
-                    style={{ borderRadius:0, padding: '12px', width: '100%'}}
+                    style={{borderRadius: 0, padding: '12px', width: '100%'}}
                     onClick={() => {
 
-                        if(cartStateGlobal?.isEmpty) {
+                        if (cartStateGlobal?.isEmpty) {
                             window.alert("Cart is empty...")
                             return
                         }
 
                         dispatch(uiSlice.actions.setValue({
-                            key:makeOpenCartView,
+                            key: makeOpenCartView,
                             value: false,
                         }))
 
