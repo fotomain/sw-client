@@ -147,8 +147,8 @@ const NavBar = (props:any) => {
 
                         }}
                     >
-                        <div>{cartStateGlobal?.cartArray?.cart_lines?.length}</div>
-                        <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length) ? ' item' : 'items'}</div>
+                        <div>{cartStateGlobal?.cartArray?.cart_lines?.length}&nbsp;</div>
+                        <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
                     </div>
                 }
 
