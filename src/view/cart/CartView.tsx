@@ -3,14 +3,14 @@
 import React, {useEffect, useState} from "react";
 
 
-import ButtonPrimary from "../core/universal/ButtonPrimary";
+import ButtonPrimary from "../core/lib/ButtonPrimary";
 import {css} from "@emotion/react";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import CartLine from "./CartLine";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {orderSlice} from "../../redux/order/orderSlice";
-import SpinnerFast from "../SpinnerFast";
+import SpinnerBasic from "../core/lib/SpinnerBasic";
 
 const CartView = () => {
 
@@ -59,7 +59,7 @@ const CartView = () => {
 
 
             {createStarted? <div css={css` height: auto `}>
-                <SpinnerFast radius={20} />
+                <SpinnerBasic radius={20} />
             </div> : null}
 
             {(!cartStateGlobal.isEmpty && cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
@@ -98,7 +98,13 @@ const CartView = () => {
                 `}
             >
                 <div>Total:</div>
-                <div>${(!cartStateGlobal?.cartArray?.cart_total) ? 0 : cartStateGlobal?.cartArray?.cart_total}</div>
+                <div
+                    data-testid='cart-total'
+                >
+                    ${(!cartStateGlobal?.cartArray?.cart_total)
+                        ? 0
+                        : cartStateGlobal?.cartArray?.cart_total}
+                </div>
             </div>
 
             <div

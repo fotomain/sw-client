@@ -3,10 +3,10 @@
 import React from "react";
 
 import { css } from '@emotion/react';
-import ButtonFigure from "../core/universal/ButtonFigure";
+import ButtonFigure from "../core/lib/ButtonFigure";
 import {MdAdd, MdRemove} from "react-icons/md";
 
-import IconMaterial from "../core/universal/IconMaterial";
+import IconMaterial from "../core/lib/IconMaterial";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import {useDispatch, useSelector} from "react-redux";
 
@@ -38,6 +38,8 @@ const CartLineQtyPlusMinus = (props:any) => {
               color:uiState.colorPrimary
           }}
 
+                        data-testid='cart-item-amount-increase'
+
                         productIndex={props.productIndex}
 
                         onClick={() => {
@@ -56,15 +58,18 @@ const CartLineQtyPlusMinus = (props:any) => {
 
           </ButtonFigure>
 
-          <div css={css`
-              //width: 40px;
-              font-size: 1rem;
-              color: var(--colorMain) ;
-              //padding-left: 20px;
-              //padding-right: 20px;
-              display: flex; flex-direction: row; justify-content: center;
-              background-color: white;
-          `}>
+          <div
+              data-testid='cart-item-amount'
+              css={css`
+                  //width: 40px;
+                  font-size: 1rem;
+                  color: var(--colorMain) ;
+                  //padding-left: 20px;
+                  //padding-right: 20px;
+                  display: flex; flex-direction: row; justify-content: center;
+                  background-color: white;
+              `}
+          >
                {props.qty}
           </div>
 
@@ -73,6 +78,8 @@ const CartLineQtyPlusMinus = (props:any) => {
               width: "18px", height: "18px",
               backgroundColor:'white', color:uiState.colorPrimary
           }}
+
+                        data-testid='cart-item-amount-decrease'
 
                         productIndex={props.productIndex}
 

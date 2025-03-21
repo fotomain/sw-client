@@ -1,13 +1,13 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import IconCart from "./core/universal/IconCart";
+import IconCart from "./core/lib/IconCart";
 import React, {useRef} from "react";
 
 import CartView from "./cart/CartView";
 
 import {CiGlobe} from "react-icons/ci";
-import IconMaterial from "./core/universal/IconMaterial";
+import IconMaterial from "./core/lib/IconMaterial";
 import useClickOut from "./core/functions";
 import {useDispatch, useSelector} from "react-redux";
 import {makeOpenCartView, uiSlice} from "../redux/ui/uiSlice";
@@ -89,7 +89,7 @@ const NavBar = (props:any) => {
             cursor: pointer;
             margin-right: 24px;
         `}
-
+             data-testid='cart-btn'
         >
 
             <IconCart

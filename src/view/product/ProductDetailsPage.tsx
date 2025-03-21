@@ -15,6 +15,9 @@ import {useLocation, useParams} from "react-router-dom";
 import OutOfStockText from "./card/OutOfStockText";
 import {WrapOutOfStock} from "./card/ProductCardForGalleryImage";
 
+export const forCart='forCart'
+export const forPDP='forPDP'
+
 const WrapCTA= (uiState:any,cardState:any,product:any)=> {return css`
                         cursor: pointer;
                         pointer-events:auto;
@@ -67,7 +70,7 @@ const ProductDetailsPage = (props:any) => {
 
     useEffect(() => {
         if(undefined===productSelectedOptions){
-            // console.log("product",product)
+
             let optionsAll:any = {}
             let optionsSelected:any = {}
             let optionsArray:any[] = []
@@ -78,13 +81,12 @@ const ProductDetailsPage = (props:any) => {
                     option_header:h,
                     option_items:product.attributes[i].attributeOptions,
                 })
-                //=== DEFAULT SELECTED
+                //=== IF DEFAULT SELECTED
                 // const option0 = product.attributes[i].attributeOptions
                 // console.log("====== attributeOptions1",option0)
                 // optionsSelected[product.attributes[i].id]=option0[0].id;
             }
             console.log("optionsSelected1",optionsSelected)
-            // console.log("optionsArray",optionsArray)
 
             setCardState((prevState:any)=>{return {...prevState,
                 optionsSelected:optionsSelected,
@@ -106,9 +108,7 @@ const ProductDetailsPage = (props:any) => {
     }, [Object.keys(cardState.optionsSelected).length]);
 
     return <>
-        {/*slideNumber {cardState.slideNumber} */}
-        {/*    optionsSelected {JSON.stringify(cardState?.optionsSelected)}*/}
-        {/*    % of Selected {cardState.percentOfOptionsSelected}*/}
+
     <div css={css`
         // NavBar
         padding-top: 145px;
@@ -164,6 +164,7 @@ const ProductDetailsPage = (props:any) => {
                   })}
               </div>
               <div
+                  data-testid='product-gallery'
                   css={css`
                       width: 80%;
                       //height: 50vh;
@@ -219,10 +220,11 @@ const ProductDetailsPage = (props:any) => {
         >
             <div style={{fontSize: '28px', width: '100%'}}>{product.name}</div>
 
-            <ProductCardOptions
-                cardState={cardState}
-                setCardState={setCardState}
-            />
+                <ProductCardOptions
+                    addTestData={forPDP}
+                    cardState={cardState}
+                    setCardState={setCardState}
+                />
 
             <div css={css` width: 100%; `}>
 
@@ -233,6 +235,7 @@ const ProductDetailsPage = (props:any) => {
                 </div>
 
                 <div
+                    data-testid='add-to-cart'
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
 
@@ -263,6 +266,7 @@ const ProductDetailsPage = (props:any) => {
                     ADD TO CART
                 </div>
                 <div
+                    data-testid='product-description'
                     css={css`
                         align-self: flex-end;
                         width: auto;

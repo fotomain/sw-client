@@ -4,7 +4,7 @@ import React, {useDeferredValue, useEffect, useState} from "react";
 
 import {css} from "@emotion/react";
 
-import IconSearch from "../core/universal/IconSearch";
+import IconSearch from "../core/lib/IconSearch";
 import {globalSearchText, uiSlice} from "../../redux/ui/uiSlice";
 import {useDispatch, useSelector} from "react-redux";
 

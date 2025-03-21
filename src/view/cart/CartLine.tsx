@@ -3,14 +3,15 @@
 
 import {css} from "@emotion/react";
 import React, {useEffect, useState} from "react";
-import ButtonFigure from "../core/universal/ButtonFigure";
+import ButtonFigure from "../core/lib/ButtonFigure";
 
 import {cartSlice} from "../../redux/cart/cartSlice";
-import IconMaterial from "../core/universal/IconMaterial";
+import IconMaterial from "../core/lib/IconMaterial";
 import {MdClose} from "react-icons/md";
 import CartLineQtyPlusMinus from "./CartLineQtyPlusMinus";
 import {useDispatch, useSelector} from "react-redux";
 import ProductCardOptions from "../product/ProductCardOptions";
+import {forCart} from "../product/ProductDetailsPage";
 
 const optionsToKeyValue = (p:any) => {
     const res:any = {}
@@ -121,6 +122,7 @@ const CartLine = (props:any) => {
             <div css={css`font-size: 12px;  `}>${cartLine.total_line}</div>
 
             <ProductCardOptions
+                addTestData={forCart}
                 readOnly
                 cartMode
                 cardState={cardState}
@@ -147,29 +149,6 @@ const CartLine = (props:any) => {
             />
             </div>
         </div>
-
-        <div
-            id={'dd0'}
-            css={css`
-            width: 10%;
-            height: auto;
-            flex: 1;    
-            display: flex;
-            //flex-direction: column;
-            //justify-content: space-between;
-            //gap: 12px;
-            background-color: blue;
-        `}
-        >
-            {/*<CartLineQtyPlusMinus*/}
-            {/*    qty={cartLine.qty}*/}
-            {/*    product_object={cartLine.product_object}*/}
-            {/*    product_options={optionsToKeyValue(cartLine.product_options)}*/}
-            {/*    cartState={cartState} setCartState={setCartState}*/}
-            {/*/>*/}
-
-        </div>
-
 
         <div css={css`
             width: 45%;
@@ -215,12 +194,9 @@ const CartLine = (props:any) => {
                                   cart_line_id: cartLine.cart_line_id,
                               }))
 
-
                           }}
             >
-
                 <IconMaterial size={18} icon={MdClose}/>
-
             </ButtonFigure>
             }
 

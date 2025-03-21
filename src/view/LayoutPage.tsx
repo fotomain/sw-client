@@ -6,7 +6,7 @@ import {css} from "@emotion/react";
 import NavBar from "./NavBar";
 import {useSelector} from "react-redux";
 import {Outlet, Route, Routes} from "react-router-dom";
-import SpinnerFast from "./SpinnerFast";
+import SpinnerBasic from "./core/lib/SpinnerBasic";
 
 export const LayoutPage = (params:any) => {
 
@@ -27,12 +27,12 @@ export const LayoutPage = (params:any) => {
         >
 
             {/*global tests*/}
-            <div css={css` margin-top: 150px`}>
-                <div>{JSON.stringify(cartState.cartGUID)}</div>
+            {/*<div css={css` margin-top: 150px`}>*/}
+            {/*    <div>{JSON.stringify(cartState.cartGUID)}</div>*/}
                 {/*<div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
                 {/*<div css={css` margin-top: 80px`}>products N {productsState.productsArray.length}</div>*/}
                 {/*<div css={css` margin-top: 80px`}>isReading {JSON.stringify(isReading)}</div>*/}
-            </div>
+            {/*</div>*/}
 
             <NavBar/>
 
@@ -50,7 +50,7 @@ export const LayoutPage = (params:any) => {
                         background-color: transparent;
                         `}
                 >
-                    <SpinnerFast/>
+                    <SpinnerBasic/>
                 </div>
             }
 

@@ -7,8 +7,8 @@ const useClickOut = (ref:any,keyState:boolean,callback:any,excludeId?:string)=> 
 
             if(!keyState) return;
 
-                console.log('event.target1',event.target)
-            console.log('event.target1',event.target.id)
+            // console.log('event.target1',event.target)
+            // console.log('event.target1',event.target.id)
 
             if (
                 ref.current
@@ -23,7 +23,7 @@ const useClickOut = (ref:any,keyState:boolean,callback:any,excludeId?:string)=> 
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            console.log("removeEventListener1")
+            // console.log("removeEventListener1")
             document.removeEventListener("mousedown", handleClickOutside);
         };
     }, [ref,keyState]);

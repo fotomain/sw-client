@@ -3,7 +3,7 @@
 import React from "react";
 import {MdArrowBackIosNew} from "react-icons/md";
 import { MdArrowForwardIos } from "react-icons/md";
-import IconMaterial from "../universal/IconMaterial";
+import IconMaterial from "../lib/IconMaterial";
 import {ui} from "../../LayoutPage";
 import {css} from "@emotion/react";
 

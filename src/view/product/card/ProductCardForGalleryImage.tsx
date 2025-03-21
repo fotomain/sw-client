@@ -4,7 +4,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {css} from "@emotion/react";
-import IconCart from "../../core/universal/IconCart";
+import IconCart from "../../core/lib/IconCart";
 
 import {cartSlice} from "../../../redux/cart/cartSlice";
 import {makeOpenCartView, uiSlice} from "../../../redux/ui/uiSlice";

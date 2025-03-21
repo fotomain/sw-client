@@ -4,7 +4,7 @@ import {useEffect, useState} from "react";
 import {useSelector} from "react-redux";
 import {css} from "@emotion/react";
 
-const SpinnerFast = (props:any) => {
+const SpinnerBasic = (props:any) => {
 
     const {radius,...other} = props;
 
@@ -71,4 +71,4 @@ const SpinnerFast = (props:any) => {
   </div>
 }
 
-export default SpinnerFast
+export default SpinnerBasic

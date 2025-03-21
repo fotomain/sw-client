@@ -2,30 +2,16 @@
 
 import React, {useDeferredValue, useEffect, useMemo, useState} from "react";
 
-import useStyles from '../../styles';
-
 import {useDispatch, useSelector} from "react-redux";
 import {productActions, productSlice} from "../../redux/product/productSlice";
-import {Button, TextField} from "@mui/material";
-import ClassWooEntity from "../../api/WooEntityRoot";
 
 import {css} from "@emotion/react";
 import ProductCardForGallery from "./card/ProductCardForGallery";
 import {useLocation} from "react-router-dom";
-import {capitalizeFirstLetter} from "../../redux/product/READ_PRODUCTS_QUERY";
-import {categorySlice} from "../../redux/category/categorySlice";
-
-const debug_local=true
 export const ProductsGallery = () => {
 
-
-    const createStarted = useSelector((state:any) => state.productsState.createStarted);
     const productsState = useSelector((state:any) => state.productsState );
-    const isReading = useSelector((state:any) => state.productsState.isReading);
-    const deleteStarted = useSelector((state:any) => state.productsState.deleteStarted);
-    const deleteError = useSelector((state:any) => state.productsState.deleteError);
     const dispatch = useDispatch();
-
 
 
     const  routerParams= useLocation();
@@ -77,10 +63,13 @@ export const ProductsGallery = () => {
     }
 
     return (
-        <div style={{display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center',
-            // NavBar
-            paddingTop:'45px'
-        }}>
+        <div
+            style={{
+                display: 'flex', flexDirection: 'column', alignContent: 'center', alignItems: 'center',
+                // NavBar
+                paddingTop:'45px'
+            }}
+        >
 
             <div
                 css={css`

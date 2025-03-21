@@ -7,6 +7,7 @@ import {css} from "@emotion/react";
 
 import {uiSlice} from "../redux/ui/uiSlice";
 import {useNavigate} from "react-router";
+import {Link} from "react-router-dom";
 
 const MenuDesktop = () => {
 
@@ -38,11 +39,11 @@ const MenuDesktop = () => {
             >
                 {(0===categoryState.categoriesArray.length)?null
                     :categoryState.categoriesArray.map((el:any,ii:number)=>{
-                        return <li key={ii}
+                        return <li
+                            key={ii}
                             css={css`
-                            height: 28px; //params1 ui.heightMenuAndInputSearch
-                            border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?uiState.colorPrimary:'transparent'};
-                            color: ${(ii===uiState.menuActiveItem.menuNumber)?uiState.colorPrimary:'black'};
+                                height: 28px; //params1 ui.heightMenuAndInputSearch
+                                border-bottom: 1px solid ${(ii===uiState.menuActiveItem.menuNumber)?uiState.colorPrimary:'transparent'};
                             `}
                                onClick={()=>{
                                    dispatch(uiSlice.actions.setValue({
@@ -55,14 +56,20 @@ const MenuDesktop = () => {
                                        value: el,
                                    }))
 
-
-
-                                   navigate(`/`+el.name )
+                                   // navigate(`/`+el.name )
 
                                }}
 
                     >
-                        {el.display_name.toUpperCase()}
+                       <Link
+                           data-testid={(ii===uiState.menuActiveItem.menuNumber)?'active-category-link':'category-link'}
+                           css={css`
+                            color: ${(ii===uiState.menuActiveItem.menuNumber)?uiState.colorPrimary:'black'};
+                            text-decoration: none;
+                           `}
+                           to={`/`+el.name}>
+                           {el.display_name.toUpperCase()}
+                       </Link>
                     </li>
                 })}
             </ul>
