@@ -96,15 +96,14 @@ const NavBar = (props:any) => {
         >
 
             <IconCart
-                id={'iconCart1'} // for OutClick
+                id={'iconCart1'} // for ClickOut
                 color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
 
                 onClick={(e:any) => {
 
                     e.stopPropagation()
 
-                    // if (cartStateGlobal.isEmpty) return
-                    // console.log("uiState.makeOpenCartView1", uiState.makeOpenCartView)
+                    //=== PROBLEM if (cartStateGlobal.isEmpty) return
 
                     if(uiState.makeOpenCartView) {
                         console.log("v1-1")
