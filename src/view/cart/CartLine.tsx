@@ -166,6 +166,11 @@ const CartLine = (props:any) => {
              onMouseLeave={()=>{
                  setImageHover(false)
              }}
+             onMouseMove={()=>{
+                 if(!imageHover) //after return from CartView
+                     setImageHover(true)
+             }}
+
         >
             {cartLine?.product_object?.gallery &&
                 <img

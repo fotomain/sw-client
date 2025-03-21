@@ -103,8 +103,8 @@ const NavBar = (props:any) => {
 
                     e.stopPropagation()
 
-                    if (cartStateGlobal.isEmpty) return
-                    console.log("uiState.makeOpenCartView1", uiState.makeOpenCartView)
+                    // if (cartStateGlobal.isEmpty) return
+                    // console.log("uiState.makeOpenCartView1", uiState.makeOpenCartView)
 
                     if(uiState.makeOpenCartView) {
                         console.log("v1-1")
