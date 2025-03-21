@@ -1,22 +1,27 @@
 /** @jsxImportSource @emotion/react */
 
 import {useSelector} from "react-redux";
-import {forCart} from "../ProductDetailsPage";
+import {forCart, forPDP} from "../ProductDetailsPage";
 
 const SelectOptionSize=(props:any)=>{
     console.log("option0 props1",props)
     const {optionsSet}=props;
     const uiState = useSelector((state:any) => state.uiState );
 
-    let testText1 = ""
-    if(forCart===props.addTestData){
-        testText1 = "cart-item-attribute-"+optionsSet?.option_header.name.toLowerCase()
-        testText1=testText1.replaceAll(" ","-")
-    }
+
 
     return <>
 
         {optionsSet?.option_items && optionsSet.option_items.map((optionItem: any, j: number) => {
+
+
+            let testText1 = ""
+            if(forCart===props.addTestData){
+                testText1 = "cart-item-attribute-"+optionsSet?.option_header.name.toLowerCase()
+                testText1=testText1.replaceAll(" ","-")
+            } else if(forPDP===props.addTestData){
+                testText1="product-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.value
+            }
 
             let suffixSelected = + (optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?"-selected":""
             // console.log("textSuffin1",suffixSelected)

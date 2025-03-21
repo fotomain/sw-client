@@ -22,10 +22,10 @@ const SelectOptionColor=(props:any)=>{
             {
                 testText1="cart-item-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.name
             } else if(forPDP===props.addTestData){
-                testText1="product-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.name
+                testText1="product-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.value
             }
 
-            console.log("optionItem1",optionItem)
+            // console.log("optionItem1",optionItem)
 
             return <div style={{paddingLeft:'4px',paddingRight:'4px', cursor:'pointer'}} key={j}
                 css={css`
