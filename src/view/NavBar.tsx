@@ -131,7 +131,6 @@ const NavBar = (props:any) => {
 
                 {(cartStateGlobal.isEmpty) ? null :
                     <div
-                        data-testid='cart-overlay'
                         id={'iconBubble1'}
                         css={css`
                             position: absolute;
