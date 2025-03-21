@@ -83,9 +83,9 @@ const NavBar = (props:any) => {
 
         {/*<div>isEmpty{JSON.stringify(cartStateGlobal.isEmpty)}</div>*/}
 
-        <div css={css` position: relative;
-            //border: none;
-            //background-color: red;
+        <button css={css` position: relative;
+            border: none;
+            background-color: transparent;
             cursor: pointer;
             margin-right: 24px;
         `}
@@ -188,7 +188,7 @@ const NavBar = (props:any) => {
 
             </div>
 
-        </div>
+        </button>
 
     </nav>
 

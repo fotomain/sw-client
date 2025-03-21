@@ -1,9 +1,13 @@
 
+// === TEST URL
+// https://sw-client.netlify.app/product
+// https://sw-client-rf5w1cpw1-fotomains-projects.vercel.app/
+
 export const fetchGraphQL= async (params:any) =>{
 
-    const mode:any='localDocker'
+    // const mode:any='localDocker'
     // const mode:any="globalDocker"
-    // const mode:any="globalPHP"
+    const mode:any="globalPHP"
 
     let fetchPath=''
 

@@ -1,6 +1,11 @@
 
 # sw-client
 
+### TEST SITE FROM
+https://sw-client.netlify.app/product
+https://sw-client-rf5w1cpw1-fotomains-projects.vercel.app/
+
+
 #### render.com -> deploy with Docker moce
 npm start
 
