@@ -49,7 +49,7 @@ const CartView = () => {
     return(<>
 
         <div
-            data-testid='cart-overlay'
+
             style={{
             overflowY: 'auto',
             maxHeight: '90vh',
