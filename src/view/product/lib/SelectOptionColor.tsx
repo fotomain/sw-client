@@ -3,7 +3,7 @@
 import {css} from "@emotion/react";
 
 import {useSelector} from "react-redux";
-import {forCart} from "../ProductDetailsPage";
+import {forCart, forPDP} from "../ProductDetailsPage";
 
 const SelectOptionColor=(props:any)=>{
     console.log("111 props11",props)
@@ -11,9 +11,20 @@ const SelectOptionColor=(props:any)=>{
 
     const uiState = useSelector((state:any) => state.uiState );
 
+
+
     return <>
 
         {optionsSet?.option_items && optionsSet.option_items.map((optionItem: any, j: number) => {
+
+            let testText1=""
+            if(forCart===props.addTestData)
+            {
+                testText1="cart-item-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.name
+            } else if(forPDP===props.addTestData){
+                testText1="product-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.name
+            }
+
 
             return <div style={{paddingLeft:'4px',paddingRight:'4px', cursor:'pointer'}} key={j}
                 css={css`
@@ -24,9 +35,7 @@ const SelectOptionColor=(props:any)=>{
             >
                 {/*<div>{JSON.stringify(optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])}</div>*/}
                 <div
-                    data-testid={(forCart===props.addTestData)
-                        ?"cart-item-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.name
-                        :""}
+                    data-testid={testText1}
                     css={css`  
                         width: ${props.cartMode?'15px':'20px'}; 
                         height: ${props.cartMode?'15px':'20px'};

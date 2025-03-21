@@ -89,7 +89,7 @@ const NavBar = (props:any) => {
             cursor: pointer;
             margin-right: 24px;
         `}
-             disabled={cartStateGlobal.isEmpty}
+             // disabled={cartStateGlobal.isEmpty}
              color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
              data-testid='cart-btn'
         >
