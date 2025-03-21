@@ -244,8 +244,6 @@ const ProductDetailsPage = (props:any) => {
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
 
-                        window.alert("AAA...")
-
                         if(!product.inStock) {
                             window.alert("Product Out of Stock...")
                             return
