@@ -173,9 +173,8 @@ const NavBar = (props:any) => {
 
         </button>
 
-
+        <div data-testid='cart-overlay'>
         <dialog open={uiState.makeOpenCartView}
-                // data-testid='cart-overlay'
                 ref={dialogRef}
                 css={css`
                     position: absolute;
@@ -210,7 +209,7 @@ const NavBar = (props:any) => {
             <CartView/>
 
         </dialog>
-
+        </div>
 
     </nav>
 
