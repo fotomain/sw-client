@@ -11,7 +11,7 @@ const SelectOptionSize=(props:any)=>{
     let testText1 = ""
     if(forCart===props.addTestData){
         testText1 = "cart-item-attribute-"+optionsSet?.option_header.name.toLowerCase()
-        testText1=testText1.replaceAll(" ","_")
+        testText1=testText1.replaceAll(" ","-")
     }
 
     return <>

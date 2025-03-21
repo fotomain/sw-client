@@ -1,8 +1,8 @@
 full-stack/header.spec.ts
-has category links
+    has category links
 26.8s
 full-stack/header.spec.ts:3
-has cart button
+    has cart button
 29.7s
 full-stack/header.spec.ts:23
 full-stack/pdp.spec.ts

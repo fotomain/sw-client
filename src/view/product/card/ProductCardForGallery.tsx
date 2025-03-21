@@ -19,7 +19,9 @@ const ProductCardForGallery = (props:any) => {
     const navigate = useNavigate()
 
     return(
-        <div css={css`
+        <div
+            data-testid={'product-'+product.name.replaceAll(" ","-").toLowerCase()}
+            css={css`
             z-index: 80;
             width: 30vw;
             height: auto;
