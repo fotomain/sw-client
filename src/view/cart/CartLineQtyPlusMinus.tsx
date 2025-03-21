@@ -28,6 +28,8 @@ const CartLineQtyPlusMinus = (props:any) => {
           // minWidth: '200px',
           maxWidth: '40px',
           height: '100%',
+          //params1
+          minHeight: '100px',
           // border: '1px solid green',
       }}>
 

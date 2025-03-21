@@ -39,6 +39,11 @@ const ProductCardForGallery = (props:any) => {
                  setCardHover(false)
              }}
 
+             onMouseMove={()=>{
+                 if(!cardHover) //after return from CartView
+                    setCardHover(true)
+             }}
+
              onClick={(e:any)=> {
                  // e.preventDefault();
                  navigate(`/product`,
