@@ -83,7 +83,7 @@ const ProductCardForGalleryImage = (props:any) => {
             {(!(product.inStock && props.cardHover)) ? null :
                 <div
                     id={'quick-add111'}
-                    css={css` 
+                    css={css`
                         position: absolute;
                         z-index: 50;
                         margin-left: 70%;
@@ -95,32 +95,32 @@ const ProductCardForGalleryImage = (props:any) => {
                         css={css` padding: 10px;
                             border-radius: 50px;
                             background-color: ${uiState.colorPrimary}`}
-                        onClick={(e:any) => {
+                        onClick={(e: any) => {
                             e.stopPropagation()
 
                             console.log("setCartViewOpen=true")
 
-                            let optionsSelected:any = {}
+                            let optionsSelected: any = {}
                             for (let i = 0; i < product.attributes.length; i++) {
                                 const {attributeOptions, ...h} = product.attributes[i]
-                                console.log("attributeOptions1",attributeOptions)
-                                console.log("attributeOptions1",h)
+                                console.log("attributeOptions1", attributeOptions)
+                                console.log("attributeOptions1", h)
 
                                 optionsSelected[h.id] = attributeOptions[0].id
                             }
 
-                            console.log("optionsSelected1",product.product_id)
-                            console.log("optionsSelected1",product.has_options)
-                            console.log("optionsSelected1",optionsSelected)
+                            console.log("optionsSelected1", product.product_id)
+                            console.log("optionsSelected1", product.has_options)
+                            console.log("optionsSelected1", optionsSelected)
 
                             dispatch(cartSlice.actions.create({
                                 qty: 1,
-                                product:product,
-                                optionsSelected:optionsSelected,
+                                product: product,
+                                optionsSelected: optionsSelected,
                             }))
 
                             dispatch(uiSlice.actions.setValue({
-                                key:makeOpenCartView,
+                                key: makeOpenCartView,
                                 value: true,
                             }))
 
