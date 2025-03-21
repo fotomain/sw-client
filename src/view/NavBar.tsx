@@ -83,7 +83,7 @@ const NavBar = (props:any) => {
 
         {/*<div>isEmpty{JSON.stringify(cartStateGlobal.isEmpty)}</div>*/}
 
-        <div data-testid='cart-overlay'>
+        <div hidden={cartStateGlobal.isEmpty} data-testid='cart-overlay'>
         <button css={css` position: relative;
             border: none;
             background-color: transparent;
