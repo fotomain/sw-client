@@ -49,7 +49,6 @@ const CartView = () => {
     return(<>
 
         <div
-
             style={{
             overflowY: 'auto',
             maxHeight: '90vh',
@@ -57,7 +56,6 @@ const CartView = () => {
             flexDirection: 'column',
             alignContent: 'start',
             alignItems: 'center',
-
         }}>
 
 
