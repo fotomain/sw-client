@@ -118,8 +118,8 @@ const CartLine = (props:any) => {
                 //debug background-color: #f2b1d8;
         `}
         >
-            <div css={css`font-size: 14px;  `}>{cartLine.product_object?.name}</div>
-            <div css={css`font-size: 12px;  `}>${cartLine.total_line}</div>
+            <div css={css`font-size: 14px; font-weight: lighter; `}>{cartLine.product_object?.name}</div>
+            <div css={css`font-size: 12px; margin-top:6px; margin-bottom:6px; `}>${cartLine.total_line}</div>
 
             <ProductCardOptions
                 addTestData={forCart}
@@ -134,6 +134,8 @@ const CartLine = (props:any) => {
             <div
                 css={css`
                     width: auto;
+                    //params1 = F( pictures )
+                    margin-right: 4px;
                     display: flex;
                     flex-direction: column;
                     justify-content: start;

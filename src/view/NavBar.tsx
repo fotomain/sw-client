@@ -101,8 +101,6 @@ const NavBar = (props:any) => {
 
                 onClick={(e:any) => {
 
-                    e.stopPropagation()
-
                     //=== PROBLEM if (cartStateGlobal.isEmpty) return
 
                     if(uiState.makeOpenCartView) {
