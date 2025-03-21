@@ -90,12 +90,13 @@ const NavBar = (props:any) => {
             margin-right: 24px;
         `}
              disabled={cartStateGlobal.isEmpty}
+             color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
              data-testid='cart-btn'
         >
 
             <IconCart
-                color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
                 id={'iconCart1'}
+                color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
                 onClick={() => {
 
                     if (cartStateGlobal.isEmpty) return
