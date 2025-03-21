@@ -240,10 +240,10 @@ const ProductDetailsPage = (props:any) => {
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
 
-                        if(!product.inStock) {
-                            window.alert("Product Out of Stock...")
-                            return
-                        }
+                        // if(!product.inStock) {
+                        //     window.alert("Product Out of Stock...")
+                        //     return
+                        // }
 
                         if(100<cardState.percentOfOptionsSelected) {
                             window.alert("not all options selected!")

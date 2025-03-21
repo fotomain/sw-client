@@ -32,7 +32,7 @@ const ProductCardForGalleryTexts = (props:any) => {
         >
 
             <div css={css` align-self: start `}>{product.name}</div>
-            <div css={css` align-self: start `}>${product.price}</div>
+            <div css={css` align-self: start `}>${product.price.toFixed(2)}</div>
 
         </div>
 
