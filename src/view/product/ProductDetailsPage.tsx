@@ -235,15 +235,19 @@ const ProductDetailsPage = (props:any) => {
                 </div>
 
                 <button
-                    disabled={!product.inStock}
+
+                    disabled={(product.inStock && 100>cardState.percentOfOptionsSelected)?true:false}
+
                     data-testid='add-to-cart'
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
 
-                        // if(!product.inStock) {
-                        //     window.alert("Product Out of Stock...")
-                        //     return
-                        // }
+                        window.alert("AAA...")
+
+                        if(!product.inStock) {
+                            window.alert("Product Out of Stock...")
+                            return
+                        }
 
                         if(100<cardState.percentOfOptionsSelected) {
                             window.alert("not all options selected!")
