@@ -260,7 +260,6 @@ const ProductDetailsPage = (props:any) => {
                             value: true,
                         }))
 
-
                     }}
                 >
                     ADD TO CART
