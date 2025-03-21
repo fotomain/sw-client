@@ -234,7 +234,7 @@ const ProductDetailsPage = (props:any) => {
                     <div style={{fontWeight:'bold',fontSize: '18px', width: '100%'}}>${product.price}</div>
                 </div>
 
-                <div
+                <button
                     data-testid='add-to-cart'
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
@@ -263,7 +263,7 @@ const ProductDetailsPage = (props:any) => {
                     }}
                 >
                     ADD TO CART
-                </div>
+                </button>
                 <div
                     data-testid='product-description'
                     css={css`
