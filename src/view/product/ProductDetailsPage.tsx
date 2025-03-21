@@ -235,6 +235,7 @@ const ProductDetailsPage = (props:any) => {
                 </div>
 
                 <button
+                    disabled={!product.inStock}
                     data-testid='add-to-cart'
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
