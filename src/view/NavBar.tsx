@@ -24,6 +24,7 @@ const NavBar = (props:any) => {
 
     useClickOut(dialogRef,uiState.makeOpenCartView,
         ()=>{
+            console.log("v1-3")
             dispatch(uiSlice.actions.setValue({
                 key:makeOpenCartView,
                 value: false,
@@ -80,30 +81,45 @@ const NavBar = (props:any) => {
 
 
         <button
-            id={'iconCart1'}
+            data-testid='cart-btn'
+            disabled={cartStateGlobal.isEmpty}
+
             css={css` position: relative;
                 border: none;
                 background-color: transparent;
                 cursor: pointer;
                 margin-right: 24px;
             `}
-            // disabled={cartStateGlobal.isEmpty}
-                color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
-                data-testid='cart-btn'
+
+            color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
+
         >
 
             <IconCart
-
+                id={'iconCart1'} // for OutClick
                 color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
-                onClick={() => {
+
+                onClick={(e:any) => {
+
+                    e.stopPropagation()
 
                     if (cartStateGlobal.isEmpty) return
-                    console.log("setCartViewOpen1", cartStateGlobal.cartArray.length)
+                    console.log("uiState.makeOpenCartView1", uiState.makeOpenCartView)
 
-                    dispatch(uiSlice.actions.setValue({
-                        key: makeOpenCartView,
-                        value: !uiState.makeOpenCartView,
-                    }))
+                    if(uiState.makeOpenCartView) {
+                        console.log("v1-1")
+                        dispatch(uiSlice.actions.setValue({
+                            key: makeOpenCartView,
+                            value: false,
+                        }))
+                    }
+                    else {
+                        console.log("v1-2")
+                        dispatch(uiSlice.actions.setValue({
+                            key: makeOpenCartView,
+                            value: true,
+                        }))
+                    }
 
                 }}/>
 

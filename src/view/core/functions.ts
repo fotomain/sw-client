@@ -1,14 +1,19 @@
 import {useEffect} from "react";
 
-const useClickOut = (ref:any,keyState:boolean,callback:any,excludeId?:string)=> {
+const useClickOut = (
+    ref:any,
+    keyState:boolean,
+    callback:any,
+    excludeId?:string
+)=> {
     useEffect(() => {
 
         function handleClickOutside(event:any) {
 
             if(!keyState) return;
 
-            // console.log('event.target1',event.target)
-            // console.log('event.target1',event.target.id)
+            console.log('v1-3 event.target1',event.target)
+            console.log('v1-3 event.target1',event.target.id)
 
             if (
                 ref.current
