@@ -89,6 +89,7 @@ const NavBar = (props:any) => {
             cursor: pointer;
             margin-right: 24px;
         `}
+             disabled={cartStateGlobal.isEmpty}
              data-testid='cart-btn'
         >
 
