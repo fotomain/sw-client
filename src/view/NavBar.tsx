@@ -83,6 +83,7 @@ const NavBar = (props:any) => {
 
         {/*<div>isEmpty{JSON.stringify(cartStateGlobal.isEmpty)}</div>*/}
 
+        <div data-testid='cart-overlay'>
         <button css={css` position: relative;
             border: none;
             background-color: transparent;
@@ -158,6 +159,7 @@ const NavBar = (props:any) => {
             </div>
 
         </button>
+        </div>
 
         <dialog open={uiState.makeOpenCartView}
                 ref={dialogRef}
