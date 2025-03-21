@@ -81,7 +81,7 @@ const NavBar = (props:any) => {
 
 
         <button
-
+            data-testid='cart-btn'
             disabled={cartStateGlobal.isEmpty}
 
             css={css` position: relative;
@@ -96,7 +96,6 @@ const NavBar = (props:any) => {
         >
 
             <IconCart
-                data-testid='cart-btn'
                 id={'iconCart1'} // for OutClick
                 color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
 
