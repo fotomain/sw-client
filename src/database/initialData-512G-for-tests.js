@@ -1,4 +1,4 @@
-export const initialData = {
+export const initialData512GForTests = {
 
     "categories": [
       {
@@ -195,9 +195,9 @@ export const initialData = {
             "id": "Capacity",
             "items": [
               {
-                "displayValue": "512GB",
-                "value": "512GB",
-                "id": "512GB",
+                "displayValue": "512G",
+                "value": "512G",
+                "id": "512G",
                 "__typename": "Attribute"
               },
               {
@@ -282,9 +282,9 @@ export const initialData = {
             "id": "Capacity",
             "items": [
               {
-                "displayValue": "512GB",
-                "value": "512GB",
-                "id": "512GB",
+                "displayValue": "512G",
+                "value": "512G",
+                "id": "512G",
                 "__typename": "Attribute"
               },
               {
@@ -333,9 +333,9 @@ export const initialData = {
                 "__typename": "Attribute"
               },
               {
-                "displayValue": "512GB",
-                "value": "512GB",
-                "id": "512GB",
+                "displayValue": "512G",
+                "value": "512G",
+                "id": "512G",
                 "__typename": "Attribute"
               }
             ],
@@ -412,9 +412,9 @@ export const initialData = {
             "id": "Capacity",
             "items": [
               {
-                "displayValue": "512GB",
-                "value": "512GB",
-                "id": "512GB",
+                "displayValue": "512G",
+                "value": "512G",
+                "id": "512G",
                 "__typename": "Attribute"
               },
               {

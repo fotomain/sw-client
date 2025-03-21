@@ -56,7 +56,7 @@ function SliderBasic(props) {
               <Dots
                   activeIndex={activeIndex}
                   slidesContent={props.slidesContent}
-                  onclick={(activeIndex) => setActiveIndex(activeIndex)}
+                  onClick={(activeIndex) => setActiveIndex(activeIndex)}
               />
           }
 

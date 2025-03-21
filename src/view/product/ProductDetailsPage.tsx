@@ -175,6 +175,7 @@ const ProductDetailsPage = (props:any) => {
                   `}
               >
                   <SliderBasic
+
                       slidesContent={slidesContent}
                       // autoPlay={true}
                       autoPlayInterval={3500}
@@ -239,6 +240,7 @@ const ProductDetailsPage = (props:any) => {
                     disabled={(product.inStock && 100>cardState.percentOfOptionsSelected)?true:false}
 
                     data-testid='add-to-cart'
+
                     css={WrapCTA(uiState,cardState,product)}
                     onClick={()=>{
 
@@ -281,7 +283,7 @@ const ProductDetailsPage = (props:any) => {
                         padding-bottom: 4px;
                         overflow-y: auto;
                         scroll-behavior: smooth;
-                        
+                        border: none;
                     `}
                     dangerouslySetInnerHTML={{__html: product.description.trim()}}
                 />

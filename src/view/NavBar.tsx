@@ -39,11 +39,6 @@ const NavBar = (props:any) => {
 
     const navigate = useNavigate()
 
-    const productsState = useSelector((state:any) => state.productsState );
-    const isReading = useSelector((state:any) => state.productsState.isReading);
-
-    const css1 = css` pointer-events: none; `
-
     return <nav
         css={css`
             position: fixed;
@@ -84,19 +79,21 @@ const NavBar = (props:any) => {
         {/*<div>isEmpty{JSON.stringify(cartStateGlobal.isEmpty)}</div>*/}
 
 
-        <button css={css` position: relative;
-            border: none;
-            background-color: transparent;
-            cursor: pointer;
-            margin-right: 24px;
-        `}
+        <button
+            id={'iconCart1'}
+                css={css` position: relative;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+                margin-right: 24px;
+            `}
             // disabled={cartStateGlobal.isEmpty}
                 color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
                 data-testid='cart-btn'
         >
 
             <IconCart
-                id={'iconCart1'}
+
                 color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
                 onClick={() => {
 

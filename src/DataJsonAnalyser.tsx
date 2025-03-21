@@ -1,11 +1,11 @@
 
-import {initialData} from "./database/initialData";
+import {initialData512GForTests} from "./database/initialData-512G-for-tests";
 import {dividerClasses} from "@mui/material";
 
 
 const DataJsonAnalyser = () => {
 
-    const data:any=initialData
+    const data:any=initialData512GForTests
     console.log('products1',data['products'])
 
     const workArray:any[] = []
