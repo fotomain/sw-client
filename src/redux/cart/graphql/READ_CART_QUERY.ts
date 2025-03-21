@@ -39,6 +39,7 @@ export const READ_CART_QUERY =(params:any)=> { return  `
                                                 id
                                                 name
                                                 displayValue
+                                                value
                                             } 
                                     }
                 }

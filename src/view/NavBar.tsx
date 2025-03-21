@@ -89,9 +89,9 @@ const NavBar = (props:any) => {
             cursor: pointer;
             margin-right: 24px;
         `}
-             // disabled={cartStateGlobal.isEmpty}
-             color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
-             data-testid='cart-btn'
+            // disabled={cartStateGlobal.isEmpty}
+                color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
+                data-testid='cart-btn'
         >
 
             <IconCart
@@ -150,47 +150,51 @@ const NavBar = (props:any) => {
                         }}
                     >
                         <div>{cartStateGlobal?.cartArray?.cart_lines?.length}&nbsp;</div>
-                        <div>{(1===cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
+                        <div>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
                     </div>
                 }
-
-                <dialog open={uiState.makeOpenCartView}
-                        ref={dialogRef}
-                        css={css`
-                            position: absolute;
-                            z-index: 20;
-
-                            //TODO params1
-                            width: 250px;
-                            min-width: 250px;
-                            background-color: white;
-                            // - width of IconCart - shift of the tip
-
-                            margin-top: 30px;
-                            margin-right: calc(100% - 24px - 0.6rem);
-
-                            border: none;
-                            animation: fadein .5s ease-in forwards;
-
-                            @keyframes fadein {
-                                0% {
-                                    opacity: 0;
-                                }
-                                100% {
-                                    opacity: 1;
-                                }
-                            }
-                        `}
-                >
-
-                    <CartView/>
-
-                </dialog>
 
 
             </div>
 
         </button>
+
+        <dialog open={uiState.makeOpenCartView}
+                ref={dialogRef}
+                css={css`
+                    position: absolute;
+                    z-index: 20;
+                    
+                    //TODO params1
+                    width: 250px;
+                    min-width: 250px;
+                    background-color: white;
+                    // - width of IconCart - shift of the tip
+
+                    //params1 NavBar
+                    top: 70px;
+                    margin-right: 0;
+                    //transform: translate(100%);
+                    //margin-right: calc(100% - 24px - 0.6rem);
+
+                    border: none;
+                    animation: fadein .5s ease-in forwards;
+
+                    @keyframes fadein {
+                        0% {
+                            opacity: 0;
+                        }
+                        100% {
+                            opacity: 1;
+                        }
+                    }
+                `}
+        >
+
+            <CartView/>
+
+        </dialog>
+
 
     </nav>
 

@@ -80,6 +80,7 @@ export const ADD_TO_CART_MUTATION =(params?:any)=> {
                                  id
                                  name
                                  displayValue
+                                 value
                              } 
                      }
 

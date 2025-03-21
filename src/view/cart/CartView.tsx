@@ -11,6 +11,7 @@ import CartLine from "./CartLine";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {orderSlice} from "../../redux/order/orderSlice";
 import SpinnerBasic from "../core/lib/SpinnerBasic";
+import ButtonBasic from "../core/lib/ButtonBasic";
 
 const CartView = () => {
 
@@ -118,7 +119,7 @@ const CartView = () => {
                 }
             >
 
-                <ButtonPrimary
+                <ButtonBasic
                     style={{borderRadius: 0, padding: '12px', width: '100%'}}
                     onClick={() => {
 
@@ -137,7 +138,7 @@ const CartView = () => {
                     }}
                 >
                     PLACE ORDER
-                </ButtonPrimary>
+                </ButtonBasic>
 
             </div>
 

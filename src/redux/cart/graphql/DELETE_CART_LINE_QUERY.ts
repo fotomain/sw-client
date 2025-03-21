@@ -40,6 +40,7 @@ mutation {
                             id
                             name
                             displayValue
+                            value
                         } 
                 }
 

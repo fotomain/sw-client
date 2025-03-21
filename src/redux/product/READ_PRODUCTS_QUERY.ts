@@ -34,6 +34,7 @@ export const READ_PRODUCTS_QUERY =(params:any)=> {
                                                 id
                                                 name
                                                 displayValue
+                                                value
                                             } 
                                     }
                                 }
