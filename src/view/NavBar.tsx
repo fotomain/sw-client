@@ -81,7 +81,7 @@ const NavBar = (props:any) => {
 
         <button
             id={'iconCart1'}
-                css={css` position: relative;
+            css={css` position: relative;
                 border: none;
                 background-color: transparent;
                 cursor: pointer;
