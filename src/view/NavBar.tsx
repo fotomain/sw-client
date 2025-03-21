@@ -82,7 +82,7 @@ const NavBar = (props:any) => {
 
         <button
             data-testid='cart-btn'
-            disabled={cartStateGlobal.isEmpty}
+            // disabled={cartStateGlobal.isEmpty}
 
             css={css` position: relative;
                 border: none;
