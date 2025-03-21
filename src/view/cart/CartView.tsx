@@ -49,6 +49,7 @@ const CartView = () => {
     return(<>
 
         <div
+            data-testid='cart-overlay'
             style={{
             overflowY: 'auto',
             maxHeight: '90vh',
@@ -66,7 +67,8 @@ const CartView = () => {
 
             {(!cartStateGlobal.isEmpty && cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
 
-                return <div css={css`
+                return <div
+                    css={css`
                     width: 100%;
                     //height: auto;
                     display: flex;
