@@ -49,7 +49,6 @@ const CartView = () => {
     return(<>
 
         <div
-
             style={{
             overflowY: 'auto',
             maxHeight: '90vh',
