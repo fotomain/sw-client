@@ -5,7 +5,6 @@ import {useSelector} from "react-redux";
 
 import {css} from "@emotion/react";
 
-
 const ProductCardForGalleryTexts = (props:any) => {
 
     const {product,productIndex} = props;
