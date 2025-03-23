@@ -22,7 +22,8 @@ function* workFetch(params){
 
     const data_json = yield apiResponse1.json()
     const data = data_json.data.query
-    console.log('data0',data)
+
+//    console.log('data0',data)
 
     let result = data
 
