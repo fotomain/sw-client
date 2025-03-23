@@ -29,8 +29,6 @@ function* workFetch(params){
 
     // console.log('result1',result)
 
-    // yield put(productActions.setCategories(data[0].categories))
-
     yield put(productActions.readSuccess(result))
 
 }
