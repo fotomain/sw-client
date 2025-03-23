@@ -25,7 +25,7 @@ function* workFetch(params){
     let result = data
 
     // console.log('result0',result)
-
+    // TODO sql
     const filterName = params.payload?.filter?.name
     if(filterName){
         result = result.filter(el=>{
