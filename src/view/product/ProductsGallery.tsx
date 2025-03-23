@@ -28,7 +28,7 @@ export const ProductsGallery = () => {
                 filterFinal={...filterFinal,category_name:
                         ("all"===categoryState.activeCategory.name?"":categoryState.activeCategory.name)
                 }
-                filterFinal={...filterFinal,filter: {name: uiState.globalSearchText}}
+                filterFinal={...filterFinal,filter: {filterProductName: uiState.globalSearchText}}
 
                 console.log("categoryState.activeCategory1",filterFinal)
 
