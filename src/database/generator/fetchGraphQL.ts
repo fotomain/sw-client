@@ -63,4 +63,3 @@ export const fetchGraphQL= async (params:any) =>{
 //     //     cartItems: d?.data?.cart?.items
 //     // }})
 // },
-
