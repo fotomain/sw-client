@@ -34,14 +34,6 @@ const CartLine = (props:any) => {
 
     const {cartLine, cartState, setCartState} = props
 
-    // console.log("222 cartLine.product_options1",cartLine.product_options)
-
-    const objSelected:any = {}
-    for (let i = 0; i < cartLine.product_options.length; i++) {
-        const el=cartLine.product_options[i]
-        objSelected[el.attribute_id] = el.option_id.toString()
-    }
-    // console.log("555 objSelected",objSelected)
 
     const [cardState, setCardState] = useState({
         optionsSelected: {},
@@ -53,13 +45,18 @@ const CartLine = (props:any) => {
     })
 
     useEffect(() => {
-        console.log("product8", product)
+
+        const objSelected:any = {}
+        for (let i = 0; i < cartLine.product_options.length; i++) {
+            const el=cartLine.product_options[i]
+            objSelected[el.attribute_id] = el.option_id.toString()
+        }
+
+        let optionsAll: any = {}
+        let optionsArray: any[] = []
+
         if (product.attributes) {
 
-
-            let optionsAll: any = {}
-            // let optionsSelected: any = {}
-            let optionsArray: any[] = []
             for (let i = 0; i < product.attributes.length; i++) {
                 optionsAll[product.attributes[i].id] = product.attributes[i]
                 const {attributeOptions, ...h} = product.attributes[i]
@@ -68,18 +65,18 @@ const CartLine = (props:any) => {
                     option_items: product.attributes[i].attributeOptions,
                 })
             }
-
-
-            setCardState((prevState: any) => {
-                return {
-                    ...prevState,
-                    optionsSelected: objSelected,
-                    optionsAll: optionsAll,
-                    optionsArray: optionsArray,
-                }
-            })
         }
-    }, []); //productSelectedOptions
+
+        setCardState((prevState: any) => {
+            return {
+                ...prevState,
+                optionsSelected: objSelected,
+                optionsAll: optionsAll,
+                optionsArray: optionsArray,
+            }
+        })
+
+    }, [product.attributes,cartLine.product_options]); //productSelectedOptions
 
     const uiState = useSelector((state:any) => state.uiState );
 
@@ -119,7 +116,7 @@ const CartLine = (props:any) => {
         `}
         >
             <div css={css`font-size: 14px; font-weight: lighter; `}>{cartLine.product_object?.name}</div>
-            <div css={css`font-size: 12px; margin-top:6px; margin-bottom:6px; `}>${cartLine.total_line}</div>
+            <div css={css`font-size: 12px; margin-top:6px; margin-bottom:6px; `}>${cartLine.total_line.toFixed(2)}</div>
 
             <ProductCardOptions
                 addTestData={forCart}

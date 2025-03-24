@@ -11,7 +11,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 
-import {useLocation, useParams} from "react-router-dom";
+import {useLocation} from "react-router-dom";
 import OutOfStockText from "./card/OutOfStockText";
 import {WrapOutOfStock} from "./card/ProductCardForGalleryImage";
 
@@ -39,11 +39,7 @@ const WrapCTA= (uiState:any,cardState:any,product:any)=> {return css`
 
 const ProductDetailsPage = (props:any) => {
 
-    // let params = useParams()
-    // console.log("params333",params)
-
     const  routerParams= useLocation();
-    // console.log("routerParams333",routerParams)
 
     const {product,productIndex} = (routerParams)?routerParams.state:props;
 
@@ -83,10 +79,8 @@ const ProductDetailsPage = (props:any) => {
                 })
                 //=== IF DEFAULT SELECTED
                 // const option0 = product.attributes[i].attributeOptions
-                // console.log("====== attributeOptions1",option0)
                 // optionsSelected[product.attributes[i].id]=option0[0].id;
             }
-            console.log("optionsSelected1",optionsSelected)
 
             setCardState((prevState:any)=>{return {...prevState,
                 optionsSelected:optionsSelected,
@@ -94,18 +88,19 @@ const ProductDetailsPage = (props:any) => {
                 optionsArray:optionsArray,
             }})
         }
-    }, []); //productSelectedOptions
+    }, [product.attributes,productSelectedOptions]); //productSelectedOptions
 
+
+    const numberOfSelected = Object.keys(cardState.optionsSelected).length
 
     useEffect(() => {
 
-        const percentOfOptionsSelected:number = Object.keys(cardState.optionsSelected).length / product.attributes.length * 100
-        // console.log("percentOfOptionsSelected1",percentOfOptionsSelected)
+        const percentOfOptionsSelected:number = numberOfSelected / product.attributes.length * 100
         setCardState((prevState:any)=>{return {...prevState,
             percentOfOptionsSelected:percentOfOptionsSelected,
         }})
 
-    }, [Object.keys(cardState.optionsSelected).length]);
+    }, [numberOfSelected,product.attributes.length]);
 
     return <>
 

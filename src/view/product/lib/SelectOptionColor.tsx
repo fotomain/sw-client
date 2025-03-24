@@ -6,7 +6,7 @@ import {useSelector} from "react-redux";
 import {forCart, forPDP} from "../ProductDetailsPage";
 
 const SelectOptionColor=(props:any)=>{
-    console.log("111 props11",props)
+
     const {optionsSet}=props;
 
     const uiState = useSelector((state:any) => state.uiState );
@@ -25,8 +25,6 @@ const SelectOptionColor=(props:any)=>{
                 testText1="product-attribute-"+optionsSet?.option_header.name.toLowerCase()+"-"+optionItem.value
             }
 
-            // console.log("optionItem1",optionItem)
-
             return <div style={{paddingLeft:'4px',paddingRight:'4px', cursor:'pointer'}} key={j}
                 css={css`
                     gap:8px;
@@ -43,13 +41,12 @@ const SelectOptionColor=(props:any)=>{
                         background-color:${optionItem.name};
                     `}
                     onClick={()=>{
-                        // console.log("=== option ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
 
                         if(props.readOnly) return
 
                         props.setCardState((prevState:any)=>{
 
-                            // console.log("333 prevState.optionsSelected1",prevState.optionsSelected)
+
 
                             let op = prevState.optionsSelected;
                             op[optionsSet?.option_header.id]=optionItem.id;

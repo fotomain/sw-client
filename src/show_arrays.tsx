@@ -2,9 +2,6 @@
 const show_arrays=()=>{
     const matrix2d:any[] = []
     matrix2d[1] = [3,2,4]
-    console.log("=== matrix2d)",matrix2d)
-    console.log("=== matrix2d)",matrix2d[1][2])
-
 
 
     const matrix3d = new Array()

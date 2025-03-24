@@ -8,8 +8,6 @@ import {cartActions} from "./cartSlice";
 
 const THIS_SAGA_ENTITY='cart'
 function* workFetch(params){
-    console.log('params1',params.payload)
-    // const apiResponse = yield call(()=>fetch("https://api.thecatapi.com/v1/breeds"));
 
     const stateCall = (state) => state.cartState
     const currentState = yield select(stateCall)
@@ -29,12 +27,6 @@ function* workFetch(params){
     }))
 
     console.log("=== READ_CART_QUERY apiResponse1",apiResponse1)
-    let apiResponse = apiResponse1
-
-    // const apiResponse = yield call(()=>
-    //     fetch(
-    //         "https://api.thecatapi.com/v1/breeds"
-    //     ));
 
     const data_json = yield apiResponse1.json()
 

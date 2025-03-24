@@ -24,13 +24,12 @@ const abstractSlice=createSlice({
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== order_ isCreating1",action);
         },
         create: (state,action) => {
-            console.log("=== order_ createExecute true ",action);
+
         },
         createSuccess: (state,action) => {
-            console.log("createSuccess action9",action.payload)
+
             state[THIS_SLICE_ENTITY] = action.payload;
             state.momentCreated=Date.now();
             state.createStarted=false;
@@ -46,7 +45,7 @@ const abstractSlice=createSlice({
             state.readError="";
         },
         readSuccess: (state,action) => {
-            console.log("readSuccess action1",action.payload)
+
             state[THIS_SLICE_ENTITY] = action.payload;
             state.isReading=false;
         },

@@ -1,12 +1,11 @@
 
-import {delay, select, fork, call, put, takeEvery} from "redux-saga/effects";
+import {fork, call, put, takeEvery} from "redux-saga/effects";
 import {cartActions} from "./cartSlice";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {DELETE_CART_MUTATION} from "./graphql/DELETE_CART_MUTATION";
 
 
 function* workFetch(params){
-    // console.log('params.payload1',params.payload)
 
     yield put(cartActions.deleteCartStart(params))
 

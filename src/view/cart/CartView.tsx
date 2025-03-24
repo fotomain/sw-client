@@ -2,8 +2,6 @@
 
 import React, {useEffect, useState} from "react";
 
-
-import ButtonPrimary from "../core/lib/ButtonPrimary";
 import {css} from "@emotion/react";
 import {useDispatch, useSelector} from "react-redux";
 import {cartSlice} from "../../redux/cart/cartSlice";
@@ -26,25 +24,19 @@ const CartView = () => {
     const cartStateGlobal = useSelector((state:any) => state.cartState );
     const orderState = useSelector((state:any) => state.orderState );
 
-    console.log('cartStateGlobal2',cartStateGlobal)
-
-
     useEffect(() => {
         if(cartStateGlobal.isEmpty) {
             dispatch(cartSlice.actions.read({}))
         }
-    }, [cartStateGlobal.cartGUID]);
+    }, [cartStateGlobal.isEmpty,cartStateGlobal.cartGUID,dispatch]);
 
     useEffect(() => {
         if(0!==orderState.momentCreated){
-            console.log("orderState1",orderState?.orderArray?.order_header[0]?.cart_id)
             window.alert("Order successfully created! SQL order_header.cart_id = "+orderState?.orderArray?.order_header[0]?.cart_id)
         }
-    }, [orderState.momentCreated]);
-
+    }, [orderState.momentCreated,orderState?.orderArray?.order_header]);
 
     const createStarted = useSelector((state:any) => state.productsState.createStarted);
-    console.log("createStarted11",createStarted)
 
     return(<>
 
@@ -105,7 +97,7 @@ const CartView = () => {
                 >
                     ${(!cartStateGlobal?.cartArray?.cart_total)
                         ? 0
-                        : cartStateGlobal?.cartArray?.cart_total}
+                        : cartStateGlobal?.cartArray?.cart_total.toFixed(2)}
                 </div>
             </div>
 

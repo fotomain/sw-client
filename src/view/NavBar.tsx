@@ -5,13 +5,10 @@ import IconCart from "./core/lib/IconCart";
 import React, {useRef} from "react";
 
 import CartView from "./cart/CartView";
-
-import {CiGlobe} from "react-icons/ci";
-import IconMaterial from "./core/lib/IconMaterial";
 import useClickOut from "./core/functions";
 import {useDispatch, useSelector} from "react-redux";
 import {makeOpenCartView, uiSlice} from "../redux/ui/uiSlice";
-import {useNavigate} from "react-router";
+
 import MenuDesktop from "./MenuDesktop";
 import InputSearchNavBar from "./product/InputSearchNavBar";
 import Logo from "./Logo";
@@ -25,7 +22,7 @@ const NavBar = (props:any) => {
 
     useClickOut(dialogRef,uiState.makeOpenCartView,
         ()=>{
-            console.log("v1-3")
+
             dispatch(uiSlice.actions.setValue({
                 key:makeOpenCartView,
                 value: false,
@@ -92,14 +89,14 @@ const NavBar = (props:any) => {
                     //=== PROBLEM if (cartStateGlobal.isEmpty) return
 
                     if(uiState.makeOpenCartView) {
-                        console.log("v1-1")
+
                         dispatch(uiSlice.actions.setValue({
                             key: makeOpenCartView,
                             value: false,
                         }))
                     }
                     else {
-                        console.log("v1-2")
+
                         dispatch(uiSlice.actions.setValue({
                             key: makeOpenCartView,
                             value: true,

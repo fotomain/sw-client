@@ -12,14 +12,11 @@ const useClickOut = (
 
             if(!keyState) return;
 
-            console.log('v1-3 event.target1',event.target)
-            console.log('v1-3 event.target1',event.target.id)
 
             let exclussivePressed=false
             if(excludeId){
                 exclussivePressed = (-1!==excludeId.indexOf(event.target.id))
             }
-            console.log('v1-4 exclussivePressed',exclussivePressed)
 
             if (
                 ref.current
@@ -34,10 +31,9 @@ const useClickOut = (
 
         document.addEventListener("mousedown", handleClickOutside);
         return () => {
-            // console.log("removeEventListener1")
             document.removeEventListener("mousedown", handleClickOutside);
         };
-    }, [ref,keyState]);
+    }, [ref,keyState,callback,excludeId]);
 }
 
 export default useClickOut;

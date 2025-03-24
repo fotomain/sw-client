@@ -6,7 +6,7 @@ export const capitalizeFirstLetter = (s:any)=> {
 export const READ_PRODUCTS_QUERY =(params:any)=> {
 
     const filterProductName = params.filter?.filterProductName || "";
-    // console.log("filterProductName1", filterProductName);
+
 
     let category_name=''
     if(params.category_name){ category_name=capitalizeFirstLetter(params.category_name) }

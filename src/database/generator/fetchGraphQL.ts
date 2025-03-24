@@ -51,8 +51,7 @@ export const fetchGraphQL= async (params:any) =>{
                 })
 
             }).catch((e) => {
-            console.log('=== setError countries ',e)
-            console.log(e)
+            console.error('=== setError countries ',e)
         })
     }
 }

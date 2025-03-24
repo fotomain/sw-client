@@ -17,10 +17,10 @@ const ProductCardOptions = (props:any) => {
     }
 
     const OptionsView = (params:any) =>{
-        // console.log("params.optionsSet?.option_header1",params.optionsSet)
+
         let Ret = OptionsViewArray[params.optionsSet?.option_header.name]
         if(undefined===Ret) Ret=OptionsViewArray['Size']
-        // console.log("Ret1",Ret)
+
         return <Ret {...params} />;
     }
 

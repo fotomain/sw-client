@@ -2,8 +2,6 @@ import {objectToArray} from "../../../database/generator/objectToArray";
 
 export const ADD_TO_CART_MUTATION =(params?:any)=> {
 
-   console.log("params1 ===",params)
-
    let cart_guid=""
 
    if(params.cart_guid) cart_guid = params.cart_guid;
@@ -20,7 +18,6 @@ export const ADD_TO_CART_MUTATION =(params?:any)=> {
    let options=[]
    if(params.optionsSelected) {
       options = objectToArray({array:params.optionsSelected})
-      console.log("options1",options)
    }
 
    let optionsStr=""
@@ -34,7 +31,7 @@ export const ADD_TO_CART_MUTATION =(params?:any)=> {
          const o = options[i]
          optionsStr = optionsStr + `{ attribute_id:${o.key},option_id:${o.value} } , `
       }
-      console.log("optionsStr1",optionsStr)
+
    }
 
    return  `

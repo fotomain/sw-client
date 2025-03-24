@@ -1,21 +1,17 @@
 /** @jsxImportSource @emotion/react */
 
-import React, {useDeferredValue, useEffect, useMemo, useState} from "react";
+import React, {useDeferredValue, useEffect, useMemo} from "react";
 
 import {useDispatch, useSelector} from "react-redux";
-import {productActions, productSlice} from "../../redux/product/productSlice";
+import {productActions} from "../../redux/product/productSlice";
 
 import {css} from "@emotion/react";
 import ProductCardForGallery from "./card/ProductCardForGallery";
-import {useLocation} from "react-router-dom";
+
 export const ProductsGallery = () => {
 
     const productsState = useSelector((state:any) => state.productsState );
     const dispatch = useDispatch();
-
-
-    const  routerParams= useLocation();
-    console.log("routerParams555 routerParams.pathname1",routerParams.pathname)
 
     const categoryState = useSelector((state:any) => state.categoryState );
 
@@ -30,18 +26,15 @@ export const ProductsGallery = () => {
                 }
                 filterFinal={...filterFinal,filter: {filterProductName: uiState.globalSearchText}}
 
-                console.log("categoryState.activeCategory1",filterFinal)
-
                 dispatch(productActions.read(filterFinal))
             }
         },
-        [categoryState.activeCategory,uiState.globalSearchText]
+        [categoryState.activeCategory,uiState.globalSearchText,dispatch]
     );
 
     const WorkList = (props:any) =>{
         const {workData}=props;
         const stableArray = useDeferredValue(workData)
-        console.log("stableArray1",stableArray)
 
         const ProductsList = useMemo(() => {
 

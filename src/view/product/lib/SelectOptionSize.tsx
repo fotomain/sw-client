@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import {forCart, forPDP} from "../ProductDetailsPage";
 
 const SelectOptionSize=(props:any)=>{
-    console.log("option0 props1",props)
+
     const {optionsSet}=props;
     const uiState = useSelector((state:any) => state.uiState );
 
@@ -24,7 +24,7 @@ const SelectOptionSize=(props:any)=>{
             }
 
             let suffixSelected = + (optionItem.id === props.cardState.optionsSelected[optionsSet?.option_header.id])?"-selected":""
-            // console.log("textSuffin1",suffixSelected)
+
 
             return <div id="div1"
                         data-testid={testText1+suffixSelected}
@@ -33,8 +33,6 @@ const SelectOptionSize=(props:any)=>{
                         onClick={()=>{
 
                             if(props.readOnly) return
-
-                            console.log("=== option1 ",optionsSet?.option_header.name, optionsSet?.option_header.id ," value ", optionItem.id)
 
                             props.setCardState((prevState:any)=>{
                                 let op = prevState.optionsSelected;

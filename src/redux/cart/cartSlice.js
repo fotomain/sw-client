@@ -29,13 +29,13 @@ const abstractSlice=createSlice({
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            // console.log("=== cart_ isCreating1",action);
+
         },
         create: (state,action) => {
-            // console.log("=== cart_ createExecute true ",action);
+
         },
         createSuccess: (state,action) => {
-            console.log("createSuccess action8",action.payload?.cart_lines?.length, action.payload)
+
             state[THIS_SLICE_ENTITY] = action.payload;
             state.isEmpty=(action.payload?.cart_lines?.length===0);
             state.createStarted=false;
@@ -50,7 +50,7 @@ const abstractSlice=createSlice({
             state.readError="";
         },
         readSuccess: (state,action) => {
-            console.log("readSuccess action101",action.payload)
+
             state[THIS_SLICE_ENTITY] = action.payload;
             if(null===action.payload) {
                 state.isEmpty=true;
@@ -73,7 +73,7 @@ const abstractSlice=createSlice({
             state.deleteStarted=false;
         },
         deleteSuccess: (state,action) => {
-            console.log("delete8 action.payload",action.payload)
+
             state[THIS_SLICE_ENTITY]=action.payload;
             state.isEmpty=(action.payload?.cart_lines?.length===0);
             state.deleteStarted=false;

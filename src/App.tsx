@@ -11,13 +11,11 @@ const App = () => {
 
     const dispatch = useDispatch();
     const categoryState = useSelector((state:any) => state.categoryState );
-    const cartState = useSelector((state:any) => state.cartState );
 
     useEffect(() => {
         dispatch(categorySlice.actions.read({}))
-    }, []);
+    }, [dispatch]);
 
-    console.log("cartState2",cartState.cartGUID)
 
     useEffect(() => {
         const cartLocalGUID = localStorage.getItem("cartID")
@@ -29,7 +27,7 @@ const App = () => {
             // variant - cart exists
             dispatch(cartSlice.actions.read({cart_guid:cartLocalGUID}))
         }
-    }, []);
+    }, [dispatch]);
 
     const uiState = useSelector((state:any) => state.uiState );
 

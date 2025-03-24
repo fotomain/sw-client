@@ -51,13 +51,13 @@ const abstractSlice=createSlice({
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== ui_ isCreating1",action);
+
         },
         create: (state,action) => {
-            console.log("=== ui_ createExecute true ",action);
+
         },
         createSuccess: (state,action) => {
-            console.log("createSuccess action1",action.payload)
+
             state[THIS_SLICE_ENTITY] = action.payload;
             state.createStarted=false;
         },

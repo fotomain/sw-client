@@ -11,7 +11,7 @@ function SliderBasic(props) {
     const len = props.slidesContent.length - 1;
 
     useEffect(() => {
-        // console.log("=== setActiveIndex",props.slideNumber)
+
         setActiveIndex(props.slideNumber);
     },[props.slideNumber]);
 
@@ -19,6 +19,7 @@ function SliderBasic(props) {
   useEffect(() => {
 
       let interval
+
       if(props.autoPlay) {
           interval = setInterval(() => {
               setActiveIndex(activeIndex === len ? 0 : activeIndex + 1);
@@ -30,7 +31,7 @@ function SliderBasic(props) {
             clearInterval(interval)
         }
     };
-  }, [activeIndex]);
+  }, [activeIndex,len,props.autoPlay,props.autoPlayInterval]);
 
   return (
       <div className="slider-container"

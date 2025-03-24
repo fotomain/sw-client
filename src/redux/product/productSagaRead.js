@@ -1,19 +1,14 @@
 
 import {fork, call, put, takeEvery} from "redux-saga/effects";
 
-
-import {productActions, productsRead, productSlice} from "./productSlice";
+import {productActions} from "./productSlice";
 import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
 import {READ_PRODUCTS_QUERY} from "./READ_PRODUCTS_QUERY";
-import {READ_FIRST_CATEGORY_QUERY} from "./READ_FIRST_CATEGORY_QUERY";
 
 const THIS_SAGA_ENTITY='products'
 function* workFetch(params){
-    // console.log('params1',params.payload)
 
     let q= READ_PRODUCTS_QUERY(params.payload);
-
-    console.log("q10",q)
 
     const apiResponse1 = yield call(()=> fetchGraphQL({
         entityName:'READ_PRODUCTS_QUERY',
@@ -23,11 +18,7 @@ function* workFetch(params){
     const data_json = yield apiResponse1.json()
     const data = data_json.data.query
 
-//    console.log('data0',data)
-
     let result = data
-
-    // console.log('result1',result)
 
     yield put(productActions.readSuccess(result))
 

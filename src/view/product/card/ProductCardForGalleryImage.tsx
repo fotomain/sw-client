@@ -23,7 +23,7 @@ export const WrapOutOfStock = css`
 
 const ProductCardForGalleryImage = (props:any) => {
 
-    const {product,productIndex} = props;
+    const {product} = props;
 
     const dispatch = useDispatch();
 
@@ -46,6 +46,7 @@ const ProductCardForGalleryImage = (props:any) => {
 
             <img
                 id={'img111'}
+                alt={'image-'+product.name.replaceAll(" ","-")}
                 css={css`
                     position: absolute;
                     z-index: 11;
@@ -98,20 +99,14 @@ const ProductCardForGalleryImage = (props:any) => {
                         onClick={(e: any) => {
                             e.stopPropagation()
 
-                            console.log("setCartViewOpen=true")
+
 
                             let optionsSelected: any = {}
                             for (let i = 0; i < product.attributes.length; i++) {
                                 const {attributeOptions, ...h} = product.attributes[i]
-                                console.log("attributeOptions1", attributeOptions)
-                                console.log("attributeOptions1", h)
 
                                 optionsSelected[h.id] = attributeOptions[0].id
                             }
-
-                            console.log("optionsSelected1", product.product_id)
-                            console.log("optionsSelected1", product.has_options)
-                            console.log("optionsSelected1", optionsSelected)
 
                             dispatch(cartSlice.actions.create({
                                 qty: 1,

@@ -26,15 +26,15 @@ const abstractSlice=createSlice({
         createStart: (state,action) => {
             state.createStarted=true;
             state.createError="";
-            console.log("=== product_ isCreating1",action);
+
         },
         create: (state,action) => {
-            console.log("=== product_ createExecute true ",action);
+
         },
         createSuccess: (state,action) => {
             state[THIS_SLICE_ENTITY] = [...state[THIS_SLICE_ENTITY],{id:action.payload.id, name:action.payload.name+ ' #' + action.payload.id }]
             state.createStarted=false;
-            console.log("=== catCreateSuccess1 action ",action);
+
         },
         createFailure: (state,action) => {
             state.isReading=false;
@@ -65,8 +65,7 @@ const abstractSlice=createSlice({
             state.deleteError="";
         },
         delete: (state,action) => {
-            let deleteData =null
-            // const deleteElement = state[THIS_SLICE_ENTITY].find(el=>(el.id === action.payload.id))
+
             const deleteIndex = state[THIS_SLICE_ENTITY].findIndex(el=>(el.id === action.payload.id))
             console.log("=== deleteIndex",deleteIndex)
                 if(-1===deleteIndex){

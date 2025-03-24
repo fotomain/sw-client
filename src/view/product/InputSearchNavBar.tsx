@@ -26,12 +26,12 @@ const InputSearchNavBar = () => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        // console.log("deferredQuery1",deferredText)
+
         dispatch(uiSlice.actions.setValue({
             key: globalSearchText,
-            value: state.searchText,
+            value: deferredText,
         }))
-    },[deferredText])
+    },[deferredText,dispatch])
 
     const uiState = useSelector((state:any) => state.uiState );
 
