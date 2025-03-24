@@ -1,7 +1,7 @@
 
 import {select, fork, call, put, takeEvery} from "redux-saga/effects";
 
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
+import {fetchGraphQL} from "../../api/fetchGraphQL";
 import {CREATE_ORDER_MUTATION} from "./CREATE_ORDER_MUTATION";
 import {orderActions} from "./orderSlice";
 import {cartActions} from "../cart/cartSlice";

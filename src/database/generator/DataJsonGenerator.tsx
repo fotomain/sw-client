@@ -3,7 +3,7 @@ import {initialData512GForTests} from "../initialData-512G-for-tests";
 
 import {productsNew} from "./productsNew";
 import {objectToArray} from "./objectToArray";
-import {fetchGraphQL} from "./fetchGraphQL";
+import {fetchGraphQL} from "../../api/fetchGraphQL";
 
 // "▄▄▄▄"
 

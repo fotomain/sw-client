@@ -3,7 +3,7 @@ import { select, fork, call, put, takeEvery} from "redux-saga/effects";
 
 import {cartActions} from "./cartSlice";
 
-import {fetchGraphQL} from "../../database/generator/fetchGraphQL";
+import {fetchGraphQL} from "../../api/fetchGraphQL";
 import {ADD_TO_CART_MUTATION} from "./graphql/ADD_TO_CART_MUTATION";
 
 
