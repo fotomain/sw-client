@@ -1,0 +1,12 @@
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('u', 60);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('un', 61);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('', 62);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('J', 63);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES (' AND name LIKE BAJAB', 64);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('', 65);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('u', 66);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('un', 67);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('u', 68);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('', 69);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('u', 70);
+INSERT INTO u235058084_sw_database.debug_data (last_sql_text, id) VALUES ('un', 71);
