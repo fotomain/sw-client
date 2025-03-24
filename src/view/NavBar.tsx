@@ -31,11 +31,10 @@ const NavBar = (props:any) => {
                 value: false,
             }))
         },
-        "iconCart1"
+        ["iconCart1","iconBubble1","iconBubble2"]
     );
 
     const cartStateGlobal = useSelector((state:any) => state.cartState );
-    // console.log("cartStateGlobal8",cartStateGlobal)
 
     const dispatch = useDispatch();
 
@@ -70,6 +69,7 @@ const NavBar = (props:any) => {
 
         <button
             data-testid='cart-btn'
+            //params1
             // disabled={cartStateGlobal.isEmpty}
 
             css={css` position: relative;
@@ -116,8 +116,8 @@ const NavBar = (props:any) => {
 
                 {(cartStateGlobal.isEmpty) ? null :
                     <div
-                        id={'iconBubble1'}
-                        css={css`
+                        css={css` 
+                            z-index: 210;
                             position: absolute;
                             background-color: fuchsia;
                             width: auto;
@@ -125,7 +125,7 @@ const NavBar = (props:any) => {
                             //top: -.5rem;
                             //right: -0.6rem;
                             font-size: .8rem;
-                            top: -.9rem;
+                            top: -1.05rem;
                             right: -2rem;
                             padding-top: 2px;
                             padding-bottom: 2px;
@@ -148,8 +148,8 @@ const NavBar = (props:any) => {
 
                         }}
                     >
-                        <div>{cartStateGlobal?.cartArray?.cart_lines?.length}&nbsp;</div>
-                        <div>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
+                        <div id={'iconBubble1'}>{cartStateGlobal?.cartArray?.cart_lines?.length}&nbsp;</div>
+                        <div id={'iconBubble2'}>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
                     </div>
                 }
 
@@ -163,7 +163,7 @@ const NavBar = (props:any) => {
                 ref={dialogRef}
                 css={css`
                     position: absolute;
-                    z-index: 20;
+                    //z-index: 20;
                     
                     //TODO params1
                     width: 250px;
