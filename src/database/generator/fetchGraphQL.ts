@@ -21,7 +21,7 @@ export const fetchGraphQL= async (params:any) =>{
         }
     }
 
-    console.log("=== ▄▄▄▄ fetchPath1 ",mode,fetchPath)
+    // console.log("=== ▄▄▄▄ fetchPath1 ",mode,fetchPath)
 
     if(!params.setDataCallback) {
         return fetch(fetchPath, {
@@ -46,7 +46,7 @@ export const fetchGraphQL= async (params:any) =>{
         }).then((responseData) => {
                 // console.log("=== responseData1",responseData)
                 responseData.json().then((d:any) => {
-                    console.log("▄▄▄▄▄▄▄▄=== responseData ",params.entityName,d)
+                    // console.log("▄▄▄▄▄▄▄▄=== responseData ",params.entityName,d)
                     params.setDataCallback(d)
                 })
 

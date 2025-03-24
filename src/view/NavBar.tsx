@@ -14,6 +14,7 @@ import {makeOpenCartView, uiSlice} from "../redux/ui/uiSlice";
 import {useNavigate} from "react-router";
 import MenuDesktop from "./MenuDesktop";
 import InputSearchNavBar from "./product/InputSearchNavBar";
+import Logo from "./Logo";
 
 
 const NavBar = (props:any) => {
@@ -38,8 +39,6 @@ const NavBar = (props:any) => {
 
     const dispatch = useDispatch();
 
-    const navigate = useNavigate()
-
     return <nav
         css={css`
             position: fixed;
@@ -58,27 +57,16 @@ const NavBar = (props:any) => {
 
         `}
     >
+
         <div css={css`
             margin-left: 24px;
-            background-color: transparent;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
         `}>
-            <IconMaterial color={uiState.colorPrimary} size={32} icon={CiGlobe}
-                          onClick={() => {
-                              navigate(`/home`)
-                          }}
-            />
+            <Logo/>
         </div>
-
 
         <MenuDesktop/>
 
         <InputSearchNavBar/>
-
-        {/*<div>isEmpty{JSON.stringify(cartStateGlobal.isEmpty)}</div>*/}
-
 
         <button
             data-testid='cart-btn'
