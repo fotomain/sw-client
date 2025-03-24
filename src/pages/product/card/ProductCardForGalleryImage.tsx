@@ -4,7 +4,7 @@ import React from "react";
 import {useDispatch, useSelector} from "react-redux";
 
 import {css} from "@emotion/react";
-import IconCart from "../../core/lib/IconCart";
+import IconCart from "../../../core/lib/IconCart";
 
 import {cartSlice} from "../../../redux/cart/cartSlice";
 import {makeOpenCartView, uiSlice} from "../../../redux/ui/uiSlice";
@@ -21,15 +21,15 @@ export const WrapOutOfStock = css`
     padding: 12px;
 `
 
-const ProductCardForGalleryImage = (props:any) => {
+const ProductCardForGalleryImage = (props: any) => {
 
     const {product} = props;
 
     const dispatch = useDispatch();
 
-    const uiState = useSelector((state:any) => state.uiState );
+    const uiState = useSelector((state: any) => state.uiState);
 
-    return(
+    return (
 
         <div css={css`
             z-index: 10;
@@ -46,7 +46,7 @@ const ProductCardForGalleryImage = (props:any) => {
 
             <img
                 id={'img111'}
-                alt={'image-'+product.name.replaceAll(" ","-")}
+                alt={'image-' + product.name.replaceAll(" ", "-")}
                 css={css`
                     position: absolute;
                     z-index: 11;
@@ -59,7 +59,7 @@ const ProductCardForGalleryImage = (props:any) => {
             />
 
 
-            {(product.inStock)?null:
+            {(product.inStock) ? null :
                 <div
                     css={css` position: absolute;
                         z-index: 50;
@@ -98,7 +98,6 @@ const ProductCardForGalleryImage = (props:any) => {
                             background-color: ${uiState.colorPrimary}`}
                         onClick={(e: any) => {
                             e.stopPropagation()
-
 
 
                             let optionsSelected: any = {}

@@ -1,5 +1,5 @@
 
-import {initialData512GForTests} from "./database/initialData-512G-for-tests";
+import {initialData512GForTests} from "../initialData-512G-for-tests";
 import {dividerClasses} from "@mui/material";
 
 

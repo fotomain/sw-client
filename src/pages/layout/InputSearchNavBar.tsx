@@ -4,13 +4,13 @@ import React, {useDeferredValue, useEffect, useState} from "react";
 
 import {css} from "@emotion/react";
 
-import IconSearch from "../core/lib/IconSearch";
+import IconSearch from "../../core/lib/IconSearch";
 import {globalSearchText, uiSlice} from "../../redux/ui/uiSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 const InputSearchNavBar = () => {
 
-    const initState={
+    const initState = {
         searchText: '',
         stateMoment: 0,
         // name: 'Am'
@@ -19,7 +19,7 @@ const InputSearchNavBar = () => {
 
     const deferredText = useDeferredValue(state.searchText);
 
-    const handleSubmit = (e:any) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
     };
 
@@ -31,25 +31,30 @@ const InputSearchNavBar = () => {
             key: globalSearchText,
             value: deferredText,
         }))
-    },[deferredText,dispatch])
+    }, [deferredText, dispatch])
 
-    const uiState = useSelector((state:any) => state.uiState );
+    const uiState = useSelector((state: any) => state.uiState);
 
     return <form
-        css={css` 
+        css={css`
             height: 28px; //params1 ui.heightMenuAndInputSearch
             flex-grow: 1;
-            margin-right: 24px; 
+            margin-right: 24px;
             margin-left: 24px;
             border-bottom: 1px solid ${uiState.colorPrimary};
-            justify-content:center; align-items:center; flex-direction: row; display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            display: flex;
         `}
-         onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
     >
         <IconSearch/>
         <input
-            css={css` 
-                width:100%; border: none; font-size: 20px;
+            css={css`
+                width: 100%;
+                border: none;
+                font-size: 20px;
                 outline: none;
             `}
             type="text"

@@ -8,66 +8,66 @@ import {cartSlice} from "../../redux/cart/cartSlice";
 import CartLine from "./CartLine";
 import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 import {orderSlice} from "../../redux/order/orderSlice";
-import SpinnerBasic from "../core/lib/SpinnerBasic";
-import ButtonBasic from "../core/lib/ButtonBasic";
+import SpinnerBasic from "../../core/lib/SpinnerBasic";
+import ButtonBasic from "../../core/lib/ButtonBasic";
 
 const CartView = () => {
 
     const [cartState, setCartState] = useState({
-        cartItems:[],
-        qty:0,
+        cartItems: [],
+        qty: 0,
     })
 
 
     const dispatch = useDispatch();
 
-    const cartStateGlobal = useSelector((state:any) => state.cartState );
-    const orderState = useSelector((state:any) => state.orderState );
+    const cartStateGlobal = useSelector((state: any) => state.cartState);
+    const orderState = useSelector((state: any) => state.orderState);
 
     useEffect(() => {
-        if(cartStateGlobal.isEmpty) {
+        if (cartStateGlobal.isEmpty) {
             dispatch(cartSlice.actions.read({}))
         }
-    }, [cartStateGlobal.isEmpty,cartStateGlobal.cartGUID,dispatch]);
+    }, [cartStateGlobal.isEmpty, cartStateGlobal.cartGUID, dispatch]);
 
     useEffect(() => {
-        if(0!==orderState.momentCreated){
-            window.alert("Order successfully created! SQL order_header.cart_id = "+orderState?.orderArray?.order_header[0]?.cart_id)
+        if (0 !== orderState.momentCreated) {
+            window.alert("Order successfully created! SQL order_header.cart_id = " + orderState?.orderArray?.order_header[0]?.cart_id)
         }
-    }, [orderState.momentCreated,orderState?.orderArray?.order_header]);
+    }, [orderState.momentCreated, orderState?.orderArray?.order_header]);
 
-    const createStarted = useSelector((state:any) => state.productsState.createStarted);
+    const createStarted = useSelector((state: any) => state.productsState.createStarted);
 
-    return(<>
+    return (<>
 
         <div
             style={{
-            overflowY: 'auto',
-            maxHeight: '90vh',
-            display: 'flex',
-            flexDirection: 'column',
-            alignContent: 'start',
-            alignItems: 'center',
-        }}>
+                overflowY: 'auto',
+                maxHeight: '90vh',
+                display: 'flex',
+                flexDirection: 'column',
+                alignContent: 'start',
+                alignItems: 'center',
+            }}>
 
 
-            {createStarted? <div css={css` height: auto `}>
-                <SpinnerBasic radius={20} />
+            {createStarted ? <div css={css` height: auto `}>
+                <SpinnerBasic radius={20}/>
             </div> : null}
 
             {(!cartStateGlobal.isEmpty && cartStateGlobal?.cartArray?.cart_lines && cartStateGlobal?.cartArray?.cart_lines.length > 0) && cartStateGlobal?.cartArray?.cart_lines.map((cartLine: any, lineI: number) => {
 
                 return <div
                     css={css`
-                    width: 100%;
-                    //height: auto;
-                    display: flex;
-                    flex-direction: column;
-                    //justify-content: space-between;
-                    //debug background-color: red;
-                    //debug border: 1px blue solid;
-                `}
-                            key={cartLine.cart_line_id}
+                        width: 100%;
+                        //height: auto;
+                        display: flex;
+                        flex-direction: column;
+                        //justify-content: space-between;
+                        //debug background-color: red;
+                        //debug border: 1px blue solid;
+                    `}
+                    key={cartLine.cart_line_id}
                 >
 
                     <CartLine
@@ -96,8 +96,8 @@ const CartView = () => {
                     data-testid='cart-total'
                 >
                     ${(!cartStateGlobal?.cartArray?.cart_total)
-                        ? 0
-                        : cartStateGlobal?.cartArray?.cart_total.toFixed(2)}
+                    ? 0
+                    : cartStateGlobal?.cartArray?.cart_total.toFixed(2)}
                 </div>
             </div>
 

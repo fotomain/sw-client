@@ -5,16 +5,14 @@ import React from "react";
 import {css} from "@emotion/react";
 import NavBar from "./NavBar";
 import {useSelector} from "react-redux";
-import {Outlet, Route, Routes} from "react-router-dom";
-import SpinnerBasic from "./core/lib/SpinnerBasic";
+import {Outlet} from "react-router-dom";
+import SpinnerBasic from "../../core/lib/SpinnerBasic";
 
-export const LayoutPage = (params:any) => {
+export const LayoutPage = (params: any) => {
 
-    const uiState = useSelector((state:any) => state.uiState );
-    const cartState = useSelector((state:any) => state.cartState );
+    const uiState = useSelector((state: any) => state.uiState);
 
-    const productsState = useSelector((state:any) => state.productsState );
-    const isReading = useSelector((state:any) => state.productsState.isReading);
+    const isReading = useSelector((state: any) => state.productsState.isReading);
 
     return (
         <div css={css`
@@ -26,35 +24,38 @@ export const LayoutPage = (params:any) => {
         `}
         >
 
-            {/*global tests*/}
+            {/*global*/}
             {/*<div css={css`margin-top: 150px`}>*/}
             {/*    <div>{JSON.stringify(cartState.cartGUID)}</div>*/}
             {/*    <div>{JSON.stringify(uiState.makeOpenCartView)}</div>*/}
-                {/*<div css={css` margin-top: 80px`}>products N {productsState.productsArray.length}</div>*/}
-                {/*<div css={css` margin-top: 80px`}>isReading {JSON.stringify(isReading)}</div>*/}
+            {/*<div css={css` margin-top: 80px`}>products N {productsState.productsArray.length}</div>*/}
+            {/*<div css={css` margin-top: 80px`}>isReading {JSON.stringify(isReading)}</div>*/}
             {/*</div>*/}
 
             <NavBar/>
 
             {(!isReading) ? null :
-                <div css={css` 
-                        //top: 45vh;
-                        //left: 50vw;
-                        top:0;
-                        height: 100vh;
-                        width: 100vw;
-                        justify-content:center; align-items:center; display: flex; flex-direction: row;
-                        //transform: translate(-50%);
-                        z-index: 300;
-                        position: absolute;
-                        background-color: transparent;
-                        `}
+                <div css={css`
+                    //top: 45vh;
+                    //left: 50vw;
+                    top: 0;
+                    height: 100vh;
+                    width: 100vw;
+                    justify-content: center;
+                    align-items: center;
+                    display: flex;
+                    flex-direction: row;
+                    //transform: translate(-50%);
+                    z-index: 300;
+                    position: absolute;
+                    background-color: transparent;
+                `}
                 >
                     <SpinnerBasic/>
                 </div>
             }
 
-            <div css={css` 
+            <div css={css`
                 z-index: 10;
                 position: relative`}>
 
@@ -71,7 +72,7 @@ export const LayoutPage = (params:any) => {
                             width: 100vw;
                             height: 100%;
                             min-height: 100vh;
-                            top:0;
+                            top: 0;
                             background-color: ${(uiState.makeOpenCartView) ? 'black' : 'transparent'};
                             opacity: 0.5;
                         `}
@@ -96,10 +97,6 @@ export const LayoutPage = (params:any) => {
             `}>
                 Copyright by foto888999@gmail.com
             </footer>
-
-            {/*<div>HomePage1</div>*/}
-
-            {/*<DataJsonAnalyser/>*/}
 
         </div>
     );

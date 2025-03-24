@@ -1,7 +1,7 @@
 import {Route, Routes} from "react-router-dom";
-import {LayoutPage} from "./view/LayoutPage";
-import ProductsGallery from "./view/product/ProductsGallery";
-import ProductDetailsPage from "./view/product/ProductDetailsPage";
+import {LayoutPage} from "./pages/layout/LayoutPage";
+import ProductsGallery from "./pages/product/ProductsGallery";
+import ProductDetailsPage from "./pages/product/ProductDetailsPage";
 import React, {useEffect} from "react";
 import {categorySlice} from "./redux/category/categorySlice";
 import {useDispatch, useSelector} from "react-redux";

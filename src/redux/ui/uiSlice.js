@@ -7,8 +7,6 @@ const THIS_SLICE_NAME = 'uiSlice'
 export const globalSearchText="globalSearchText"
 export const makeOpenCartView="makeOpenCartView"
 
-// ui.oolorBackgroundMain="var(--oolorBackgroundMain)";
-
 const abstractSlice=createSlice({
     name: THIS_SLICE_NAME,
     initialState:{

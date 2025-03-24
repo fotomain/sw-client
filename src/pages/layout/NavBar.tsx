@@ -1,37 +1,37 @@
 /** @jsxImportSource @emotion/react */
 
 import {css} from "@emotion/react";
-import IconCart from "./core/lib/IconCart";
+import IconCart from "../../core/lib/IconCart";
 import React, {useRef} from "react";
 
-import CartView from "./cart/CartView";
-import useClickOut from "./core/functions";
+import CartView from "../cart/CartView";
+import useClickOut from "../../core/functions";
 import {useDispatch, useSelector} from "react-redux";
-import {makeOpenCartView, uiSlice} from "../redux/ui/uiSlice";
+import {makeOpenCartView, uiSlice} from "../../redux/ui/uiSlice";
 
 import MenuDesktop from "./MenuDesktop";
-import InputSearchNavBar from "./product/InputSearchNavBar";
+import InputSearchNavBar from "./InputSearchNavBar";
 import Logo from "./Logo";
 
 
-const NavBar = (props:any) => {
+const NavBar = (props: any) => {
 
     const dialogRef = useRef(null);
 
-    const uiState = useSelector((state:any) => state.uiState );
+    const uiState = useSelector((state: any) => state.uiState);
 
-    useClickOut(dialogRef,uiState.makeOpenCartView,
-        ()=>{
+    useClickOut(dialogRef, uiState.makeOpenCartView,
+        () => {
 
             dispatch(uiSlice.actions.setValue({
-                key:makeOpenCartView,
+                key: makeOpenCartView,
                 value: false,
             }))
         },
-        ["iconCart1","iconBubble1","iconBubble2"]
+        ["iconCart1", "iconBubble1", "iconBubble2"]
     );
 
-    const cartStateGlobal = useSelector((state:any) => state.cartState );
+    const cartStateGlobal = useSelector((state: any) => state.cartState);
 
     const dispatch = useDispatch();
 
@@ -84,18 +84,17 @@ const NavBar = (props:any) => {
                 id={'iconCart1'} // for ClickOut
                 color={(cartStateGlobal.isEmpty) ? 'grey' : uiState.colorPrimary}
 
-                onClick={(e:any) => {
+                onClick={(e: any) => {
 
                     //=== PROBLEM if (cartStateGlobal.isEmpty) return
 
-                    if(uiState.makeOpenCartView) {
+                    if (uiState.makeOpenCartView) {
 
                         dispatch(uiSlice.actions.setValue({
                             key: makeOpenCartView,
                             value: false,
                         }))
-                    }
-                    else {
+                    } else {
 
                         dispatch(uiSlice.actions.setValue({
                             key: makeOpenCartView,
@@ -113,7 +112,7 @@ const NavBar = (props:any) => {
 
                 {(cartStateGlobal.isEmpty) ? null :
                     <div
-                        css={css` 
+                        css={css`
                             z-index: 210;
                             position: absolute;
                             background-color: fuchsia;
@@ -146,7 +145,8 @@ const NavBar = (props:any) => {
                         }}
                     >
                         <div id={'iconBubble1'}>{cartStateGlobal?.cartArray?.cart_lines?.length}&nbsp;</div>
-                        <div id={'iconBubble2'}>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
+                        <div
+                            id={'iconBubble2'}>{(1 === cartStateGlobal?.cartArray?.cart_lines?.length) ? 'item' : 'items'}</div>
                     </div>
                 }
 
@@ -161,7 +161,7 @@ const NavBar = (props:any) => {
                 css={css`
                     position: absolute;
                     //z-index: 20;
-                    
+
                     //TODO params1
                     width: 250px;
                     min-width: 250px;

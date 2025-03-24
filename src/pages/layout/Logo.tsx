@@ -1,5 +1,5 @@
 import {css} from "@emotion/react";
-import IconMaterial from "./core/lib/IconMaterial";
+import IconMaterial from "../../core/lib/IconMaterial";
 import {CiGlobe} from "react-icons/ci";
 import React from "react";
 import {useNavigate} from "react-router";
@@ -7,7 +7,7 @@ import {useSelector} from "react-redux";
 
 const Logo = () => {
 
-    const uiState = useSelector((state:any) => state.uiState );
+    const uiState = useSelector((state: any) => state.uiState);
     const navigate = useNavigate()
 
     return <div css={css`
