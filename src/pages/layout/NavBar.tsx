@@ -42,6 +42,7 @@ const NavBar = (props: any) => {
             background-color: white;
             width: 100vw;
             height: 8vh;
+            min-height: 70px; //params125 see <dialog
             //padding-left: 80px;
             //padding-right: 88px;
             display: flex;
@@ -169,7 +170,7 @@ const NavBar = (props: any) => {
                     // - width of IconCart - shift of the tip
 
                     //params1 NavBar
-                    top: 70px;
+                    top: 65px; //params125 see <nav
                     margin-right: 0;
                     //transform: translate(100%);
                     //margin-right: calc(100% - 24px - 0.6rem);
